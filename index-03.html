@@ -1537,126 +1537,976 @@
 
 
 
+<!-- ##### START Technical Specifications Section ##### -->
 
-        <!-- Technical Specifications -->
-        <h2>Technical Specifications</h2>
-        
-        <label for="language">Language:</label>
-        <input type="text" id="language" name="language" placeholder="e.g., lat">
-        
-        <label for="original_language">Original Language:</label>
-        <input type="text" id="original_language" name="original_language" placeholder="e.g., lat">
-        
-        <label for="duration">Duration:</label>
-        <input type="text" id="duration" name="duration" placeholder="e.g., 4:01">
-        
-        <label for="duration_frames">Duration Frames:</label>
-        <input type="text" id="duration_frames" name="duration_frames" placeholder="e.g., 11548800">
-        
-        <label for="bpm">BPM:</label>
-        <input type="text" id="bpm" name="bpm" placeholder="e.g., 60">
-        
-        <label for="key">Key:</label>
-        <input type="text" id="key" name="key" placeholder="e.g., Bb Major">
-        
-        <label for="time_signature">Time Signature:</label>
-        <input type="text" id="time_signature" name="time_signature" placeholder="e.g., 4/2 (3+3+2, 3+3+2 subdivision)">
-        
-        <label for="audio_quality">Audio Quality:</label>
-        <input type="text" id="audio_quality" name="audio_quality" placeholder="e.g., 24-bit/48kHz">
-        
-        <label for="sample_rate">Sample Rate:</label>
-        <input type="text" id="sample_rate" name="sample_rate" placeholder="e.g., 48000">
-        
-        <label for="bit_depth">Bit Depth:</label>
-        <input type="text" id="bit_depth" name="bit_depth" placeholder="e.g., 24">
-        
-        <label for="channels">Channels:</label>
-        <input type="text" id="channels" name="channels" placeholder="e.g., 2">
-        
-        <label for="recording_type">Recording Type:</label>
-        <input type="text" id="recording_type" name="recording_type" placeholder="e.g., Live">
-        
-        <label for="mastering_engineer">Mastering Engineer:</label>
-        <input type="text" id="mastering_engineer" name="mastering_engineer" placeholder="e.g., Dainis W. Michel">
-        
-        <label for="mastering_facility">Mastering Facility:</label>
-        <input type="text" id="mastering_facility" name="mastering_facility" placeholder="e.g., Home Studio">
-        
-        <label for="mastering_gear">Mastering Gear:</label>
-        <input type="text" id="mastering_gear" name="mastering_gear" placeholder="e.g., RME ADI-2 Pro FS R Black Edition">
-        
-        <label for="mixing_engineer">Mixing Engineer:</label>
-        <input type="text" id="mixing_engineer" name="mixing_engineer" placeholder="e.g., Dainis Kažoks">
-        
-        <label for="mixing_facility">Mixing Facility:</label>
-        <input type="text" id="mixing_facility" name="mixing_facility" placeholder="e.g., 3x3 Live Sound">
-        
-        <label for="recording_engineer">Recording Engineer:</label>
-        <input type="text" id="recording_engineer" name="recording_engineer" placeholder="e.g., Dainis Kažoks">
-        
-        <label for="recording_gear">Recording Gear:</label>
-        <input type="text" id="recording_gear" name="recording_gear" placeholder="e.g., DPA 4006A Omnidirectional Microphones">
-        
-        <label for="signal_chain">Signal Chain:</label>
-        <input type="text" id="signal_chain" name="signal_chain" placeholder="e.g., DPA 4006A > RME Fireface UCX II > Reaper DAW">
-        
-        <label for="production_date">Production Date:</label>
-        <input type="text" id="production_date" name="production_date" placeholder="e.g., 2024-07-03">
-        
-        <label for="master_source">Master Source:</label>
-        <input type="text" id="master_source" name="master_source" placeholder="e.g., Original Live Recording">
-        
-        <label for="original_format">Original Format:</label>
-        <input type="text" id="original_format" name="original_format" placeholder="e.g., Digital">
-        
-        <label for="noise_reduction">Noise Reduction:</label>
-        <input type="text" id="noise_reduction" name="noise_reduction" placeholder="e.g., None - Natural Room Sound Preserved">
-        
-        <label for="audio_restoration">Audio Restoration:</label>
-        <input type="text" id="audio_restoration" name="audio_restoration" placeholder="e.g., None">
-        
-        <label for="dither_type">Dither Type:</label>
-        <input type="text" id="dither_type" name="dither_type" placeholder="e.g., TPDF">
-        
-        <label for="headroom">Headroom:</label>
-        <input type="text" id="headroom" name="headroom" placeholder="e.g., 18dB">
-        
-        <label for="peak_level">Peak Level:</label>
-        <input type="text" id="peak_level" name="peak_level" placeholder="e.g., -1.0dBFS">
-        
-        <label for="average_loudness">Average Loudness:</label>
-        <input type="text" id="average_loudness" name="average_loudness" placeholder="e.g., -14 LUFS">
-        
-        <label for="true_peak">True Peak:</label>
-        <input type="text" id="true_peak" name="true_peak" placeholder="e.g., -1.0dBTP">
-        
-        <label for="phase_correlation">Phase Correlation:</label>
-        <input type="text" id="phase_correlation" name="phase_correlation" placeholder="e.g., +0.8">
-        
-        <label for="audio_codec">Audio Codec:</label>
-        <input type="text" id="audio_codec" name="audio_codec" placeholder="e.g., PCM">
-        
-        <label for="bit_rate">Bit Rate:</label>
-        <input type="text" id="bit_rate" name="bit_rate" placeholder="e.g., 2304kbps">
-        
-        <label for="stereo_field">Stereo Field:</label>
-        <input type="text" id="stereo_field" name="stereo_field" placeholder="e.g., Natural Room Image">
-        
-        <label for="acoustic_environment">Acoustic Environment:</label>
-        <input type="text" id="acoustic_environment" name="acoustic_environment" placeholder="e.g., Outdoor Festival Stage, Natural Acoustics">
-        
-        <label for="equipment_notes">Equipment Notes:</label>
-        <input type="text" id="equipment_notes" name="equipment_notes" placeholder="e.g., All microphones matched pairs">
-        
-        <label for="recording_method">Recording Method:</label>
-        <input type="text" id="recording_method" name="recording_method" placeholder="e.g., Live stereo capture">
-        
-        <label for="monitoring_environment">Monitoring Environment:</label>
-        <input type="text" id="monitoring_environment" name="monitoring_environment" placeholder="e.g., Professional headphones on-site">
-        
-        <label for="technical_notes">Technical Notes:</label>
-        <input type="text" id="technical_notes" name="technical_notes" placeholder="e.g., Natural acoustic performance captured with minimal processing">
+<!-- Technical Specifications -->
+<h2>Technical Specifications</h2>
+
+
+<!-- Start Technical Specifications Section 01 -->
+
+<label for="language">Language:</label>
+<input type="text" id="language" name="language" placeholder="e.g., lat">
+
+<!-- Tabs for Language -->
+<div class="tabs">
+    <div class="tab-label">Language Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the primary language of the track.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Language can influence the cultural and emotional impact of the music.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the language choice affects the accessibility and appeal of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank">ISO 639-1 Language Codes</a></p>
+    </div>
+</div>
+<!-- End Language Field -->
+
+<label for="original_language">Original Language:</label>
+<input type="text" id="original_language" name="original_language" placeholder="e.g., lat">
+
+<!-- Tabs for Original Language -->
+<div class="tabs">
+    <div class="tab-label">Original Language Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the original language of the track if different from the primary language.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The original language can provide context for the track's cultural and historical background.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the original language influences the authenticity and originality of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank">ISO 639-1 Language Codes</a></p>
+    </div>
+</div>
+<!-- End Original Language Field -->
+
+<label for="duration">Duration:</label>
+<input type="text" id="duration" name="duration" placeholder="e.g., 4:01">
+
+<!-- Tabs for Duration -->
+<div class="tabs">
+    <div class="tab-label">Duration Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the total duration of the track in minutes and seconds.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Track duration can influence the structure and flow of the music.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the duration affects the listener's experience and engagement.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Length_of_a_song" target="_blank">Length of a Song on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Duration Field -->
+
+<label for="duration_frames">Duration Frames:</label>
+<input type="text" id="duration_frames" name="duration_frames" placeholder="e.g., 11548800">
+
+<!-- Tabs for Duration Frames -->
+<div class="tabs">
+    <div class="tab-label">Duration Frames Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the total duration of the track in frames.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Duration frames provide a precise measurement of the track's length.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the duration frames can be used for synchronization and editing purposes.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Frame_rate" target="_blank">Frame Rate on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Duration Frames Field -->
+
+<label for="bpm">BPM:</label>
+<input type="text" id="bpm" name="bpm" placeholder="e.g., 60">
+
+<!-- Tabs for BPM -->
+<div class="tabs">
+    <div class="tab-label">BPM Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the beats per minute (BPM) of the track.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>BPM is a fundamental aspect of the track's tempo and rhythm.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the BPM affects the energy and feel of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Tempo" target="_blank">Tempo on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End BPM Field -->
+
+<label for="key">Key:</label>
+<input type="text" id="key" name="key" placeholder="e.g., Bb Major">
+
+<!-- Tabs for Key -->
+<div class="tabs">
+    <div class="tab-label">Key Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the musical key of the track.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The key can influence the mood and harmonic structure of the music.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the key choice affects the emotional impact of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Musical_key" target="_blank">Musical Key on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Key Field -->
+
+<label for="time_signature">Time Signature:</label>
+<input type="text" id="time_signature" name="time_signature" placeholder="e.g., 4/2 (3+3+2, 3+3+2 subdivision)">
+
+<!-- Tabs for Time Signature -->
+<div class="tabs">
+    <div class="tab-label">Time Signature Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the time signature of the track.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Time signatures define the rhythmic structure and feel of the music.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the time signature influences the groove and flow of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Time_signature" target="_blank">Time Signature on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Time Signature Field -->
+
+<label for="audio_quality">Audio Quality:</label>
+<input type="text" id="audio_quality" name="audio_quality" placeholder="e.g., 24-bit/48kHz">
+
+<!-- Tabs for Audio Quality -->
+<div class="tabs">
+    <div class="tab-label">Audio Quality Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the audio quality of the track, including bit depth and sample rate.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Audio quality can significantly impact the listening experience and fidelity of the music.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the audio quality affects the clarity and detail of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_bit_depth" target="_blank">Audio Bit Depth on Wikipedia</a></p>
+        <p><a href="https://en.wikipedia.org/wiki/Sampling_rate" target="_blank">Sampling Rate on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Audio Quality Field -->
+
+<!-- End Technical Specifications Section 01 -->
+
+
+
+<!-- Start Technical Specifications Section 02 -->
+
+<label for="sample_rate">Sample Rate:</label>
+<input type="text" id="sample_rate" name="sample_rate" placeholder="e.g., 48000">
+
+<!-- Tabs for Sample Rate -->
+<div class="tabs">
+    <div class="tab-label">Sample Rate Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the sample rate of the track in Hz.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Sample rate affects the audio quality and fidelity of the recording.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the sample rate impacts the clarity and detail of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Sampling_rate" target="_blank">Sampling Rate on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Sample Rate Field -->
+
+<label for="bit_depth">Bit Depth:</label>
+<input type="text" id="bit_depth" name="bit_depth" placeholder="e.g., 24">
+
+<!-- Tabs for Bit Depth -->
+<div class="tabs">
+    <div class="tab-label">Bit Depth Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the bit depth of the track.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Bit depth affects the dynamic range and noise floor of the recording.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the bit depth impacts the overall sound quality of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_bit_depth" target="_blank">Audio Bit Depth on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Bit Depth Field -->
+
+<label for="channels">Channels:</label>
+<input type="text" id="channels" name="channels" placeholder="e.g., 2">
+
+<!-- Tabs for Channels -->
+<div class="tabs">
+    <div class="tab-label">Channels Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the number of audio channels (e.g., mono, stereo).</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The number of channels affects the spatial characteristics of the recording.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the number of channels impacts the listening experience.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_channel" target="_blank">Audio Channel on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Channels Field -->
+
+<label for="recording_type">Recording Type:</label>
+<input type="text" id="recording_type" name="recording_type" placeholder="e.g., Live">
+
+<!-- Tabs for Recording Type -->
+<div class="tabs">
+    <div class="tab-label">Recording Type Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the type of recording (e.g., live, studio).</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Recording type can influence the production techniques and overall sound of the track.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the recording type affects the authenticity and atmosphere of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Recording" target="_blank">Recording on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Recording Type Field -->
+
+<label for="mastering_engineer">Mastering Engineer:</label>
+<input type="text" id="mastering_engineer" name="mastering_engineer" placeholder="e.g., Dainis W. Michel">
+
+<!-- Tabs for Mastering Engineer -->
+<div class="tabs">
+    <div class="tab-label">Mastering Engineer Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the name of the mastering engineer.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The mastering engineer is responsible for the final sound quality of the track.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the mastering engineer's expertise influences the overall sound of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_mastering" target="_blank">Audio Mastering on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Mastering Engineer Field -->
+
+<label for="mastering_facility">Mastering Facility:</label>
+<input type="text" id="mastering_facility" name="mastering_facility" placeholder="e.g., Home Studio">
+
+<!-- Tabs for Mastering Facility -->
+<div class="tabs">
+    <div class="tab-label">Mastering Facility Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the name of the mastering facility.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The mastering facility can influence the quality and consistency of the final master.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the mastering facility's equipment and environment impact the final sound.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_mastering" target="_blank">Audio Mastering on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Mastering Facility Field -->
+
+<label for="mastering_gear">Mastering Gear:</label>
+<input type="text" id="mastering_gear" name="mastering_gear" placeholder="e.g., RME ADI-2 Pro FS R Black Edition">
+
+<!-- Tabs for Mastering Gear -->
+<div class="tabs">
+    <div class="tab-label">Mastering Gear Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the equipment used during mastering.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The choice of mastering gear can significantly impact the final sound quality.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the mastering gear enhances the clarity, depth, and overall quality of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_mastering" target="_blank">Audio Mastering on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Mastering Gear Field -->
+
+<label for="mixing_engineer">Mixing Engineer:</label>
+<input type="text" id="mixing_engineer" name="mixing_engineer" placeholder="e.g., Dainis Kažoks">
+
+<!-- Tabs for Mixing Engineer -->
+<div class="tabs">
+    <div class="tab-label">Mixing Engineer Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the name of the mixing engineer.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The mixing engineer is responsible for balancing and blending the individual tracks.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the mixing engineer's expertise influences the overall sound and cohesion of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_mixing_(recorded_music)" target="_blank">Audio Mixing on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Mixing Engineer Field -->
+
+<!-- End Technical Specifications Section 02 -->
+
+
+
+<!-- Start Technical Specifications Section 03 -->
+
+<label for="mixing_facility">Mixing Facility:</label>
+<input type="text" id="mixing_facility" name="mixing_facility" placeholder="e.g., 3x3 Live Sound">
+
+<!-- Tabs for Mixing Facility -->
+<div class="tabs">
+    <div class="tab-label">Mixing Facility Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the name of the mixing facility.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The mixing facility can influence the quality and consistency of the final mix.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the mixing facility's equipment and environment impact the final sound.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_mixing_(recorded_music)" target="_blank">Audio Mixing on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Mixing Facility Field -->
+
+<label for="recording_engineer">Recording Engineer:</label>
+<input type="text" id="recording_engineer" name="recording_engineer" placeholder="e.g., Dainis Kažoks">
+
+<!-- Tabs for Recording Engineer -->
+<div class="tabs">
+    <div class="tab-label">Recording Engineer Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the name of the recording engineer.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The recording engineer is responsible for capturing the audio during the recording session.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the recording engineer's expertise influences the overall sound quality of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_engineer" target="_blank">Audio Engineer on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Recording Engineer Field -->
+
+<label for="recording_gear">Recording Gear:</label>
+<input type="text" id="recording_gear" name="recording_gear" placeholder="e.g., DPA 4006A Omnidirectional Microphones">
+
+<!-- Tabs for Recording Gear -->
+<div class="tabs">
+    <div class="tab-label">Recording Gear Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the equipment used during recording.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The choice of recording gear can significantly impact the sound quality and character of the recording.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the recording gear enhances the clarity, depth, and overall quality of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Microphone" target="_blank">Microphone on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Recording Gear Field -->
+
+<label for="signal_chain">Signal Chain:</label>
+<input type="text" id="signal_chain" name="signal_chain" placeholder="e.g., DPA 4006A > RME Fireface UCX II > Reaper DAW">
+
+<!-- Tabs for Signal Chain -->
+<div class="tabs">
+    <div class="tab-label">Signal Chain Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the signal chain used during recording.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The signal chain can influence the overall sound quality and character of the recording.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the signal chain components work together to capture the best possible sound.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Signal_chain" target="_blank">Signal Chain on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Signal Chain Field -->
+
+<label for="production_date">Production Date:</label>
+<input type="text" id="production_date" name="production_date" placeholder="e.g., 2024-07-03">
+
+<!-- Tabs for Production Date -->
+<div class="tabs">
+    <div class="tab-label">Production Date Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the date when the production was completed.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The production date can provide context for the recording's timeline and historical background.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the production date fits into the broader timeline of your musical career and the music industry.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Recording" target="_blank">Recording on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Production Date Field -->
+
+<label for="master_source">Master Source:</label>
+<input type="text" id="master_source" name="master_source" placeholder="e.g., Original Live Recording">
+
+<!-- Tabs for Master Source -->
+<div class="tabs">
+    <div class="tab-label">Master Source Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the source of the master recording.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The master source can provide context for the recording's origin and production process.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the master source influences the authenticity and quality of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_mastering" target="_blank">Audio Mastering on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Master Source Field -->
+
+<label for="original_format">Original Format:</label>
+<input type="text" id="original_format" name="original_format" placeholder="e.g., Digital">
+
+<!-- Tabs for Original Format -->
+<div class="tabs">
+    <div class="tab-label">Original Format Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the original format of the recording.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The original format can provide context for the recording's production and preservation.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the original format influences the quality and longevity of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_file_format" target="_blank">Audio File Format on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Original Format Field -->
+
+<label for="noise_reduction">Noise Reduction:</label>
+<input type="text" id="noise_reduction" name="noise_reduction" placeholder="e.g., None - Natural Room Sound Preserved">
+
+<!-- Tabs for Noise Reduction -->
+<div class="tabs">
+    <div class="tab-label">Noise Reduction Guidelines</div>
+    <div class="tab-content">
+        <p>Specify any noise reduction techniques used during recording or mastering.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Noise reduction can improve the clarity and quality of the recording.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how noise reduction techniques impact the overall sound and authenticity of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Noise_reduction" target="_blank">Noise Reduction on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Noise Reduction Field -->
+
+<!-- End Technical Specifications Section 03 -->
+
+<!-- Start Technical Specifications Section 04 -->
+
+<label for="audio_restoration">Audio Restoration:</label>
+<input type="text" id="audio_restoration" name="audio_restoration" placeholder="e.g., None">
+
+<!-- Tabs for Audio Restoration -->
+<div class="tabs">
+    <div class="tab-label">Audio Restoration Guidelines</div>
+    <div class="tab-content">
+        <p>Specify any audio restoration techniques used during recording or mastering.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Audio restoration can improve the clarity and quality of older or damaged recordings.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how audio restoration techniques impact the overall sound and authenticity of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_restoration" target="_blank">Audio Restoration on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Audio Restoration Field -->
+
+<label for="dither_type">Dither Type:</label>
+<input type="text" id="dither_type" name="dither_type" placeholder="e.g., TPDF">
+
+<!-- Tabs for Dither Type -->
+<div class="tabs">
+    <div class="tab-label">Dither Type Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the type of dithering used during mastering.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Dithering can reduce quantization errors and improve the sound quality of digital audio.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the choice of dither type impacts the overall sound quality of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Dither" target="_blank">Dither on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Dither Type Field -->
+
+<label for="headroom">Headroom:</label>
+<input type="text" id="headroom" name="headroom" placeholder="e.g., 18dB">
+
+<!-- Tabs for Headroom -->
+<div class="tabs">
+    <div class="tab-label">Headroom Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the headroom of the track in decibels (dB).</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Headroom is the amount of space between the peak level and the maximum level a system can handle.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the headroom affects the dynamic range and overall sound quality of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Headroom_(audio_signal_processing)" target="_blank">Headroom on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Headroom Field -->
+
+<label for="peak_level">Peak Level:</label>
+<input type="text" id="peak_level" name="peak_level" placeholder="e.g., -1.0dBFS">
+
+<!-- Tabs for Peak Level -->
+<div class="tabs">
+    <div class="tab-label">Peak Level Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the peak level of the track in decibels relative to full scale (dBFS).</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Peak level is the highest level of an audio signal.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the peak level affects the overall loudness and clarity of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Decibel" target="_blank">Decibel on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Peak Level Field -->
+
+<label for="average_loudness">Average Loudness:</label>
+<input type="text" id="average_loudness" name="average_loudness" placeholder="e.g., -14 LUFS">
+
+<!-- Tabs for Average Loudness -->
+<div class="tabs">
+    <div class="tab-label">Average Loudness Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the average loudness of the track in loudness units relative to full scale (LUFS).</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Average loudness is a measure of the perceived loudness of an audio signal.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the average loudness affects the listener's experience and the overall impact of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Loudness" target="_blank">Loudness on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Average Loudness Field -->
+
+<label for="true_peak">True Peak:</label>
+<input type="text" id="true_peak" name="true_peak" placeholder="e.g., -1.0dBTP">
+
+<!-- Tabs for True Peak -->
+<div class="tabs">
+    <div class="tab-label">True Peak Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the true peak level of the track in decibels true peak (dBTP).</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>True peak is the highest level of an audio signal, taking into account inter-sample peaks.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the true peak level affects the overall loudness and clarity of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/True_peak" target="_blank">True Peak on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End True Peak Field -->
+
+<label for="phase_correlation">Phase Correlation:</label>
+<input type="text" id="phase_correlation" name="phase_correlation" placeholder="e.g., +0.8">
+
+<!-- Tabs for Phase Correlation -->
+<div class="tabs">
+    <div class="tab-label">Phase Correlation Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the phase correlation of the track.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Phase correlation measures the similarity between the left and right channels of a stereo signal.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the phase correlation affects the stereo image and overall sound quality of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Phase_correlation" target="_blank">Phase Correlation on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Phase Correlation Field -->
+
+<label for="audio_codec">Audio Codec:</label>
+<input type="text" id="audio_codec" name="audio_codec" placeholder="e.g., PCM">
+
+<!-- Tabs for Audio Codec -->
+<div class="tabs">
+    <div class="tab-label">Audio Codec Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the audio codec used for the track.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Audio codecs are used to encode and decode digital audio signals.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the choice of audio codec affects the quality and compatibility of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_codec" target="_blank">Audio Codec on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Audio Codec Field -->
+
+<label for="bit_rate">Bit Rate:</label>
+<input type="text" id="bit_rate" name="bit_rate" placeholder="e.g., 2304kbps">
+
+<!-- Tabs for Bit Rate -->
+<div class="tabs">
+    <div class="tab-label">Bit Rate Guidelines</div>
+    <div class="tab-content">
+        <p>Specify the bit rate of the track in kilobits per second (kbps).</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Bit rate affects the quality and file size of digital audio.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the bit rate impacts the overall sound quality and file size of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Bit_rate" target="_blank">Bit Rate on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Bit Rate Field -->
+
+<label for="stereo_field">Stereo Field:</label>
+<input type="text" id="stereo_field" name="stereo_field" placeholder="e.g., Natural Room Image">
+
+<!-- Tabs for Stereo Field -->
+<div class="tabs">
+    <div class="tab-label">Stereo Field Guidelines</div>
+    <div class="tab-content">
+        <p>Describe the stereo field of the track, including any notable spatial characteristics.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The stereo field can influence the spatial characteristics and overall sound quality of the recording.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the stereo field enhances the listening experience and the overall impact of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Stereophonic_sound" target="_blank">Stereophonic Sound on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Stereo Field Field -->
+
+<label for="acoustic_environment">Acoustic Environment:</label>
+<input type="text" id="acoustic_environment" name="acoustic_environment" placeholder="e.g., Outdoor Festival Stage, Natural Acoustics">
+
+<!-- Tabs for Acoustic Environment -->
+<div class="tabs">
+    <div class="tab-label">Acoustic Environment Guidelines</div>
+    <div class="tab-content">
+        <p>Describe the acoustic environment where the recording took place.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The acoustic environment can significantly impact the sound quality and character of the recording.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the acoustic environment enhances the authenticity and overall sound of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Acoustics" target="_blank">Acoustics on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Acoustic Environment Field -->
+
+<label for="equipment_notes">Equipment Notes:</label>
+<input type="text" id="equipment_notes" name="equipment_notes" placeholder="e.g., All microphones matched pairs">
+
+<!-- Tabs for Equipment Notes -->
+<div class="tabs">
+    <div class="tab-label">Equipment Notes Guidelines</div>
+    <div class="tab-content">
+        <p>Provide any additional notes about the equipment used during recording or mastering.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Equipment notes can provide context for the recording's production process and sound quality.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the choice of equipment influences the overall sound and character of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_equipment" target="_blank">Audio Equipment on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Equipment Notes Field -->
+
+<label for="recording_method">Recording Method:</label>
+<input type="text" id="recording_method" name="recording_method" placeholder="e.g., Live stereo capture">
+
+<!-- Tabs for Recording Method -->
+<div class="tabs">
+    <div class="tab-label">Recording Method Guidelines</div>
+    <div class="tab-content">
+        <p>Describe the recording method used for the track.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Recording methods can vary widely depending on the production techniques and goals.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the recording method enhances the authenticity and overall sound of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Recording" target="_blank">Recording on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Recording Method Field -->
+
+<label for="monitoring_environment">Monitoring Environment:</label>
+<input type="text" id="monitoring_environment" name="monitoring_environment" placeholder="e.g., Professional headphones on-site">
+
+<!-- Tabs for Monitoring Environment -->
+<div class="tabs">
+    <div class="tab-label">Monitoring Environment Guidelines</div>
+    <div class="tab-content">
+        <p>Describe the monitoring environment used during recording or mastering.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>The monitoring environment can influence the accuracy and quality of the final mix and master.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the monitoring environment impacts the overall sound quality and consistency of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Studio_monitor" target="_blank">Studio Monitor on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Monitoring Environment Field -->
+
+<label for="technical_notes">Technical Notes:</label>
+<input type="text" id="technical_notes" name="technical_notes" placeholder="e.g., Natural acoustic performance captured with minimal processing">
+
+<!-- Tabs for Technical Notes -->
+<div class="tabs">
+    <div class="tab-label">Technical Notes Guidelines</div>
+    <div class="tab-content">
+        <p>Provide any additional technical notes about the recording or mastering process.</p>
+    </div>
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Technical notes can provide context for the recording's production process and sound quality.</p>
+    </div>
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Consider how the technical aspects of the recording and mastering process enhance the overall sound and character of your music.</p>
+    </div>
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://en.wikipedia.org/wiki/Audio_engineering" target="_blank">Audio Engineering on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Technical Notes Field -->
+
+<!-- End Technical Specifications Section 04 -->
+
+<!-- ##### END Technical Specifications Section ##### -->
+
+
+
+<!-- ##### END Technical Specifications Section ##### -->
+
+
 
         <!-- Legal and Rights Management -->
         <h2>Legal and Rights Management</h2>
