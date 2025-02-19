@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Audio Metadata Editor</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tabLabels = document.querySelectorAll('.tab-label');
+            tabLabels.forEach(label => {
+                label.addEventListener('click', function () {
+                    const content = this.nextElementSibling;
+                    const isVisible = content.style.display === 'block';
+                    document.querySelectorAll('.tab-content').forEach(tc => tc.style.display = 'none');
+                    content.style.display = isVisible ? 'none' : 'block';
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Professional Audio Metadata Editor</h1>
+    <form>
+        <!-- Basic Track Information -->
+        <h2>Basic Track Information</h2>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" placeholder="e.g., Song Title">
+
+        <!-- Tabs for Title -->
+        <div class="tabs">
+            <div class="tab-label">Technical Input Specs & Examples</div>
+            <div class="tab-content">
+                <p>Max 255 characters. Alphanumeric and special characters allowed.</p>
+                <p>Examples:</p>
+                <ul>
+                    <li>Hotel California</li>
+                    <li>Bohemian Rhapsody</li>
+                    <li>Imagine</li>
+                </ul>
+            </div>
+            <div class="tab-label">History & Creativity</div>
+            <div class="tab-content">
+                <p>Song titles have historically been influenced by cultural and poetic trends. Creativity is key to making a memorable title.</p>
+            </div>
+            <div class="tab-label">Creative Help & Support</div>
+            <div class="tab-content">
+                <p>Need help brainstorming a title? Consider using metaphors, evocative imagery, or thematic keywords relevant to your song's mood and story.</p>
+            </div>
+            <div class="tab-label">External Resources</div>
+            <div class="tab-content">
+                <p><a href="https://www.songtitlegenerator.com" target="_blank">Song Title Generator</a></p>
+                <p><a href="https://en.wikipedia.org/wiki/Song_title" target="_blank">Song Title on Wikipedia</a></p>
+            </div>
+        </div>
+
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="artist" placeholder="e.g., Dainis W. Michel, Dainis V. Michelis, Da1ni5, Emīlija Michele, Olīvija un Hugo">
+
+        <div class="tabs">
+            <div class="tab-label">Technical Input Specs & Examples</div>
+            <div class="tab-content">
+                <p>Max 255 characters. Include all artist variations and collaborators.</p>
+                <p>Format examples:</p>
+                <ul>
+                    <li>Main artist with all name variations</li>
+                    <li>Featured artists in order of appearance</li>
+                    <li>Proper credit formatting for family ensembles</li>
+                </ul>
+            </div>
+            <div class="tab-label">Rights & Permissions</div>
+            <div class="tab-content">
+                <p>Ensure all listed artists have approved their credited names.</p>
+                <p>Consider privacy for underage performers.</p>
+            </div>
+        </div>
+
+        <label for="album">Album:</label>
+        <input type="text" id="album" name="album" placeholder="e.g., Sadziedāšana ar Daini (Dzīvajā)">
+        
+        <div class="tabs">
+            <div class="tab-label">Album Details</div>
+            <div class="tab-content">
+                <p>Include live performance designation if applicable.</p>
+                <p>Add context and series information.</p>
+            </div>
+        </div>
+        
+        <label for="release_type">Release Type:</label>
+        <input type="text" id="release_type" name="release_type" placeholder="e.g., Live Recording">
+        
+        <label for="compilation">Compilation:</label>
+        <input type="text" id="compilation" name="compilation" placeholder="e.g., 0">
+        
+        <label for="album_artist">Album Artist:</label>
+        <input type="text" id="album_artist" name="album_artist" placeholder="e.g., Dainis W. Michel ar meitiņu Emīlija un draugiem Olīviju un Hugo">
+        
+        <label for="album_type">Album Type:</label>
+        <input type="text" id="album_type" name="album_type" placeholder="e.g., Live Album">
+
+
+<!-- Start Basic Track Information -->
+<h2>Basic Track Information</h2>
+
+<!-- Start Title Field -->
+<label for="title">Title:</label>
+<input type="text" id="title" name="title" placeholder="e.g., Song Title">
+
+<!-- Tabs for Title -->
+<div class="tabs">
+    <!-- Tab: Technical Input Specs & Examples -->
+    <div class="tab-label">Technical Input Specs & Examples</div>
+    <div class="tab-content">
+        <p>Max 255 characters. Alphanumeric and special characters allowed.</p>
+        <p>Examples:</p>
+        <ul>
+            <li>Hotel California</li>
+            <li>Bohemian Rhapsody</li>
+            <li>Imagine</li>
+        </ul>
+    </div>
+
+    <!-- Tab: History & Creativity -->
+    <div class="tab-label">History & Creativity</div>
+    <div class="tab-content">
+        <p>Song titles have historically been influenced by cultural and poetic trends. Creativity is key to making a memorable title.</p>
+    </div>
+
+    <!-- Tab: Creative Help & Support -->
+    <div class="tab-label">Creative Help & Support</div>
+    <div class="tab-content">
+        <p>Need help brainstorming a title? Consider using metaphors, evocative imagery, or thematic keywords relevant to your song's mood and story.</p>
+    </div>
+
+    <!-- Tab: External Resources -->
+    <div class="tab-label">External Resources</div>
+    <div class="tab-content">
+        <p><a href="https://www.songtitlegenerator.com" target="_blank">Song Title Generator</a></p>
+        <p><a href="https://en.wikipedia.org/wiki/Song_title" target="_blank">Song Title on Wikipedia</a></p>
+    </div>
+</div>
+<!-- End Title Field -->
+
+<!-- Start Artist Field -->
+<label for="artist">Artist:</label>
+<input type="text" id="artist" name="artist" placeholder="e.g., Artist Name">
+
+<!-- Tabs for Artist -->
+<div class="tabs">
+    <div class="tab-label">Technical Input Specs & Examples</div>
+    <div class="tab-content">
+        <p>Max 255 characters. Include all artist variations and collaborators.</p>
+        <p>Examples:</p>
+        <ul>
+            <li>The Beatles</li>
+            <li>Pink Floyd</li>
+            <li>Queen</li>
+        </ul>
+    </div>
+    
+    <div class="tab-label">Rights & Permissions</div>
+    <div class="tab-content">
+        <p>Ensure all listed artists have approved their credited names.</p>
+        <p>Consider privacy for underage performers.</p>
+    </div>
+</div>
+<!-- End Artist Field -->
+
+<!-- Start Album Field -->
+<label for="album">Album:</label>
+<input type="text" id="album" name="album" placeholder="e.g., Album Title">
+
+<!-- Tabs for Album -->
+<div class="tabs">
+    <div class="tab-label">Technical Input Specs & Examples</div>
+    <div class="tab-content">
+        <p>Max 255 characters. Album titles should be formatted properly.</p>
+        <p>Examples:</p>
+        <ul>
+            <li>Dark Side of the Moon</li>
+            <li>Abbey Road</li>
+            <li>Thriller</li>
+        </ul>
+    </div>
+
+    <div class="tab-label">Album History & Notes</div>
+    <div class="tab-content">
+        <p>Albums serve as collections of works and may have thematic or conceptual elements.</p>
+    </div>
+</div>
+<!-- End Album Field -->
+
+<!-- Start Year Field -->
+<label for="year">Year:</label>
+<input type="text" id="year" name="year" placeholder="e.g., 2024">
+
+<!-- Tabs for Year -->
+<div class="tabs">
+    <div class="tab-label">Technical Input Specs</div>
+    <div class="tab-content">
+        <p>Use a four-digit year (YYYY format). Example: 2024.</p>
+    </div>
+</div>
+<!-- End Year Field -->
+
+<!-- Start Genre Field -->
+<label for="genre">Genre:</label>
+<input type="text" id="genre" name="genre" placeholder="e.g., Folk, Acoustic">
+
+<!-- Tabs for Genre -->
+<div class="tabs">
+    <div class="tab-label">Genre Guidelines</div>
+    <div class="tab-content">
+        <p>Genres help categorize music styles. Choose the most fitting descriptors.</p>
+    </div>
+    
+    <div class="tab-label">Examples</div>
+    <div class="tab-content">
+        <p>Common genres:</p>
+        <ul>
+            <li>Rock</li>
+            <li>Jazz</li>
+            <li>Classical</li>
+            <li>Electronic</li>
+        </ul>
+    </div>
+</div>
+<!-- End Genre Field -->
+
+<!-- Start Cover Art Field -->
+<label for="cover_art">Cover Art:</label>
+<input type="file" id="cover_art" name="cover_art">
+
+<!-- Tabs for Cover Art -->
+<div class="tabs">
+    <div class="tab-label">Technical Specifications</div>
+    <div class="tab-content">
+        <p>Accepted formats: JPG, PNG. Recommended size: 3000x3000 pixels.</p>
+    </div>
+
+    <div class="tab-label">Design Considerations</div>
+    <div class="tab-content">
+        <p>Ensure high-resolution artwork with relevant visual themes.</p>
+    </div>
+</div>
+<!-- End Cover Art Field -->
+
+<!-- End Basic Track Information -->
+
+
+
+
+
+        <!-- PRO and Rights Society Information -->
+        <h2>PRO and Rights Society Information</h2>
+        
+        <label for="pro_affiliations">PRO Affiliations:</label>
+        <input type="text" id="pro_affiliations" name="pro_affiliations" placeholder="e.g., AustroMechana (Primary), ASCAP (Secondary)">
+        
+        <div class="tabs">
+            <div class="tab-label">PRO Registration Details</div>
+            <div class="tab-content">
+                <p>Include all relevant performance rights organizations.</p>
+                <p>Specify primary and secondary affiliations.</p>
+            </div>
+        </div>
+
+        <label for="ipi_cae_number">IPI/CAE Number:</label>
+        <input type="text" id="ipi_cae_number" name="ipi_cae_number" placeholder="e.g., 123456789">
+        
+        <label for="performing_rights_society">Performing Rights Society:</label>
+        <input type="text" id="performing_rights_society" name="performing_rights_society" placeholder="e.g., AustroMechana">
+        
+        <label for="mechanical_rights_society">Mechanical Rights Society:</label>
+        <input type="text" id="mechanical_rights_society" name="mechanical_rights_society" placeholder="e.g., AustroMechana">
+        
+        <label for="pro_territory">PRO Territory:</label>
+        <input type="text" id="pro_territory" name="pro_territory" placeholder="e.g., European Union, United States">
+        
+        <label for="pro_collection_share">PRO Collection Share:</label>
+        <input type="text" id="pro_collection_share" name="pro_collection_share" placeholder="e.g., 100%">
+        
+        <label for="pro_registration_date">PRO Registration Date:</label>
+        <input type="text" id="pro_registration_date" name="pro_registration_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="pro_work_id">PRO Work ID:</label>
+        <input type="text" id="pro_work_id" name="pro_work_id" placeholder="e.g., 12345678">
+        
+        <label for="sub_publisher">Sub Publisher:</label>
+        <input type="text" id="sub_publisher" name="sub_publisher" placeholder="e.g., None">
+        
+        <label for="publishing_administrator">Publishing Administrator:</label>
+        <input type="text" id="publishing_administrator" name="publishing_administrator" placeholder="e.g., Self-Administered">
+        
+        <label for="collection_society_splits">Collection Society Splits:</label>
+        <input type="text" id="collection_society_splits" name="collection_society_splits" placeholder="e.g., Composer: 50%, Lyricist: 50%">
+        
+        <label for="performing_rights_split">Performing Rights Split:</label>
+        <input type="text" id="performing_rights_split" name="performing_rights_split" placeholder="e.g., Writer: 100%">
+        
+        <label for="mechanical_rights_split">Mechanical Rights Split:</label>
+        <input type="text" id="mechanical_rights_split" name="mechanical_rights_split" placeholder="e.g., Publisher: 100%">
+        
+        <label for="neighboring_rights">Neighboring Rights:</label>
+        <input type="text" id="neighboring_rights" name="neighboring_rights" placeholder="e.g., Yes">
+        
+        <label for="society_work_codes">Society Work Codes:</label>
+        <input type="text" id="society_work_codes" name="society_work_codes" placeholder="e.g., AustroMechana: AM123456, ASCAP: AS789012">
+        
+        <label for="international_standard_codes">International Standard Codes:</label>
+        <input type="text" id="international_standard_codes" name="international_standard_codes" placeholder="e.g., ISWC: T-123456789-0, ISRC: US-XXX-21-00001">
+        
+        <label for="cae_ipi_name_number">CAE/IPI Name Number:</label>
+        <input type="text" id="cae_ipi_name_number" name="cae_ipi_name_number" placeholder="e.g., 123456789">
+        
+        <label for="ipi_base_number">IPI Base Number:</label>
+        <input type="text" id="ipi_base_number" name="ipi_base_number" placeholder="e.g., I-123456789-0">
+        
+        <label for="pro_registration_status">PRO Registration Status:</label>
+        <input type="text" id="pro_registration_status" name="pro_registration_status" placeholder="e.g., Registered">
+        
+        <label for="royalty_collection_territory">Royalty Collection Territory:</label>
+        <input type="text" id="royalty_collection_territory" name="royalty_collection_territory" placeholder="e.g., Worldwide">
+
+        <!-- Music Supervision and Mood Tags -->
+        <h2>Music Supervision and Mood Tags</h2>
+        
+        <label for="mood">Mood:</label>
+        <input type="text" id="mood" name="mood" placeholder="e.g., Peaceful, Nostalgic, Folkloric, Happy Family, Traditional, Contemplative, Serene, Caring">
+        
+        <div class="tabs">
+            <div class="tab-label">Mood Guidelines</div>
+            <div class="tab-content">
+                <p>Select moods that best describe the emotional impact and atmosphere.</p>
+                <p>Consider both primary and secondary moods.</p>
+            </div>
+        </div>
+
+        <label for="mood_secondary">Mood Secondary:</label>
+        <input type="text" id="mood_secondary" name="mood_secondary" placeholder="e.g., Spiritual, Reverent, Natural, Rural">
+        
+        <label for="tempo">Tempo:</label>
+        <input type="text" id="tempo" name="tempo" placeholder="e.g., Slow, Gentle, Flowing, Traditional 3+3+2 Latvian Folk Rhythm">
+        
+        <label for="tempo_exact">Tempo Exact:</label>
+        <input type="text" id="tempo_exact" name="tempo_exact" placeholder="e.g., 60 BPM">
+        
+        <label for="rhythm_structure">Rhythm Structure:</label>
+        <input type="text" id="rhythm_structure" name="rhythm_structure" placeholder="e.g., 4/2 meter with folkloric 3+3+2, 3+3+2 subdivision pattern">
+        
+        <label for="rhythmic_style">Rhythmic Style:</label>
+        <input type="text" id="rhythmic_style" name="rhythmic_style" placeholder="e.g., Traditional Baltic folk rhythm with asymmetric internal grouping (3+3+2)">
+        
+        <label for="rhythmic_tradition">Rhythmic Tradition:</label>
+        <input type="text" id="rhythmic_tradition" name="rhythmic_tradition" placeholder="e.g., Classic Baltic folk timing pattern, characteristic of traditional Latvian folk songs">
+        
+        <label for="theme">Theme:</label>
+        <input type="text" id="theme" name="theme" placeholder="e.g., Nature, Love, Folk Traditions, Family Bonds, Cultural Heritage">
+        
+        <label for="style">Style:</label>
+        <input type="text" id="style" name="style" placeholder="e.g., Latvian Folk, Acoustic, Traditional, World Music">
+        
+        <label for="instruments">Instruments:</label>
+        <input type="text" id="instruments" name="instruments" placeholder="e.g., Acoustic Guitar (Martin D-1), Vocals (Live), Natural Room Acoustics">
+        
+        <label for="energy_level">Energy Level:</label>
+        <input type="text" id="energy_level" name="energy_level" placeholder="e.g., Low">
+        
+        <label for="intensity_curve">Intensity Curve:</label>
+        <input type="text" id="intensity_curve" name="intensity_curve" placeholder="e.g., Gentle Build">
+        
+        <label for="dynamic_range">Dynamic Range:</label>
+        <input type="text" id="dynamic_range" name="dynamic_range" placeholder="e.g., High (Live Recording)">
+        
+        <label for="vocal_type">Vocal Type:</label>
+        <input type="text" id="vocal_type" name="vocal_type" placeholder="e.g., Male Lead, Youth Harmony, Family Ensemble">
+        
+        <label for="sound_alike">Sound Alike:</label>
+        <input type="text" id="sound_alike" name="sound_alike" placeholder="e.g., Traditional Latvian Folk, Baltic Folk Music">
+        
+        <label for="keywords">Keywords:</label>
+        <input type="text" id="keywords" name="keywords" placeholder="e.g., Latvian, Folk Song, Traditional, Live Recording, Acoustic, Family Performance, Cultural Heritage, Diaspora Music">
+        
+        <label for="usage_suggestions">Usage Suggestions:</label>
+        <input type="text" id="usage_suggestions" name="usage_suggestions" placeholder="e.g., Documentary, Cultural Programming, Film Underscore, Heritage Events, Family Festivals, Emotional Moments, Cultural Education, Museum Installations">
+        
+        <label for="placement_suggestions">Placement Suggestions:</label>
+        <input type="text" id="placement_suggestions" name="placement_suggestions" placeholder="e.g., Family Scenes, Cultural Documentaries, Heritage Moments, Contemplative Sequences">
+        
+        <label for="alternate_versions">Alternate Versions:</label>
+        <input type="text" id="alternate_versions" name="alternate_versions" placeholder="e.g., Original Studio Version Available">
+        
+        <label for="stems_available">Stems Available:</label>
+        <input type="text" id="stems_available" name="stems_available" placeholder="e.g., No - Live Recording">
+        
+        <label for="instrumental_version">Instrumental Version:</label>
+        <input type="text" id="instrumental_version" name="instrumental_version" placeholder="e.g., Available Upon Request">
+        
+        <label for="musical_period">Musical Period:</label>
+        <input type="text" id="musical_period" name="musical_period" placeholder="e.g., Contemporary interpretation of Traditional Folk">
+        
+        <label for="ethnic_origin">Ethnic Origin:</label>
+        <input type="text" id="ethnic_origin" name="ethnic_origin" placeholder="e.g., Latvian Traditional">
+        
+        <label for="folklore_category">Folklore Category:</label>
+        <input type="text" id="folklore_category" name="folklore_category" placeholder="e.g., Traditional">
+        <label for="cultural_significance">Cultural Significance:</label>
+        <input type="text" id="cultural_significance" name="cultural_significance" placeholder="e.g., Historic Latvian folk melody with traditional 3+3+2 rhythm pattern">
+        
+        <label for="musical_features">Musical Features:</label>
+        <input type="text" id="musical_features" name="musical_features" placeholder="e.g., Complex Rhythmic Structure, Traditional Melody, Family Harmonies">
+        
+        <label for="sync_notes">Sync Notes:</label>
+        <input type="text" id="sync_notes" name="sync_notes" placeholder="e.g., Ideal for cultural, historical, or family-themed content">
+        
+        <label for="mood_progression">Mood Progression:</label>
+        <input type="text" id="mood_progression" name="mood_progression" placeholder="e.g., Consistent, contemplative throughout">
+        
+        <label for="emotional_content">Emotional Content:</label>
+        <input type="text" id="emotional_content" name="emotional_content" placeholder="e.g., Nostalgic, Warm, Family-Oriented">
+        
+        <label for="cultural_context">Cultural Context:</label>
+        <input type="text" id="cultural_context" name="cultural_context" placeholder="e.g., Traditional Latvian Folk Music in Modern Context">
+        
+        <label for="performance_style">Performance Style:</label>
+        <input type="text" id="performance_style" name="performance_style" placeholder="e.g., Traditional Baltic Folk with Family Ensemble">
+
+        <!-- Technical Specifications -->
+        <h2>Technical Specifications</h2>
+        
+        <label for="language">Language:</label>
+        <input type="text" id="language" name="language" placeholder="e.g., lat">
+        
+        <label for="original_language">Original Language:</label>
+        <input type="text" id="original_language" name="original_language" placeholder="e.g., lat">
+        
+        <label for="duration">Duration:</label>
+        <input type="text" id="duration" name="duration" placeholder="e.g., 4:01">
+        
+        <label for="duration_frames">Duration Frames:</label>
+        <input type="text" id="duration_frames" name="duration_frames" placeholder="e.g., 11548800">
+        
+        <label for="bpm">BPM:</label>
+        <input type="text" id="bpm" name="bpm" placeholder="e.g., 60">
+        
+        <label for="key">Key:</label>
+        <input type="text" id="key" name="key" placeholder="e.g., Bb Major">
+        
+        <label for="time_signature">Time Signature:</label>
+        <input type="text" id="time_signature" name="time_signature" placeholder="e.g., 4/2 (3+3+2, 3+3+2 subdivision)">
+        
+        <label for="audio_quality">Audio Quality:</label>
+        <input type="text" id="audio_quality" name="audio_quality" placeholder="e.g., 24-bit/48kHz">
+        
+        <label for="sample_rate">Sample Rate:</label>
+        <input type="text" id="sample_rate" name="sample_rate" placeholder="e.g., 48000">
+        
+        <label for="bit_depth">Bit Depth:</label>
+        <input type="text" id="bit_depth" name="bit_depth" placeholder="e.g., 24">
+        
+        <label for="channels">Channels:</label>
+        <input type="text" id="channels" name="channels" placeholder="e.g., 2">
+        
+        <label for="recording_type">Recording Type:</label>
+        <input type="text" id="recording_type" name="recording_type" placeholder="e.g., Live">
+        
+        <label for="mastering_engineer">Mastering Engineer:</label>
+        <input type="text" id="mastering_engineer" name="mastering_engineer" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="mastering_facility">Mastering Facility:</label>
+        <input type="text" id="mastering_facility" name="mastering_facility" placeholder="e.g., Home Studio">
+        
+        <label for="mastering_gear">Mastering Gear:</label>
+        <input type="text" id="mastering_gear" name="mastering_gear" placeholder="e.g., RME ADI-2 Pro FS R Black Edition">
+        
+        <label for="mixing_engineer">Mixing Engineer:</label>
+        <input type="text" id="mixing_engineer" name="mixing_engineer" placeholder="e.g., Dainis Kažoks">
+        
+        <label for="mixing_facility">Mixing Facility:</label>
+        <input type="text" id="mixing_facility" name="mixing_facility" placeholder="e.g., 3x3 Live Sound">
+        
+        <label for="recording_engineer">Recording Engineer:</label>
+        <input type="text" id="recording_engineer" name="recording_engineer" placeholder="e.g., Dainis Kažoks">
+        
+        <label for="recording_gear">Recording Gear:</label>
+        <input type="text" id="recording_gear" name="recording_gear" placeholder="e.g., DPA 4006A Omnidirectional Microphones">
+        
+        <label for="signal_chain">Signal Chain:</label>
+        <input type="text" id="signal_chain" name="signal_chain" placeholder="e.g., DPA 4006A > RME Fireface UCX II > Reaper DAW">
+        
+        <label for="production_date">Production Date:</label>
+        <input type="text" id="production_date" name="production_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="master_source">Master Source:</label>
+        <input type="text" id="master_source" name="master_source" placeholder="e.g., Original Live Recording">
+        
+        <label for="original_format">Original Format:</label>
+        <input type="text" id="original_format" name="original_format" placeholder="e.g., Digital">
+        
+        <label for="noise_reduction">Noise Reduction:</label>
+        <input type="text" id="noise_reduction" name="noise_reduction" placeholder="e.g., None - Natural Room Sound Preserved">
+        
+        <label for="audio_restoration">Audio Restoration:</label>
+        <input type="text" id="audio_restoration" name="audio_restoration" placeholder="e.g., None">
+        
+        <label for="dither_type">Dither Type:</label>
+        <input type="text" id="dither_type" name="dither_type" placeholder="e.g., TPDF">
+        
+        <label for="headroom">Headroom:</label>
+        <input type="text" id="headroom" name="headroom" placeholder="e.g., 18dB">
+        
+        <label for="peak_level">Peak Level:</label>
+        <input type="text" id="peak_level" name="peak_level" placeholder="e.g., -1.0dBFS">
+        
+        <label for="average_loudness">Average Loudness:</label>
+        <input type="text" id="average_loudness" name="average_loudness" placeholder="e.g., -14 LUFS">
+        
+        <label for="true_peak">True Peak:</label>
+        <input type="text" id="true_peak" name="true_peak" placeholder="e.g., -1.0dBTP">
+        
+        <label for="phase_correlation">Phase Correlation:</label>
+        <input type="text" id="phase_correlation" name="phase_correlation" placeholder="e.g., +0.8">
+        
+        <label for="audio_codec">Audio Codec:</label>
+        <input type="text" id="audio_codec" name="audio_codec" placeholder="e.g., PCM">
+        
+        <label for="bit_rate">Bit Rate:</label>
+        <input type="text" id="bit_rate" name="bit_rate" placeholder="e.g., 2304kbps">
+        
+        <label for="stereo_field">Stereo Field:</label>
+        <input type="text" id="stereo_field" name="stereo_field" placeholder="e.g., Natural Room Image">
+        
+        <label for="acoustic_environment">Acoustic Environment:</label>
+        <input type="text" id="acoustic_environment" name="acoustic_environment" placeholder="e.g., Outdoor Festival Stage, Natural Acoustics">
+        
+        <label for="equipment_notes">Equipment Notes:</label>
+        <input type="text" id="equipment_notes" name="equipment_notes" placeholder="e.g., All microphones matched pairs">
+        
+        <label for="recording_method">Recording Method:</label>
+        <input type="text" id="recording_method" name="recording_method" placeholder="e.g., Live stereo capture">
+        
+        <label for="monitoring_environment">Monitoring Environment:</label>
+        <input type="text" id="monitoring_environment" name="monitoring_environment" placeholder="e.g., Professional headphones on-site">
+        
+        <label for="technical_notes">Technical Notes:</label>
+        <input type="text" id="technical_notes" name="technical_notes" placeholder="e.g., Natural acoustic performance captured with minimal processing">
+
+        <!-- Legal and Rights Management -->
+        <h2>Legal and Rights Management</h2>
+        
+        <label for="copyright_holder">Copyright Holder:</label>
+        <input type="text" id="copyright_holder" name="copyright_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="copyright">Copyright:</label>
+        <input type="text" id="copyright" name="copyright" placeholder="e.g., © 2024 Dainis W. Michel. All Rights Reserved.">
+        
+        <label for="copyright_notice">Copyright Notice:</label>
+        <input type="text" id="copyright_notice" name="copyright_notice" placeholder="e.g., All Rights Reserved - Protected under International Copyright Law">
+        
+        <label for="publisher">Publisher:</label>
+        <input type="text" id="publisher" name="publisher" placeholder="e.g., Dainis W. Michel (Self-Published)">
+        
+        <label for="publisher_rights">Publisher Rights:</label>
+        <input type="text" id="publisher_rights" name="publisher_rights" placeholder="e.g., 100% All Rights">
+        
+        <label for="pro_affiliation">PRO Affiliation:</label>
+        <input type="text" id="pro_affiliation" name="pro_affiliation" placeholder="e.g., AustroMechana Primary, ASCAP Secondary">
+        
+        <label for="iswc">ISWC:</label>
+        <input type="text" id="iswc" name="iswc" placeholder="e.g., T-123456789-0">
+        
+        <label for="isrc">ISRC:</label>
+        <input type="text" id="isrc" name="isrc" placeholder="e.g., US-XXX-21-00001">
+        
+        <label for="catalog_number">Catalog Number:</label>
+        <input type="text" id="catalog_number" name="catalog_number" placeholder="e.g., DWM-2024-001">
+        
+        <label for="rights_holder">Rights Holder:</label>
+        <input type="text" id="rights_holder" name="rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="master_rights_holder">Master Rights Holder:</label>
+        <input type="text" id="master_rights_holder" name="master_rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="master_rights_territory">Master Rights Territory:</label>
+        <input type="text" id="master_rights_territory" name="master_rights_territory" placeholder="e.g., Worldwide">
+        
+        <label for="sync_rights_holder">Sync Rights Holder:</label>
+        <input type="text" id="sync_rights_holder" name="sync_rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="mechanical_rights_holder">Mechanical Rights Holder:</label>
+        <input type="text" id="mechanical_rights_holder" name="mechanical_rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="performance_rights_holder">Performance Rights Holder:</label>
+        <input type="text" id="performance_rights_holder" name="performance_rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="neighboring_rights_holder">Neighboring Rights Holder:</label>
+        <input type="text" id="neighboring_rights_holder" name="neighboring_rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="clearance_status">Clearance Status:</label>
+        <input type="text" id="clearance_status" name="clearance_status" placeholder="e.g., Pre-Cleared for All Media">
+        
+        <label for="clearance_contact">Clearance Contact:</label>
+        <input type="text" id="clearance_contact" name="clearance_contact" placeholder="e.g., licensing@dainis.net">
+        
+        <label for="clearance_response_time">Clearance Response Time:</label>
+        <input type="text" id="clearance_response_time" name="clearance_response_time" placeholder="e.g., 24-48 hours">
+        
+        <label for="licensing_terms">Licensing Terms:</label>
+        <input type="text" id="licensing_terms" name="licensing_terms" placeholder="e.g., Available for All Media, Worldwide, In Perpetuity">
+        
+        <label for="licensing_contact_primary">Licensing Contact Primary:</label>
+        <input type="text" id="licensing_contact_primary" name="licensing_contact_primary" placeholder="e.g., Dainis W. Michel (licensing@dainis.net)">
+        
+        <label for="licensing_contact_secondary">Licensing Contact Secondary:</label>
+        <input type="text" id="licensing_contact_secondary" name="licensing_contact_secondary" placeholder="e.g., Legal Representative (legal@dainis.net)">
+        
+        <label for="licensing_restrictions">Licensing Restrictions:</label>
+        <input type="text" id="licensing_restrictions" name="licensing_restrictions" placeholder="e.g., None">
+        
+        <label for="sample_clearance">Sample Clearance:</label>
+        <input type="text" id="sample_clearance" name="sample_clearance" placeholder="e.g., No Samples Used - Original Composition">
+        
+        <label for="legal_status">Legal Status:</label>
+        <input type="text" id="legal_status" name="legal_status" placeholder="e.g., Original Work - All Rights Available">
+        
+        <label for="territory_restrictions">Territory Restrictions:</label>
+        <input type="text" id="territory_restrictions" name="territory_restrictions" placeholder="e.g., None - Available Worldwide">
+        
+        <label for="usage_restrictions">Usage Restrictions:</label>
+        <input type="text" id="usage_restrictions" name="usage_restrictions" placeholder="e.g., None">
+        
+        <label for="moral_rights">Moral Rights:</label>
+        <input type="text" id="moral_rights" name="moral_rights" placeholder="e.g., Protected">
+        
+        <label for="chain_of_title">Chain of Title:</label>
+        <input type="text" id="chain_of_title" name="chain_of_title" placeholder="e.g., Original Creation - Complete Chain Maintained">
+        
+        <label for="ownership_percentage">Ownership Percentage:</label>
+        <input type="text" id="ownership_percentage" name="ownership_percentage" placeholder="e.g., 100% Dainis W. Michel">
+        
+        <label for="rights_reversion">Rights Reversion:</label>
+        <input type="text" id="rights_reversion" name="rights_reversion" placeholder="e.g., None">
+        
+        <label for="legal_documentation">Legal Documentation:</label>
+        <input type="text" id="legal_documentation" name="legal_documentation" placeholder="e.g., Available Upon Request">
+        
+        <label for="cue_sheet_status">Cue Sheet Status:</label>
+        <input type="text" id="cue_sheet_status" name="cue_sheet_status" placeholder="e.g., Available">
+        
+        <label for="legal_clearance_notes">Legal Clearance Notes:</label>
+        <input type="text" id="legal_clearance_notes" name="legal_clearance_notes" placeholder="e.g., All rights fully owned and cleared for worldwide usage">
+        
+        <label for="rights_administration">Rights Administration:</label>
+        <input type="text" id="rights_administration" name="rights_administration" placeholder="e.g., Direct via Rights Holder">
+        
+        <label for="royalty_distribution">Royalty Distribution:</label>
+        <input type="text" id="royalty_distribution" name="royalty_distribution" placeholder="e.g., Direct Payment">
+        
+        <label for="legal_representation">Legal Representation:</label>
+        <input type="text" id="legal_representation" name="legal_representation" placeholder="e.g., Self-Represented">
+        
+        <label for="rights_society_registration">Rights Society Registration:</label>
+        <input type="text" id="rights_society_registration" name="rights_society_registration" placeholder="e.g., Fully Registered">
+        
+        <label for="legal_clearance_verification">Legal Clearance Verification:</label>
+        <input type="text" id="legal_clearance_verification" name="legal_clearance_verification" placeholder="e.g., Complete Chain of Title Verified">
+
+        <!-- Credits and Personnel -->
+        <h2>Credits and Personnel</h2>
+        
+        <label for="composer">Composer:</label>
+        <input type="text" id="composer" name="composer" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="composer_nationality">Composer Nationality:</label>
+        <input type="text" id="composer_nationality" name="composer_nationality" placeholder="e.g., Latvian-American">
+        
+        <label for="composer_ipi">Composer IPI:</label>
+        <input type="text" id="composer_ipi" name="composer_ipi" placeholder="e.g., 123456789">
+        
+        <        <label for="cultural_significance">Cultural Significance:</label>
+        <input type="text" id="cultural_significance" name="cultural_significance" placeholder="e.g., Historic Latvian folk melody with traditional 3+3+2 rhythm pattern">
+        
+        <label for="musical_features">Musical Features:</label>
+        <input type="text" id="musical_features" name="musical_features" placeholder="e.g., Complex Rhythmic Structure, Traditional Melody, Family Harmonies">
+        
+        <label for="sync_notes">Sync Notes:</label>
+        <input type="text" id="sync_notes" name="sync_notes" placeholder="e.g., Ideal for cultural, historical, or family-themed content">
+        
+        <label for="mood_progression">Mood Progression:</label>
+        <input type="text" id="mood_progression" name="mood_progression" placeholder="e.g., Consistent, contemplative throughout">
+        
+        <label for="emotional_content">Emotional Content:</label>
+        <input type="text" id="emotional_content" name="emotional_content" placeholder="e.g., Nostalgic, Warm, Family-Oriented">
+        
+        <label for="cultural_context">Cultural Context:</label>
+        <input type="text" id="cultural_context" name="cultural_context" placeholder="e.g., Traditional Latvian Folk Music in Modern Context">
+        
+        <label for="performance_style">Performance Style:</label>
+        <input type="text" id="performance_style" name="performance_style" placeholder="e.g., Traditional Baltic Folk with Family Ensemble">
+
+        <!-- Technical Specifications -->
+        <h2>Technical Specifications</h2>
+        
+        <label for="language">Language:</label>
+        <input type="text" id="language" name="language" placeholder="e.g., lat">
+        
+        <label for="original_language">Original Language:</label>
+        <input type="text" id="original_language" name="original_language" placeholder="e.g., lat">
+        
+        <label for="duration">Duration:</label>
+        <input type="text" id="duration" name="duration" placeholder="e.g., 4:01">
+        
+        <label for="duration_frames">Duration Frames:</label>
+        <input type="text" id="duration_frames" name="duration_frames" placeholder="e.g., 11548800">
+        
+        <label for="bpm">BPM:</label>
+        <input type="text" id="bpm" name="bpm" placeholder="e.g., 60">
+        
+        <label for="key">Key:</label>
+        <input type="text" id="key" name="key" placeholder="e.g., Bb Major">
+        
+        <label for="time_signature">Time Signature:</label>
+        <input type="text" id="time_signature" name="time_signature" placeholder="e.g., 4/2 (3+3+2, 3+3+2 subdivision)">
+        
+        <label for="audio_quality">Audio Quality:</label>
+        <input type="text" id="audio_quality" name="audio_quality" placeholder="e.g., 24-bit/48kHz">
+        
+        <label for="sample_rate">Sample Rate:</label>
+        <input type="text" id="sample_rate" name="sample_rate" placeholder="e.g., 48000">
+        
+        <label for="bit_depth">Bit Depth:</label>
+        <input type="text" id="bit_depth" name="bit_depth" placeholder="e.g., 24">
+        
+        <label for="channels">Channels:</label>
+        <input type="text" id="channels" name="channels" placeholder="e.g., 2">
+        
+        <label for="recording_type">Recording Type:</label>
+        <input type="text" id="recording_type" name="recording_type" placeholder="e.g., Live">
+        
+        <label for="mastering_engineer">Mastering Engineer:</label>
+        <input type="text" id="mastering_engineer" name="mastering_engineer" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="mastering_facility">Mastering Facility:</label>
+        <input type="text" id="mastering_facility" name="mastering_facility" placeholder="e.g., Home Studio">
+        
+        <label for="mastering_gear">Mastering Gear:</label>
+        <input type="text" id="mastering_gear" name="mastering_gear" placeholder="e.g., RME ADI-2 Pro FS R Black Edition">
+        
+        <label for="mixing_engineer">Mixing Engineer:</label>
+        <input type="text" id="mixing_engineer" name="mixing_engineer" placeholder="e.g., Dainis Kažoks">
+        
+        <label for="mixing_facility">Mixing Facility:</label>
+        <input type="text" id="mixing_facility" name="mixing_facility" placeholder="e.g., 3x3 Live Sound">
+        
+        <label for="recording_engineer">Recording Engineer:</label>
+        <input type="text" id="recording_engineer" name="recording_engineer" placeholder="e.g., Dainis Kažoks">
+        
+        <label for="recording_gear">Recording Gear:</label>
+        <input type="text" id="recording_gear" name="recording_gear" placeholder="e.g., DPA 4006A Omnidirectional Microphones">
+        
+        <label for="signal_chain">Signal Chain:</label>
+        <input type="text" id="signal_chain" name="signal_chain" placeholder="e.g., DPA 4006A > RME Fireface UCX II > Reaper DAW">
+        
+        <label for="production_date">Production Date:</label>
+        <input type="text" id="production_date" name="production_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="master_source">Master Source:</label>
+        <input type="text" id="master_source" name="master_source" placeholder="e.g., Original Live Recording">
+        
+        <label for="original_format">Original Format:</label>
+        <input type="text" id="original_format" name="original_format" placeholder="e.g., Digital">
+        
+        <label for="noise_reduction">Noise Reduction:</label>
+        <input type="text" id="noise_reduction" name="noise_reduction" placeholder="e.g., None - Natural Room Sound Preserved">
+        
+        <label for="audio_restoration">Audio Restoration:</label>
+        <input type="text" id="audio_restoration" name="audio_restoration" placeholder="e.g., None">
+        
+        <label for="dither_type">Dither Type:</label>
+        <input type="text" id="dither_type" name="dither_type" placeholder="e.g., TPDF">
+        
+        <label for="headroom">Headroom:</label>
+        <input type="text" id="headroom" name="headroom" placeholder="e.g., 18dB">
+        
+        <label for="peak_level">Peak Level:</label>
+        <input type="text" id="peak_level" name="peak_level" placeholder="e.g., -1.0dBFS">
+        
+        <label for="average_loudness">Average Loudness:</label>
+        <input type="text" id="average_loudness" name="average_loudness" placeholder="e.g., -14 LUFS">
+        
+        <label for="true_peak">True Peak:</label>
+        <input type="text" id="true_peak" name="true_peak" placeholder="e.g., -1.0dBTP">
+        
+        <label for="phase_correlation">Phase Correlation:</label>
+        <input type="text" id="phase_correlation" name="phase_correlation" placeholder="e.g., +0.8">
+        
+        <label for="audio_codec">Audio Codec:</label>
+        <input type="text" id="audio_codec" name="audio_codec" placeholder="e.g., PCM">
+        
+        <label for="bit_rate">Bit Rate:</label>
+        <input type="text" id="bit_rate" name="bit_rate" placeholder="e.g., 2304kbps">
+        
+        <label for="stereo_field">Stereo Field:</label>
+        <input type="text" id="stereo_field" name="stereo_field" placeholder="e.g., Natural Room Image">
+        
+        <label for="acoustic_environment">Acoustic Environment:</label>
+        <input type="text" id="acoustic_environment" name="acoustic_environment" placeholder="e.g., Outdoor Festival Stage, Natural Acoustics">
+        
+        <label for="equipment_notes">Equipment Notes:</label>
+        <input type="text" id="equipment_notes" name="equipment_notes" placeholder="e.g., All microphones matched pairs">
+        
+        <label for="recording_method">Recording Method:</label>
+        <input type="text" id="recording_method" name="recording_method" placeholder="e.g., Live stereo capture">
+        
+        <label for="monitoring_environment">Monitoring Environment:</label>
+        <input type="text" id="monitoring_environment" name="monitoring_environment" placeholder="e.g., Professional headphones on-site">
+        
+        <label for="technical_notes">Technical Notes:</label>
+        <input type="text" id="technical_notes" name="technical_notes" placeholder="e.g., Natural acoustic performance captured with minimal processing">
+
+        <!-- Legal and Rights Management -->
+        <h2>Legal and Rights Management</h2>
+        
+        <label for="copyright_holder">Copyright Holder:</label>
+        <input type="text" id="copyright_holder" name="copyright_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="copyright">Copyright:</label>
+        <input type="text" id="copyright" name="copyright" placeholder="e.g., © 2024 Dainis W. Michel. All Rights Reserved.">
+        
+        <label for="copyright_notice">Copyright Notice:</label>
+        <input type="text" id="copyright_notice" name="copyright_notice" placeholder="e.g., All Rights Reserved - Protected under International Copyright Law">
+        
+        <label for="publisher">Publisher:</label>
+        <input type="text" id="publisher" name="publisher" placeholder="e.g., Dainis W. Michel (Self-Published)">
+        
+        <label for="publisher_rights">Publisher Rights:</label>
+        <input type="text" id="publisher_rights" name="publisher_rights" placeholder="e.g., 100% All Rights">
+        
+        <label for="pro_affiliation">PRO Affiliation:</label>
+        <input type="text" id="pro_affiliation" name="pro_affiliation" placeholder="e.g., AustroMechana Primary, ASCAP Secondary">
+        
+        <label for="iswc">ISWC:</label>
+        <input type="text" id="iswc" name="iswc" placeholder="e.g., T-123456789-0">
+        
+        <label for="isrc">ISRC:</label>
+        <input type="text" id="isrc" name="isrc" placeholder="e.g., US-XXX-21-00001">
+        
+        <label for="catalog_number">Catalog Number:</label>
+        <input type="text" id="catalog_number" name="catalog_number" placeholder="e.g., DWM-2024-001">
+        
+        <label for="rights_holder">Rights Holder:</label>
+        <input type="text" id="rights_holder" name="rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="master_rights_holder">Master Rights Holder:</label>
+        <input type="text" id="master_rights_holder" name="master_rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="master_rights_territory">Master Rights Territory:</label>
+        <input type="text" id="master_rights_territory" name="master_rights_territory" placeholder="e.g., Worldwide">
+        
+        <label for="sync_rights_holder">Sync Rights Holder:</label>
+        <input type="text" id="sync_rights_holder" name="sync_rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="mechanical_rights_holder">Mechanical Rights Holder:</label>
+        <input type="text" id="mechanical_rights_holder" name="mechanical_rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="performance_rights_holder">Performance Rights Holder:</label>
+        <input type="text" id="performance_rights_holder" name="performance_rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="neighboring_rights_holder">Neighboring Rights Holder:</label>
+        <input type="text" id="neighboring_rights_holder" name="neighboring_rights_holder" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="clearance_status">Clearance Status:</label>
+        <input type="text" id="clearance_status" name="clearance_status" placeholder="e.g., Pre-Cleared for All Media">
+        
+        <label for="clearance_contact">Clearance Contact:</label>
+        <input type="text" id="clearance_contact" name="clearance_contact" placeholder="e.g., licensing@dainis.net">
+        
+        <label for="clearance_response_time">Clearance Response Time:</label>
+        <input type="text" id="clearance_response_time" name="clearance_response_time" placeholder="e.g., 24-48 hours">
+        
+        <label for="licensing_terms">Licensing Terms:</label>
+        <input type="text" id="licensing_terms" name="licensing_terms" placeholder="e.g., Available for All Media, Worldwide, In Perpetuity">
+        
+        <label for="licensing_contact_primary">Licensing Contact Primary:</label>
+        <input type="text" id="licensing_contact_primary" name="licensing_contact_primary" placeholder="e.g., Dainis W. Michel (licensing@dainis.net)">
+        
+        <label for="licensing_contact_secondary">Licensing Contact Secondary:</label>
+        <input type="text" id="licensing_contact_secondary" name="licensing_contact_secondary" placeholder="e.g., Legal Representative (legal@dainis.net)">
+        
+        <label for="licensing_restrictions">Licensing Restrictions:</label>
+        <input type="text" id="licensing_restrictions" name="licensing_restrictions" placeholder="e.g., None">
+        
+        <label for="sample_clearance">Sample Clearance:</label>
+        <input type="text" id="sample_clearance" name="sample_clearance" placeholder="e.g., No Samples Used - Original Composition">
+        
+        <label for="legal_status">Legal Status:</label>
+        <input type="text" id="legal_status" name="legal_status" placeholder="e.g., Original Work - All Rights Available">
+        
+        <label for="territory_restrictions">Territory Restrictions:</label>
+        <input type="text" id="territory_restrictions" name="territory_restrictions" placeholder="e.g., None - Available Worldwide">
+        
+        <label for="usage_restrictions">Usage Restrictions:</label>
+        <input type="text" id="usage_restrictions" name="usage_restrictions" placeholder="e.g., None">
+        
+        <label for="moral_rights">Moral Rights:</label>
+        <input type="text" id="moral_rights" name="moral_rights" placeholder="e.g., Protected">
+        
+        <label for="chain_of_title">Chain of Title:</label>
+        <input type="text" id="chain_of_title" name="chain_of_title" placeholder="e.g., Original Creation - Complete Chain Maintained">
+        
+        <label for="ownership_percentage">Ownership Percentage:</label>
+        <input type="text" id="ownership_percentage" name="ownership_percentage" placeholder="e.g., 100% Dainis W. Michel">
+        
+        <label for="rights_reversion">Rights Reversion:</label>
+        <input type="text" id="rights_reversion" name="rights_reversion" placeholder="e.g., None">
+        
+        <label for="legal_documentation">Legal Documentation:</label>
+        <input type="text" id="legal_documentation" name="legal_documentation" placeholder="e.g., Available Upon Request">
+        
+        <label for="cue_sheet_status">Cue Sheet Status:</label>
+        <input type="text" id="cue_sheet_status" name="cue_sheet_status" placeholder="e.g., Available">
+        
+        <label for="legal_clearance_notes">Legal Clearance Notes:</label>
+        <input type="text" id="legal_clearance_notes" name="legal_clearance_notes" placeholder="e.g., All rights fully owned and cleared for worldwide usage">
+        
+        <label for="rights_administration">Rights Administration:</label>
+        <input type="text" id="rights_administration" name="rights_administration" placeholder="e.g., Direct via Rights Holder">
+        
+        <label for="royalty_distribution">Royalty Distribution:</label>
+        <input type="text" id="royalty_distribution" name="royalty_distribution" placeholder="e.g., Direct Payment">
+        
+        <label for="legal_representation">Legal Representation:</label>
+        <input type="text" id="legal_representation" name="legal_representation" placeholder="e.g., Self-Represented">
+        
+        <label for="rights_society_registration">Rights Society Registration:</label>
+        <input type="text" id="rights_society_registration" name="rights_society_registration" placeholder="e.g., Fully Registered">
+        
+        <label for="legal_clearance_verification">Legal Clearance Verification:</label>
+        <input type="text" id="legal_clearance_verification" name="legal_clearance_verification" placeholder="e.g., Complete Chain of Title Verified">
+
+        <!-- Credits and Personnel -->
+        <h2>Credits and Personnel</h2>
+        
+        <label for="composer">Composer:</label>
+        <input type="text" id="composer" name="composer" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="composer_nationality">Composer Nationality:</label>
+        <input type="text" id="composer_nationality" name="composer_nationality" placeholder="e.g., Latvian-American">
+        
+        <label for="composer_ipi">Composer IPI:</label>
+        <input type="text" id="composer_ipi" name="composer_ipi" placeholder="e.g., 123456789">
+        
+        
+        <label for="lyricist">Lyricist:</label>
+        <input type="text" id="lyricist" name="lyricist" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="lyricist_ipi">Lyricist IPI:</label>
+        <input type="text" id="lyricist_ipi" name="lyricist_ipi" placeholder="e.g., 123456789">
+        
+        <label for="arranger">Arranger:</label>
+        <input type="text" id="arranger" name="arranger" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="arranger_ipi">Arranger IPI:</label>
+        <input type="text" id="arranger_ipi" name="arranger_ipi" placeholder="e.g., 123456789">
+        
+        <label for="producer">Producer:</label>
+        <input type="text" id="producer" name="producer" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="conductor">Conductor:</label>
+        <input type="text" id="conductor" name="conductor" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="performer">Performer:</label>
+        <input type="text" id="performer" name="performer" placeholder="e.g., Dainis W. Michel on vocals, Emīlija Michele on vocals, Olīvija and Hugo on guitar">
+        
+        <label for="featured_artist">Featured Artist:</label>
+        <input type="text" id="featured_artist" name="featured_artist" placeholder="e.g., Dainis W. Michel & Family Ensemble">
+        
+        <label for="contributing_artists">Contributing Artists:</label>
+        <input type="text" id="contributing_artists" name="contributing_artists" placeholder="e.g., Emīlija Michele (vocals), Olīvija (guitar), Hugo (guitar)">
+        
+        <label for="performance_date">Performance Date:</label>
+        <input type="text" id="performance_date" name="performance_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="recording_location">Recording Location:</label>
+        <input type="text" id="recording_location" name="recording_location" placeholder="e.g., 3x3 Brīvais Mikrofons, Koknese, Latvia">
+        
+        <label for="recording_venue">Recording Venue:</label>
+        <input type="text" id="recording_venue" name="recording_venue" placeholder="e.g., Open Air Festival Stage">
+        
+        <label for="session_musicians">Session Musicians:</label>
+        <input type="text" id="session_musicians" name="session_musicians" placeholder="e.g., None - Family Performance">
+        
+        <label for="performer_notes">Performer Notes:</label>
+        <input type="text" id="performer_notes" name="performer_notes" placeholder="e.g., Live Family Performance">
+        
+        <label for="studio_musicians">Studio Musicians:</label>
+        <input type="text" id="studio_musicians" name="studio_musicians" placeholder="e.g., N/A - Live Recording">
+        
+        <label for="vocal_credits">Vocal Credits:</label>
+        <input type="text" id="vocal_credits" name="vocal_credits" placeholder="e.g., Lead: Dainis W. Michel, Harmony: Emīlija Michele, Olīvija, and Hugo">
+        
+        <label for="instrument_credits">Instrument Credits:</label>
+        <input type="text" id="instrument_credits" name="instrument_credits" placeholder="e.g., Acoustic Guitar: Olīvija and Hugo">
+        
+        <label for="technical_credits">Technical Credits:</label>
+        <input type="text" id="technical_credits" name="technical_credits" placeholder="e.g., Live Sound: Dainis Kažoks">
+        
+        <label for="performance_notes">Performance Notes:</label>
+        <input type="text" id="performance_notes" name="performance_notes" placeholder="e.g., Authentic live performance featuring traditional Baltic folk rhythm patterns">
+        
+        <label for="cultural_context">Cultural Context:</label>
+        <input type="text" id="cultural_context" name="cultural_context" placeholder="e.g., Traditional Latvian folk song adaptation performed by family ensemble">
+        
+        <label for="credits_additional">Credits Additional:</label>
+        <input type="text" id="credits_additional" name="credits_additional" placeholder="e.g., All arrangements and adaptations by Dainis W. Michel">
+        
+        <label for="production_notes">Production Notes:</label>
+        <input type="text" id="production_notes" name="production_notes" placeholder="e.g., Live recording from cultural festival">
+        
+        <!-- Business and Administration -->
+        <h2>Business and Administration</h2>
+        
+        <label for="publisher_contact">Publisher Contact:</label>
+        <input type="text" id="publisher_contact" name="publisher_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="publisher_phone">Publisher Phone:</label>
+        <input type="text" id="publisher_phone" name="publisher_phone" placeholder="e.g., +1 (773) 288-3889">
+        
+        <label for="administrative_contact">Administrative Contact:</label>
+        <input type="text" id="administrative_contact" name="administrative_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="business_contact">Business Contact:</label>
+        <input type="text" id="business_contact" name="business_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="legal_contact">Legal Contact:</label>
+        <input type="text" id="legal_contact" name="legal_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="sync_contact">Sync Contact:</label>
+        <input type="text" id="sync_contact" name="sync_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="licensing_contact">Licensing Contact:</label>
+        <input type="text" id="licensing_contact" name="licensing_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="registrations">Registrations:</label>
+        <input type="text" id="registrations" name="registrations" placeholder="e.g., AustroMechana, ASCAP, Library of Congress, EU Copyright Office">
+        
+        <label for="registration_numbers">Registration Numbers:</label>
+        <input type="text" id="registration_numbers" name="registration_numbers" placeholder="e.g., AustroMechana: ABC123, ASCAP: XYZ789">
+        
+        <label for="cue_sheet_notes">Cue Sheet Notes:</label>
+        <input type="text" id="cue_sheet_notes" name="cue_sheet_notes" placeholder="e.g., Traditional Latvian folk song arrangement, live performance, family ensemble">
+        
+        <label for="content_warning">Content Warning:</label>
+        <input type="text" id="content_warning" name="content_warning" placeholder="e.g., None">
+        
+        <label for="explicit_content">Explicit Content:</label>
+        <input type="text" id="explicit_content" name="explicit_content" placeholder="e.g., No">
+        
+        <label for="restrictions">Restrictions:</label>
+        <input type="text" id="restrictions" name="restrictions" placeholder="e.g., None">
+        
+        <label for="deadline_restrictions">Deadline Restrictions:</label>
+        <input type="text" id="deadline_restrictions" name="deadline_restrictions" placeholder="e.g., None">
+        
+        <label for="territory_availability">Territory Availability:</label>
+        <input type="text" id="territory_availability" name="territory_availability" placeholder="e.g., Worldwide">
+        
+        <label for="business_model">Business Model:</label>
+        <input type="text" id="business_model" name="business_model" placeholder="e.g., Direct Licensing">
+        
+        <label for="rate_card">Rate Card:</label>
+        <input type="text" id="rate_card" name="rate_card" placeholder="e.g., Available Upon Request">
+        
+        <label for="pricing_tier">Pricing Tier:</label>
+        <input type="text" id="pricing_tier" name="pricing_tier" placeholder="e.g., Premium Cultural Content">
+        
+        <label for="discount_eligibility">Discount Eligibility:</label>
+        <input type="text" id="discount_eligibility" name="discount_eligibility" placeholder="e.g., Educational and Cultural Institutions">
+        
+        <label for="administrative_notes">Administrative Notes:</label>
+        <input type="text" id="administrative_notes" name="administrative_notes" placeholder="e.g., Contact for custom licensing arrangements">
+        
+        <label for="business_inquiries">Business Inquiries:</label>
+        <input type="text" id="business_inquiries" name="business_inquiries" placeholder="e.g., business@dainis.net">
+        
+        <label for="licensing_status">Licensing Status:</label>
+        <input type="text" id="licensing_status" name="licensing_status" placeholder="e.g., Active">
+        
+        <label for="business_territory">Business Territory:</label>
+        <input type="text" id="business_territory" name="business_territory" placeholder="e.g., Worldwide">
+        
+        <label for="administrative_region">Administrative Region:</label>
+        <input type="text" id="administrative_region" name="administrative_region" placeholder="e.g., European Union, United States">
+
+        <!-- Distribution and Technical Delivery -->
+        <h2>Distribution and Technical Delivery</h2>
+        
+        <label for="upc">UPC:</label>
+        <input type="text" id="upc" name="upc" placeholder="e.g., 123456789012">
+        
+        <label for="grid">GRID:</label>
+        <input type="text" id="grid" name="grid" placeholder="e.g., A1-ABC-12-12345">
+        
+        <label for="encoded_by">Encoded By:</label>
+        <input type="text" id="encoded_by" name="encoded_by" placeholder="e.g., FFmpeg">
+        
+        <label for="encoding_settings">Encoding Settings:</label>
+        <input type="text" id="encoding_settings" name="encoding_settings" placeholder="e.g., 24-bit/48kHz WAV">
+        
+        <label for="encoding_date">Encoding Date:</label>
+        <input type="text" id="encoding_date" name="encoding_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="technical_notes">Technical Notes:</label>
+        <input type="text" id="technical_notes" name="technical_notes" placeholder="e.g., Archival Quality Master">
+        
+        <label for="original_release_date">Original Release Date:</label>
+        <input type="text" id="original_release_date" name="original_release_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="digital_release_date">Digital Release Date:</label>
+        <input type="text" id="digital_release_date" name="digital_release_date" placeholder="e.g., 2024-07-10">
+        
+        <label for="availability_date">Availability Date:</label>
+        <input type="text" id="availability_date" name="availability_date" placeholder="e.g., 2024-07-10">
+        
+        <label for="distribution_type">Distribution Type:</label>
+        <input type="text" id="distribution_type" name="distribution_type" placeholder="e.g., Digital and Licensing">
+        
+        <label for="digital_distributor">Digital Distributor:</label>
+        <input type="text" id="digital_distributor" name="digital_distributor" placeholder="e.g., Direct Distribution">
+        
+        <label for="digital_availability">Digital Availability:</label>
+        <input type="text" id="digital_availability" name="digital_availability" placeholder="e.g., Streaming and Download">
+        
+        <label for="archival_location">Archival Location:</label>
+        <input type="text" id="archival_location" name="archival_location" placeholder="e.g., Secure Cloud Storage + Local Backup">
+        
+        <label for="master_location">Master Location:</label>
+        <input type="text" id="master_location" name="master_location" placeholder="e.g., Secure Cloud Storage">
+        
+        <label for="backup_status">Backup Status:</label>
+        <input type="text" id="backup_status" name="backup_status" placeholder="e.g., Triple Redundancy">
+        
+        <label for="quality_control">Quality Control:</label>
+        <input type="text" id="quality_control" name="quality_control" placeholder="e.g., Passed - July 3, 2024">
+        
+        <label for="restoration_status">Restoration Status:</label>
+        <input type="text" id="restoration_status" name="restoration_status" placeholder="e.g., No Restoration Needed">
+        
+        <label for="transfer_engineer">Transfer Engineer:</label>
+        <input type="text" id="transfer_engineer" name="transfer_engineer" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="transfer_date">Transfer Date:</label>
+        <input type="text" id="transfer_date" name="transfer_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="technical_contact">Technical Contact:</label>
+        <input type="text" id="technical_contact" name="technical_contact" placeholder="e.g., tech@dainis.net">
+        
+        <label for="archival_notes">Archival Notes:</label>
+        <input type="text" id="archival_notes" name="archival_notes" placeholder="e.g., Original performance preserved with full dynamic range">
+        
+        <label for="delivery_format">Delivery Format:</label>
+        <input type="text" id="delivery_format" name="delivery_format" placeholder="e.g., 24-bit/48kHz WAV">
+        
+        <label for="master_format">Master Format:</label>
+        <input type="text" id="master_format" name="master_format" placeholder="e.g., 24-bit/48kHz WAV">
+        
+        <label for="distribution_territory">Distribution Territory:</label>
+        <input type="text" id="distribution_territory" name="distribution_territory" placeholder="e.g., Worldwide">
+        
+        <label for="release_schedule">Release Schedule:</label>
+        <input type="text" id="release_schedule" name="release_schedule" placeholder="e.g., Immediate Availability">
+        
+        <label for="distribution_rights">Distribution Rights:</label>
+        <input type="text" id="distribution_rights" name="distribution_rights" placeholder="e.g., All Rights Available">
+
+        <!-- Database and Sorting Information -->
+        <h2>Database and Sorting Information</h2>
+        
+        <label for="album_artist">Album Artist:</label>
+        <input type="text" id="album_artist" name="album_artist" placeholder="e.g., Dainis W. Michel & Family Ensemble">
+        
+        <label for="artist_sort">Artist Sort:</label>
+        <input type="text" id="artist_sort" name="artist_sort" placeholder="e.g., Michel, Dainis">
+        
+        <label for="composer_sort">Composer Sort:</label>
+        <input type="text" id="composer_sort" name="composer_sort" placeholder="e.g., Michel, Dainis">
+        
+        <label for="title_sort">Title Sort:</label>
+        <input type="text" id="title_sort" name="title_sort" placeholder="e.g., Migla migla">
+        
+        <label for="album_sort">Album Sort:</label>
+        <input type="text" id="album_sort" name="album_sort" placeholder="e.g., Sadziedāšana ar Daini">
+        
+        <label for="musicbrainz_trackid">MusicBrainz Track ID:</label>
+        <input type="text" id="musicbrainz_trackid" name="musicbrainz_trackid" placeholder="e.g., MBID-12345-67890">
+        
+        <label for="musicbrainz_albumid">MusicBrainz Album ID:</label>
+        <input type="text" id="musicbrainz_albumid" name="musicbrainz_albumid" placeholder="e.g., MBID-54321-09876">
+        
+        <label for="musicbrainz_artistid">MusicBrainz Artist ID:</label>
+        <input type="text" id="musicbrainz_artistid" name="musicbrainz_artistid" placeholder="e.g., MBID-67890-ABCDE">
+        
+        <label for="release_group_id">Release Group ID:</label>
+        <input type="text" id="release_group_id" name="release_group_id" placeholder="e.g., RG-123-456">
+        
+        <label for="acoustid_id">AcoustID ID:</label>
+        <input type="text" id="acoustid_id" name="acoustid_id" placeholder="e.g., AID-123-456">
+        
+        <label for="discogs_release_id">Discogs Release ID:</label>
+        <input type="text" id="discogs_release_id" name="discogs_release_id" placeholder="e.g., DR-123-456">
+        
+        <label for="catalog_sorting_number">Catalog Sorting Number:</label>
+        <input type="text" id="catalog_sorting_number" name="catalog_sorting_number" placeholder="e.g., 2024-001">
+        
+        <label for="search_terms">Search Terms:</label>
+        <input type="text" id="search_terms" name="search_terms" placeholder="e.g., Latvian Folk, Traditional Music, Live Performance, Family Ensemble">
+        
+        <label for="keywords_auxiliary">Keywords Auxiliary:</label>
+        <input type="text" id="keywords_auxiliary" name="keywords_auxiliary" placeholder="e.g., Baltic Music, Folk Traditions, Cultural Heritage, Live Recording">
+
+        <!-- Lyrics and Translation Information -->
+        <h2>Lyrics and Translation Information</h2>
+        
+        <label for="lyrics">Lyrics:</label>
+        <textarea id="lyrics" name="lyrics" placeholder="e.g., Migla, migla, liela rasa, Man pazuda kumeliņis.        <label for="lyricist">Lyricist:</label>
+        <input type="text" id="lyricist" name="lyricist" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="lyricist_ipi">Lyricist IPI:</label>
+        <input type="text" id="lyricist_ipi" name="lyricist_ipi" placeholder="e.g., 123456789">
+        
+        <label for="arranger">Arranger:</label>
+        <input type="text" id="arranger" name="arranger" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="arranger_ipi">Arranger IPI:</label>
+        <input type="text" id="arranger_ipi" name="arranger_ipi" placeholder="e.g., 123456789">
+        
+        <label for="producer">Producer:</label>
+        <input type="text" id="producer" name="producer" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="conductor">Conductor:</label>
+        <input type="text" id="conductor" name="conductor" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="performer">Performer:</label>
+        <input type="text" id="performer" name="performer" placeholder="e.g., Dainis W. Michel on vocals, Emīlija Michele on vocals, Olīvija and Hugo on guitar">
+        
+        <label for="featured_artist">Featured Artist:</label>
+        <input type="text" id="featured_artist" name="featured_artist" placeholder="e.g., Dainis W. Michel & Family Ensemble">
+        
+        <label for="contributing_artists">Contributing Artists:</label>
+        <input type="text" id="contributing_artists" name="contributing_artists" placeholder="e.g., Emīlija Michele (vocals), Olīvija (guitar), Hugo (guitar)">
+        
+        <label for="performance_date">Performance Date:</label>
+        <input type="text" id="performance_date" name="performance_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="recording_location">Recording Location:</label>
+        <input type="text" id="recording_location" name="recording_location" placeholder="e.g., 3x3 Brīvais Mikrofons, Koknese, Latvia">
+        
+        <label for="recording_venue">Recording Venue:</label>
+        <input type="text" id="recording_venue" name="recording_venue" placeholder="e.g., Open Air Festival Stage">
+        
+        <label for="session_musicians">Session Musicians:</label>
+        <input type="text" id="session_musicians" name="session_musicians" placeholder="e.g., None - Family Performance">
+        
+        <label for="performer_notes">Performer Notes:</label>
+        <input type="text" id="performer_notes" name="performer_notes" placeholder="e.g., Live Family Performance">
+        
+        <label for="studio_musicians">Studio Musicians:</label>
+        <input type="text" id="studio_musicians" name="studio_musicians" placeholder="e.g., N/A - Live Recording">
+        
+        <label for="vocal_credits">Vocal Credits:</label>
+        <input type="text" id="vocal_credits" name="vocal_credits" placeholder="e.g., Lead: Dainis W. Michel, Harmony: Emīlija Michele, Olīvija, and Hugo">
+        
+        <label for="instrument_credits">Instrument Credits:</label>
+        <input type="text" id="instrument_credits" name="instrument_credits" placeholder="e.g., Acoustic Guitar: Olīvija and Hugo">
+        
+        <label for="technical_credits">Technical Credits:</label>
+        <input type="text" id="technical_credits" name="technical_credits" placeholder="e.g., Live Sound: Dainis Kažoks">
+        
+        <label for="performance_notes">Performance Notes:</label>
+        <input type="text" id="performance_notes" name="performance_notes" placeholder="e.g., Authentic live performance featuring traditional Baltic folk rhythm patterns">
+        
+        <label for="cultural_context">Cultural Context:</label>
+        <input type="text" id="cultural_context" name="cultural_context" placeholder="e.g., Traditional Latvian folk song adaptation performed by family ensemble">
+        
+        <label for="credits_additional">Credits Additional:</label>
+        <input type="text" id="credits_additional" name="credits_additional" placeholder="e.g., All arrangements and adaptations by Dainis W. Michel">
+        
+        <label for="production_notes">Production Notes:</label>
+        <input type="text" id="production_notes" name="production_notes" placeholder="e.g., Live recording from cultural festival">
+        
+        <!-- Business and Administration -->
+        <h2>Business and Administration</h2>
+        
+        <label for="publisher_contact">Publisher Contact:</label>
+        <input type="text" id="publisher_contact" name="publisher_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="publisher_phone">Publisher Phone:</label>
+        <input type="text" id="publisher_phone" name="publisher_phone" placeholder="e.g., +1 (773) 288-3889">
+        
+        <label for="administrative_contact">Administrative Contact:</label>
+        <input type="text" id="administrative_contact" name="administrative_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="business_contact">Business Contact:</label>
+        <input type="text" id="business_contact" name="business_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="legal_contact">Legal Contact:</label>
+        <input type="text" id="legal_contact" name="legal_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="sync_contact">Sync Contact:</label>
+        <input type="text" id="sync_contact" name="sync_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="licensing_contact">Licensing Contact:</label>
+        <input type="text" id="licensing_contact" name="licensing_contact" placeholder="e.g., dainis@dainis.net">
+        
+        <label for="registrations">Registrations:</label>
+        <input type="text" id="registrations" name="registrations" placeholder="e.g., AustroMechana, ASCAP, Library of Congress, EU Copyright Office">
+        
+        <label for="registration_numbers">Registration Numbers:</label>
+        <input type="text" id="registration_numbers" name="registration_numbers" placeholder="e.g., AustroMechana: ABC123, ASCAP: XYZ789">
+        
+        <label for="cue_sheet_notes">Cue Sheet Notes:</label>
+        <input type="text" id="cue_sheet_notes" name="cue_sheet_notes" placeholder="e.g., Traditional Latvian folk song arrangement, live performance, family ensemble">
+        
+        <label for="content_warning">Content Warning:</label>
+        <input type="text" id="content_warning" name="content_warning" placeholder="e.g., None">
+        
+        <label for="explicit_content">Explicit Content:</label>
+        <input type="text" id="explicit_content" name="explicit_content" placeholder="e.g., No">
+        
+        <label for="restrictions">Restrictions:</label>
+        <input type="text" id="restrictions" name="restrictions" placeholder="e.g., None">
+        
+        <label for="deadline_restrictions">Deadline Restrictions:</label>
+        <input type="text" id="deadline_restrictions" name="deadline_restrictions" placeholder="e.g., None">
+        
+        <label for="territory_availability">Territory Availability:</label>
+        <input type="text" id="territory_availability" name="territory_availability" placeholder="e.g., Worldwide">
+        
+        <label for="business_model">Business Model:</label>
+        <input type="text" id="business_model" name="business_model" placeholder="e.g., Direct Licensing">
+        
+        <label for="rate_card">Rate Card:</label>
+        <input type="text" id="rate_card" name="rate_card" placeholder="e.g., Available Upon Request">
+        
+        <label for="pricing_tier">Pricing Tier:</label>
+        <input type="text" id="pricing_tier" name="pricing_tier" placeholder="e.g., Premium Cultural Content">
+        
+        <label for="discount_eligibility">Discount Eligibility:</label>
+        <input type="text" id="discount_eligibility" name="discount_eligibility" placeholder="e.g., Educational and Cultural Institutions">
+        
+        <label for="administrative_notes">Administrative Notes:</label>
+        <input type="text" id="administrative_notes" name="administrative_notes" placeholder="e.g., Contact for custom licensing arrangements">
+        
+        <label for="business_inquiries">Business Inquiries:</label>
+        <input type="text" id="business_inquiries" name="business_inquiries" placeholder="e.g., business@dainis.net">
+        
+        <label for="licensing_status">Licensing Status:</label>
+        <input type="text" id="licensing_status" name="licensing_status" placeholder="e.g., Active">
+        
+        <label for="business_territory">Business Territory:</label>
+        <input type="text" id="business_territory" name="business_territory" placeholder="e.g., Worldwide">
+        
+        <label for="administrative_region">Administrative Region:</label>
+        <input type="text" id="administrative_region" name="administrative_region" placeholder="e.g., European Union, United States">
+
+        <!-- Distribution and Technical Delivery -->
+        <h2>Distribution and Technical Delivery</h2>
+        
+        <label for="upc">UPC:</label>
+        <input type="text" id="upc" name="upc" placeholder="e.g., 123456789012">
+        
+        <label for="grid">GRID:</label>
+        <input type="text" id="grid" name="grid" placeholder="e.g., A1-ABC-12-12345">
+        
+        <label for="encoded_by">Encoded By:</label>
+        <input type="text" id="encoded_by" name="encoded_by" placeholder="e.g., FFmpeg">
+        
+        <label for="encoding_settings">Encoding Settings:</label>
+        <input type="text" id="encoding_settings" name="encoding_settings" placeholder="e.g., 24-bit/48kHz WAV">
+        
+        <label for="encoding_date">Encoding Date:</label>
+        <input type="text" id="encoding_date" name="encoding_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="technical_notes">Technical Notes:</label>
+        <input type="text" id="technical_notes" name="technical_notes" placeholder="e.g., Archival Quality Master">
+        
+        <label for="original_release_date">Original Release Date:</label>
+        <input type="text" id="original_release_date" name="original_release_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="digital_release_date">Digital Release Date:</label>
+        <input type="text" id="digital_release_date" name="digital_release_date" placeholder="e.g., 2024-07-10">
+        
+        <label for="availability_date">Availability Date:</label>
+        <input type="text" id="availability_date" name="availability_date" placeholder="e.g., 2024-07-10">
+        
+        <label for="distribution_type">Distribution Type:</label>
+        <input type="text" id="distribution_type" name="distribution_type" placeholder="e.g., Digital and Licensing">
+        
+        <label for="digital_distributor">Digital Distributor:</label>
+        <input type="text" id="digital_distributor" name="digital_distributor" placeholder="e.g., Direct Distribution">
+        
+        <label for="digital_availability">Digital Availability:</label>
+        <input type="text" id="digital_availability" name="digital_availability" placeholder="e.g., Streaming and Download">
+        
+        <label for="archival_location">Archival Location:</label>
+        <input type="text" id="archival_location" name="archival_location" placeholder="e.g., Secure Cloud Storage + Local Backup">
+        
+        <label for="master_location">Master Location:</label>
+        <input type="text" id="master_location" name="master_location" placeholder="e.g., Secure Cloud Storage">
+        
+        <label for="backup_status">Backup Status:</label>
+        <input type="text" id="backup_status" name="backup_status" placeholder="e.g., Triple Redundancy">
+        
+        <label for="quality_control">Quality Control:</label>
+        <input type="text" id="quality_control" name="quality_control" placeholder="e.g., Passed - July 3, 2024">
+        
+        <label for="restoration_status">Restoration Status:</label>
+        <input type="text" id="restoration_status" name="restoration_status" placeholder="e.g., No Restoration Needed">
+        
+        <label for="transfer_engineer">Transfer Engineer:</label>
+        <input type="text" id="transfer_engineer" name="transfer_engineer" placeholder="e.g., Dainis W. Michel">
+        
+        <label for="transfer_date">Transfer Date:</label>
+        <input type="text" id="transfer_date" name="transfer_date" placeholder="e.g., 2024-07-03">
+        
+        <label for="technical_contact">Technical Contact:</label>
+        <input type="text" id="technical_contact" name="technical_contact" placeholder="e.g., tech@dainis.net">
+        
+        <label for="archival_notes">Archival Notes:</label>
+        <input type="text" id="archival_notes" name="archival_notes" placeholder="e.g., Original performance preserved with full dynamic range">
+        
+        <label for="delivery_format">Delivery Format:</label>
+        <input type="text" id="delivery_format" name="delivery_format" placeholder="e.g., 24-bit/48kHz WAV">
+        
+        <label for="master_format">Master Format:</label>
+        <input type="text" id="master_format" name="master_format" placeholder="e.g., 24-bit/48kHz WAV">
+        
+        <label for="distribution_territory">Distribution Territory:</label>
+        <input type="text" id="distribution_territory" name="distribution_territory" placeholder="e.g., Worldwide">
+        
+        <label for="release_schedule">Release Schedule:</label>
+        <input type="text" id="release_schedule" name="release_schedule" placeholder="e.g., Immediate Availability">
+        
+        <label for="distribution_rights">Distribution Rights:</label>
+        <input type="text" id="distribution_rights" name="distribution_rights" placeholder="e.g., All Rights Available">
+
+        <!-- Database and Sorting Information -->
+        <h2>Database and Sorting Information</h2>
+        
+        <label for="album_artist">Album Artist:</label>
+        <input type="text" id="album_artist" name="album_artist" placeholder="e.g., Dainis W. Michel & Family Ensemble">
+        
+        <label for="artist_sort">Artist Sort:</label>
+        <input type="text" id="artist_sort" name="artist_sort" placeholder="e.g., Michel, Dainis">
+        
+        <label for="composer_sort">Composer Sort:</label>
+        <input type="text" id="composer_sort" name="composer_sort" placeholder="e.g., Michel, Dainis">
+        
+        <label for="title_sort">Title Sort:</label>
+        <input type="text" id="title_sort" name="title_sort" placeholder="e.g., Migla migla">
+        
+        <label for="album_sort">Album Sort:</label>
+        <input type="text" id="album_sort" name="album_sort" placeholder="e.g., Sadziedāšana ar Daini">
+        
+        <label for="musicbrainz_trackid">MusicBrainz Track ID:</label>
+        <input type="text" id="musicbrainz_trackid" name="musicbrainz_trackid" placeholder="e.g., MBID-12345-67890">
+        
+        <label for="musicbrainz_albumid">MusicBrainz Album ID:</label>
+        <input type="text" id="musicbrainz_albumid" name="musicbrainz_albumid" placeholder="e.g., MBID-54321-09876">
+        
+        <label for="musicbrainz_artistid">MusicBrainz Artist ID:</label>
+        <input type="text" id="musicbrainz_artistid" name="musicbrainz_artistid" placeholder="e.g., MBID-67890-ABCDE">
+        
+        <label for="release_group_id">Release Group ID:</label>
+        <input type="text" id="release_group_id" name="release_group_id" placeholder="e.g., RG-123-456">
+        
+        <label for="acoustid_id">AcoustID ID:</label>
+        <input type="text" id="acoustid_id" name="acoustid_id" placeholder="e.g., AID-123-456">
+        
+        <label for="discogs_release_id">Discogs Release ID:</label>
+        <input type="text" id="discogs_release_id" name="discogs_release_id" placeholder="e.g., DR-123-456">
+        
+        <label for="catalog_sorting_number">Catalog Sorting Number:</label>
+        <input type="text" id="catalog_sorting_number" name="catalog_sorting_number" placeholder="e.g., 2024-001">
+        
+        <label for="search_terms">Search Terms:</label>
+        <input type="text" id="search_terms" name="search_terms" placeholder="e.g., Latvian Folk, Traditional Music, Live Performance, Family Ensemble">
+        
+        <label for="keywords_auxiliary">Keywords Auxiliary:</label>
+        <input type="text" id="keywords_auxiliary" name="keywords_auxiliary" placeholder="e.g., Baltic Music, Folk Traditions, Cultural Heritage, Live Recording">
+
+        <!-- Lyrics and Translation Information -->
+        <h2>Lyrics and Translation Information</h2>
+        
+        <label for="lyrics">Lyrics:</label>
+        <textarea id="lyrics" name="lyrics" placeholder="e.g., Migla, migla, liela rasa, Man pazuda kumeliņis.">
+</textarea>
+<label for="lyrics_translation">Lyrics Translation:</label>
+<textarea id="lyrics_translation" name="lyrics_translation" placeholder="e.g., Mist, mist, heavy dew, I lost my little horse."></textarea>
+
+<label for="lyrics_language">Lyrics Language:</label>
+<input type="text" id="lyrics_language" name="lyrics_language" placeholder="e.g., Latvian">
+
+<label for="translation_language">Translation Language:</label>
+<input type="text" id="translation_language" name="translation_language" placeholder="e.g., English">
+
+<label for="translator">Translator:</label>
+<input type="text" id="translator" name="translator" placeholder="e.g., Dainis W. Michel">
+
+<label for="translation_notes">Translation Notes:</label>
+<textarea id="translation_notes" name="translation_notes" placeholder="e.g., Literal translation preserving cultural context."></textarea>
+
+<!-- Web and Reference Information -->
+<h2>Web and Reference Information</h2>
+
+<label for="official_website">Official Website:</label>
+<input type="text" id="official_website" name="official_website" placeholder="e.g., https://www.dainis.net">
+
+<label for="social_media_links">Social Media Links:</label>
+<textarea id="social_media_links" name="social_media_links" placeholder="e.g., https://www.facebook.com/dainis, https://www.twitter.com/dainis"></textarea>
+
+<label for="reference_links">Reference Links:</label>
+<textarea id="reference_links" name="reference_links" placeholder="e.g., https://en.wikipedia.org/wiki/Latvian_folk_music"></textarea>
+
+<label for="related_works">Related Works:</label>
+<textarea id="related_works" name="related_works" placeholder="e.g., Previous albums, similar works, collaborations"></textarea>
+
+<label for="additional_notes">Additional Notes:</label>
+<textarea id="additional_notes" name="additional_notes" placeholder="e.g., Any other relevant information or context"></textarea>
+
+<label for="metadata_version">Metadata Version:</label>
+<input type="text" id="metadata_version" name="metadata_version" placeholder="e.g., 1.0.0">
+
+<label for="metadata_date">Metadata Date:</label>
+<input type="text" id="metadata_date" name="metadata_date" placeholder="e.g., 2024-02-17">
+
+<label for="metadata_author">Metadata Author:</label>
+<input type="text" id="metadata_author" name="metadata_author" placeholder="e.g., Dainis W. Michel">
+
+<label for="metadata_contact">Metadata Contact:</label>
+<input type="text" id="metadata_contact" name="metadata_contact" placeholder="e.g., metadata@dainis.net">
+
+<label for="metadata_notes">Metadata Notes:</label>
+<textarea id="metadata_notes" name="metadata_notes" placeholder="e.g., Notes about the metadata creation process"></textarea>
+
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+

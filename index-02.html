@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Audio Metadata Editor</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tabLabels = document.querySelectorAll('.tab-label');
+            tabLabels.forEach(label => {
+                label.addEventListener('click', function () {
+                    const content = this.nextElementSibling;
+                    const isVisible = content.style.display === 'block';
+                    document.querySelectorAll('.tab-content').forEach(tc => tc.style.display = 'none');
+                    content.style.display = isVisible ? 'none' : 'block';
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Professional Audio Metadata Editor</h1>
+    <form>
+        <!-- Basic Track Information -->
+        <h2>Basic Track Information</h2>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" placeholder="e.g., Migla migla">
+
+        <div class="tabs">
+            <div class="tab-label">Technical Input Specs & Examples</div>
+            <div class="tab-content">
+                <p>Max 255 characters. Alphanumeric and special characters allowed.</p>
+                <p>Examples:</p>
+                <ul>
+                    <li>Migla migla (Akustiskā dzīvajā versijā)</li>
+                    <li>3x3 Brīvais Mikrofons</li>
+                    <li>Koknesē, Latvijā</li>
+                </ul>
+            </div>
+            <div class="tab-label">History & Creativity</div>
+            <div class="tab-content">
+                <p>Traditional folk song titles often reflect cultural heritage and historical context.</p>
+            </div>
+            <div class="tab-label">Creative Help & Support</div>
+            <div class="tab-content">
+                <p>Include performance context and location for live recordings.</p>
+            </div>
+        </div>
+
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="artist" placeholder="e.g., Dainis W. Michel">
+
+        <div class="tabs">
+            <div class="tab-label">Technical Input Specs & Examples</div>
+            <div class="tab-content">
+                <p>Max 255 characters. Multiple artists allowed.</p>
+                <p>Examples:</p>
+                <ul>
+                    <li>Dainis W. Michel, Dainis V. Michelis, Da1ni5</li>
+                    <li>Emīlija Michele, Olīvija un Hugo</li>
+                </ul>
+            </div>
+            <div class="tab-label">History & Creativity</div>
+            <div class="tab-content">
+                <p>Artist names can include variations and collaborators.</p>
+            </div>
+            <div class="tab-label">Creative Help & Support</div>
+            <div class="tab-content">
+                <p>List all performers in order of contribution.</p>
+            </div>
+        </div>
+
+        <label for="album">Album:</label>
+        <input type="text" id="album" name="album" placeholder="e.g., Sadziedāšana ar Daini">
+        
+        <div class="tabs">
+            <div class="tab-label">Technical Input Specs & Examples</div>
+            <div class="tab-content">
+                <p>Max 255 characters. Include any subtitle or context.</p>
+                <p>Examples:</p>
+                <ul>
+                    <li>Sadziedāšana ar Daini (Dzīvajā)</li>
+                    <li>Live at 3x3 Festival</li>
+                </ul>
+            </div>
+            <div class="tab-label">History & Creativity</div>
+            <div class="tab-content">
+                <p>Album titles can include performance context and location.</p>
+            </div>
+        </div>
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" placeholder="e.g., Latviešu folkloristiskā jaunrade, tautas dziesmas">
+        
+        <div class="tabs">
+            <div class="tab-label">Technical Input Specs & Examples</div>
+            <div class="tab-content">
+                <p>Multiple genres allowed, separated by commas.</p>
+                <p>Examples:</p>
+                <ul>
+                    <li>Latviešu folkloristiskā jaunrade</li>
+                    <li>Tautas dziesmas, tautas mūzika</li>
+                    <li>Folk, Acoustic, Ethno, Live Performance</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PRO and Rights Society Information -->
+        <h2>PRO and Rights Society Information</h2>
+        
+        <label for="pro_affiliations">PRO Affiliations:</label>
+        <input type="text" id="pro_affiliations" name="pro_affiliations" placeholder="e.g., AustroMechana (Primary), ASCAP (Secondary)">
+
+        <label for="ipi_cae_number">IPI/CAE Number:</label>
+        <input type="text" id="ipi_cae_number" name="ipi_cae_number" placeholder="e.g., 123456789">
+
+        <label for="performing_rights_society">Performing Rights Society:</label>
+        <input type="text" id="performing_rights_society" name="performing_rights_society" placeholder="e.g., AustroMechana">
+
+        <label for="mechanical_rights_society">Mechanical Rights Society:</label>
+        <input type="text" id="mechanical_rights_society" name="mechanical_rights_society" placeholder="e.g., AustroMechana">
+
+        <label for="pro_territory">PRO Territory:</label>
+        <input type="text" id="pro_territory" name="pro_territory" placeholder="e.g., European Union, United States">
+
+        <label for="pro_collection_share">PRO Collection Share:</label>
+        <input type="text" id="pro_collection_share" name="pro_collection_share" placeholder="e.g., 100%">
+
+        <!-- Music Supervision and Mood Tags -->
+        <h2>Music Supervision and Mood Tags</h2>
+        
+        <label for="mood">Mood:</label>
+        <input type="text" id="mood" name="mood" placeholder="e.g., Peaceful, Nostalgic, Folkloric">
+
+        <label for="mood_secondary">Secondary Mood:</label>
+        <input type="text" id="mood_secondary" name="mood_secondary" placeholder="e.g., Spiritual, Reverent, Natural">
+
+        <label for="tempo">Tempo:</label>
+        <input type="text" id="tempo" name="tempo" placeholder="e.g., Slow, Gentle, Flowing">
+
+        <label for="tempo_exact">Exact Tempo:</label>
+        <input type="text" id="tempo_exact" name="tempo_exact" placeholder="e.g., 60 BPM">
+
+        <label for="rhythm_structure">Rhythm Structure:</label>
+        <input type="text" id="rhythm_structure" name="rhythm_structure" placeholder="e.g., 4/2 meter with folkloric 3+3+2">
+
+        <!-- Technical Specifications -->
+        <h2>Technical Specifications</h2>
+        
+        <label for="language">Language:</label>
+        <input type="text" id="language" name="language" placeholder="e.g., Latvian">
+
+        <label for="duration">Duration:</label>
+        <input type="text" id="duration" name="duration" placeholder="e.g., 4:01">
+
+        <label for="audio_quality">Audio Quality:</label>
+        <input type="text" id="audio_quality" name="audio_quality" placeholder="e.g., 24-bit/48kHz">
+
+        <label for="sample_rate">Sample Rate:</label>
+        <input type="text" id="sample_rate" name="sample_rate" placeholder="e.g., 48000">
+
+        <label for="bit_depth">Bit Depth:</label>
+        <input type="text" id="bit_depth" name="bit_depth" placeholder="e.g., 24">
+
+        <!-- Legal and Rights Management -->
+        <h2>Legal and Rights Management</h2>
+        
+        <label for="copyright_holder">Copyright Holder:</label>
+        <input type="text" id="copyright_holder" name="copyright_holder" placeholder="e.g., Dainis W. Michel">
+
+        <label for="copyright">Copyright Notice:</label>
+        <input type="text" id="copyright" name="copyright" placeholder="e.g., © 2024 Dainis W. Michel. All Rights Reserved.">
+
+        <label for="isrc">ISRC:</label>
+        <input type="text" id="isrc" name="isrc" placeholder="e.g., US-XXX-21-00001">
+
+        <!-- Credits and Personnel -->
+        <h2>Credits and Personnel</h2>
+        
+        <label for="composer">Composer:</label>
+        <input type="text" id="composer" name="composer" placeholder="e.g., Dainis W. Michel">
+
+        <label for="composer_nationality">Composer Nationality:</label>
+        <input type="text" id="composer_nationality" name="composer_nationality" placeholder="e.g., Latvian-American">
+
+        <label for="performer">Performer:</label>
+        <input type="text" id="performer" name="performer" placeholder="e.g., Dainis W. Michel on vocals, Emīlija Michele on vocals">
+
+        <!-- Business and Administration -->
+        <h2>Business and Administration</h2>
+        
+        <label for="publisher_contact">Publisher Contact:</label>
+        <input type="email" id="publisher_contact" name="publisher_contact" placeholder="e.g., dainis@dainis.net">
+
+        <label for="publisher_phone">Publisher Phone:</label>
+        <input type="tel" id="publisher_phone" name="publisher_phone" placeholder="e.g., +1 (773) 288-3889">
+
+        <!-- Distribution and Technical Delivery -->
+        <h2>Distribution and Technical Delivery</h2>
+        
+        <label for="encoded_by">Encoded By:</label>
+        <input type="text" id="encoded_by" name="encoded_by" placeholder="e.g., FFmpeg">
+
+        <label for="encoding_settings">Encoding Settings:</label>
+        <input type="text" id="encoding_settings" name="encoding_settings" placeholder="e.g., 24-bit/48kHz WAV">
+
+        <!-- Web and Reference Information -->
+        <h2>Web and Reference Information</h2>
+        
+        <label for="website">Website:</label>
+        <input type="url" id="website" name="website" placeholder="e.g., https://dainis.net">
+
+        <label for="purchase_url">Purchase URL:</label>
+        <input type="url" id="purchase_url" name="purchase_url" placeholder="e.g., https://dainis.net/shop">
+
+        <button type="submit">Save Complete Metadata</button>
+    </form>
+</body>
+</html>
