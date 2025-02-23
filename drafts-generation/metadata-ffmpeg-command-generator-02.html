@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFmpeg Metadata Tagger</title>
+    <link rel="stylesheet" href="metadata-ffmpeg-command-generator.css">
+</head>
+<body>
+
+    <h1>FFmpeg Metadata Tagger</h1>
+    <div class="container">
+        
+        <!-- Audio File Selection -->
+        <label for="audio-file">Select Audio File:</label>
+        <input type="file" id="audio-file" accept=".mp3,.wav,.m4a,.flac">
+
+        <!-- Album Art Selection -->
+        <label for="album-art">Select Album Art (Optional):</label>
+        <input type="file" id="album-art" accept=".jpg,.png">
+
+        <div class="tabs">
+            <div class="tab-label">Technical Input Specs & Examples</div>
+            <div class="tab-content">
+                <p>Image format: JPEG or PNG.</p>
+                <p>Recommended resolution: 3000x3000 pixels for streaming platforms.</p>
+            </div>
+            <div class="tab-label">History & Creativity</div>
+            <div class="tab-content">
+                <p>Album covers have evolved from painted artwork to digital renders.</p>
+            </div>
+            <div class="tab-label">Creative Help & Support</div>
+            <div class="tab-content">
+                <p>Need design inspiration? Use online tools like Canva.</p>
+            </div>
+            <div class="tab-label">External Resources</div>
+            <div class="tab-content">
+                <p><a href="https://www.canva.com" target="_blank">Canva</a></p>
+                <p><a href="https://en.wikipedia.org/wiki/Album_cover" target="_blank">Album Cover History</a></p>
+            </div>
+        </div>
+
+        <!-- Metadata Inputs -->
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Enter song title">
+
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" placeholder="Enter artist name">
+
+        <label for="album">Album:</label>
+        <input type="text" id="album" placeholder="Enter album name">
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="Enter genre (e.g., Folk, Rock)">
+
+        <!-- Output File Name -->
+        <label for="output-name">Output File Name:</label>
+        <input type="text" id="output-name" placeholder="Enter output file name (without extension)">
+
+        <!-- Command Preview -->
+        <label>Command Preview:</label>
+        <p class="command-preview" id="command-preview">FFmpeg command will appear here...</p>
+
+        <button onclick="generateCommand()">Generate Command</button>
+        <button onclick="copyCommand()">Copy Command Line</button>
+
+        <div class="terminal" id="terminal"></div>
+    </div>
+
+    <script>
+        function logToTerminal(message, type = "info") {
+            const terminal = document.getElementById("terminal");
+            const entry = document.createElement("p");
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            entry.style.color = type === "error" ? "red" : type === "success" ? "lime" : "white";
+            terminal.appendChild(entry);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function generateCommand() {
+            const fileInput = document.getElementById("audio-file");
+            const albumArtInput = document.getElementById("album-art");
+            const title = document.getElementById("title").value.trim();
+            const artist = document.getElementById("artist").value.trim();
+            const album = document.getElementById("album").value.trim();
+            const genre = document.getElementById("genre").value.trim();
+            let outputName = document.getElementById("output-name").value.trim();
+
+            if (!fileInput.files.length) {
+                logToTerminal("Error: No audio file selected!", "error");
+                return;
+            }
+            if (!title || !artist || !album || !genre) {
+                logToTerminal("Error: All metadata fields (Title, Artist, Album, Genre) are required!", "error");
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            const albumArt = albumArtInput.files.length ? albumArtInput.files[0].name : null;
+
+            if (!outputName) {
+                outputName = file.name.replace(/\.[^/.]+$/, "") + "-tagged";
+            }
+
+            let ffmpegCommand = `ffmpeg -i "${file.name}" \\`;
+
+            if (fileExtension === "mp3") {
+                ffmpegCommand += `
+-metadata title="${title}" \\
+-metadata artist="${artist}" \\
+-metadata album="${album}" \\
+-metadata genre="${genre}" \\`;
+                if (albumArt) {
+                    ffmpegCommand += `
+-metadata:s:v comment="Cover Art" \\
+-map 0 -map 1 \\`;
+                }
+                ffmpegCommand += `
+-c:a copy "${outputName}.mp3"`;
+            } else if (fileExtension === "wav") {
+                ffmpegCommand += `
+-metadata INAM="${title}" \\
+-metadata IART="${artist}" \\
+-metadata IPRD="${album}" \\
+-metadata IGNR="${genre}" \\`;
+                ffmpegCommand += `
+-c:a copy "${outputName}.wav"`;
+            } else {
+                logToTerminal("Error: Unsupported file format. Use MP3 or WAV.", "error");
+                return;
+            }
+
+            document.getElementById("command-preview").textContent = ffmpegCommand;
+            logToTerminal("Command Generated: " + ffmpegCommand);
+        }
+
+        function copyCommand() {
+            const commandText = document.getElementById("command-preview").textContent;
+            if (commandText === "FFmpeg command will appear here...") {
+                logToTerminal("Error: No command generated to copy!", "error");
+                return;
+            }
+
+            navigator.clipboard.writeText(commandText).then(() => {
+                logToTerminal("Command copied to clipboard!", "success");
+            }).catch(err => {
+                logToTerminal("Error copying command: " + err, "error");
+            });
+        }
+    </script>
+
+</body>
+</html>

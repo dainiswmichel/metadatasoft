@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFmpeg Metadata Tagger</title>
+    <link rel="stylesheet" href="metadata-ffmpeg-command-generator.css">
+</head>
+<body>
+    <h1>FFmpeg Metadata Tagger</h1>
+    <div class="container">
+        <label>Select Audio File:</label>
+        <input type="file" id="audioFile">
+
+        <label>Select Album Art (Optional):</label>
+        <input type="file" id="albumArt">
+
+        <!-- Metadata Fields with 4 Tabs Each -->
+        <div class="metadata-field">
+            <label>Title:</label>
+            <input type="text" id="title" placeholder="e.g., Song Title">
+            <div class="tabs">
+                <div class="tab-label">Technical Input Specs</div>
+                <div class="tab-content">Max 250 characters. Unicode supported.</div>
+                <div class="tab-label">History & Creativity</div>
+                <div class="tab-content">Song titles should be concise yet descriptive.</div>
+                <div class="tab-label">Creative Help</div>
+                <div class="tab-content">Consider thematic relevance.</div>
+                <div class="tab-label">External Resources</div>
+                <div class="tab-content"><a href="https://www.songtitleideas.com/" target="_blank">Song Title Generator</a></div>
+            </div>
+        </div>
+
+        <div class="metadata-field">
+            <label>Artist:</label>
+            <input type="text" id="artist" placeholder="e.g., Artist Name">
+            <div class="tabs">
+                <div class="tab-label">Technical Input Specs</div>
+                <div class="tab-content">Supports multiple names separated by commas.</div>
+                <div class="tab-label">History & Creativity</div>
+                <div class="tab-content">Ensure correct spelling of artist names.</div>
+                <div class="tab-label">Creative Help</div>
+                <div class="tab-content">Check artist name consistency across platforms.</div>
+                <div class="tab-label">External Resources</div>
+                <div class="tab-content"><a href="https://musicbrainz.org/" target="_blank">MusicBrainz Database</a></div>
+            </div>
+        </div>
+
+        <div class="metadata-field">
+            <label>Album:</label>
+            <input type="text" id="album" placeholder="e.g., Album Title">
+            <div class="tabs">
+                <div class="tab-label">Technical Input Specs</div>
+                <div class="tab-content">Max 255 characters. Unicode supported.</div>
+                <div class="tab-label">History & Creativity</div>
+                <div class="tab-content">Albums can have thematic titles.</div>
+                <div class="tab-label">Creative Help</div>
+                <div class="tab-content">Consider branding elements.</div>
+                <div class="tab-label">External Resources</div>
+                <div class="tab-content"><a href="https://en.wikipedia.org/wiki/List_of_albums" target="_blank">Famous Albums</a></div>
+            </div>
+        </div>
+
+        <div class="metadata-field">
+            <label>Genre:</label>
+            <input type="text" id="genre" placeholder="e.g., Folk, Rock, Jazz">
+            <div class="tabs">
+                <div class="tab-label">Technical Input Specs</div>
+                <div class="tab-content">Separate genres with commas.</div>
+                <div class="tab-label">History & Creativity</div>
+                <div class="tab-content">Genres have evolved over time.</div>
+                <div class="tab-label">Creative Help</div>
+                <div class="tab-content">Use recognizable genre names.</div>
+                <div class="tab-label">External Resources</div>
+                <div class="tab-content"><a href="https://everynoise.com/" target="_blank">Genre Explorer</a></div>
+            </div>
+        </div>
+
+        <label>Output File Name (without extension):</label>
+        <input type="text" id="outputFile" placeholder="e.g., tagged-file">
+
+        <label>Select Output Formats:</label>
+        <div id="outputFormats">
+            <input type="checkbox" value="wav" checked> WAV
+            <input type="checkbox" value="mp3"> MP3
+            <input type="checkbox" value="flac"> FLAC
+            <input type="checkbox" value="m4a"> M4A
+            <input type="checkbox" value="mp4"> MP4
+        </div>
+
+        <button onclick="generateCommand()">Generate Command</button>
+        <button onclick="copyCommand()">Copy Command Line</button>
+
+        <h3>Command Preview:</h3>
+        <textarea id="commandPreview" readonly></textarea>
+
+        <h3>Terminal Output:</h3>
+        <pre id="terminalOutput" class="terminal-window"></pre>
+    </div>
+
+    <script src="metadata-ffmpeg-command-generator.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FFmpeg Metadata Tagger - mfcg‑10</title>
+  <link rel="stylesheet" href="mfcg-10.css">
+</head>
+<body>
+  <div class="container">
+    <h1>FFmpeg Metadata Tagger</h1>
+    
+    <!-- Section 1: File Selection -->
+    <div class="section">
+      <h2>1. Select Input Files</h2>
+      <div class="form-group">
+        <label for="audioFile">Audio File:</label>
+        <input type="file" id="audioFile" accept="audio/*">
+      </div>
+      <div class="form-group">
+        <label for="coverArt">Cover Art (Optional, for MP3 only):</label>
+        <input type="file" id="coverArt" accept="image/*">
+      </div>
+    </div>
+    
+    <!-- Section 2: Metadata Input -->
+    <div class="section">
+      <h2>2. Enter Metadata</h2>
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Song Title">
+      </div>
+      <div class="form-group">
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" placeholder="Artist Name">
+      </div>
+      <div class="form-group">
+        <label for="album">Album:</label>
+        <input type="text" id="album" placeholder="Album Name">
+      </div>
+      <div class="form-group">
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="Genre">
+      </div>
+    </div>
+    
+    <!-- Section 3: Output Options and Command Preview -->
+    <div class="section">
+      <h2>3. Output Options & Command Preview</h2>
+      <div class="form-group">
+        <label for="outputFilename">Output Filename (without extension):</label>
+        <input type="text" id="outputFilename" placeholder="Output Filename">
+      </div>
+      <div class="form-group">
+        <label>Output Format:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="format" value="mp3" checked> MP3</label>
+          <label><input type="radio" name="format" value="wav"> WAV</label>
+          <label><input type="radio" name="format" value="flac"> FLAC</label>
+          <label><input type="radio" name="format" value="m4a"> M4A</label>
+        </div>
+      </div>
+      <button id="generateBtn">Generate Command</button>
+      <button id="copyBtn">Copy Command</button>
+    </div>
+    
+    <div class="section">
+      <h2>Command Preview</h2>
+      <textarea id="commandPreview" readonly></textarea>
+    </div>
+  </div>
+  
+  <script src="mfcg-10.js"></script>
+</body>
+</html>
+

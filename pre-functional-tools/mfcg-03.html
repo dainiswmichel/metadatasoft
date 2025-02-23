@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFmpeg Metadata Tagger</title>
+    <link rel="stylesheet" href="mfcg-03.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>FFmpeg Metadata Tagger</h1>
+
+        <label for="audioFile">Select Audio File:</label>
+        <input type="file" id="audioFile" accept=".wav,.mp3,.flac,.m4a">
+        
+        <label for="albumArt">Select Album Art (Optional):</label>
+        <input type="file" id="albumArt" accept=".jpg,.png">
+        
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Enter song title">
+
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" placeholder="Enter artist name">
+
+        <label for="album">Album:</label>
+        <input type="text" id="album" placeholder="Enter album name">
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="e.g., Rock, Jazz">
+
+        <label for="outputFile">Output File Name (without extension):</label>
+        <input type="text" id="outputFile" placeholder="Enter output filename">
+
+        <label>Select Output Format:</label>
+        <div class="format-options">
+            <input type="checkbox" id="wav" value="wav"> WAV
+            <input type="checkbox" id="mp3" value="mp3"> MP3
+            <input type="checkbox" id="flac" value="flac"> FLAC
+            <input type="checkbox" id="m4a" value="m4a"> M4A
+        </div>
+
+        <button id="generateCommand">Generate Command</button>
+        <button id="copyCommand">Copy Command Line</button>
+        <button id="runTerminal">Run in Terminal</button>
+
+        <h3>Command Preview:</h3>
+        <textarea id="commandPreview" readonly></textarea>
+
+        <h3>Interactive Terminal:</h3>
+        <pre id="terminalOutput">Waiting for command...</pre>
+    </div>
+
+    <script src="mfcg-03.js"></script>
+</body>
+</html>

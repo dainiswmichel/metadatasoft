@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFmpeg Metadata Tagger</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/xterm/4.19.0/xterm.min.css">
+    <link rel="stylesheet" href="mfcg-02.css">
+</head>
+<body>
+    <h1>FFmpeg Metadata Tagger</h1>
+    <div id="metadata-editor">
+        <div class="form-group">
+            <label>Select Audio File:</label>
+            <input type="file" id="audioFile">
+            <span class="tab" onclick="showEducationalContent('audioFile')">?</span>
+        </div>
+
+        <div class="form-group">
+            <label>Select Album Art (Optional):</label>
+            <input type="file" id="albumArt">
+            <span class="tab" onclick="showEducationalContent('albumArt')">?</span>
+        </div>
+
+        <div class="form-group">
+            <label>Title:</label>
+            <input type="text" id="title" placeholder="e.g., Song Title">
+            <span class="tab" onclick="showEducationalContent('title')">?</span>
+        </div>
+
+        <div class="form-group">
+            <label>Artist:</label>
+            <input type="text" id="artist" placeholder="e.g., Artist Name">
+            <span class="tab" onclick="showEducationalContent('artist')">?</span>
+        </div>
+
+        <div class="form-group">
+            <label>Album:</label>
+            <input type="text" id="album" placeholder="e.g., Album Title">
+            <span class="tab" onclick="showEducationalContent('album')">?</span>
+        </div>
+
+        <div class="form-group">
+            <label>Genre:</label>
+            <input type="text" id="genre" placeholder="e.g., Folk, Rock, Jazz">
+            <span class="tab" onclick="showEducationalContent('genre')">?</span>
+        </div>
+
+        <div class="form-group">
+            <label>Output File Name (without extension):</label>
+            <input type="text" id="outputFile" placeholder="e.g., tagged-file">
+            <span class="tab" onclick="showEducationalContent('outputFile')">?</span>
+        </div>
+
+        <div class="form-group">
+            <label>Select Output Format:</label>
+            <div id="outputFormats">
+                <input type="radio" name="format" value="wav"> WAV
+                <input type="radio" name="format" value="mp3"> MP3
+                <input type="radio" name="format" value="flac"> FLAC
+                <input type="radio" name="format" value="m4a"> M4A
+            </div>
+        </div>
+
+        <button onclick="generateCommand()">Generate Command</button>
+        <button onclick="copyCommand()">Copy Command Line</button>
+        <button onclick="runCommand()">Run in Terminal</button>
+
+        <h3>Command Preview:</h3>
+        <textarea id="commandPreview" readonly></textarea>
+
+        <h3>Interactive Terminal:</h3>
+        <div id="terminal"></div>
+
+        <div id="educational-content"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/4.19.0/xterm.min.js"></script>
+    <script src="mfcg-02.js"></script>
+</body>
+</html>

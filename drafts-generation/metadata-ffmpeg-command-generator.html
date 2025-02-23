@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metadata Tagger</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { text-align: center; }
+        .container { max-width: 600px; margin: auto; }
+        input, button { display: block; width: 100%; margin-top: 10px; padding: 10px; }
+        .terminal { background: black; color: white; padding: 10px; height: 200px; overflow-y: scroll; font-family: monospace; }
+        .command-preview { font-family: monospace; background: #f5f5f5; padding: 5px; border-radius: 5px; white-space: pre-line; }
+    </style>
+</head>
+<body>
+
+    <h1>Metadata Tagger</h1>
+    <div class="container">
+        <label for="file">Select Audio File:</label>
+        <input type="file" id="file" accept=".mp3,.wav">
+
+        <label for="title">Enter Title:</label>
+        <input type="text" id="title" placeholder="Enter song title">
+
+        <label for="artist">Enter Artist:</label>
+        <input type="text" id="artist" placeholder="Enter artist name">
+
+        <label for="album">Enter Album:</label>
+        <input type="text" id="album" placeholder="Enter album name">
+
+        <label for="genre">Enter Genre:</label>
+        <input type="text" id="genre" placeholder="Enter genre (e.g., Folk, Rock)">
+
+        <label for="output-name">Output File Name:</label>
+        <input type="text" id="output-name" placeholder="Enter output file name (without extension)">
+
+        <label>Command Preview:</label>
+        <p class="command-preview" id="command-preview">FFmpeg command will appear here...</p>
+
+        <button onclick="generateCommand()">Generate Command</button>
+        <button onclick="copyCommand()">Copy Command Line</button>
+        <button onclick="runCommand()">Run FFmpeg</button>
+
+        <div class="terminal" id="terminal"></div>
+    </div>
+
+    <script>
+        function logToTerminal(message, type = "info") {
+            const terminal = document.getElementById("terminal");
+            const entry = document.createElement("p");
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            entry.style.color = type === "error" ? "red" : type === "success" ? "lime" : "white";
+            terminal.appendChild(entry);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function generateCommand() {
+            const fileInput = document.getElementById("file");
+            const title = document.getElementById("title").value.trim();
+            const artist = document.getElementById("artist").value.trim();
+            const album = document.getElementById("album").value.trim();
+            const genre = document.getElementById("genre").value.trim();
+            let outputName = document.getElementById("output-name").value.trim();
+
+            if (!fileInput.files.length) {
+                logToTerminal("Error: No file selected!", "error");
+                return;
+            }
+            if (!title || !artist || !album || !genre) {
+                logToTerminal("Error: All metadata fields (Title, Artist, Album, Genre) are required!", "error");
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+
+            if (!outputName) {
+                outputName = file.name.replace(/\.[^/.]+$/, "") + "-tagged";
+            }
+
+            let ffmpegCommand = "";
+
+            if (fileExtension === "mp3") {
+                ffmpegCommand = `ffmpeg -i "${file.name}" \\
+-metadata title="${title}" \\
+-metadata artist="${artist}" \\
+-metadata album="${album}" \\
+-metadata genre="${genre}" \\
+-c:a copy "${outputName}.mp3"`;
+            } else if (fileExtension === "wav") {
+                ffmpegCommand = `ffmpeg -i "${file.name}" \\
+-metadata INAM="${title}" \\
+-metadata IART="${artist}" \\
+-metadata IPRD="${album}" \\
+-metadata IGNR="${genre}" \\
+-c:a copy "${outputName}.wav"`;
+            } else {
+                logToTerminal("Error: Unsupported file format. Use MP3 or WAV.", "error");
+                return;
+            }
+
+            document.getElementById("command-preview").textContent = ffmpegCommand;
+            logToTerminal("Command Generated: " + ffmpegCommand);
+        }
+
+        function copyCommand() {
+            const commandText = document.getElementById("command-preview").textContent;
+            if (commandText === "FFmpeg command will appear here...") {
+                logToTerminal("Error: No command generated to copy!", "error");
+                return;
+            }
+
+            navigator.clipboard.writeText(commandText).then(() => {
+                logToTerminal("Command copied to clipboard!", "success");
+            }).catch(err => {
+                logToTerminal("Error copying command: " + err, "error");
+            });
+        }
+
+        function runCommand() {
+            logToTerminal("Executing FFmpeg command... (Not functional in browser)");
+            logToTerminal("Success! The file should be processed if executed in a real terminal.", "success");
+        }
+    </script>
+
+</body>
+</html>

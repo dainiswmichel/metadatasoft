@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1NI5 Tagger</title>
+    <link rel="stylesheet" href="tagger-css.css">
+</head>
+<body>
+    <div class="container">
+        <h1>DA1NI5 Tagger</h1>
+
+        <form id="taggerForm">
+            <h2>Input File</h2>
+            <div class="form-group">
+                <label for="input_file">Select Input File:</label>
+                <input type="file" id="input_file" name="input_file" accept=".wav, .mp3, .mp4">
+            </div>
+
+            <h2>Basic Track Information</h2>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" placeholder="e.g., Song Title">
+            </div>
+            <div class="form-group">
+                <label for="artist">Artist:</label>
+                <input type="text" id="artist" name="artist" placeholder="e.g., Artist Name">
+            </div>
+            <div class="form-group">
+                <label for="album">Album:</label>
+                <input type="text" id="album" name="album" placeholder="e.g., Album Name">
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" name="genre" placeholder="e.g., Genre">
+            </div>
+            <div class="form-group">
+                <label for="release_date">Release Date:</label>
+                <input type="date" id="release_date" name="release_date">
+            </div>
+            <div class="form-group">
+                <label for="track_number">Track Number:</label>
+                <input type="number" id="track_number" name="track_number" placeholder="e.g., 1">
+            </div>
+            <div class="form-group">
+                <label for="disc_number">Disc Number:</label>
+                <input type="number" id="disc_number" name="disc_number" placeholder="e.g., 1">
+            </div>
+            <div class="form-group">
+                <label for="duration">Duration:</label>
+                <input type="text" id="duration" name="duration" placeholder="e.g., 3:45">
+            </div>
+            <div class="form-group">
+                <label for="isrc">ISRC:</label>
+                <input type="text" id="isrc" name="isrc" placeholder="e.g., US-XXX-99-12345">
+            </div>
+            <div class="form-group">
+                <label for="copyright">Copyright:</label>
+                <input type="text" id="copyright" name="copyright" placeholder="e.g., 2025 Dainis Michel">
+            </div>
+            <div class="form-group">
+                <label for="language">Language:</label>
+                <input type="text" id="language" name="language" placeholder="e.g., English">
+            </div>
+
+            <h2>Basic Rights Information</h2>
+            <div class="form-group">
+                <label for="composer">Composer:</label>
+                <input type="text" id="composer" name="composer" placeholder="e.g., Composer Name">
+            </div>
+            <div class="form-group">
+                <label for="publisher">Publisher:</label>
+                <input type="text" id="publisher" name="publisher" placeholder="e.g., Publisher Name">
+            </div>
+            <div class="form-group">
+                <label for="lyrics">Lyrics:</label>
+                <input type="text" id="lyrics" name="lyrics" placeholder="e.g., Lyrics">
+            </div>
+            <div class="form-group">
+                <label for="performing_rights_society">Performing Rights Society:</label>
+                <input type="text" id="performing_rights_society" name="performing_rights_society" placeholder="e.g., ASCAP">
+            </div>
+            <div class="form-group">
+                <label for="copyright_holder">Copyright Holder:</label>
+                <input type="text" id="copyright_holder" name="copyright_holder" placeholder="e.g., Copyright Holder">
+            </div>
+
+            <h2>Technical Essentials</h2>
+            <div class="form-group">
+                <label for="audio_quality">Audio Quality:</label>
+                <input type="text" id="audio_quality" name="audio_quality" placeholder="e.g., 320 kbps">
+            </div>
+            <div class="form-group">
+                <label for="explicit_content">Explicit Content:</label>
+                <input type="checkbox" id="explicit_content" name="explicit_content">
+            </div>
+            <div class="form-group">
+                <label for="original_release_date">Original Release Date:</label>
+                <input type="date" id="original_release_date" name="original_release_date">
+            </div>
+
+            <h2>Output</h2>
+            <div class="form-group">
+                <label for="output_file_name">Output File Name:</label>
+                <input type="text" id="output_file_name" name="output_file_name" placeholder="e.g., output_file">
+            </div>
+            <div class="form-group">
+                <label>Output Formats:</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="format" value="mp3"> MP3
+                    </label>
+                    <label>
+                        <input type="checkbox" name="format" value="flac"> FLAC
+                    </label>
+                    <label>
+                        <input type="checkbox" name="format" value="mp4"> MP4
+                    </label>
+                </div>
+            </div>
+            <button type="submit">Generate Tagged Files</button>
+        </form>
+    </div>
+    <script src="tagger-js.js"></script>
+</body>
+</html>

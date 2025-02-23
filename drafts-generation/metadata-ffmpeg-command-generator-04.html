@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFmpeg Metadata Tagger</title>
+    <link rel="stylesheet" href="metadata-ffmpeg-command-generator.css">
+</head>
+<body>
+    <h1>FFmpeg Metadata Tagger</h1>
+    <div class="container">
+        <label>Select Audio File:</label>
+        <input type="file" id="audioFile">
+
+        <label>Select Album Art (Optional):</label>
+        <input type="file" id="albumArt">
+
+        <!-- Album Art Tabs -->
+        <div class="tabs">
+            <div class="tab-label">Technical Input Specs & Examples</div>
+            <div class="tab-content">
+                <p>Image format: JPEG or PNG. Recommended resolution: 3000x3000 pixels.</p>
+            </div>
+            <div class="tab-label">History & Creativity</div>
+            <div class="tab-content">
+                <p>Album covers have evolved from painted artwork to digital renders.</p>
+            </div>
+            <div class="tab-label">Creative Help & Support</div>
+            <div class="tab-content">
+                <p>Need design inspiration? Use online tools like Canva.</p>
+            </div>
+            <div class="tab-label">External Resources</div>
+            <div class="tab-content">
+                <a href="https://www.canva.com/" target="_blank">Canva</a>
+                <a href="https://en.wikipedia.org/wiki/Album_cover" target="_blank">Album Cover History</a>
+            </div>
+        </div>
+
+        <!-- Metadata Fields -->
+        <label>Title:</label>
+        <input type="text" id="title" placeholder="e.g., Song Title">
+
+        <label>Artist:</label>
+        <input type="text" id="artist" placeholder="e.g., Artist Name">
+
+        <label>Album:</label>
+        <input type="text" id="album" placeholder="e.g., Album Title">
+
+        <label>Genre:</label>
+        <input type="text" id="genre" placeholder="e.g., Folk, Rock, Jazz">
+
+        <label>Output File Name (without extension):</label>
+        <input type="text" id="outputFile" placeholder="e.g., tagged-file">
+
+        <label>Select Output Format:</label>
+        <select id="outputFormat">
+            <option value="wav">WAV</option>
+            <option value="mp3">MP3</option>
+            <option value="flac">FLAC</option>
+            <option value="m4a">M4A</option>
+            <option value="mp4">MP4</option>
+        </select>
+
+        <button onclick="generateCommand()">Generate Command</button>
+        <button onclick="copyCommand()">Copy Command Line</button>
+
+        <h3>Command Preview:</h3>
+        <textarea id="commandPreview" readonly></textarea>
+
+        <h3>Terminal Output:</h3>
+        <div id="terminalOutput"></div>
+    </div>
+
+    <script src="metadata-ffmpeg-command-generator.js"></script>
+</body>
+</html>

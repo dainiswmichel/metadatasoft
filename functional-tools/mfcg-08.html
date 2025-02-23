@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio File Tagger - MFCG-08</title>
+  <!-- We expect xterm.min.css to be local; fallback could be provided here if desired -->
+  <link rel="stylesheet" href="xterm.min.css">
+  <link rel="stylesheet" href="mfcg-08.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Audio File Tagger - MFCG-08</h1>
+
+    <!-- Section 1: Input Files -->
+    <div class="section">
+      <h2>1. Select Input Files</h2>
+      <div class="form-group">
+        <label for="input-file">Audio File:</label>
+        <input type="file" id="input-file" accept="audio/*">
+      </div>
+      <div class="form-group">
+        <label for="cover-art">Cover Art (Optional – only for MP3):</label>
+        <input type="file" id="cover-art" accept="image/*">
+      </div>
+    </div>
+
+    <!-- Section 2: Metadata -->
+    <div class="section">
+      <h2>2. Enter Metadata</h2>
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title">
+      </div>
+      <div class="form-group">
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist">
+      </div>
+      <div class="form-group">
+        <label for="album">Album:</label>
+        <input type="text" id="album">
+      </div>
+      <div class="form-group">
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre">
+      </div>
+    </div>
+
+    <!-- Section 3: Output Options & Command Preview -->
+    <div class="section">
+      <h2>3. Output Options & Command</h2>
+      <div class="form-group">
+        <label for="output_filename">Output Filename (without extension):</label>
+        <input type="text" id="output_filename" placeholder="e.g., tagged_song">
+      </div>
+      <div class="form-group">
+        <label>Output Format:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="format" value="wav"> WAV</label>
+          <label><input type="radio" name="format" value="mp3" checked> MP3</label>
+          <label><input type="radio" name="format" value="flac"> FLAC</label>
+          <label><input type="radio" name="format" value="m4a"> M4A</label>
+        </div>
+      </div>
+      <button onclick="generateCommand()">Generate Command</button>
+      <button onclick="copyCommand()">Copy Command</button>
+      <button onclick="runCommand()">Run Command</button>
+      <h3>Command Preview:</h3>
+      <textarea id="commandPreview" readonly style="width:100%; height:80px;"></textarea>
+    </div>
+
+    <!-- Section 4: Terminal Output -->
+    <div class="section">
+      <h2>Terminal Output</h2>
+      <div id="terminal"></div>
+    </div>
+  </div>
+
+  <!-- Dependency Loader -->
+  <script>
+    // Helper: dynamically load a script
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error('Failed to load script: ' + src));
+        document.head.appendChild(script);
+      });
+    }
+
+    // Helper: dynamically load a CSS file
+    function loadCSS(href) {
+      return new Promise((resolve, reject) => {
+        const link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = href;
+        link.onload = resolve;
+        link.onerror = () => reject(new Error('Failed to load CSS: ' + href));
+        document.head.appendChild(link);
+      });
+    }
+
+    async function loadDependencies() {
+      try {
+        // Ensure xterm CSS and JS are loaded.
+        if (!window.Terminal) {
+          await loadCSS("xterm.min.css");
+          await loadScript("xterm.js");
+        }
+        // Ensure FFmpeg is loaded.
+        if (!window.FFmpeg) {
+          await loadScript("ffmpeg.min.js");
+        }
+      } catch (error) {
+        console.error("Dependency loading error:", error);
+        alert("Failed to load required dependencies. Please ensure ffmpeg.min.js, ffmpeg-core.js, xterm.min.css, and xterm.js are in place.");
+      }
+    }
+
+    loadDependencies().then(() => {
+      // Once dependencies are loaded, load our main script.
+      const mainScript = document.createElement('script');
+      mainScript.src = "mfcg-08.js";
+      document.body.appendChild(mainScript);
+    });
+  </script>
+  
+  <!-- Note: ffmpeg-core.js should be present in your project folder;
+       our mfcg-08.js will reference it via the corePath option. -->
+</body>
+</html>

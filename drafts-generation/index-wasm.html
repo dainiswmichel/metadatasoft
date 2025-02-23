@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio File Tagger</title>
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/xterm/css/xterm.css" />
+    <script src="https://unpkg.com/xterm/lib/xterm.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; 
+            padding: 20px; 
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        h1 { margin-bottom: 20px; }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2c5282;
+        }
+
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #4a5568;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            border: 2px dashed #ddd;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .radio-group {
+            margin: 10px 0;
+        }
+
+        .radio-group label {
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: normal;
+        }
+
+        button {
+            background: #4299e1;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #cbd5e0;
+        }
+
+        #terminal {
+            background: #1a202c;
+            color: #a0aec0;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            height: 400px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+
+        .success { color: #48bb78; }
+        .error { color: #f56565; }
+        .info { color: #4299e1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Audio File Tagger</h1>
+
+        <!-- Step 1: File Selection -->
+        <div class="section">
+            <h2>1. Select Input File</h2>
+            <input type="file" id="input-file" accept="audio/*">
+        </div>
+
+        <!-- Step 2: Metadata -->
+        <div class="section">
+            <h2>2. Enter Metadata</h2>
+
+            <h3>Core Track Information</h3>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title">
+            </div>
+            <div class="form-group">
+                <label for="artist">Artist:</label>
+                <input type="text" id="artist">
+            </div>
+            <div class="form-group">
+                <label for="album">Album:</label>
+                <input type="text" id="album">
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre">
+            </div>
+            <div class="form-group">
+                <label for="release_date">Release Date:</label>
+                <input type="date" id="release_date">
+            </div>
+            <div class="form-group">
+                <label for="track_number">Track Number:</label>
+                <input type="number" id="track_number">
+            </div>
+            <div class="form-group">
+                <label for="disc_number">Disc Number:</label>
+                <input type="number" id="disc_number">
+            </div>
+            <div class="form-group">
+                <label for="isrc">ISRC:</label>
+                <input type="text" id="isrc">
+            </div>
+            <div class="form-group">
+                <label for="copyright">Copyright:</label>
+                <input type="text" id="copyright">
+            </div>
+            <div class="form-group">
+                <label for="language">Language:</label>
+                <input type="text" id="language">
+            </div>
+
+            <h3>Basic Rights Information</h3>
+            <div class="form-group">
+                <label for="composer">Composer:</label>
+                <input type="text" id="composer">
+            </div>
+            <div class="form-group">
+                <label for="publisher">Publisher:</label>
+                <input type="text" id="publisher">
+            </div>
+            <div class="form-group">
+                <label for="lyrics">Lyrics:</label>
+                <input type="text" id="lyrics">
+            </div>
+            <div class="form-group">
+                <label for="performing_rights_society">Performing Rights Society:</label>
+                <input type="text" id="performing_rights_society">
+            </div>
+            <div class="form-group">
+                <label for="copyright_holder">Copyright Holder:</label>
+                <input type="text" id="copyright_holder">
+            </div>
+
+            <h3>Technical Essentials</h3>
+            <div class="form-group">
+                <label for="audio_quality">Audio Quality:</label>
+                <input type="text" id="audio_quality">
+            </div>
+            <div class="form-group">
+                <label for="explicit_content">Explicit Content:</label>
+                <input type="checkbox" id="explicit_content">
+            </div>
+            <div class="form-group">
+                <label for="original_release_date">Original Release Date:</label>
+                <input type="date" id="original_release_date">
+            </div>
+        </div>
+
+        <!-- Step 3: Output Options -->
+        <div class="section">
+            <h2>3. Output Options</h2>
+            <div class="form-group">
+                <label for="output_filename">Output Filename (without extension):</label>
+                <input type="text" id="output_filename" placeholder="e.g., my_tagged_song">
+            </div>
+            <div class="form-group">
+                <label>Output Format:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="format" value="wav"> WAV</label>
+                    <label><input type="radio" name="format" value="mp3" checked> MP3</label>
+                    <label><input type="radio" name="format" value="flac"> FLAC</label>
+                    <label><input type="radio" name="format" value="m4a"> M4A</label>
+                </div>
+            </div>
+            <button onclick="processFile()" id="process-btn">Process File</button>
+        </div>
+
+        <!-- Terminal Output -->
+        <div class="section">
+            <h2>Terminal Output</h2>
+            <div id="terminal"></div>
+        </div>
+    </div>
+
+    <script>
+        let ffmpeg = null;
+        let terminal = null;
+        let commandBuffer = '';
+
+        function log(message, type = 'info') {
+            const className = type === 'error' ? 'error' : 
+                            type === 'success' ? 'success' : 'info';
+            const timestamp = new Date().toLocaleTimeString();
+            terminal.writeln(`[${timestamp}] ${message}`);
+        }
+
+        async function initFFmpeg() {
+            try {
+                const { createFFmpeg, fetchFile } = FFmpeg;
+                ffmpeg = createFFmpeg({ 
+                    log: true,
+                    corePath: 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/ffmpeg-core.js'
+                });
+                log('Loading FFmpeg...');
+                await ffmpeg.load();
+                log('✓ FFmpeg loaded and ready!', 'success');
+            } catch (error) {
+                log('Error loading FFmpeg: ' + error.message, 'error');
+                console.error('Full error:', error);
+            }
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            terminal = new Terminal();
+            terminal.open(document.getElementById('terminal'));
+            terminal.write('Welcome to the Audio File Tagger Terminal\r\n');
+            terminal.prompt = () => {
+                terminal.write('\r\n$ ');
+            };
+            terminal.prompt();
+            terminal.onData(e => {
+                handleTerminalInput(e);
+            });
+            initFFmpeg();
+        });
+
+        function handleTerminalInput(data) {
+            for (let i = 0; i < data.length; i++) {
+                const char = data[i];
+                if (char === '\r') {
+                    terminal.write('\r\n');
+                    executeCommand(commandBuffer.trim());
+                    commandBuffer = '';
+                    terminal.prompt();
+                } else if (char === '\u007F') { // Handle backspace
+                    if (commandBuffer.length > 0) {
+                        commandBuffer = commandBuffer.slice(0, -1);
+                        terminal.write('\b \b');
+                    }
+                } else {
+                    commandBuffer += char;
+                    terminal.write(char);
+                }
+            }
+        }
+
+        function executeCommand(command) {
+            if (command === 'clear') {
+                terminal.clear();
+            } else {
+                terminal.write(`Command not recognized: ${command}`);
+            }
+        }
+
+        async function processFile() {
+            if (!ffmpeg) {
+                log('Error: FFmpeg not initialized. Please wait or reload the page.', 'error');
+                return;
+            }
+
+            const processBtn = document.getElementById('process-btn');
+            processBtn.disabled = true;
+            
+            try {
+                // Get input file
+                const fileInput = document.getElementById('input-file');
+                const file = fileInput.files[0];
+                if (!file) throw new Error('Please select a file');
+
+                // Read input file
+                const data = await file.arrayBuffer();
+                const inputFileName = 'input' + file.name.substring(file.name.lastIndexOf('.'));
+                ffmpeg.FS('writeFile', inputFileName, new Uint8Array(data));
+                log(`Input file loaded: ${inputFileName}`);
+
+                // Get metadata values
+                const metadata = {
+                    title: document.getElementById('title').value,
+                    artist: document.getElementById('artist').value,
+                    album: document.getElementById('album').value,
+                    genre: document.getElementById('genre').value,
+                    date: document.getElementById('release_date').value,
+                    track: document.getElementById('track_number').value,
+                    disc: document.getElementById('disc_number').value,
+                    copyright: document.getElementById('copyright').value,
+                    language: document.getElementById('language').value,
+                    composer: document.getElementById('composer').value,
+                    publisher: document.getElementById('publisher').value,
+                    lyrics: document.getElementById('lyrics').value,
+                    isrc: document.getElementById('isrc').value
+                };
+
+                // Get output format and filename
+                const outputFormat = document.querySelector('input[name="format"]:checked').value;
+                let outputFilename = document.getElementById('output_filename').value.trim();
+                if (!outputFilename) {
+                    outputFilename = file.name.substring(0, file.name.lastIndexOf('.'));
+                }
+                outputFilename = outputFilename.replace(/[^a-zA-Z0-9-_]/g, '_');
+                const outputName = `${outputFilename}.${outputFormat}`;
+
+                // Construct FFmpeg command
+                const ffmpegCommand = [
+                    '-i', inputFileName,
+                    '-c', 'copy'
+                ];
+
+                // Add metadata
+                Object.entries(metadata).forEach(([key, value]) => {
+                    if (value) {
+                        ffmpegCommand.push('-metadata', `${key}=${value}`);
+                    }
+                });
+
+                ffmpegCommand.push(outputName);
+
+                // Show command
+                log('Executing FFmpeg command:');
+                log(ffmpegCommand.join(' '));
+
+                // Run FFmpeg
+                await ffmpeg.run(...ffmpegCommand);
+                log('Processing complete!', 'success');
+
+                // Create download
+                const outputData = ffmpeg.FS('readFile', outputName);
+                const mimeTypes = {
+                    'mp3': 'audio/mpeg',
+                    'wav': 'audio/wav',
+                    'flac': 'audio/flac',
+                    'm4a': 'audio/mp4'
+                };
+                const blob = new Blob([outputData.buffer], { type: mimeTypes[outputFormat] });
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = outputName;
+                a.textContent = `⬇️ Download ${outputName}`;
+                a.style.display = 'block';
+                a.style.marginTop = '20px';
+                a.style.color = '#48bb78';
+                document.getElementById('terminal').appendChild(a);
+
+                // Clean up
+                ffmpeg.FS('unlink', inputFileName);
+                ffmpeg.FS('unlink', outputName);
+                a.onclick = () => setTimeout(() => URL.revokeObjectURL(url), 100);
+
+            } catch (error) {
+                log('Error: ' + error.message, 'error');
+                console.error('Full error:', error);
+            } finally {
+                processBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
