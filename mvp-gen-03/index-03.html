@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 - Automated Audio Compilation</title>
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+    <link rel="stylesheet" href="index-03.css">
+</head>
+<body>
+    <div class="navbar">
+        <h2>Navigation</h2>
+        <a href="#about">About</a>
+        <a href="#blog">Blog</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#financials">Financials</a>
+        <a href="#investment">Investment</a>
+    </div>
+
+    <div class="container">
+        <h1>DA1 - Automated Audio Compilation</h1>
+
+        <!-- File Upload -->
+        <div class="section">
+            <h2>Upload Audio Files</h2>
+            <input type="file" id="input-files" multiple accept="audio/*">
+        </div>
+
+        <!-- Cover Art Upload -->
+        <div class="section">
+            <h2>Upload Cover Art (Optional)</h2>
+            <input type="file" id="cover-art" accept="image/*">
+        </div>
+
+        <!-- Metadata (Auto-Filled if Blank) -->
+        <div class="section">
+            <h2>Metadata (Optional)</h2>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="artist">Artist:</label>
+                <input type="text" id="artist" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="album">Album:</label>
+                <input type="text" id="album" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" placeholder="Auto-detected if left blank">
+            </div>
+        </div>
+
+        <!-- Start Processing -->
+        <div class="section">
+            <h2>Start Compilation</h2>
+            <button onclick="processDA1()">Compile DA1 File</button>
+            <div id="progress"></div>
+        </div>
+
+        <!-- Download Links -->
+        <div class="section">
+            <h2>Download Files</h2>
+            <div id="download-links"></div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <h2>AI Bot Guide</h2>
+        <p>Upload your audio files, and DA1 will automatically compile them into a single DA1 file.</p>
+        <p>You will also receive separate audio files in all standard formats (MP3, FLAC, BWF, M4A).</p>
+    </div>
+
+    <script src="index-03.js"></script>
+</body>
+</html>

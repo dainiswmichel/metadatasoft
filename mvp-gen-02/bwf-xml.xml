@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DA1:Metadata xmlns:DA1="https://da1format.org/xml">
+
+  <!-- 📌 BEXT Chunk: Broadcast Extension Metadata -->
+  <DA1:BWF>
+    <DA1:BWF|Description doc="https://ebu.io/bwf/spec#description">
+      <!-- Max 256 characters: Short summary of the content -->
+    </DA1:BWF|Description>
+
+    <DA1:BWF|Originator doc="https://ebu.io/bwf/spec#originator">
+      <!-- Creator’s name (max 32 characters) -->
+    </DA1:BWF|Originator>
+
+    <DA1:BWF|OriginatorReference doc="https://ebu.io/bwf/spec#originatorreference">
+      <!-- Unique identifier set by the originator -->
+    </DA1:BWF|OriginatorReference>
+
+    <DA1:BWF|OriginationDate doc="https://ebu.io/bwf/spec#originationdate">
+      <!-- YYYY-MM-DD: Date of recording -->
+    </DA1:BWF|OriginationDate>
+
+    <DA1:BWF|OriginationTime doc="https://ebu.io/bwf/spec#originationtime">
+      <!-- HH:MM:SS: Time of recording -->
+    </DA1:BWF|OriginationTime>
+
+    <DA1:BWF|UMID doc="https://ebu.io/bwf/spec#umid">
+      <!-- Unique Material Identifier (UMID) -->
+    </DA1:BWF|UMID>
+  </DA1:BWF>
+
+  <!-- 📌 RIFF INFO Chunk: Standard Metadata -->
+  <DA1:RIFF>
+    <DA1:RIFF|IART doc="https://specs.infoformats.org/RIFF/IART">
+      <!-- Artist name -->
+    </DA1:RIFF|IART>
+
+    <DA1:RIFF|ICRD doc="https://specs.infoformats.org/RIFF/ICRD">
+      <!-- Creation date (YYYY-MM-DD) -->
+    </DA1:RIFF|ICRD>
+
+    <DA1:RIFF|ISRC doc="https://isrc.ifpi.org/en/get-isrc/code-format">
+      <!-- International Standard Recording Code (ISRC) -->
+    </DA1:RIFF|ISRC>
+  </DA1:RIFF>
+
+  <!-- 📌 iXML Chunk: Production & Technical Data -->
+  <DA1:iXML>
+    <DA1:iXML|PROJECT doc="https://ixml.info/specs#project">
+      <!-- Project or album name -->
+    </DA1:iXML|PROJECT>
+
+    <DA1:iXML|TAKE doc="https://ixml.info/specs#take">
+      <!-- Take number (e.g., 1, 2, 3) -->
+    </DA1:iXML|TAKE>
+
+    <DA1:iXML|TIMECODE doc="https://ixml.info/specs#timecode">
+      <!-- Timecode information (format, frame rate, etc.) -->
+    </DA1:iXML|TIMECODE>
+  </DA1:iXML>
+
+  <!-- 📌 Technical Audio Parameters -->
+  <DA1:Technical>
+    <DA1:BWF|WAVE_FORMAT doc="https://wavspecs.org/#waveformat">
+      <!-- PCM, IEEE float, etc. -->
+    </DA1:BWF|WAVE_FORMAT>
+
+    <DA1:BWF|SAMPLE_RATE doc="https://wavspecs.org/#samplerate">
+      <!-- 44100 Hz, 48000 Hz, etc. -->
+    </DA1:BWF|SAMPLE_RATE>
+  </DA1:Technical>
+
+</DA1:Metadata>
