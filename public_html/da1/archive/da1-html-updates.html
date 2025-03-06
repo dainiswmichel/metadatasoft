@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 - Automated Media Compilation</title>
+    <script src="/tools/ffmpeg.min.js"></script>
+    <link rel="stylesheet" href="/resources/icons/bootstrap-icons/bootstrap-icons-1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="index-07.css">
+</head>
+<body>
+    <!-- Left Sidebar (Navigation) -->
+    <nav class="sidebar sidebar-left">
+        <h2><i class="bi bi-list"></i> Navigation</h2>
+        <ul>
+            <li><a href="#about"><i class="bi bi-info-circle-fill"></i> About</a></li>
+            <li><a href="#blog"><i class="bi bi-pencil-fill"></i> Blog</a></li>
+            <li><a href="#roadmap"><i class="bi bi-map-fill"></i> Roadmap</a></li>
+            <li><a href="#financials"><i class="bi bi-graph-up"></i> Financials</a></li>
+            <li><a href="#investment"><i class="bi bi-cash-coin"></i> Investment</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1 - Automated Media Compilation</h1>
+        
+        <div class="description-section section">
+            <p><i class="bi bi-info-circle"></i> Create comprehensive media packages with audio, video, PDF documents, and rich metadata in one DA1 container format.</p>
+        </div>
+
+        <!-- File Upload Tabs -->
+        <div class="section">
+            <h2><i class="bi bi-upload"></i> Upload Files</h2>
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'audio-tab')"><i class="bi bi-music-note"></i> Audio</button>
+                <button class="tab-button" onclick="openTab(event, 'video-tab')"><i class="bi bi-film"></i> Video</button>
+                <button class="tab-button" onclick="openTab(event, 'pdf-tab')"><i class="bi bi-file-pdf"></i> PDF Documents</button>
+                <button class="tab-button" onclick="openTab(event, 'cover-tab')"><i class="bi bi-image"></i> Cover Art</button>
+            </div>
+            
+            <div id="audio-tab" class="tab-content active">
+                <div class="form-group">
+                    <label for="audio-files"><i class="bi bi-music-note-list"></i> Upload Audio Files</label>
+                    <input type="file" id="audio-files" multiple accept="audio/*">
+                    <small>Supported formats: MP3, WAV, FLAC, AAC, M4A, OGG</small>
+                </div>
+            </div>
+            
+            <div id="video-tab" class="tab-content">
+                <div class="form-group">
+                    <label for="video-files"><i class="bi bi-camera-video"></i> Upload Video Files</label>
+                    <input type="file" id="video-files" multiple accept="video/*">
+                    <small>Supported formats: MP4, WebM, MOV, AVI</small>
+                </div>
+            </div>
+            
+            <div id="pdf-tab" class="tab-content">
+                <div class="form-group">
+                    <label for="pdf-files"><i class="bi bi-file-earmark-pdf"></i> Upload PDF Documents</label>
+                    <input type="file" id="pdf-files" multiple accept="application/pdf">
+                    <small>These will be embedded in the DA1 package and linked with your media</small>
+                </div>
+            </div>
+            
+            <div id="cover-tab" class="tab-content">
+                <div class="form-group">
+                    <label for="cover-art"><i class="bi bi-image"></i> Upload Cover Art</label>
+                    <input type="file" id="cover-art" accept="image/*">
+                    <div id="cover-preview" class="preview-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metadata -->
+        <div class="section">
+            <h2><i class="bi bi-tags"></i> Metadata</h2>
+            <div class="form-group">
+                <label for="title"><i class="bi bi-music-note"></i> Title:</label>
+                <input type="text" id="title" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="artist"><i class="bi bi-person"></i> Artist:</label>
+                <input type="text" id="artist" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="album"><i class="bi bi-disc"></i> Album/Project:</label>
+                <input type="text" id="album" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="genre"><i class="bi bi-vinyl"></i> Genre:</label>
+                <input type="text" id="genre" placeholder="Auto-detected if left blank">
+            </div>
+            
+            <!-- Custom Metadata Fields -->
+            <div class="metadata-container">
+                <h3><i class="bi bi-card-list"></i> Custom Metadata Fields</h3>
+                <p class="info-text">Add custom properties to be included in the DA1XML metadata.</p>
+                
+                <div id="custom-metadata-fields"></div>
+                
+                <button type="button" class="add-field-button" onclick="addCustomMetadataField()">
+                    <i class="bi bi-plus-circle"></i> Add Field
+                </button>
+            </div>
+        </div>
+
+        <!-- DA1 Options -->
+        <div class="section">
+            <h2><i class="bi bi-gear"></i> DA1 Package Options</h2>
+            
+            <div class="form-group">
+                <label for="package-type"><i class="bi bi-box"></i> Package Type:</label>
+                <select id="package-type">
+                    <option value="standard">Standard (All media in one package)</option>
+                    <option value="separate">Separate (One DA1 file per media)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="compression-level"><i class="bi bi-arrows-collapse"></i> Compression Level:</label>
+                <select id="compression-level">
+                    <option value="none">None (Faster, larger files)</option>
+                    <option value="standard" selected>Standard (Balanced)</option>
+                    <option value="max">Maximum (Slower, smaller files)</option>
+                </select>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="include-all-formats" checked>
+                <label for="include-all-formats">Include all converted formats in package</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="create-manifest" checked>
+                <label for="create-manifest">Create detailed manifest file</label>
+            </div>
+        </div>
+
+        <!-- Start Processing -->
+        <div class="section">
+            <h2><i class="bi bi-play-circle"></i> Start Compilation</h2>
+            <button onclick="processDA1()" class="primary-button">
+                <i class="bi bi-gear"></i> Compile DA1 Package
+            </button>
+            <div id="progress"></div>
+        </div>
+
+        <!-- Download Links -->
+        <div class="section">
+            <h2><i class="bi bi-download"></i> Download Files</h2>
+            <div id="download-links"></div>
+        </div>
+    </div>
+
+    <!-- Right Sidebar (AI Assistant) -->
+    <aside class="sidebar sidebar-right">
+        <h2><i class="bi bi-robot"></i> AI Assistant</h2>
+        <p>Follow these steps to create a DA1 package:</p>
+        <ol>
+            <li><i class="bi bi-upload"></i> Upload your audio, video, and PDF files.</li>
+            <li><i class="bi bi-image"></i> Optionally, upload cover art.</li>
+            <li><i class="bi bi-tags"></i> Fill in basic and custom metadata.</li>
+            <li><i class="bi bi-gear"></i> Configure your DA1 package options.</li>
+            <li><i class="bi bi-play-circle"></i> Click <strong>Compile DA1 Package</strong>.</li>
+            <li><i class="bi bi-download"></i> Download your comprehensive DA1 package.</li>
+        </ol>
+        <div class="info-box">
+            <h3><i class="bi bi-lightbulb"></i> What is DA1?</h3>
+            <p>DA1 is a next-generation media container format that allows you to package audio, video, images, PDFs, and rich metadata into a single accessible file.</p>
+        </div>
+        <div id="ai-chat">
+            <p><i class="bi bi-chat-dots"></i> AI chat interface coming soon...</p>
+        </div>
+    </aside>
+
+    <script>
+        // Tab navigation functionality
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Cover art preview
+        document.getElementById('cover-art').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewContainer = document.getElementById('cover-preview');
+                    previewContainer.innerHTML = `<img src="${e.target.result}" alt="Cover preview">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+    <script src="enhanced-da1.js"></script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Preview Options</title>
+    <style>
+        /* Common Styles */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .preview-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .style-nav {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #333;
+            z-index: 100;
+        }
+        .style-nav button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .style-option {
+            height: 100vh;
+            overflow-y: auto;
+            display: none;
+        }
+        .style-option.active {
+            display: block;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* Style 1: Modern & Clean (Roboto + Font Awesome + Blue/Gray) */
+        #style1 {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+        #style1 .sidebar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+        }
+        #style1 h1, #style1 h2, #style1 h3 {
+            color: #2c3e50;
+        }
+        #style1 .sidebar h3 {
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+        }
+        #style1 .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        #style1 .sidebar li {
+            padding: 8px 0;
+        }
+        #style1 .sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+        #style1 .card {
+            border: 1px solid #e1e1e1;
+            padding: 15px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #style1 .btn-primary {
+            background-color: #3498db;
+            color: white;
+            border: none;
+        }
+        #style1 .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+        }
+
+        /* Style 2: Sleek & Minimalist (Open Sans + Material Icons + Dark theme) */
+        #style2 {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            color: #212121;
+        }
+        #style2 .sidebar {
+            background-color: #212121;
+            color: #f5f5f5;
+            padding: 15px;
+        }
+        #style2 h1, #style2 h2, #style2 h3 {
+            color: #212121;
+        }
+        #style2 .sidebar h3 {
+            color: #f5f5f5;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+        #style2 .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        #style2 .sidebar li {
+            padding: 8px 0;
+        }
+        #style2 .sidebar a {
+            color: #f5f5f5;
+            text-decoration: none;
+        }
+        #style2 .card {
+            border: none;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+        #style2 .btn-primary {
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+        }
+        #style2 .btn-secondary {
+            background-color: #616161;
+            color: white;
+            border: none;
+        }
+
+        /* Style 3: Professional & Bold (Montserrat + Bootstrap Icons + Dark blue) */
+        #style3 {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        #style3 .sidebar {
+            background: linear-gradient(to bottom, #0f2027, #2c5364);
+            color: white;
+            padding: 15px;
+        }
+        #style3 h1, #style3 h2, #style3 h3 {
+            color: #0f2027;
+        }
+        #style3 .sidebar h3 {
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+        }
+        #style3 .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        #style3 .sidebar li {
+            padding: 10px 0;
+        }
+        #style3 .sidebar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        #style3 .card {
+            border: none;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        #style3 .btn-primary {
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+        #style3 .btn-secondary {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+
+        /* Style 4: Creative & Fresh (Poppins + Feather Icons + Vibrant) */
+        #style4 {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+        #style4 .sidebar {
+            background-color: #6c5ce7;
+            color: white;
+            padding: 15px;
+        }
+        #style4 h1, #style4 h2, #style4 h3 {
+            color: #6c5ce7;
+        }
+        #style4 .sidebar h3 {
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+        #style4 .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        #style4 .sidebar li {
+            padding: 8px 0;
+        }
+        #style4 .sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+        #style4 .card {
+            border: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        #style4 .btn-primary {
+            background-color: #00cec9;
+            color: white;
+            border: none;
+            border-radius: 25px;
+        }
+        #style4 .btn-secondary {
+            background-color: #fd79a8;
+            color: white;
+            border: none;
+            border-radius: 25px;
+        }
+    </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- Feather Icons (via script) -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <div class="preview-container">
+        <!-- Style 1: Modern & Clean -->
+        <div id="style1" class="style-option">
+            <div class="sidebar">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#"><i class="fas fa-map"></i> Roadmap</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Financials</a></li>
+                    <li><a href="#"><i class="fas fa-dollar-sign"></i> Investment</a></li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <h1>DA1 - Audio Compilation</h1>
+                <div class="card">
+                    <h2><i class="fas fa-upload"></i> Upload Audio Files</h2>
+                    <p>Select your audio files to begin the compilation process.</p>
+                    <button class="btn btn-primary"><i class="fas fa-file-audio"></i> Browse Files</button>
+                </div>
+                <div class="card">
+                    <h2><i class="fas fa-image"></i> Upload Cover Art</h2>
+                    <p>Add cover art to enhance your audio files (optional).</p>
+                    <button class="btn btn-primary"><i class="fas fa-images"></i> Select Image</button>
+                </div>
+                <div class="card">
+                    <h2><i class="fas fa-tags"></i> Metadata</h2>
+                    <p>Add information to your audio files.</p>
+                    <input type="text" placeholder="Title" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                    <input type="text" placeholder="Artist" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                    <button class="btn btn-secondary"><i class="fas fa-save"></i> Save Metadata</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Style 2: Sleek & Minimalist -->
+        <div id="style2" class="style-option">
+            <div class="sidebar">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="#"><i class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 8px;">home</i> Home</a></li>
+                    <li><a href="#"><i class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 8px;">info</i> About</a></li>
+                    <li><a href="#"><i class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 8px;">map</i> Roadmap</a></li>
+                    <li><a href="#"><i class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 8px;">trending_up</i> Financials</a></li>
+                    <li><a href="#"><i class="material-icons" style="font-size: 18px; vertical-align: middle; margin-right: 8px;">attach_money</i> Investment</a></li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <h1>DA1 - Audio Compilation</h1>
+                <div class="card">
+                    <h2><i class="material-icons" style="vertical-align: middle; margin-right: 5px;">cloud_upload</i> Upload Audio Files</h2>
+                    <p>Select your audio files to begin the compilation process.</p>
+                    <button class="btn btn-primary"><i class="material-icons" style="font-size: 16px; vertical-align: middle; margin-right: 5px;">music_note</i> Browse Files</button>
+                </div>
+                <div class="card">
+                    <h2><i class="material-icons" style="vertical-align: middle; margin-right: 5px;">image</i> Upload Cover Art</h2>
+                    <p>Add cover art to enhance your audio files (optional).</p>
+                    <button class="btn btn-primary"><i class="material-icons" style="font-size: 16px; vertical-align: middle; margin-right: 5px;">add_photo_alternate</i> Select Image</button>
+                </div>
+                <div class="card">
+                    <h2><i class="material-icons" style="vertical-align: middle; margin-right: 5px;">label</i> Metadata</h2>
+                    <p>Add information to your audio files.</p>
+                    <input type="text" placeholder="Title" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                    <input type="text" placeholder="Artist" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                    <button class="btn btn-secondary"><i class="material-icons" style="font-size: 16px; vertical-align: middle; margin-right: 5px;">save</i> Save Metadata</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Style 3: Professional & Bold -->
+        <div id="style3" class="style-option">
+            <div class="sidebar">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="#"><i class="bi bi-house-fill"></i> Home</a></li>
+                    <li><a href="#"><i class="bi bi-info-circle-fill"></i> About</a></li>
+                    <li><a href="#"><i class="bi bi-map-fill"></i> Roadmap</a></li>
+                    <li><a href="#"><i class="bi bi-graph-up"></i> Financials</a></li>
+                    <li><a href="#"><i class="bi bi-cash-coin"></i> Investment</a></li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <h1>DA1 - Audio Compilation</h1>
+                <div class="card">
+                    <h2><i class="bi bi-cloud-upload"></i> Upload Audio Files</h2>
+                    <p>Select your audio files to begin the compilation process.</p>
+                    <button class="btn btn-primary"><i class="bi bi-file-earmark-music"></i> Browse Files</button>
+                </div>
+                <div class="card">
+                    <h2><i class="bi bi-image"></i> Upload Cover Art</h2>
+                    <p>Add cover art to enhance your audio files (optional).</p>
+                    <button class="btn btn-primary"><i class="bi bi-images"></i> Select Image</button>
+                </div>
+                <div class="card">
+                    <h2><i class="bi bi-tags"></i> Metadata</h2>
+                    <p>Add information to your audio files.</p>
+                    <input type="text" placeholder="Title" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                    <input type="text" placeholder="Artist" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                    <button class="btn btn-secondary"><i class="bi bi-save"></i> Save Metadata</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Style 4: Creative & Fresh -->
+        <div id="style4" class="style-option">
+            <div class="sidebar">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="#"><i data-feather="home"></i> Home</a></li>
+                    <li><a href="#"><i data-feather="info"></i> About</a></li>
+                    <li><a href="#"><i data-feather="map"></i> Roadmap</a></li>
+                    <li><a href="#"><i data-feather="trending-up"></i> Financials</a></li>
+                    <li><a href="#"><i data-feather="dollar-sign"></i> Investment</a></li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <h1>DA1 - Audio Compilation</h1>
+                <div class="card">
+                    <h2><i data-feather="upload-cloud"></i> Upload Audio Files</h2>
+                    <p>Select your audio files to begin the compilation process.</p>
+                    <button class="btn btn-primary"><i data-feather="music"></i> Browse Files</button>
+                </div>
+                <div class="card">
+                    <h2><i data-feather="image"></i> Upload Cover Art</h2>
+                    <p>Add cover art to enhance your audio files (optional).</p>
+                    <button class="btn btn-primary"><i data-feather="image"></i> Select Image</button>
+                </div>
+                <div class="card">
+                    <h2><i data-feather="tag"></i> Metadata</h2>
+                    <p>Add information to your audio files.</p>
+                    <input type="text" placeholder="Title" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                    <input type="text" placeholder="Artist" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                    <button class="btn btn-secondary"><i data-feather="save"></i> Save Metadata</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="style-nav">
+            <button onclick="showStyle(1)" style="background-color: #3498db; color: white;">Modern & Clean</button>
+            <button onclick="showStyle(2)" style="background-color: #212121; color: white;">Sleek & Minimalist</button>
+            <button onclick="showStyle(3)" style="background-color: #0f2027; color: white;">Professional & Bold</button>
+            <button onclick="showStyle(4)" style="background-color: #6c5ce7; color: white;">Creative & Fresh</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+
+        // Show the first style by default
+        document.getElementById('style1').classList.add('active');
+
+        // Function to switch between styles
+        function showStyle(styleNum) {
+            // Hide all style options
+            document.querySelectorAll('.style-option').forEach(style => {
+                style.classList.remove('active');
+            });
+            
+            // Show the selected style
+            document.getElementById('style' + styleNum).classList.add('active');
+        }
+    </script>
+</body>
+</html>

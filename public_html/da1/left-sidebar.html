@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DA1 - Automated Media Compilation</title>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <!-- Left Sidebar (Navigation) -->
+<nav class="sidebar sidebar-left">
+    <h2><i class="bi bi-list"></i> Navigation</h2>
+    <ul>
+        <li><a href="about.html" id="nav-about"><i class="bi bi-info-circle-fill"></i> About</a></li>
+        <li><a href="blog.html" id="nav-blog"><i class="bi bi-pencil-fill"></i> Blog</a></li>
+        <li><a href="roadmap.html" id="nav-roadmap"><i class="bi bi-map-fill"></i> Roadmap</a></li>
+        <li><a href="financials.html" id="nav-financials"><i class="bi bi-graph-up"></i> Financials</a></li>
+        <li><a href="investment.html" id="nav-investment"><i class="bi bi-cash-coin"></i> Investment</a></li>
+        <li><a href="index.html" id="nav-home"><i class="bi bi-house-fill"></i> Back to App</a></li>
+    </ul>
+</nav>
+
+<script>
+    // Highlight the current page in navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPage = window.location.pathname.split('/').pop();
+        let navId = 'nav-home';
+        
+        switch(currentPage) {
+            case 'about.html':
+                navId = 'nav-about';
+                break;
+            case 'blog.html':
+                navId = 'nav-blog';
+                break;
+            case 'roadmap.html':
+                navId = 'nav-roadmap';
+                break;
+            case 'financials.html':
+                navId = 'nav-financials';
+                break;
+            case 'investment.html':
+                navId = 'nav-investment';
+                break;
+        }
+        
+        const activeNavItem = document.getElementById(navId);
+        if (activeNavItem) {
+            activeNavItem.classList.add('active');
+        }
+    });
+</script>
+
+</body>
+</html>

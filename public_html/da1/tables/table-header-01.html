@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DA1 Metadata System - Table Headers</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+    th {
+      background-color: #f2f2f2;
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    /* Category columns */
+    th:nth-child(1), th:nth-child(2), th:nth-child(3) {
+      background-color: #e6f2ff;
+    }
+    /* Core metadata columns */
+    th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8), th:nth-child(9), th:nth-child(10) {
+      background-color: #e6ffe6;
+    }
+    /* FLAC columns */
+    th:nth-child(11), th:nth-child(12), th:nth-child(13), th:nth-child(14), th:nth-child(15) {
+      background-color: #fff2e6;
+    }
+    /* MP3 columns */
+    th:nth-child(16), th:nth-child(17), th:nth-child(18), th:nth-child(19), th:nth-child(20), th:nth-child(21) {
+      background-color: #ffe6e6;
+    }
+    /* MP4/M4A columns */
+    th:nth-child(22), th:nth-child(23), th:nth-child(24) {
+      background-color: #f9e6ff;
+    }
+    /* BWF/WAV columns */
+    th:nth-child(25), th:nth-child(26), th:nth-child(27), th:nth-child(28), th:nth-child(29), th:nth-child(30), th:nth-child(31), th:nth-child(32), th:nth-child(33) {
+      background-color: #e6ffff;
+    }
+    /* Other format columns */
+    th:nth-child(34), th:nth-child(35) {
+      background-color: #fff9e6;
+    }
+    /* DA1 XML columns */
+    th:nth-child(36), th:nth-child(37), th:nth-child(38) {
+      background-color: #efe6ff;
+    }
+    /* Platform columns */
+    th:nth-child(39), th:nth-child(40), th:nth-child(41), th:nth-child(42), th:nth-child(43) {
+      background-color: #e6ffe6;
+    }
+    /* Timestamp columns */
+    th:nth-child(44), th:nth-child(45), th:nth-child(46) {
+      background-color: #ffffe6;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <!-- Category Information -->
+        <th>Category ID</th>
+        <th>Category Name</th>
+        <th>Tag ID</th>
+        
+        <!-- Core Metadata -->
+        <th>DA1 MetaMetaTag</th>
+        <th>Description</th>
+        <th>Max Length</th>
+        <th>DataFormat</th>
+        <th>Required (Yes/No)</th>
+        <th>Validation Rules</th>
+        <th>DA1 MetaMetaData Content</th>
+        
+        <!-- FLAC (Vorbis) -->
+        <th>FLAC (Vorbis)</th>
+        <th>FLAC (Vorbis) Metatag Description</th>
+        <th>FLAC (Vorbis) Metatag Content</th>
+        <th>FLAC (Vorbis) User Data</th>
+        <th>FLAC (Vorbis) NeverBlank Data</th>
+        
+        <!-- MP3 Tags -->
+        <th>MP3 (ID3v2)</th>
+        <th>MP3 (ID3v2) User Data</th>
+        <th>MP3 (ID3v2) NeverBlank Data</th>
+        <th>MP3 (APEv2)</th>
+        <th>MP3 (APEv2) User Data</th>
+        <th>MP3 (APEv2) NeverBlank Data</th>
+        
+        <!-- MP4/M4A -->
+        <th>MP4/M4A (iTunes)</th>
+        <th>MP4/M4A (iTunes) User Data</th>
+        <th>MP4/M4A (iTunes) NeverBlank Data</th>
+        
+        <!-- BWF/WAV -->
+        <th>BWF/WAV (XMP)</th>
+        <th>BWF/WAV (XMP) User Data</th>
+        <th>BWF/WAV (XMP) NeverBlank Data</th>
+        <th>BWF/WAV (INFO)</th>
+        <th>BWF/WAV (INFO) User Data</th>
+        <th>BWF/WAV (INFO) NeverBlank Data</th>
+        <th>BWF/WAV (iXML)</th>
+        <th>BWF/WAV (iXML) User Data</th>
+        <th>BWF/WAV (iXML) NeverBlank Data</th>
+        
+        <!-- Other Formats -->
+        <th>OGG (Opus)</th>
+        <th>AIFF</th>
+        
+        <!-- DA1 XML -->
+        <th>DA1 XML</th>
+        <th>DA1 XML Description</th>
+        <th>DA1 XML Content</th>
+        
+        <!-- Platform fields -->
+        <th>DistroKid</th>
+        <th>TuneCore</th>
+        <th>Apple Music</th>
+        <th>Spotify</th>
+        <th>YouTube</th>
+        
+        <!-- Synchronization Data -->
+        <th>SyncTimestamp</th>
+        <th>TimecodeFormat</th>
+        <th>LyricsTimestampFormat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Table data rows would go here -->
+    </tbody>
+  </table>
+</body>
+</html>

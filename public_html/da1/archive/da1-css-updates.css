@@ -1,0 +1,185 @@
+/* Enhanced CSS for DA1 - Automated Media Compilation */
+
+/* Keeping existing font and variable declarations from index-07.css */
+
+/* New Tabs Styling */
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+  background: var(--bg-light);
+  border: none;
+  padding: 10px 15px;
+  margin-right: 2px;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-button:hover {
+  background: #e5e5e5;
+}
+
+.tab-button.active {
+  background: var(--card-bg);
+  border: 1px solid #ddd;
+  border-bottom: 1px solid white;
+  margin-bottom: -1px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px 0;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Form Enhancements */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--primary-dark);
+}
+
+.form-group small {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Custom Metadata Section */
+.metadata-container {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.metadata-container h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-text {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.metadata-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.metadata-key, .metadata-value {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.remove-field {
+  background: none;
+  border: none;
+  color: #d35400;
+  cursor: pointer;
+  padding: 0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-field-button {
+  background: var(--bg-light);
+  color: var(--primary-medium);
+  border: 1px dashed #ccc;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.add-field-button:hover {
+  background: #e5e5e5;
+  color: var(--accent);
+}
+
+/* Checkbox Styling */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Button Enhancements */
+.primary-button {
+  background: var(--accent);
+  color: var(--text-light);
+  border: none;
+  padding: 15px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.primary-button:hover {
+  background: #d35400;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Description Section */
+.description-section {
+  background: linear-gradient(to right, var(--primary-dark), var(--primary-medium));
+  color: white;
+  padding: 15px 25px;
+}
+
+.description-section p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  
