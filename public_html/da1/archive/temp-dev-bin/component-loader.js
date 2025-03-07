@@ -22,8 +22,7 @@ function loadComponent(url, elementId) {
     return fetch(url)
         .then(response => {
             if (!response.ok) {
-                console.error(`Failed to load component: ${url}, status: ${response.status}`);
-                return "";
+                throw new Error(`Failed to load component: ${url}, status: ${response.status}`);
             }
             return response.text();
         })
@@ -31,39 +30,22 @@ function loadComponent(url, elementId) {
             const element = document.getElementById(elementId);
             if (element) {
                 element.innerHTML = data;
-
-                // If loading the footer, add Tawk.to script before </body>
-                if (elementId === "footer-container") {
-                    injectTawkTo();
-                }
             } else {
                 console.error(`Element with ID "${elementId}" not found`);
             }
+            return data;
         })
-        .catch(error => console.error("Error loading component:", error));
-}
-
-// Function to inject Tawk.to script dynamically before </body>
-function injectTawkTo() {
-    if (!document.getElementById("tawk-script")) { // Prevent duplicate loading
-        const tawkScript = document.createElement("script");
-        tawkScript.id = "tawk-script";
-        tawkScript.type = "text/javascript";
-        tawkScript.async = true;
-        tawkScript.src = "https://embed.tawk.to/67c98ac7defb801906ff99e0/1illkc7a0";
-        tawkScript.charset = "UTF-8";
-        tawkScript.setAttribute("crossorigin", "*");
-
-        document.body.appendChild(tawkScript);
-    }
+        .catch(error => {
+            console.error('Error loading component:', error);
+        });
 }
 
 // Load all components when the page is ready
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     const componentLoads = [
-        loadComponent("left-sidebar.html", "left-sidebar-container"),
-        loadComponent("right-sidebar.html", "right-sidebar-container"),
-        loadComponent("./footer.html", "footer-container")
+        loadComponent('left-sidebar.html', 'left-sidebar-container'),
+        loadComponent('right-sidebar.html', 'right-sidebar-container'),
+        loadComponent('footer.html', 'footer-container')
     ];
 
     // Ensure accordion functionality is applied after components are loaded
@@ -73,12 +55,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 initializeAccordion(); // Attach event listeners after content is loaded
 
                 // Highlight active navigation link
-                const currentPage = window.location.pathname.split("/").pop() || "index.html";
-                const navItems = document.querySelectorAll(".sidebar-left a");
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navItems = document.querySelectorAll('.sidebar-left a');
                 navItems.forEach(item => {
-                    const href = item.getAttribute("href");
+                    const href = item.getAttribute('href');
                     if (href === currentPage) {
-                        item.classList.add("active");
+                        item.classList.add('active');
                     }
                 });
             }, 100);

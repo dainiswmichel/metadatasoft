@@ -1,23 +1,3 @@
-// Cover art preview functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const coverArtInput = document.getElementById('cover-art');
-    if (coverArtInput) {
-        coverArtInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const previewContainer = document.getElementById('cover-preview');
-                    if (previewContainer) {
-                        previewContainer.innerHTML = `<img src="${e.target.result}" alt="Cover preview">`;
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    }
-});
-
 // Function to process DA1 files
 function processDA1() {
     const inputFiles = document.getElementById('input-files').files;
@@ -67,34 +47,46 @@ function processDA1() {
     }, 3000);
 }
 
-// Accordion functionality - Fix for right sidebar
+// Accordion functionality
 function initializeAccordion() {
-    document.querySelectorAll(".accordion-header").forEach(header => {
-        header.removeEventListener("click", toggleAccordion); // Prevent duplicate listeners
-        header.addEventListener("click", toggleAccordion);
-    });
-}
-
-function toggleAccordion() {
-    this.classList.toggle("active");
-    const content = this.nextElementSibling;
-
-    if (content) {
-        content.classList.toggle("active");
-
-        // Ensure only one section is open at a time
-        document.querySelectorAll(".accordion-content").forEach(item => {
-            if (item !== content) {
-                item.classList.remove("active");
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    
+    if (accordionHeaders.length > 0) {
+        // Set first accordion item as active by default (if not already set)
+        if (!document.querySelector('.accordion-header.active')) {
+            accordionHeaders[0].classList.add('active');
+            const firstContent = accordionHeaders[0].nextElementSibling;
+            if (firstContent && firstContent.classList.contains('accordion-content')) {
+                firstContent.classList.add('active');
             }
+        }
+        
+        // Add click event to all accordion headers
+        accordionHeaders.forEach(header => {
+            // Remove existing event listeners by cloning and replacing
+            const newHeader = header.cloneNode(true);
+            header.parentNode.replaceChild(newHeader, header);
+            
+            newHeader.addEventListener('click', function() {
+                // Close all accordion items
+                accordionHeaders.forEach(h => {
+                    h.classList.remove('active');
+                    const content = h.nextElementSibling;
+                    if (content && content.classList.contains('accordion-content')) {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Open clicked accordion item
+                this.classList.add('active');
+                const content = this.nextElementSibling;
+                if (content && content.classList.contains('accordion-content')) {
+                    content.classList.add('active');
+                }
+            });
         });
     }
 }
-
-// Ensure accordion is initialized after content loads
-document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(initializeAccordion, 500);
-});
 
 // Initialize components after they're loaded
 document.addEventListener('DOMContentLoaded', function() {

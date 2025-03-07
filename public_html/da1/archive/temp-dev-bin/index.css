@@ -1,30 +1,26 @@
-/*---------------------------------
-  1. FONT DECLARATIONS
----------------------------------*/
+/* Font Declarations */
 @font-face {
     font-family: 'Montserrat';
-    src: url('./resources/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+    src: url('/resources/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
   
 @font-face {
     font-family: 'Montserrat';
-    src: url('./resources/fonts/montserrat/Montserrat-Bold.ttf') format('truetype');
+    src: url('/resources/fonts/montserrat/Montserrat-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
   
 @font-face {
     font-family: 'Montserrat';
-    src: url('./resources/fonts/montserrat/Montserrat-SemiBold.ttf') format('truetype');
+    src: url('/resources/fonts/montserrat/Montserrat-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
 }
   
-/*---------------------------------
-  2. VARIABLES AND ROOT SETTINGS
----------------------------------*/
+/* Professional & Bold Theme - Variables */
 :root {
     --primary-dark: #0f2027;
     --primary-medium: #2c5364;
@@ -39,9 +35,7 @@
     --content-margin: 270px; /* sidebar-width + 20px spacing */
 }
   
-/*---------------------------------
-  3. GENERAL STYLES
----------------------------------*/
+/* General Styles */
 body {
     display: flex;
     font-family: 'Montserrat', sans-serif;
@@ -51,10 +45,7 @@ body {
     min-height: 100vh;
 }
   
-/*---------------------------------
-  4. SIDEBAR STYLING
----------------------------------*/
-/* Common sidebar styles */
+/* Sidebar Styling */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -138,9 +129,7 @@ body {
     border-radius: 5px;
 }
   
-/*---------------------------------
-  5. MAIN CONTENT AREA
----------------------------------*/
+/* Main Content */
 .main-content {
     margin-left: var(--content-margin);
     margin-right: var(--content-margin);
@@ -157,9 +146,7 @@ body {
     font-size: 2rem;
 }
   
-/*---------------------------------
-  6. SECTION STYLING
----------------------------------*/
+/* Sections */
 .section {
     background: var(--card-bg);
     padding: 25px;
@@ -203,9 +190,6 @@ body {
     color: var(--primary-dark);
 }
 
-/*---------------------------------
-  7. FORM ELEMENTS
----------------------------------*/
 .form-group {
     margin-bottom: 20px;
 }
@@ -235,9 +219,7 @@ input[type="file"]:focus {
     outline: none;
 }
 
-/*---------------------------------
-  8. FILE TYPE DISPLAY
----------------------------------*/
+/* File type display */
 .file-types {
     display: flex;
     flex-wrap: wrap;
@@ -268,9 +250,7 @@ input[type="file"]:focus {
     font-size: 12px;
 }
 
-/*---------------------------------
-  9. CHECKBOX STYLING
----------------------------------*/
+/* Checkbox styling */
 .checkbox-group {
     display: flex;
     align-items: center;
@@ -289,9 +269,7 @@ input[type="file"]:focus {
     margin-bottom: 0;
 }
 
-/*---------------------------------
-  10. HELPER CLASSES & ICONS
----------------------------------*/
+/* Help icon */
 .help-icon {
     color: var(--primary-medium);
     margin-left: 10px;
@@ -303,21 +281,21 @@ input[type="file"]:focus {
     color: var(--accent);
 }
 
+/* Info text */
 .info-text {
     color: #666;
     font-size: 14px;
     margin-bottom: 15px;
 }
 
+/* Metadata container */
 .metadata-container {
     margin-top: 25px;
     border-top: 1px solid #eee;
     padding-top: 20px;
 }
   
-/*---------------------------------
-  11. BUTTONS
----------------------------------*/
+/* Buttons */
 button {
     background: var(--accent);
     color: var(--text-light);
@@ -342,9 +320,7 @@ button:hover {
     padding: 14px 24px;
 }
   
-/*---------------------------------
-  12. PROGRESS AND DOWNLOAD LINKS
----------------------------------*/
+/* Progress and Download Links */
 #progress {
     margin-top: 15px;
     font-weight: 500;
@@ -366,9 +342,7 @@ button:hover {
     color: var(--accent);
 }
 
-/*---------------------------------
-  13. COVER PREVIEW
----------------------------------*/
+/* Cover preview */
 .preview-container {
     margin-top: 15px;
     max-width: 200px;
@@ -382,9 +356,7 @@ button:hover {
     display: block;
 }
 
-/*---------------------------------
-  14. INFO BOX
----------------------------------*/
+/* Info box */
 .info-box {
     background: rgba(255, 255, 255, 0.1);
     padding: 15px;
@@ -400,9 +372,7 @@ button:hover {
     gap: 8px;
 }
 
-/*---------------------------------
-  15. ACCORDION FOR INFO PAGES
----------------------------------*/
+/* Accordion for Info Pages */
 .accordion-container {
     margin-top: 20px;
 }
@@ -452,9 +422,7 @@ button:hover {
     transform: rotate(180deg);
 }
 
-/*---------------------------------
-  16. BLOG STYLES
----------------------------------*/
+/* Blog styles */
 article {
     margin-bottom: 30px;
     padding-bottom: 20px;
@@ -494,9 +462,7 @@ article h3 {
     color: var(--accent);
 }
 
-/*---------------------------------
-  17. TIMELINE STYLES FOR ROADMAP
----------------------------------*/
+/* Timeline styles for roadmap */
 .timeline {
     position: relative;
     padding-left: 30px;
@@ -552,9 +518,7 @@ article h3 {
     color: var(--primary-dark);
 }
 
-/*---------------------------------
-  18. CONTACT INFO STYLES
----------------------------------*/
+/* Contact info styles */
 .contact-info {
     background-color: rgba(44, 83, 100, 0.05);
     padding: 15px;
@@ -569,9 +533,7 @@ article h3 {
     gap: 10px;
 }
 
-/*---------------------------------
-  19. ANIMATIONS
----------------------------------*/
+/* Animation */
 .spin {
     animation: spin 1s linear infinite;
 }
@@ -581,90 +543,58 @@ article h3 {
     to { transform: rotate(360deg); }
 }
 
-/*---------------------------------
-  20. CODE DISPLAY
----------------------------------*/
-pre {
-    background-color: #f5f5f5;
-    padding: 15px;
-    border-radius: 5px;
-    overflow-x: auto;
-    border-left: 4px solid var(--primary-medium);
-    font-family: monospace;
-    margin: 20px 0;
-}
 
-code {
-    font-family: monospace;
-    background-color: #f5f5f5;
-    padding: 2px 5px;
-    border-radius: 3px;
-}
+        /* Additional styles for code display */
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid var(--primary-medium);
+            font-family: monospace;
+            margin: 20px 0;
+        }
+        
+        code {
+            font-family: monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .tag-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .tag-table th, .tag-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        .tag-table th {
+            background-color: var(--primary-medium);
+            color: var(--text-light);
+        }
+        
+        .tag-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .required {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .optional {
+            color: #3498db;
+        }
 
-/*---------------------------------
-  21. TAG TABLE
----------------------------------*/
-.tag-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
 
-.tag-table th, .tag-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
 
-.tag-table th {
-    background-color: var(--primary-medium);
-    color: var(--text-light);
-}
-
-.tag-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.required {
-    color: #e74c3c;
-    font-weight: bold;
-}
-
-.optional {
-    color: #3498db;
-}
-
-/*---------------------------------
-  22. FOOTER STYLES
----------------------------------*/
-
-/* Footer Styles */
-.site-footer {
-    margin-top: 30px;
-    padding: 20px;
-    background: linear-gradient(to right, #f0f2f5, #e5e8ec);
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
-.copyright-text {
-    margin: 0;
-    color: #555;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-@media (max-width: 768px) {
-    .site-footer {
-        margin-top: 20px;
-        padding: 15px;
-    }
-}
-
-/*---------------------------------
-  23. RESPONSIVE ADJUSTMENTS
----------------------------------*/
+/* Responsive adjustments */
 @media (max-width: 1200px) {
     :root {
         --sidebar-width: 220px;
