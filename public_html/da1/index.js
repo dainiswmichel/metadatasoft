@@ -67,37 +67,3 @@ function processDA1() {
     }, 3000);
 }
 
-// Accordion functionality - Fix for right sidebar
-function initializeAccordion() {
-    document.querySelectorAll(".accordion-header").forEach(header => {
-        header.removeEventListener("click", toggleAccordion); // Prevent duplicate listeners
-        header.addEventListener("click", toggleAccordion);
-    });
-}
-
-function toggleAccordion() {
-    this.classList.toggle("active");
-    const content = this.nextElementSibling;
-
-    if (content) {
-        content.classList.toggle("active");
-
-        // Ensure only one section is open at a time
-        document.querySelectorAll(".accordion-content").forEach(item => {
-            if (item !== content) {
-                item.classList.remove("active");
-            }
-        });
-    }
-}
-
-// Ensure accordion is initialized after content loads
-document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(initializeAccordion, 500);
-});
-
-// Initialize components after they're loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Set a timeout to initialize accordion after components are loaded
-    setTimeout(initializeAccordion, 500);
-});

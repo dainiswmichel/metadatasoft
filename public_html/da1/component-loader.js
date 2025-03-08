@@ -1,15 +1,29 @@
 /**
  * Component Loader
- * Handles dynamic loading of HTML components for better modularity
+ * Handles dynamic loading of HTML components and UI interactions
  */
+
+// Track which components have already been loaded to prevent duplicates
+const loadedComponents = {};
 
 // Function to handle accordion toggle
 function toggleAccordion() {
     this.classList.toggle('active');
-    this.nextElementSibling.classList.toggle('active');
+    const content = this.nextElementSibling;
+    
+    if (content) {
+        content.classList.toggle('active');
+        
+        // Ensure only one section is open at a time
+        document.querySelectorAll('.accordion-content').forEach(item => {
+            if (item !== content) {
+                item.classList.remove('active');
+            }
+        });
+    }
 }
 
-// Initialize collapsible content (accordion functionality)
+// Initialize accordion content
 function initializeAccordion() {
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.removeEventListener('click', toggleAccordion); // Prevent duplicate listeners
@@ -19,6 +33,13 @@ function initializeAccordion() {
 
 // Function to load HTML components dynamically
 function loadComponent(url, elementId) {
+    // Skip if this component is already loaded
+    if (loadedComponents[elementId]) {
+        console.log(`Component ${elementId} already loaded, skipping.`);
+        return Promise.resolve();
+    }
+    
+    console.log(`Loading component: ${url} into ${elementId}`);
     return fetch(url)
         .then(response => {
             if (!response.ok) {
@@ -30,11 +51,23 @@ function loadComponent(url, elementId) {
         .then(data => {
             const element = document.getElementById(elementId);
             if (element) {
-                element.innerHTML = data;
-
-                // If loading the footer, add Tawk.to script before </body>
-                if (elementId === "footer-container") {
-                    injectTawkTo();
+                // Only insert HTML if this component hasn't been loaded yet
+                if (!loadedComponents[elementId]) {
+                    element.innerHTML = data;
+                    loadedComponents[elementId] = true;
+                    
+                    // Special handling for the sidebar to ensure Alpine.js initializes correctly
+                    if (elementId === "left-sidebar-container") {
+                        // Give Alpine.js a moment to initialize the sidebar
+                        setTimeout(() => {
+                            console.log("Sidebar loaded and initialized");
+                        }, 50);
+                    }
+                    
+                    // If loading the footer, add Tawk.to script
+                    if (elementId === "footer-container" && !window.tawkToInitialized) {
+                        injectTawkTo();
+                    }
                 }
             } else {
                 console.error(`Element with ID "${elementId}" not found`);
@@ -43,9 +76,10 @@ function loadComponent(url, elementId) {
         .catch(error => console.error("Error loading component:", error));
 }
 
-// Function to inject Tawk.to script dynamically before </body>
+// Function to inject Tawk.to script
 function injectTawkTo() {
-    if (!document.getElementById("tawk-script")) { // Prevent duplicate loading
+    if (!document.getElementById("tawk-script") && !window.tawkToInitialized) { 
+        window.tawkToInitialized = true;
         const tawkScript = document.createElement("script");
         tawkScript.id = "tawk-script";
         tawkScript.type = "text/javascript";
@@ -58,29 +92,26 @@ function injectTawkTo() {
     }
 }
 
-// Load all components when the page is ready
-document.addEventListener("DOMContentLoaded", function () {
-    const componentLoads = [
+// Initialize UI 
+function initializeUI() {
+    // Initialize accordion
+    initializeAccordion();
+}
+
+// Load components when ready
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM loaded, loading components...");
+    Promise.all([
         loadComponent("left-sidebar.html", "left-sidebar-container"),
         loadComponent("right-sidebar.html", "right-sidebar-container"),
         loadComponent("./footer.html", "footer-container")
-    ];
+    ]).then(() => {
+        console.log("All components loaded, initializing UI...");
+        setTimeout(initializeUI, 50);
+    });
+});
 
-    // Ensure accordion functionality is applied after components are loaded
-    Promise.all(componentLoads)
-        .then(() => {
-            setTimeout(() => {
-                initializeAccordion(); // Attach event listeners after content is loaded
-
-                // Highlight active navigation link
-                const currentPage = window.location.pathname.split("/").pop() || "index.html";
-                const navItems = document.querySelectorAll(".sidebar-left a");
-                navItems.forEach(item => {
-                    const href = item.getAttribute("href");
-                    if (href === currentPage) {
-                        item.classList.add("active");
-                    }
-                });
-            }, 100);
-        });
+// Handle window resize
+window.addEventListener("resize", function() {
+    initializeAccordion();
 });

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine.js Sidebar Example</title>
+    <!-- Include Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
+    <!-- Include Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .sidebar {
+            transition: width 0.3s ease;
+            background: linear-gradient(to bottom, #0f2027, #2c5364);
+            color: white;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        
+        .sidebar.expanded {
+            width: 250px;
+        }
+        
+        .sidebar.collapsed {
+            width: 60px;
+        }
+        
+        .sidebar-header {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .sidebar.collapsed .sidebar-header {
+            justify-content: center;
+            padding: 15px 0;
+        }
+        
+        .sidebar-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .toggle-button {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+        }
+        
+        .toggle-button:hover {
+            opacity: 0.8;
+        }
+        
+        .main-content {
+            transition: margin-left 0.3s ease;
+            padding: 20px;
+        }
+        
+        .main-content.sidebar-expanded {
+            margin-left: 250px;
+        }
+        
+        .main-content.sidebar-collapsed {
+            margin-left: 60px;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .sidebar.collapsed .nav-link {
+            justify-content: center;
+            padding: 12px 0;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .sidebar.collapsed .nav-link:hover {
+            transform: translateX(3px);
+        }
+        
+        .nav-link.active {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .nav-link.active i {
+            color: #e67e22;
+        }
+        
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+        
+        .tooltip-wrapper {
+            position: relative;
+        }
+        
+        /* Custom tooltip styling */
+        .tooltip {
+            position: absolute;
+            left: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .tooltip.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div x-data="{ 
+        sidebarExpanded: localStorage.getItem('sidebarExpanded') !== 'false',
+        activePage: 'about',
+        init() {
+            const path = window.location.hash.substring(1) || 'about';
+            this.activePage = path;
+        }
+    }">
+        <!-- Sidebar -->
+        <div 
+            class="sidebar" 
+            :class="sidebarExpanded ? 'expanded' : 'collapsed'"
+        >
+            <div class="sidebar-header">
+                <h2 x-show="sidebarExpanded" class="sidebar-title">Navigation</h2>
+                <button 
+                    @click="sidebarExpanded = !sidebarExpanded; localStorage.setItem('sidebarExpanded', sidebarExpanded)"
+                    class="toggle-button"
+                    :title="sidebarExpanded ? 'Collapse menu' : 'Expand menu'"
+                    x-data="{ showTooltip: false }"
+                    @mouseover="if(!sidebarExpanded) showTooltip = true"
+                    @mouseleave="showTooltip = false"
+                >
+                    <i class="bi" :class="sidebarExpanded ? 'bi-layout-sidebar' : 'bi-box-arrow-right'"></i>
+                    <div x-show="!sidebarExpanded && showTooltip" class="tooltip visible" style="top: -10px">
+                        Expand menu
+                    </div>
+                </button>
+            </div>
+            
+            <nav>
+                <ul style="list-style: none; padding: 0; margin-top: 15px;">
+                    <template x-for="(item, index) in [
+                        { id: 'about', icon: 'bi-info-circle-fill', label: 'About' },
+                        { id: 'blog', icon: 'bi-pencil-fill', label: 'Blog' },
+                        { id: 'roadmap', icon: 'bi-map-fill', label: 'Roadmap' },
+                        { id: 'financials', icon: 'bi-graph-up', label: 'Financials' },
+                        { id: 'investment', icon: 'bi-cash-coin', label: 'Investment' },
+                        { id: 'app', icon: 'bi-house-fill', label: 'Back to App' }
+                    ]">
+                        <li class="nav-item" x-data="{ showTooltip: false }">
+                            <a 
+                                :href="'#' + item.id" 
+                                class="nav-link" 
+                                :class="{'active': activePage === item.id}"
+                                @click="activePage = item.id"
+                                @mouseover="if(!sidebarExpanded) showTooltip = true"
+                                @mouseleave="showTooltip = false"
+                            >
+                                <i class="bi" :class="item.icon"></i>
+                                <span x-show="sidebarExpanded" x-text="item.label"></span>
+                                <div x-show="!sidebarExpanded && showTooltip" class="tooltip visible">
+                                    <span x-text="item.label"></span>
+                                </div>
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div 
+            class="main-content" 
+            :class="sidebarExpanded ? 'sidebar-expanded' : 'sidebar-collapsed'"
+        >
+            <h1>Alpine.js Sidebar Example</h1>
+            <p>This demonstrates a collapsible sidebar using Alpine.js. Click the sidebar toggle button to collapse and expand it.</p>
+            
+            <div x-show="activePage === 'about'">
+                <h2>About Page</h2>
+                <p>This is the about page content. The sidebar will stay in its current state as you navigate.</p>
+            </div>
+            
+            <div x-show="activePage === 'blog'">
+                <h2>Blog Page</h2>
+                <p>This is the blog page content. Notice how the menu item highlights correctly.</p>
+            </div>
+            
+            <div x-show="activePage === 'roadmap'">
+                <h2>Roadmap Page</h2>
+                <p>This is the roadmap page content with a timeline of upcoming features.</p>
+            </div>
+            
+            <div x-show="activePage === 'financials'">
+                <h2>Financials Page</h2>
+                <p>This is the financials page with charts and reports.</p>
+            </div>
+            
+            <div x-show="activePage === 'investment'">
+                <h2>Investment Page</h2>
+                <p>This is the investment page with information for potential investors.</p>
+            </div>
+            
+            <div x-show="activePage === 'app'">
+                <h2>Main App</h2>
+                <p>This is the main application page.</p>
+            </div>
+            
+            <p>Key features of this sidebar:</p>
+            <ul>
+                <li>Smooth animations for collapsing/expanding</li>
+                <li>Tooltips visible only in collapsed state</li>
+                <li>Active page highlighting</li>
+                <li>State persistence between page loads</li>
+                <li>Clean, lightweight implementation with Alpine.js</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

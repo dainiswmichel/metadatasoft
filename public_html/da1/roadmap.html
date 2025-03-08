@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+   
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadmap - DA1 Media Compilation</title>
-    <link rel="stylesheet" href="./resources/icons/bootstrap-icons/bootstrap-icons-1.10.5/font/bootstrap-icons.css">
+    <title>DA1 Development Roadmap - Timeline and Milestones</title>
+    
+    <!-- CSS files first -->
+    <link rel="stylesheet" href="./resources/icons/bootstrap-icons.css">
     <link rel="stylesheet" href="./index.css">
+    
+    <!-- Alpine.js must be loaded before sidebar.js -->
+    <script defer type="module" src="./js/alpinejs-local.js"></script>
+    <script src="./sidebar.js" defer></script>
+    
+    <!-- Other scripts -->
+    <script src="./tools/ffmpeg.min.js"></script>
     <script src="./component-loader.js"></script>
 </head>
+
+
 <body>
     <!-- Left Sidebar Container -->
     <div id="left-sidebar-container"></div>

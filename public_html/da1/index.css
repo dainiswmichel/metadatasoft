@@ -3,25 +3,25 @@
 ---------------------------------*/
 @font-face {
     font-family: 'Montserrat';
-    src: url('./resources/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+    src: url('./resources/fonts/Montserrat-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
-  
+
 @font-face {
     font-family: 'Montserrat';
-    src: url('./resources/fonts/montserrat/Montserrat-Bold.ttf') format('truetype');
+    src: url('./resources/fonts/Montserrat-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
-  
+
 @font-face {
     font-family: 'Montserrat';
-    src: url('./resources/fonts/montserrat/Montserrat-SemiBold.ttf') format('truetype');
+    src: url('./resources/fonts/Montserrat-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
 }
-  
+
 /*---------------------------------
   2. VARIABLES AND ROOT SETTINGS
 ---------------------------------*/
@@ -114,6 +114,8 @@ body {
 /* Left Sidebar (Navigation) */
 .sidebar-left {
     left: 0;
+    will-change: width;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
   
 /* Right Sidebar (AI Assistant) */
@@ -137,7 +139,153 @@ body {
     padding: 15px;
     border-radius: 5px;
 }
-  
+
+
+/*---------------------------------
+  4.1 SIDEBAR COLLAPSIBLE STYLES
+---------------------------------*/
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.sidebar h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.sidebar-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-toggle:hover {
+    background: transparent;
+    opacity: 0.8;
+}
+
+.toggle-icon {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+}
+
+/* Collapsed sidebar styles */
+.sidebar-left.collapsed {
+    width: 60px;
+    overflow: hidden;
+}
+
+.main-content {
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-content.expanded {
+    margin-left: 80px; /* sidebar width (60px) + spacing */
+}
+
+.sidebar-left.collapsed .sidebar-title,
+.sidebar-left.collapsed .nav-text {
+    display: none;
+}
+
+.sidebar-left.collapsed ul li a {
+    justify-content: center;
+    padding: 12px 0;
+    position: relative;
+}
+
+/* Clean tooltip styling */
+.sidebar-left.collapsed ul li a[title]:hover:after,
+.sidebar-left.collapsed .sidebar-toggle[title]:hover:after {
+    content: attr(title);
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: normal;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+/* Specific positioning for toggle button tooltip */
+.sidebar-left.collapsed .sidebar-toggle[title]:hover:after {
+    top: 10px;
+}
+
+.sidebar-left.collapsed h2 {
+    justify-content: center;
+    padding: 10px 0;
+    border: none;
+    margin: 0;
+}
+
+/* Modified hover effect for collapsed state */
+.sidebar-left.collapsed ul li a:hover {
+    transform: translateX(3px); /* Reduced movement (about 60% of original) */
+}
+
+/* Maintain active state in collapsed mode */
+.sidebar-left.collapsed ul li a.active i {
+    color: var(--accent);
+}
+
+/* Icon swap animation */
+.sidebar-left .toggle-icon.bi-layout-sidebar {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.sidebar-left .toggle-icon.bi-box-arrow-right {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.sidebar-left.collapsed .toggle-icon.bi-layout-sidebar {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.sidebar-left.collapsed .toggle-icon.bi-box-arrow-right {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (max-width: 992px) {
+    .sidebar-toggle {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        font-size: 12px;
+    }
+}
+
 /*---------------------------------
   5. MAIN CONTENT AREA
 ---------------------------------*/
@@ -663,53 +811,174 @@ code {
 }
 
 /*---------------------------------
-  23. RESPONSIVE ADJUSTMENTS
+  25. ALPINE.JS SIDEBAR ENHANCEMENTS
 ---------------------------------*/
-@media (max-width: 1200px) {
-    :root {
-        --sidebar-width: 220px;
-        --content-margin: 240px;
-    }
-    
-    .file-types {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .file-type {
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 10px;
-        width: 100%;
-    }
+
+/* Prevent flashing during page load */
+[x-cloak] {
+    display: none !important;
 }
 
-@media (max-width: 992px) {
-    :root {
-        --sidebar-width: 200px;
-        --content-margin: 220px;
-    }
-    
-    .sidebar {
-        font-size: 14px;
-    }
-    
-    .sidebar h2 {
-        font-size: 1.3rem;
-    }
+/* Tooltip styling for dynamic Alpine.js components */
+.sidebar-tooltip {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f5f5f5;
+    color: #222;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
-@media (max-width: 768px) {
-    :root {
-        --sidebar-width: 180px;
-        --content-margin: 200px;
-    }
-    
-    .main-content {
-        padding: 20px;
-    }
-    
-    .section {
-        padding: 15px;
-    }
+.sidebar-tooltip.visible {
+    opacity: 1;
+}
+
+
+/* Sidebar base styles */
+.sidebar {
+    transition: width 0.3s ease;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    overflow-y: auto;
+    color: white;
+    font-size: 16px;
+    background: linear-gradient(to bottom, #0f2027, #2c5364);
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.sidebar.expanded {
+    width: var(--sidebar-width);
+}
+
+.sidebar.collapsed {
+    width: 60px;
+    overflow: hidden;
+}
+
+/* Header styles */
+.sidebar-header {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar.collapsed .sidebar-header {
+    justify-content: center;
+    padding: 15px 0;
+}
+
+.sidebar-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.toggle-button {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+}
+
+.toggle-button:hover {
+    opacity: 0.8;
+}
+
+/* Navigation styles */
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.sidebar.collapsed .nav-link {
+    justify-content: center;
+    padding: 12px 0;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.sidebar.collapsed .nav-link:hover {
+    transform: translateX(3px);
+}
+
+.nav-link.active {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.nav-link.active i {
+    color: var(--accent);
+}
+
+.nav-link i {
+    font-size: 1.2rem;
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.tooltip.visible {
+    opacity: 1;
+}
+
+/* Main content adjustments */
+.main-content {
+    transition: margin-left 0.3s ease;
+}
+
+.main-content-expanded {
+    margin-left: 250px;
+}
+
+.main-content-collapsed {
+    margin-left: 60px;
+}
+
+/* Alpine cloak to prevent flash */
+[x-cloak] {
+    display: none !important;
 }
