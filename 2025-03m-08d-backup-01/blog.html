@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 Blog - Latest Updates and News</title>
+    
+    <!-- CSS files first -->
+    <link rel="stylesheet" href="./resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="./index.css">
+    
+    <!-- Alpine.js must be loaded before sidebar.js -->
+    <script defer type="module" src="./js/alpinejs-local.js"></script>
+    <script src="./sidebar.js" defer></script>
+    
+    <!-- Other scripts -->
+    <script src="./tools/ffmpeg.min.js"></script>
+    <script src="./component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1 Blog</h1>
+        
+        <div class="section">
+            <h2><i class="bi bi-calendar3"></i> Latest Updates</h2>
+            
+            <article>
+                <h3>DA1 Format Specification Released</h3>
+                <p class="meta"><i class="bi bi-clock"></i> Posted on February 28, 2025</p>
+                <p>We're excited to announce the official release of the DA1 format specification! This comprehensive document outlines the technical details of the DA1 container format, including file structure, metadata organization, and integration options.</p>
+                <a href="#" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+            </article>
+            
+            <article>
+                <h3>The Future of Media Distribution</h3>
+                <p class="meta"><i class="bi bi-clock"></i> Posted on February 14, 2025</p>
+                <p>The fragmentation of media across various platforms has created significant challenges for creators, distributors, and consumers. In this post, we examine how DA1 addresses these issues through a unified approach to media packaging.</p>
+                <a href="#" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+            </article>
+            
+            <article>
+                <h3>Blockchain Integration in DA1</h3>
+                <p class="meta"><i class="bi bi-clock"></i> Posted on January 30, 2025</p>
+                <p>One of the most innovative aspects of the DA1 format is its integration with blockchain technology. Learn how this provides verification, authentication, and new monetization possibilities for content creators.</p>
+                <a href="#" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+            </article>
+        </div>
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Page-specific scripts -->
+    <script src="./index.js"></script>
+</body>
+</html>

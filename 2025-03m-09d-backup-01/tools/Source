@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>BWF MetaEdit - Download BWF MetaEdit Sources</title>
+        <meta name="Author" content="MediaArea" />
+        <meta name="description" lang="en" content="BWF MetaEdit is a tool that supports embedding, validating, and exporting of metadata in Broadcast WAVE Format (BWF) files">
+        <meta name="keywords" lang="en" content="BWFMetaEdit BWF_MetaEd BWF MetaEdit">
+        <link rel="alternate" type="application/rss+xml" title="MediaInfo new releases feed" href="/rss/mediainfo_updates.xml" />
+        <link rel="alternate" type="application/rss+xml" title="MediaConch new releases feed" href="/rss/mediaconch_updates.xml" />
+        <link rel="alternate" type="application/rss+xml" title="MediaArea blog" href="/blog/feed" />
+                            <link rel="stylesheet" href="/css/main-e61ede3.css" type="text/css" media="all" />
+                                        <link rel="icon" type="image/x-icon" href="/images/f060656-e488ccd.ico" />
+                        <link rel="apple-touch-icon" href="/images/2bab224-d775a7a.png">
+        <meta name="msapplication-TileColor" content="white">
+        <meta name="msapplication-TileImage" content="/images/2bab224-d775a7a.png">
+                <!--[if lt IE 9]>
+            <script src="/bundles/app/js/html5shiv.min.js"></script>
+            <script src="/bundles/app/js/respond.min.js"></script>
+        <![endif]-->
+        <!--[if lte IE 7]>
+            * {
+                behavior: url("/bundles/app/img/box-sizing.htc");
+            }
+        <![endif]-->
+        <!--[if lt IE 7]>
+           <style type="text/css">
+              @media screen{ body{behavior:url("/bundles/app/img/width.htc");} }
+                /* PNG support for IE */
+                img {  behavior: url("/bundles/app/img/png.htc");}
+                .DXImageTransformed { display: inline-block; }
+              </style>
+        <![endif]-->
+        <link rel="alternate" title="MediaInfo" hreflang="de" href="/de">
+        <link rel="alternate" title="MediaInfo" hreflang="en" href="/en">
+        <link rel="alternate" title="MediaInfo" hreflang="fr" href="/fr">
+        <link rel="alternate" title="MediaInfo" hreflang="hu" href="/hu">
+        <link rel="alternate" title="MediaInfo" hreflang="it" href="/it">
+        <link rel="alternate" title="MediaInfo" hreflang="ru" href="/ru">
+        <link rel="author" href="mailto:info@mediaarea.net" title="Mail to author">
+     </head>
+    <body>
+        <div id="bodyInner" class="blue">
+            <nav id="nav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/en/MediaInfo">
+                                <img src='/images/7eea6c8-43ab67a.png' alt='MediaInfo' />
+                            </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div id="main-navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav main-menu"><li class="first dropdown"><a href="/" class="dropdown-toggle" data-toggle="dropdown">
+        MediaArea<b class="caret"></b></a><ul class="menu_level_1 dropdown-menu"><li class="first"><a href="/">
+        About</a></li><li><a href="/Services">
+        Professional services</a></li><li><a href="/Events">
+        Events</a></li><li><a href="/blog">
+        Blog</a></li><li><a href="/Conduct">
+        Code of conduct</a></li><li><a href="/TeamRules">
+        Team rules</a></li><li><a href="/Legal">
+        Legal</a></li><li><a href="/Privacy">
+        Privacy</a></li><li class="last"><a href="/Contact">
+        Contact us</a></li></ul></li><li class="active dropdown"><a href="/BWFMetaEdit" class="dropdown-toggle" data-toggle="dropdown">
+        BWF MetaEdit<b class="caret"></b></a><ul class="menu_level_1 dropdown-menu"><li class="first"><a href="/BWFMetaEdit">
+        About</a></li><li class="last"><a href="/BWFMetaEdit/Download">
+        Download</a></li></ul></li><li class="dropdown"><a href="/en/MediaInfo" class="dropdown-toggle" data-toggle="dropdown">
+        Projects<b class="caret"></b></a><ul class="menu_level_1 dropdown-menu"><li class="first"><a href="/en/MediaInfo">
+        MediaInfo</a></li><li><a href="/MediaConch">
+        MediaConch</a></li><li><a href="/MediaTrace">
+        MediaTrace</a></li><li><a href="/QCTools">
+        QCTools</a></li><li><a href="/BWFMetaEdit">
+        BWF MetaEdit</a></li><li><a href="/AVIMetaEdit">
+        AVI MetaEdit</a></li><li><a href="/MOVMetaEdit">
+        MOV MetaEdit</a></li><li><a href="/DVAnalyzer">
+        DV Analyzer</a></li><li><a href="/NoTimeToWait">
+        No Time To Wait symposiums</a></li><li><a href="/ollistd">
+        Open LossLess in STanDards</a></li><li><a href="/RAWcooked">
+        RAWcooked</a></li><li><a href="/DVRescue">
+        DVRescue</a></li><li class="last"><a href="/LeaveSD">
+        LeaveSD</a></li></ul></li><li class="last dropdown"><a href="/SupportUs" class="dropdown-toggle" data-toggle="dropdown">
+        Support Us!<b class="caret"></b></a><ul class="menu_level_1 dropdown-menu"><li class="first"><a href="/SupportUs">
+        About</a></li><li><a href="/SupportUs/Corporate">
+        Corporate</a></li><li><a href="/SupportUs/Individual">
+        Individial</a></li><li><a href="/SupportUs/FAQ">
+        FAQ</a></li><li><a href="/SupportUs/Sponsors">
+        Sponsors</a></li><li><a href="/SupportUs/Supporters">
+        Supporters</a></li><li class="last"><a href="/Vote">
+        Vote!</a></li></ul></li></ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                                            <a href="/login" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log in <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="/login">Log in</a></li>
+                          <li><a href="/register/">Register</a></li>
+                        </ul>
+                                    </li>
+                            </ul>
+
+        </div>
+    </div>
+</nav>
+
+            <div class="container-fluid">
+                <div id="sidebar" class="visible-xl">
+                    <div class="text-right sidebar-menu">
+                        <ul></ul>
+                    </div>
+                    <div class="sidebar-social"></div>
+                    <div class="clearfix"></div>
+                                    </div>
+                <div class="container content">
+                    
+                    
+                    <h1>Download - Sources</h1>
+
+<div class="table-responsive">
+<table class="download table table-bordered table-condensed">
+<thead>
+<tr class="table-header">
+    <th>Version</th>
+    <th>Interface</th>
+    <th>&nbsp;</th>
+    <th>Version</th>
+    <th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <th colspan="5">Split sources with .spec,<br>.desc and debian dir<br> for Linux package creation</th>
+</tr>
+<tr>
+    <td class="table-OS" id="Split">Source code, split packages</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a href="//mediaarea.net/download/source/bwfmetaedit/24.10/bwfmetaedit_24.10.tar.xz">v24.10</a> (<a href="//mediaarea.net/download/source/bwfmetaedit/24.10/bwfmetaedit_24.10.tar.bz2">bz2</a> / <a href="//mediaarea.net/download/source/bwfmetaedit/24.10/bwfmetaedit_24.10.tar.gz">gz</a>)</td>
+    <td>&nbsp;</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+                <footer id="footer">
+            <div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-md-2">
+                            <a href="/en/MediaInfo"><img src="/images/45c0bef-600aee2.png" alt="MediaInfo Logo" title="MediaInfo Logo" /></a>
+                    </div>
+        <div class="col-sm-4 col-md-3">
+            <div class="footerHeading">MediaArea</div>
+            <ul>
+                <li><a href="/">About</a></li>
+                <li><a href="/en/MediaInfo/Support#pro">Professional services</a></li>
+                <li><a href="/Events">Events</a></li>
+                <li><a href="/Conduct">Code of conduct</a></li>
+                <li><a href="/Legal">Legal</a></li>
+                <li><a href="/Privacy">Privacy</a></li>
+                <li><a href="/Contact">Contact us</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-4 col-md-3">
+            <div class="footerHeading">Projects</div>
+            <ul>
+                <li><a href="/en/MediaInfo">MediaInfo</a></li>
+                <li><a href="/MediaConch">MediaConch</a></li>
+                <li><a href="/MediaTrace">MediaTrace</a></li>
+                <li><a href="/QCTools">QCTools</a></li>
+                <li><a href="/BWFMetaEdit">BWF MetaEdit</a></li>
+                <li><a href="/AVIMetaEdit">AVI MetaEdit</a></li>
+                <li><a href="/MOVMetaEdit">MOV MetaEdit</a></li>
+                <li><a href="/DVAnalyzer">DV Analyzer</a></li>
+                <li><a href="/NoTimeToWait">No Time To Wait symposiums</a></li>
+                <li><a href="/ollistd">Open LossLess in STanDards</a></li>
+                <li><a href="/RAWcooked">RAWcooked</a></li>
+                <li><a href="/DVRescue">DVRescue</a></li>
+                <li><a href="/LeaveSD">LeaveSD</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <div class="social-block">
+            <div>
+                Follow us on <a href="//twitter.com/MediaArea_net">Twitter</a>, <a href="//www.facebook.com/MediaAreaNet">Facebook</a> or <a href="//www.linkedin.com/company/mediaarea-net">LinkedIn</a>.
+            </div>
+            <div class="share" dir="ltr"></div>
+            <div class="clearfix"></div>
+            <div dir="ltr" class="searchbox">
+                <form name="cse" action="https://www.google.com/cse">
+                    <input type="hidden" name="cx" value="partner-pub-8386011224798635:2e3czgvvvx6" />
+                    <input type="hidden" name="ie" value="utf-8" />
+                    <input type="hidden" name="hl" value="en" />
+                    <input class="searchbox-input" type="text" name="q" placeholder="Google&#8482; Custom Search" />
+                    <input class="searchbox-submit" value="Go" type="submit" name="sa" />
+                    <input class="searchbox-reset" value="&#215;" type="reset" />
+                </form>
+            </div>
+            <div class="rss">
+                <a href="/blog/feed" class="rss-updates">MediaArea blog feed</a>
+            </div>
+            <div class="rss">
+                <a href="/rss/mediainfo_updates.xml" class="rss-updates">MediaInfo new releases feed</a>
+            </div>
+            <div class="rss">
+                <a href="/rss/mediaconch_updates.xml" class="rss-updates">MediaConch new releases feed</a>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-center">
+                © MediaArea.net SARL 2002-2025
+            </p>
+        </div>
+    </div>
+</div>
+
+        </footer>
+        <script type="text/javascript">
+            var assetsBaseDir = "/bundles/app/";
+        </script>
+                    <script src="/js/main-61333e0.js"></script>
+                
+                    </body>
+</html>

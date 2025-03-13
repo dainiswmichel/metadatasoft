@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 - Automated Media Compilation</title>
+    
+    <!-- CSS files first -->
+    <link rel="stylesheet" href="./resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="./index.css">
+    
+    <!-- Alpine.js must be loaded before sidebar.js -->
+    <script defer type="module" src="./js/alpinejs-local.js"></script>
+    <script src="./sidebar.js" defer></script>
+    
+    <!-- Other scripts -->
+    <script src="./tools/ffmpeg.min.js"></script>
+    <script src="./component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1 - Automated Media Compilation</h1>
+        
+        <div class="description-section section">
+            <p><i class="bi bi-info-circle"></i> Create comprehensive media packages with audio, video, PDF documents, and rich metadata in one DA1 container format.</p>
+        </div>
+
+        <!-- File Upload -->
+        <div class="section">
+            <h2><i class="bi bi-upload"></i> Upload Files</h2>
+            <div class="file-types">
+                <div class="file-type">
+                    <i class="bi bi-music-note-list"></i> Audio
+                    <small>MP3, WAV, FLAC, AAC, M4A, OGG</small>
+                </div>
+                <div class="file-type">
+                    <i class="bi bi-camera-video"></i> Video
+                    <small>MP4, WebM, MOV, AVI</small>
+                </div>
+                <div class="file-type">
+                    <i class="bi bi-file-earmark-pdf"></i> PDF
+                    <small>PDF Documents</small>
+                </div>
+                <div class="file-type">
+                    <i class="bi bi-image"></i> Image
+                    <small>JPG, PNG, GIF, SVG</small>
+                </div>
+            </div>
+            <input type="file" id="input-files" multiple accept="audio/*,video/*,application/pdf,image/*">
+        </div>
+
+        <!-- Cover Art Upload -->
+        <div class="section">
+            <h2><i class="bi bi-image"></i> Upload Cover Art (Optional)</h2>
+            <input type="file" id="cover-art" accept="image/*">
+            <div id="cover-preview" class="preview-container"></div>
+        </div>
+
+        <!-- Metadata -->
+        <div class="section">
+            <h2><i class="bi bi-tags"></i> Input DA1metaMetaData</h2>
+            <div class="form-group">
+                <label for="title"><i class="bi bi-music-note"></i> Title:</label>
+                <input type="text" id="title" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="artist"><i class="bi bi-person"></i> Artist:</label>
+                <input type="text" id="artist" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="album"><i class="bi bi-disc"></i> Album/Project:</label>
+                <input type="text" id="album" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="genre"><i class="bi bi-vinyl"></i> Genre:</label>
+                <input type="text" id="genre" placeholder="Auto-detected if left blank">
+            </div>
+            
+            <!-- Custom Metadata XML -->
+            <div class="metadata-container">
+                <h3>
+                    <i class="bi bi-card-list"></i> Add custom DA1XML.xml file
+                    <a href="da1xml-reference.html" class="help-icon"><i class="bi bi-question-circle"></i></a>
+                </h3>
+                <p class="info-text">Upload or create a custom DA1XML file for enhanced metadata.</p>
+                
+                <div class="form-group">
+                    <label for="custom-xml"><i class="bi bi-file-earmark-code"></i> Upload DA1XML File:</label>
+                    <input type="file" id="custom-xml" accept=".xml">
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="create-new-xml">
+                    <label for="create-new-xml">Create new DA1XML file from form fields</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- DA1 Package Options -->
+        <div class="section">
+            <h2><i class="bi bi-gear"></i> DA1 Package Options</h2>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="exclude-never-blank">
+                <label for="exclude-never-blank">Exclude DA1neverBlank Metadata</label>
+            </div>
+        </div>
+
+        <!-- Start Processing -->
+        <div class="section">
+            <h2><i class="bi bi-play-circle"></i> Start Compilation</h2>
+            <button onclick="processDA1()" class="primary-button">
+                <i class="bi bi-gear"></i> Compile DA1 Package
+            </button>
+            <div id="progress"></div>
+        </div>
+
+        <!-- Download Links -->
+        <div class="section">
+            <h2><i class="bi bi-download"></i> Download Files</h2>
+            <div id="download-links"></div>
+        </div>
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Page-specific scripts -->
+    <script src="./index.js"></script>
+</body>
+</html>
