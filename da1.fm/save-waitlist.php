@@ -14,7 +14,7 @@ if (!file_exists($data_directory)) {
 // IP-based rate limiting
 function checkIPLimit($ip_log_file) {
     $ip_address = $_SERVER['REMOTE_ADDR'];
-    $current_date = date('Y-m-d');
+    $current_time = time(); // Current timestamp
     
     // Create file if it doesn't exist
     if (!file_exists($ip_log_file)) {
@@ -26,18 +26,19 @@ function checkIPLimit($ip_log_file) {
     $ip_log = file_get_contents($ip_log_file);
     $ip_log_lines = explode("\n", trim($ip_log));
     
-    // Check if this IP has submitted today
+    // Check if this IP has submitted in the last minute
     foreach ($ip_log_lines as $line) {
         if (empty($line)) continue;
         
-        list($logged_date, $logged_ip) = explode(',', $line);
-        if ($logged_ip === $ip_address && $logged_date === $current_date) {
-            return false; // Already submitted today
+        list($logged_timestamp, $logged_ip) = explode(',', $line);
+        if ($logged_ip === $ip_address && ($current_time - strtotime($logged_timestamp)) < 60) {
+            return false; // Submitted less than a minute ago
         }
     }
     
-    // Add this IP to the log
-    file_put_contents($ip_log_file, "$current_date,$ip_address\n", FILE_APPEND);
+    // Add this IP to the log with current timestamp
+    $current_datetime = date('Y-m-d H:i:s');
+    file_put_contents($ip_log_file, "$current_datetime,$ip_address\n", FILE_APPEND);
     return true; // Can submit
 }
 
@@ -46,7 +47,7 @@ if (!checkIPLimit($ip_log_file)) {
     header('Content-Type: application/json');
     echo json_encode([
         'success' => false,
-        'message' => 'You have already submitted a form today. Please try again tomorrow.'
+        'message' => 'Slow down...'
     ]);
     exit;
 }
