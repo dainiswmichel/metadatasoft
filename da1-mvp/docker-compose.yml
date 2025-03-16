@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: da1-fm-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./output:/usr/src/app/output
+      - ./temp:/usr/src/app/temp
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - ALLOWED_ORIGINS=http://localhost:3000,https://your-domain.com
+    networks:
+      - da1-network
+
+networks:
+  da1-network:
+    driver: bridge

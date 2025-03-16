@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 Knowledge Base - Complete Instruction Manual</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="./index.css">
+
+    <!-- Alpine.js and Sidebar Loader -->
+    <script defer type="module" src="./js/alpinejs-local.js"></script>
+    <script src="./sidebar.js" defer></script>
+
+    <!-- Other Scripts -->
+    <script src="../tools/ffmpeg.min.js"></script>
+    <script src="./component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1 Knowledge Base</h1>
+        <p>Comprehensive guide to DA1MetaMetaData Sheets, Reports, and Exports.</p>
+
+        <!-- ================================ -->
+        <!-- Table of Contents -->
+        <!-- ================================ -->
+        <div class="section toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#isrc-sheet">ISRC Sheet</a></li>
+                <li><a href="#da1xml-export">DA1XML Export</a></li>
+                <li><a href="#pro-registration-sheet">PRO Registration Sheet</a></li>
+                <li><a href="#neighboring-rights-report">Neighboring Rights Report</a></li>
+                <li><a href="#mechanical-licensing-sheet">Mechanical Licensing Sheet</a></li>
+            </ul>
+        </div>
+
+        <!-- ================================ -->
+        <!-- ISRC Sheet Topic -->
+        <!-- ================================ -->
+        <div class="section" id="isrc-sheet">
+            <h2>✅ ISRC Sheet</h2>
+            <p><strong>What it is:</strong> An ISRC (International Standard Recording Code) identifies each unique sound recording or music video. It’s like a serial number for recordings.</p>
+            <p><strong>Why it matters:</strong> ISRCs are required for digital distribution, streaming platforms, and royalty tracking. Most platforms (Spotify, Apple Music, YouTube, etc.) and collection agencies (like SoundExchange) rely on ISRCs to allocate plays and payments correctly.</p>
+            <p><strong>What the Sheet Does:</strong></p>
+            <ul>
+                <li>Lists all ISRCs for your recordings.</li>
+                <li>Exportable as CSV, JSON, XML for easy upload to distributors or PROs.</li>
+            </ul>
+            <p><strong>External Links:</strong></p>
+            <ul>
+                <li><a href="https://isrc.ifpi.org/en/isrc-standard/handbook" target="_blank">IFPI ISRC Handbook</a></li>
+                <li><a href="https://www.soundexchange.com/artist-catalog/isrc-guide/" target="_blank">SoundExchange ISRC Guide</a></li>
+            </ul>
+        </div>
+
+        <!-- ================================ -->
+        <!-- DA1XML Export Topic -->
+        <!-- ================================ -->
+        <div class="section" id="da1xml-export">
+            <h2>✅ DA1XML Export</h2>
+            <p><strong>What it is:</strong> A full metadata export in DA1XML format. DA1XML is our structured XML document that contains every piece of MetaMetaData embedded in the DA1 file (artist, songwriters, publishers, ISRCs, licenses, etc.).</p>
+            <p><strong>Why it matters:</strong> A single source of truth for the metadata. Ensures legal compliance, blockchain verification, and archival purposes. Can be provided to partners, distributors, and collectors.</p>
+            <p><strong>What the Export Does:</strong></p>
+            <ul>
+                <li>Gives creators a human-readable and machine-readable XML file.</li>
+                <li>Useful for audits, disputes, or proof of authorship and ownership.</li>
+            </ul>
+            <p><strong>External Links:</strong></p>
+            <ul>
+                <li><a href="https://www.w3.org/XML/" target="_blank">W3C XML Overview</a></li>
+                <li><a href="https://kb.ddex.net/ern/" target="_blank">DDEX ERN (similar XML standards for music)</a></li>
+            </ul>
+        </div>
+
+        <!-- ================================ -->
+        <!-- PRO Registration Sheet Topic -->
+        <!-- ================================ -->
+        <div class="section" id="pro-registration-sheet">
+            <h2>✅ PRO Registration Sheet</h2>
+            <p><strong>What it is:</strong> A report designed for submission to Performing Rights Organizations (PROs) like ASCAP, BMI, SESAC (US), PRS (UK), GEMA (DE), etc.</p>
+            <p><strong>Why it matters:</strong> You must register your song with your PRO to get paid performance royalties. Without correct metadata, royalties get stuck in limbo.</p>
+            <p><strong>What the Sheet Does:</strong></p>
+            <ul>
+                <li>Exports a formatted data sheet with the required fields for PRO registration:</li>
+                <ul>
+                    <li>Title</li>
+                    <li>Writers</li>
+                    <li>Publishers</li>
+                    <li>ISWC (if applicable)</li>
+                    <li>Splits and Shares</li>
+                </ul>
+                <li>Helps streamline the registration process.</li>
+            </ul>
+            <p><strong>External Links:</strong></p>
+            <ul>
+                <li><a href="https://www.ascap.com/help/registering-your-music" target="_blank">ASCAP Work Registration</a></li>
+                <li><a href="https://www.bmi.com/special/broadcast_music_inc_registration" target="_blank">BMI Registration Overview</a></li>
+                <li><a href="https://www.sesac.com/" target="_blank">SESAC Registering Works</a></li>
+            </ul>
+        </div>
+
+        <!-- ================================ -->
+        <!-- Neighboring Rights Report Topic -->
+        <!-- ================================ -->
+        <div class="section" id="neighboring-rights-report">
+            <h2>✅ Neighboring Rights Report</h2>
+            <p><strong>What it is:</strong> Neighboring Rights are performance rights for sound recordings, distinct from songwriter rights. They apply to performers and sound recording owners.</p>
+            <p><strong>Why it matters:</strong> Neighboring Rights generate royalties when your recording is played on radio, TV, public venues, or streaming internationally. Organizations like SoundExchange (US), PPL (UK), and SCPP (FR) manage these royalties.</p>
+            <p><strong>What the Report Does:</strong></p>
+            <ul>
+                <li>Prepares a sheet to submit to neighboring rights agencies.</li>
+                <li>Includes info like:</li>
+                <ul>
+                    <li>Performer Names</li>
+                    <li>Role (Main artist, session musician, etc.)</li>
+                    <li>ISRC</li>
+                    <li>Master Owner (Label)</li>
+                </ul>
+                <li>Ensures you don’t miss royalties owed for recording performances.</li>
+            </ul>
+            <p><strong>External Links:</strong></p>
+            <ul>
+                <li><a href="https://www.soundexchange.com/" target="_blank">SoundExchange</a></li>
+                <li><a href="https://www.ppluk.com/" target="_blank">PPL UK</a></li>
+                <li><a href="https://www.ifpi.org/what-we-do/neighbouring-rights/" target="_blank">IFPI Neighboring Rights Info</a></li>
+            </ul>
+        </div>
+
+        <!-- ================================ -->
+        <!-- Mechanical Licensing Sheet Topic -->
+        <!-- ================================ -->
+        <div class="section" id="mechanical-licensing-sheet">
+            <h2>✅ Mechanical Licensing Sheet (Optional)</h2>
+            <p><strong>What it is:</strong> Mechanical royalties are payments made to songwriters and publishers whenever a song is reproduced (CDs, downloads, streams).</p>
+            <p><strong>Why it matters:</strong> In the US, services like Harry Fox Agency (HFA) and The Mechanical Licensing Collective (MLC) manage these royalties. If you’re a songwriter or publisher, you need to register your works to get paid mechanicals.</p>
+            <p><strong>What the Sheet Does:</strong></p>
+            <ul>
+                <li>Prepares the required data:</li>
+                <ul>
+                    <li>Song Title</li>
+                    <li>ISWC (International Standard Musical Work Code)</li>
+                    <li>Writers / Publishers</li>
+                    <li>Ownership Splits</li>
+                    <li>Release Data</li>
+                </ul>
+                <li>Helps you claim mechanical royalties from services that owe them.</li>
+            </ul>
+            <p><strong>External Links:</strong></p>
+            <ul>
+                <li><a href="https://www.harryfox.com/" target="_blank">Harry Fox Agency</a></li>
+                <li><a href="https://www.themlc.com/" target="_blank">MLC (The Mechanical Licensing Collective)</a></li>
+                <li><a href="https://www.songtrust.com/blog/what-are-mechanical-royalties" target="_blank">Songtrust on Mechanical Royalties</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Page-specific JS -->
+    <script src="./index.js"></script>
+</body>
+
+</html>

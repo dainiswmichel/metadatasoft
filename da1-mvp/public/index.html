@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 - Automated Media Compilation</title>
+    
+    <!-- CSS files first -->
+    <link rel="stylesheet" href="../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="./index.css">
+    
+    <!-- Alpine.js must be loaded before sidebar.js -->
+    <script defer type="module" src="./js/alpinejs-local.js"></script>
+    <script src="./sidebar.js" defer></script>
+    
+    <!-- Other scripts -->
+    <script src="../tools/ffmpeg.min.js"></script>
+    <script src="./component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+
+<!-- =============================== -->
+<!--  DA1 COMING SOON MODE WRAPPER   -->
+<!--  This disables main content when comingSoonMode is true -->
+<!-- =============================== -->
+<div id="coming-soon-wrapper">
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1 - Automated Media Compilation</h1>
+        
+        <div class="description-section section">
+            <p><i class="bi bi-info-circle"></i> Create comprehensive media packages with audio, video, PDF documents, and rich metadata in one DA1 container format.</p>
+        </div>
+
+    <!-- Upload Raw Source Media -->
+<div class="section raw-source-upload">
+  <h2><i class="bi bi-upload"></i> Upload Source Media</h2>
+  <p class="upload-description">
+    These are your <strong>raw source media files</strong>.  
+    Once processed, they will be compiled into a certified <strong>DA1 Package</strong>, complete with verified <strong>DA1metaMetaData</strong> and <strong>Immutable Provenance</strong>.  
+    You can also generate fully optimized file types—MP3, WAV, FLAC, AIFF, M4A, OGG—plus tailored, metadata-embedded deliverables for seamless release on <strong>Apple Music</strong>, <strong>Spotify</strong>, <strong>Distrokid</strong>, <strong>Bandcamp</strong>, <strong>Tidal</strong>, <strong>SoundExchange</strong>, and <strong>SiriusXM</strong>.
+  </p>
+
+  <!-- File Types Display -->
+  <div class="filetype-grid">
+    <div class="filetype-box">
+      <i class="bi bi-music-note-list"></i>
+      <div class="filetype-label">Audio</div>
+      <div class="filetype-info">MP3, WAV, FLAC, AAC, M4A, OGG</div>
+    </div>
+    <div class="filetype-box">
+      <i class="bi bi-camera-video"></i>
+      <div class="filetype-label">Video</div>
+      <div class="filetype-info">MP4, WebM, MOV, AVI</div>
+    </div>
+    <div class="filetype-box">
+      <i class="bi bi-file-earmark-pdf"></i>
+      <div class="filetype-label">PDF</div>
+      <div class="filetype-info">PDF Documents</div>
+    </div>
+    <div class="filetype-box">
+      <i class="bi bi-image"></i>
+      <div class="filetype-label">Image</div>
+      <div class="filetype-info">JPG, PNG, GIF, SVG</div>
+    </div>
+  </div>
+
+  <!-- File Input -->
+  <input type="file" id="raw-source-files" multiple accept="audio/*,video/*,application/pdf,image/*" class="file-input">
+</div>
+
+        <!-- Metadata -->
+        <div class="section">
+            <h2><i class="bi bi-tags"></i> Input DA1metaMetaData</h2>
+            <div class="form-group">
+                <label for="title"><i class="bi bi-music-note"></i> Title:</label>
+                <input type="text" id="title" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="artist"><i class="bi bi-person"></i> Artist:</label>
+                <input type="text" id="artist" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="album"><i class="bi bi-disc"></i> Album/Project:</label>
+                <input type="text" id="album" placeholder="Auto-detected if left blank">
+            </div>
+            <div class="form-group">
+                <label for="genre"><i class="bi bi-vinyl"></i> Genre:</label>
+                <input type="text" id="genre" placeholder="Auto-detected if left blank">
+            </div>
+           
+<!-- ========================= -->
+<!--  DA1 SubFileTypes Outputs  -->
+<!-- ========================= -->
+
+<!-- SECTION START: Output Options -->
+<div class="section">
+  <h2><i class="bi bi-gear"></i> Output Options</h2>
+  <p class="subtext">
+    Select which <strong>subFileTypes</strong> you want to include in your DA1 package.<br>
+    Choose one, some, or all. Future-proof your release. 💪
+  </p>
+
+  <!-- MASTER CONTROL: Select / Deselect All SubFileTypes -->
+  <div class="control-row">
+    <label class="master-checkbox">
+      <input type="checkbox" id="check-all-subfiletypes" onclick="toggleAllSubFileTypes(this)">
+      <span class="checkbox-label"><strong>Check / Uncheck All SubFileTypes</strong></span>
+    </label>
+  </div>
+
+  <!-- CATEGORIES WRAPPER -->
+  <div class="subfiletypes-container">
+
+    <!-- CATEGORY: Audio SubFileTypes -->
+    <div class="subfiletype-category">
+      <h3><i class="bi bi-music-note-beamed"></i> Audio SubFileTypes</h3>
+
+      <div class="subfiletype-cards">
+
+        <!-- MP3 -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="mp3" class="subfiletype-checkbox">
+              <span class="format-name">MP3</span>
+            </label>
+            <span class="subfiletype-label">DA1 SubFileType</span>
+          </div>
+          <div class="card-body">
+            <p>ID3v2 tagging with TIT2 (Title), TPE1 (Artist), TALB (Album), TCON (Genre), APIC (Cover Art). Industry-standard legacy support.</p>
+          </div>
+        </div>
+
+        <!-- WAV -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="wav" class="subfiletype-checkbox">
+              <span class="format-name">WAV</span>
+            </label>
+            <span class="subfiletype-label">DA1 SubFileType</span>
+          </div>
+          <div class="card-body">
+            <p>BWF / RIFF INFO chunks including INAM (Title), IART (Artist), IALB (Album), IGNR (Genre). Broadcast and archival ready.</p>
+          </div>
+        </div>
+
+        <!-- FLAC -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="flac" class="subfiletype-checkbox">
+              <span class="format-name">FLAC</span>
+            </label>
+            <span class="subfiletype-label">DA1 SubFileType</span>
+          </div>
+          <div class="card-body">
+            <p>Vorbis Comments: TITLE, ARTIST, ALBUM, GENRE, PICTURE (Cover Art). Lossless + efficient.</p>
+          </div>
+        </div>
+
+        <!-- AIFF -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="aiff" class="subfiletype-checkbox">
+              <span class="format-name">AIFF</span>
+            </label>
+            <span class="subfiletype-label">DA1 SubFileType</span>
+          </div>
+          <div class="card-body">
+            <p>ID3 tags and AIFF metadata chunks. Pro-grade high-res audio with metadata.</p>
+          </div>
+        </div>
+
+        <!-- M4A -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="m4a" class="subfiletype-checkbox">
+              <span class="format-name">M4A</span>
+            </label>
+            <span class="subfiletype-label">DA1 SubFileType</span>
+          </div>
+          <div class="card-body">
+            <p>iTunes atoms: ©nam, ©ART, ©alb, ©gen + covr (Cover Art). Streaming-ready format.</p>
+          </div>
+        </div>
+
+        <!-- OGG -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="ogg" class="subfiletype-checkbox">
+              <span class="format-name">OGG</span>
+            </label>
+            <span class="subfiletype-label">DA1 SubFileType</span>
+          </div>
+          <div class="card-body">
+            <p>Vorbis Comments optimized for open-source platforms. TITLE, ARTIST, ALBUM, GENRE.</p>
+          </div>
+        </div>
+
+        <!-- AAC -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="aac" class="subfiletype-checkbox">
+              <span class="format-name">AAC</span>
+            </label>
+            <span class="subfiletype-label">DA1 SubFileType</span>
+          </div>
+          <div class="card-body">
+            <p>Efficient, high-quality lossy audio format widely used for streaming. Supports metadata embedding.</p>
+          </div>
+        </div>
+
+        <!-- ALAC -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="alac" class="subfiletype-checkbox">
+              <span class="format-name">ALAC</span>
+            </label>
+            <span class="subfiletype-label">DA1 SubFileType</span>
+          </div>
+          <div class="card-body">
+            <p>Lossless compression format optimized for Apple devices. Fully supports metadata tagging.</p>
+          </div>
+        </div>
+
+      </div> <!-- end of audio cards -->
+    </div> <!-- end of audio subfiletypes category -->
+
+   
+ <!-- CATEGORY: Platform Packages -->
+<div class="subfiletype-category">
+  <h3><i class="bi bi-box-seam"></i> Platform Packages</h3>
+
+  <div class="subfiletype-cards">
+
+    <!-- Spotify Package -->
+    <div class="subfiletype-card upgrade">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="spotify" class="subfiletype-checkbox">
+          <span class="format-name">Spotify Package</span>
+        </label>
+        <span class="upgrade-label">Optional Upgrade</span>
+      </div>
+      <div class="card-body">
+        <p>Prepares your files and metadata to meet Spotify’s guidelines for loudness, artwork, and metadata standards.</p>
+      </div>
+    </div>
+
+    <!-- Bandcamp Package -->
+    <div class="subfiletype-card upgrade">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="bandcamp" class="subfiletype-checkbox">
+          <span class="format-name">Bandcamp Package</span>
+        </label>
+        <span class="upgrade-label">Optional Upgrade</span>
+      </div>
+      <div class="card-body">
+        <p>Optimized audio files, naming conventions, and artwork specs matching Bandcamp requirements.</p>
+      </div>
+    </div>
+
+    <!-- YouTube Music Package -->
+    <div class="subfiletype-card upgrade">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="youtube" class="subfiletype-checkbox">
+          <span class="format-name">YouTube Music Package</span>
+        </label>
+        <span class="upgrade-label">Optional Upgrade</span>
+      </div>
+      <div class="card-body">
+        <p>Generates an MP4 video file with embedded cover art, optimized for YouTube Music uploads.</p>
+      </div>
+    </div>
+
+    <!-- Shazamify Upgrade -->
+    <div class="subfiletype-card upgrade">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="shazamify" class="subfiletype-checkbox">
+          <span class="format-name">Shazamify Upgrade</span>
+        </label>
+        <span class="upgrade-label">Optional Upgrade</span>
+      </div>
+      <div class="card-body">
+        <p>Register your track with Shazam for instant music recognition.</p>
+      </div>
+    </div>
+
+    <!-- SoundExchange Full Integration -->
+    <div class="subfiletype-card upgrade">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="soundexchange" class="subfiletype-checkbox">
+          <span class="format-name">SoundExchange Full Integration</span>
+        </label>
+        <span class="upgrade-label">Optional Upgrade</span>
+      </div>
+      <div class="card-body">
+        <p>Direct submission of files and metadata to SoundExchange, streamlining royalty collection and reporting.</p>
+      </div>
+    </div>
+
+    <!-- DistroKid Package -->
+    <div class="subfiletype-card upgrade">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="distrokid" class="subfiletype-checkbox">
+          <span class="format-name">DistroKid Package</span>
+        </label>
+        <span class="upgrade-label">Optional Upgrade</span>
+      </div>
+      <div class="card-body">
+        <p>Automated exports optimized for DistroKid’s upload and metadata requirements.</p>
+      </div>
+    </div>
+
+    <!-- CD Baby Package -->
+    <div class="subfiletype-card upgrade">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="cdbaby" class="subfiletype-checkbox">
+          <span class="format-name">CD Baby Package</span>
+        </label>
+        <span class="upgrade-label">Optional Upgrade</span>
+      </div>
+      <div class="card-body">
+        <p>Prepares deliverables for CD Baby’s platform, including metadata, audio specs, and artwork compliance.</p>
+      </div>
+    </div>
+
+  </div> <!-- end of subfiletype-cards -->
+</div> <!-- end of platform packages category -->
+
+
+
+<!-- CATEGORY: Reports & Sheets -->
+<div class="subfiletype-category">
+  <h3><i class="bi bi-file-earmark-text"></i> Reports & Sheets</h3>
+
+  <div class="subfiletype-cards">
+
+    <!-- ISRC Sheet -->
+    <div class="subfiletype-card">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="isrc-sheet" class="subfiletype-checkbox">
+          <span class="format-name">ISRC Sheet</span>
+        </label>
+        <span class="subfiletype-label">DA1 Report</span>
+      </div>
+      <div class="card-body">
+        <p>Exports a clean ISRC report (CSV/JSON/XML) for distribution platforms, PROs, and royalty tracking services.</p>
+      </div>
+    </div>
+
+    <!-- DA1XML Export -->
+    <div class="subfiletype-card">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="da1xml-export" class="subfiletype-checkbox">
+          <span class="format-name">DA1XML Export</span>
+        </label>
+        <span class="subfiletype-label">DA1 Report</span>
+      </div>
+      <div class="card-body">
+        <p>Generates a full DA1XML export containing every piece of MetaMetaData embedded in your DA1 file. Useful for audits, disputes, and blockchain verification.</p>
+      </div>
+    </div>
+
+    <!-- PRO Registration Sheet -->
+    <div class="subfiletype-card">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="pro-registration" class="subfiletype-checkbox">
+          <span class="format-name">PRO Registration Sheet</span>
+        </label>
+        <span class="subfiletype-label">DA1 Report</span>
+      </div>
+      <div class="card-body">
+        <p>Prepares a registration sheet for Performing Rights Organizations (PROs) like ASCAP, BMI, PRS, and GEMA. Includes song titles, writers, publishers, ISWC, and splits.</p>
+      </div>
+    </div>
+
+    <!-- Neighboring Rights Report -->
+    <div class="subfiletype-card">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="neighboring-rights" class="subfiletype-checkbox">
+          <span class="format-name">Neighboring Rights Report</span>
+        </label>
+        <span class="subfiletype-label">DA1 Report</span>
+      </div>
+      <div class="card-body">
+        <p>Generates a neighboring rights report for agencies like SoundExchange and PPL UK. Includes performer names, roles, ISRCs, and master owner data for accurate royalty distribution.</p>
+      </div>
+    </div>
+
+    <!-- Mechanical Licensing Sheet -->
+    <div class="subfiletype-card">
+      <div class="card-header">
+        <label class="card-checkbox">
+          <input type="checkbox" name="outputFormats" value="mechanical-licensing" class="subfiletype-checkbox">
+          <span class="format-name">Mechanical Licensing Sheet</span>
+        </label>
+        <span class="subfiletype-label">DA1 Report</span>
+      </div>
+      <div class="card-body">
+        <p>Prepares data for mechanical licensing services like The MLC and Harry Fox Agency. Includes ISWCs, writers, publishers, ownership splits, and release details to ensure mechanical royalty payments.</p>
+      </div>
+    </div>
+
+  </div> <!-- end of subfiletype-cards -->
+</div> <!-- end of reports & sheets category -->
+
+
+
+    <!-- CATEGORY: Coming Soon -->
+<div class="subfiletype-category">
+  <h3><i class="bi bi-hourglass-split"></i> Coming Soon</h3>
+
+  <div class="subfiletype-cards">
+
+    <!-- DA1 Karaoke King -->
+    <div class="subfiletype-card coming-soon">
+      <div class="card-header">
+        <span class="format-name">DA1 Karaoke King</span>
+        <span class="coming-soon-label">Coming Soon</span>
+      </div>
+      <div class="card-body">
+        <p><em>Export instrumental versions with synchronized lyrics (LRC/CDG) for karaoke playback.</em></p>
+      </div>
+    </div>
+
+    <!-- SiriusXM Package -->
+    <div class="subfiletype-card coming-soon">
+      <div class="card-header">
+        <span class="format-name">SiriusXM Package</span>
+        <span class="coming-soon-label">Coming Soon</span>
+      </div>
+      <div class="card-body">
+        <p><em>Prepare broadcast-ready masters for SiriusXM submission.</em></p>
+      </div>
+    </div>
+
+    <!-- SoundExchange Reporting -->
+    <div class="subfiletype-card coming-soon">
+      <div class="card-header">
+        <span class="format-name">SoundExchange Reporting</span>
+        <span class="coming-soon-label">Coming Soon</span>
+      </div>
+      <div class="card-body">
+        <p><em>Generate SoundExchange-ready reporting sheets to track royalties.</em></p>
+      </div>
+    </div>
+
+  </div> <!-- end of coming soon cards -->
+</div> <!-- end of coming soon category -->
+
+
+  </div> <!-- end of subfiletypes-container -->
+
+</div>
+<!-- SECTION END: Output Options -->
+
+        <!-- Start Processing -->
+        <div class="section">
+            <h2><i class="bi bi-play-circle"></i> Start Compilation</h2>
+            <button id="compile-button" onclick="processDA1()" class="primary-button">
+                <i class="bi bi-gear"></i> Compile DA1 Package
+            </button>
+            <div id="progress"></div>
+        </div>
+
+        <!-- Download Links -->
+        <div class="section">
+            <h2><i class="bi bi-download"></i> Download Files</h2>
+            <div id="download-links"></div>
+        </div>
+    </div> <!-- end of main-content -->
+
+
+  </div> <!-- end of coming-soon-wrapper -->
+
+<!-- =============================== -->
+<!--  COMING SOON OVERLAY & POPUP    -->
+<!-- =============================== -->
+
+<!-- =============================== -->
+<!--  COMING SOON OVERLAY & POPUP    -->
+<!-- =============================== -->
+
+<div id="coming-soon-overlay" style="display: none;">
+  <div class="coming-soon-modal" id="coming-soon-modal">
+    <button id="close-coming-soon" class="close-button" aria-label="Close popup">&times;</button>
+    <h2>🚀 Coming Soon!</h2>
+    <p>DA1 will launch soon. For early access, please enter your details!</p>
+
+    <!-- Beta Access Code Section -->
+    <div class="beta-access-section">
+      <h3>Already have a Beta User Access Code?</h3>
+      <div class="beta-code-container">
+        <input type="text" id="beta-code" name="beta-code" placeholder="Beta Access Code">
+        <button type="button" id="beta-access-btn">Access Now</button>
+      </div>
+      <a href="#" id="find-out-more" class="find-out-more-link">Find out more about beta access ($1k)</a>
+    </div>
+
+    <div class="or-divider">
+      <span>OR</span>
+    </div>
+
+    <form id="coming-soon-form">
+      <h3>Join our waitlist for future updates</h3>
+      <input type="text" id="name" name="name" placeholder="Name" required>
+      <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+      <input type="email" id="email" name="email" placeholder="Email" required>
+      <button type="submit">Get Early Access</button>
+    </form>
+
+    <div id="form-success" style="display:none;">
+      Thanks! Remember to check back with us soon!
+    </div>
+  </div>
+</div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Page-specific scripts -->
+    <script src="./index.js"></script>
+
+<!-- =============================== -->
+<!--  DA1 COMING SOON MODE ACTIVATION -->
+<!--  Set to true for "Coming Soon"  -->
+<!-- =============================== -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  
+    const comingSoonMode = false; // ✅ Always true for the world
+    const validBetaCodes = ['8*ufa4D4e']; // ✅ You can add more codes here
+  
+    // ✅ Checks if user already has Beta Access this session
+    const hasBetaAccess = localStorage.getItem('hasBetaAccess') === 'true';
+  
+    // Exit if not coming soon mode
+    if (!comingSoonMode) {
+      console.log("Coming Soon Mode Disabled.");
+      return;
+    }
+  
+    // === Element references
+    const wrapper = document.getElementById('coming-soon-wrapper');
+    const overlay = document.getElementById('coming-soon-overlay');
+    const closeBtn = document.getElementById('close-coming-soon');
+    const modal = document.getElementById('coming-soon-modal');
+    const form = document.getElementById('coming-soon-form');
+    const successMessage = document.getElementById('form-success');
+    const betaAccessBtn = document.getElementById('beta-access-btn');
+    const findOutMoreLink = document.getElementById('find-out-more');
+  
+    // === FUNCTION: Close Overlay
+    function closeOverlay() {
+      overlay.style.display = 'none';
+      resetForm();
+    }
+  
+    // === FUNCTION: Reset Modal Content
+    function resetForm() {
+      form.style.display = 'block';
+      successMessage.style.display = 'none';
+      document.querySelector(".coming-soon-modal h2").innerText = "🚀 Coming Soon!";
+      document.querySelector(".coming-soon-modal p").style.display = 'block';
+      document.querySelector(".coming-soon-modal p").innerText = "DA1 will launch soon. For early access, please enter your details!";
+      document.querySelector(".beta-access-section").style.display = 'block';
+      document.querySelector(".or-divider").style.display = 'block';
+    }
+  
+    // === FUNCTION: Save to PHP endpoint
+    function saveToCSV(data, type) {
+      const now = new Date().toISOString();
+      let endpoint = '';
+  
+      const formData = new FormData();
+      formData.append('timestamp', now);
+  
+      if (type === 'beta') {
+        formData.append('betaCode', data.betaCode);
+        endpoint = 'save-beta-code.php';
+      } else if (type === 'waitlist') {
+        formData.append('name', data.name);
+        formData.append('phone', data.phone);
+        formData.append('email', data.email);
+        endpoint = 'save-waitlist.php';
+      }
+  
+      fetch(endpoint, {
+        method: 'POST',
+        body: formData
+      }).catch(error => {
+        console.error('Error saving data:', error);
+      });
+    }
+  
+    // === Show overlay on wrapper click (IF not Beta Access)
+    wrapper.addEventListener('click', function () {
+      if (localStorage.getItem('hasBetaAccess') === 'true') {
+        console.log('✅ Beta Access active, skipping overlay.');
+        return;
+      }
+      overlay.style.display = 'flex';
+    });
+  
+    // === Close overlay on "X" button click
+    closeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeOverlay();
+    });
+  
+    // === Close overlay on clicking outside the modal
+    window.addEventListener('click', function (e) {
+      if (e.target === overlay) {
+        closeOverlay();
+      }
+    });
+  
+    // === Beta Access Code Button
+    betaAccessBtn.addEventListener('click', function () {
+      const betaCodeInput = document.getElementById('beta-code').value.trim();
+  
+      if (validBetaCodes.includes(betaCodeInput)) {
+        console.log('✅ Valid beta code entered.');
+  
+        // Save beta access in localStorage (persistent access)
+        localStorage.setItem('hasBetaAccess', 'true');
+  
+        saveToCSV({ betaCode: betaCodeInput }, 'beta');
+  
+        // Update modal messaging
+        document.querySelector(".coming-soon-modal h2").innerText = "✅ Access Granted!";
+        document.querySelector(".coming-soon-modal p").style.display = 'block';
+        document.querySelector(".coming-soon-modal p").innerText = "Welcome to DA1 Beta. Redirecting...";
+  
+        form.style.display = 'none';
+        document.querySelector(".beta-access-section").style.display = 'none';
+        document.querySelector(".or-divider").style.display = 'none';
+  
+        successMessage.style.display = 'block';
+        successMessage.innerText = "Redirecting...";
+  
+        // Close overlay after short delay
+        setTimeout(closeOverlay, 2000);
+      } else {
+        alert('Invalid beta access code.');
+      }
+    });
+  
+    // === Find out more link
+    findOutMoreLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.location.href = "early-access.html";
+    });
+  
+  // === Waitlist form submission
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const adminOverride = true; // ✅ Just you! Flip to false to re-enable limiter
+
+  if (!adminOverride) {
+    const lastSubmission = localStorage.getItem('da1_last_submission');
+    const today = new Date().toDateString();
+
+    if (lastSubmission === today) {
+      alert('You have already submitted today. Please try again tomorrow.');
+      return;
+    }
+
+    // ✅ If no previous submission, record today's date
+    localStorage.setItem('da1_last_submission', today);
+  }
+
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+
+  if (name && phone && email) {
+    saveToCSV({ name, phone, email }, 'waitlist');
+
+    form.style.display = 'none';
+    document.querySelector(".beta-access-section").style.display = 'none';
+    document.querySelector(".or-divider").style.display = 'none';
+
+    document.querySelector(".coming-soon-modal h2").innerText = "✅ Thanks!";
+    document.querySelector(".coming-soon-modal p").style.display = 'none';
+
+    successMessage.style.display = 'block';
+    successMessage.innerText = "We've added you to our waitlist!";
+
+    setTimeout(closeOverlay, 3000);
+  } else {
+    alert('All fields are required.');
+  }
+});
+
+  
+  });
+  </script>
+  <!-- end: da1 coming soon mode activation section -->
+  
+    
+
+
+
+
+</body>
+</html>

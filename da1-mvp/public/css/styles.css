@@ -1,0 +1,339 @@
+/**
+ * ==========================================
+ * DA1.FM - Enhanced Stylesheet
+ * ==========================================
+ * 
+ * Additional styles to enhance the existing HTML structure.
+ * These styles integrate with the existing layout while adding
+ * improved visuals and UX enhancements.
+ * 
+ * @author DA1.FM Team
+ * @version MVP-01
+ */
+
+/* ========== Progress Indicators ========== */
+.progress-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.progress-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 102, 204, 0.1);
+  border-radius: 50%;
+  border-left-color: #0066cc;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #0066cc;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.progress-message {
+  font-size: 1.1rem;
+  color: #0066cc;
+  text-align: center;
+}
+
+/* ========== Error Messages ========== */
+.error-message {
+  padding: 15px;
+  background-color: #fff3f3;
+  border-left: 4px solid #dc3545;
+  color: #dc3545;
+  border-radius: 4px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+.error-message i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+/* ========== Download Results ========== */
+.result-success {
+  padding: 15px;
+  background-color: #f0fff4;
+  border-left: 4px solid #28a745;
+  color: #28a745;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.result-success i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.download-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.download-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.download-section h3 {
+  margin-top: 0;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.download-section h3 i {
+  margin-right: 8px;
+}
+
+.download-link {
+  display: block;
+  padding: 12px 15px;
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  color: #0066cc;
+  text-decoration: none;
+  margin: 10px 0;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.download-link i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.download-link:hover {
+  background-color: #f0f7ff;
+  border-color: #0066cc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.folder-link {
+  background-color: #e6f2ff;
+}
+
+.format-group {
+  margin-bottom: 20px;
+}
+
+.format-group h4 {
+  background-color: #e9ecef;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.format-files {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+.job-info {
+  background-color: #fff8e6;
+  border-left: 4px solid #ffc107;
+  padding: 15px;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+.job-note {
+  color: #666;
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+/* ========== Improved Buttons ========== */
+.primary-button {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.primary-button:hover {
+  background-color: #0055aa;
+  transform: translateY(-2px);
+}
+
+.primary-button i {
+  margin-right: 8px;
+}
+
+.primary-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.secondary-button {
+  background-color: #f8f9fa;
+  color: #0066cc;
+  border: 1px solid #0066cc;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.2s;
+  margin-top: 15px;
+}
+
+.secondary-button:hover {
+  background-color: #e6f2ff;
+}
+
+.secondary-button i {
+  margin-right: 8px;
+}
+
+/* ========== Form Enhancements ========== */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #0066cc;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+}
+
+.subfiletype-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subfiletype-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Format checkboxes with improved styling */
+.format-checkbox input[type="checkbox"] {
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  color: #0066cc;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  appearance: none;
+  outline: 0;
+  cursor: pointer;
+  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+}
+
+.format-checkbox input[type="checkbox"]:checked {
+  background: #0066cc;
+  border-color: #0066cc;
+}
+
+.format-checkbox input[type="checkbox"]:checked::before {
+  content: '';
+  position: absolute;
+  top: 0.2em;
+  left: 0.5em;
+  width: 0.4em;
+  height: 0.8em;
+  border: solid white;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+}
+
+/* ========== Responsive Adjustments ========== */
+@media (max-width: 768px) {
+  .format-files {
+    grid-template-columns: 1fr;
+  }
+  
+  .progress-bar-container {
+    width: 90%;
+  }
+  
+  .download-section {
+    padding: 15px;
+  }
+}
+
+/* ========== Animations ========== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.download-section {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ========== Tooltips ========== */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.8rem;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
