@@ -1,0 +1,30 @@
+/* Minimal DA1 MetaMetaTag Table Styling */
+.da1-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .da1-table th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .da1-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: top;
+  }
+  
+  .da1-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .da1-table .category-col {
+    text-align: center;
+  }

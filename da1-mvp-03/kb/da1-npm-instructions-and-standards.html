@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta -->
+    <title>DA1 Knowledge Base - NPM Implementation Standards</title>
+    <meta name="description" content="Learn about DA1's implementation of npm, our standards, best practices, and our future roadmap for package management and dependency control.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Knowledge Base - NPM Implementation Standards">
+    <meta property="og:description" content="Explore DA1's unique npm implementation system: structured, educational, and focused on delivering clarity and control through clean package management.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../index.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../js/alpinejs-local.js"></script>
+    <script src="../sidebar.js" defer></script>
+    <script src="../../tools/ffmpeg.min.js"></script>
+    <script src="../component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1 Knowledge Base</h1>
+        <p>Welcome to the DA1 Knowledge Base. This guide outlines our <strong>DA1 NPM Implementation Standards</strong>—how we configure, maintain, and evolve our package management systems to support high-integrity, high-performance development workflows at DA1.</p>
+
+        <!-- Article: DA1 NPM Implementation Standards -->
+        <div class="section" id="da1-npm-implementation-standards">
+            <h2>✅ DA1 NPM Implementation Standards (Current Implementation)</h2>
+            <p>The <strong>DA1 NPM Implementation Standards</strong> ensure that every project within the DA1 ecosystem benefits from precise package management, reproducible builds, and clean dependency control. These standards are designed to make our projects fast to deploy, easy to maintain, and predictable across development and production environments.</p>
+
+            <ul>
+                <li><strong>NPM Definition:</strong> <code>npm</code> stands for <em>Node Package Manager</em>. It is a package manager for the JavaScript programming language, providing a standardized system to publish, share, install, and manage software packages and dependencies.</li>
+                <li><strong>Why DA1 Uses NPM:</strong> DA1 uses <code>npm</code> because it is the de facto standard for JavaScript and Node.js-based development. It offers:
+                    <ul>
+                        <li>Deterministic dependency management.</li>
+                        <li>Access to a vast ecosystem of open-source libraries.</li>
+                        <li>Version locking for stability.</li>
+                        <li>Efficient package scripts for automating complex tasks.</li>
+                    </ul>
+                </li>
+                <li><strong>File Management:</strong>
+                    <ul>
+                        <li><code>package.json</code>: The manifest file that defines project metadata and lists <strong>dependencies</strong> and <strong>devDependencies</strong>.</li>
+                        <li><code>package-lock.json</code>: Automatically generated file that locks the exact version of every installed package. Ensures repeatable builds.</li>
+                        <li><code>node_modules/</code>: The directory where installed packages physically reside. This folder is excluded from version control (<code>.gitignore</code>).</li>
+                    </ul>
+                </li>
+                <li><strong>DA1 Package Installation:</strong>
+<pre><code>// Install a dependency for runtime (production) use
+npm install &lt;package-name&gt;
+
+// Install a dependency for development only
+npm install --save-dev &lt;package-name&gt;
+</code></pre>
+                </li>
+                <li><strong>Versioning Philosophy at DA1:</strong>
+                    <ul>
+                        <li>Dependencies are listed with <code>^</code> for minor and patch updates, and explicitly pinned versions when stability is critical.</li>
+                        <li>Major version upgrades require explicit testing and approval.</li>
+                    </ul>
+                </li>
+                <li><strong>Project Initialization:</strong>
+<pre><code>npm init -y
+</code></pre>
+                Starts a new project by creating a boilerplate <code>package.json</code>. DA1 templates automatically pre-fill most required fields.</li>
+            </ul>
+        </div>
+
+        <!-- Article: DA1 NPM Procedures (What Are We Doing?) -->
+        <div class="section" id="da1-npm-procedures">
+            <h2>✅ DA1 NPM Procedures (What Are We Doing?)</h2>
+            <p>This is your step-by-step guide to understanding and operating <code>npm</code> in DA1 projects:</p>
+
+            <ul>
+                <li><strong>1. What Is NPM?</strong><br/>
+                    <code>npm</code> is both:
+                    <ul>
+                        <li>A registry of public and private packages.</li>
+                        <li>A command-line interface (CLI) to install and manage packages.</li>
+                    </ul>
+                    DA1 leverages both for package management, internal libraries, and automation tooling.
+                </li>
+
+                <li><strong>2. Where Are We?</strong><br/>
+                    You are working inside a DA1 repository. This repo uses <code>npm</code> to manage:
+                    <ul>
+                        <li>Code dependencies (third-party libraries and tools).</li>
+                        <li>Development dependencies (linters, compilers, test frameworks).</li>
+                        <li>Custom DA1 packages.</li>
+                    </ul>
+                </li>
+
+                <li><strong>3. What Are We Doing?</strong><br/>
+                    We are ensuring all project dependencies are:
+                    <ul>
+                        <li>Installed correctly.</li>
+                        <li>Version-locked for stability.</li>
+                        <li>Upgradable in a controlled and predictable way.</li>
+                    </ul>
+                </li>
+
+                <li><strong>4. What Do I Do With NPM?</strong><br/>
+                    <ul>
+                        <li><strong>Check dependencies:</strong> Inspect <code>package.json</code> to review installed dependencies.</li>
+                        <li><strong>Install all packages:</strong> Run <code>npm install</code> in the project root.</li>
+                        <li><strong>Install a new package:</strong> Run <code>npm install &lt;package&gt;</code>.</li>
+                        <li><strong>Remove a package:</strong> Run <code>npm uninstall &lt;package&gt;</code>.</li>
+                        <li><strong>Upgrade packages:</strong> Run <code>npm update</code> for minor updates, or use <code>npx npm-check-updates -u</code> for major version updates.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Article: Why We've Chosen NPM at DA1 -->
+        <div class="section" id="why-npm-at-da1">
+            <h2>✅ Why We've Chosen to Implement NPM at DA1 (And Why It Matters)</h2>
+            <p>We chose <code>npm</code> because it provides:</p>
+            <ul>
+                <li><strong>Industry Standardization:</strong> It is the default and most widely supported package manager in the Node.js ecosystem.</li>
+                <li><strong>Stability Through Lockfiles:</strong> The <code>package-lock.json</code> guarantees reproducibility of builds and reduces the risk of version drift.</li>
+                <li><strong>Rich Ecosystem:</strong> Access to over one million public packages, allowing rapid prototyping and high-speed development.</li>
+                <li><strong>Automation & Tooling:</strong> <code>npm scripts</code> empower us to run complex operations (build, test, deploy) with simple CLI commands.</li>
+                <li><strong>Security:</strong> <code>npm audit</code> and third-party tools like <code>dependabot</code> provide automated vulnerability scanning and updates.</li>
+            </ul>
+            <p>At DA1, we extend the basic capabilities of <code>npm</code> by using customized scripts, private scoped packages, and automated pipelines. This ensures that every DA1 project is both robust and secure by design.</p>
+        </div>
+
+        <!-- Article: Where We're Headed - NPM Roadmap -->
+        <div class="section" id="da1-npm-roadmap">
+            <h2>✅ Where We're Headed: DA1 NPM Implementation Roadmap</h2>
+            <p>We are building towards an advanced, secure, and automated package management strategy:</p>
+            <ul>
+                <li><strong>Private DA1 Package Registry:</strong> Internal packages for secure reuse across DA1 projects without relying on public registries.</li>
+                <li><strong>Zero-Trust Package Management:</strong> Strict vetting of external packages, including code audits and continuous vulnerability scanning.</li>
+                <li><strong>Semantic Versioning Enforcement:</strong> Mandatory adherence to SemVer (<code>MAJOR.MINOR.PATCH</code>) in all DA1 libraries and public-facing code.</li>
+                <li><strong>Fully Automated Dependency Updates:</strong> CI/CD pipelines that test and deploy updates with zero human intervention after approval gates.</li>
+                <li><strong>Immutable Builds:</strong> Containerized builds that are completely isolated from environmental drift, ensuring that every DA1 deployment is identical across environments.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="./index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta -->
+    <title>DA1 Knowledge Base - Draft 1.0 Instruction Manual</title>
+    <meta name="description" content="First guide to DA1MetaMetaData Sheets, Reports, and Exports including ISRC, DA1XML, PRO registration, and more.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Knowledge Base - Draft 1.0 Instruction Manual">
+    <meta property="og:description" content="Explore the comprehensive DA1 Knowledge Base including ISRC Sheets, DA1XML Exports, PRO Registration Sheets, and more.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../index.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../js/alpinejs-local.js"></script>
+    <script src="../sidebar.js" defer></script>
+    <script src="../../tools/ffmpeg.min.js"></script>
+    <script src="../component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1 Knowledge Base</h1>
+        <p>Comprehensive guide to DA1MetaMetaData Sheets, Reports, and Exports.</p>
+
+        <!-- Table of Contents (Static Example, To Be Auto-Generated) -->
+        <div class="section toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#isrc-sheet">ISRC Sheet</a></li>
+                <li><a href="#da1xml-export">DA1XML Export</a></li>
+                <li><a href="#pro-registration-sheet">PRO Registration Sheet</a></li>
+                <li><a href="#neighboring-rights-report">Neighboring Rights Report</a></li>
+                <li><a href="#mechanical-licensing-sheet">Mechanical Licensing Sheet</a></li>
+            </ul>
+        </div>
+
+        <!-- Topics -->
+        <div class="section" id="isrc-sheet">
+            <h2>✅ ISRC Sheet</h2>
+            <p><strong>What it is:</strong> An ISRC identifies each unique sound recording or music video.</p>
+            <p><strong>Why it matters:</strong> ISRCs are required for streaming, digital distribution, and royalty tracking.</p>
+            <ul>
+                <li>Lists all ISRCs for your recordings.</li>
+                <li>Exportable as CSV, JSON, XML for easy upload.</li>
+            </ul>
+            <p><strong>External Links:</strong></p>
+            <ul>
+                <li><a href="https://isrc.ifpi.org/en/isrc-standard/handbook" target="_blank">IFPI ISRC Handbook</a></li>
+                <li><a href="https://www.soundexchange.com/artist-catalog/isrc-guide/" target="_blank">SoundExchange ISRC Guide</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="da1xml-export">
+            <h2>✅ DA1XML Export</h2>
+            <p><strong>What it is:</strong> A full metadata export in DA1XML format.</p>
+            <p><strong>Why it matters:</strong> A single source of truth for metadata, legal compliance, and archival purposes.</p>
+            <ul>
+                <li>Human-readable and machine-readable XML file.</li>
+                <li>Useful for audits and proof of ownership.</li>
+            </ul>
+            <p><strong>External Links:</strong></p>
+            <ul>
+                <li><a href="https://www.w3.org/XML/" target="_blank">W3C XML Overview</a></li>
+                <li><a href="https://kb.ddex.net/ern/" target="_blank">DDEX ERN Standards</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="pro-registration-sheet">
+            <h2>✅ PRO Registration Sheet</h2>
+            <p><strong>What it is:</strong> Report for Performing Rights Organizations (PROs) registration.</p>
+            <p><strong>Why it matters:</strong> Registers songs with PROs to ensure royalty payment.</p>
+            <ul>
+                <li>Title</li>
+                <li>Writers / Publishers</li>
+                <li>ISWC</li>
+                <li>Splits and Shares</li>
+            </ul>
+            <p><strong>External Links:</strong></p>
+            <ul>
+                <li><a href="https://www.ascap.com/help/registering-your-music" target="_blank">ASCAP Registration</a></li>
+                <li><a href="https://www.bmi.com/special/broadcast_music_inc_registration" target="_blank">BMI Registration</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="neighboring-rights-report">
+            <h2>✅ Neighboring Rights Report</h2>
+            <p><strong>What it is:</strong> Report for neighboring rights royalty collection.</p>
+            <p><strong>Why it matters:</strong> Royalties for recording performances internationally.</p>
+            <ul>
+                <li>Performer Names and Roles</li>
+                <li>ISRC</li>
+                <li>Master Owner (Label)</li>
+            </ul>
+            <p><strong>External Links:</strong></p>
+            <ul>
+                <li><a href="https://www.soundexchange.com/" target="_blank">SoundExchange</a></li>
+                <li><a href="https://www.ppluk.com/" target="_blank">PPL UK</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="mechanical-licensing-sheet">
+            <h2>✅ Mechanical Licensing Sheet (Optional)</h2>
+            <p><strong>What it is:</strong> Licensing info for songwriters and publishers to claim mechanical royalties.</p>
+            <ul>
+                <li>Song Title</li>
+                <li>ISWC</li>
+                <li>Writers / Publishers</li>
+                <li>Ownership Splits</li>
+                <li>Release Data</li>
+            </ul>
+            <p><strong>External Links:</strong></p>
+            <ul>
+                <li><a href="https://www.harryfox.com/" target="_blank">Harry Fox Agency</a></li>
+                <li><a href="https://www.themlc.com/" target="_blank">MLC</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="./index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+FFmpeg configured with path: /Users/dainismichel/dainisne/da1-mvp/backend/node_modules/ffmpeg-static/ffmpeg
+Checking FFmpeg capabilities...
+✅ Allowed Origins: [ 'http://127.0.0.1:5500', 'http://localhost:5500' ]
+✅ Serving output files from: /Users/dainismichel/dainisne/da1-mvp/backend/output
+✅ DA1 Backend running at http://127.0.0.1:3001
+✅ Health check available at http://127.0.0.1:3001/healthz
+✅ Environment: development
+Available formats: [
+  '3dostr',   '3g2',          '3gp',         '4xm',          'a64',
+  'aa',       'aac',          'aax',         'ac3',          'ace',
+  'acm',      'act',          'adf',         'adp',          'ads',
+  'adts',     'adx',          'aea',         'afc',          'aiff',
+  'aix',      'alaw',         'alias_pix',   'alp',          'amr',
+  'amrnb',    'amrwb',        'amv',         'anm',          'apac',
+  'apc',      'ape',          'apm',         'apng',         'aptx',
+  'aptx_hd',  'aqtitle',      'argo_asf',    'argo_brp',     'argo_cvg',
+  'asf',      'asf_o',        'asf_stream',  'ass',          'ast',
+  'au',       'audiotoolbox', 'av1',         'avfoundation', 'avi',
+  'avif',     'avisynth',     'avm2',        'avr',          'avs',
+  'avs2',     'avs3',         'bethsoftvid', 'bfi',          'bfstm',
+  'bin',      'bink',         'binka',       'bit',          'bitpacked',
+  'bmp_pipe', 'bmv',          'boa',         'bonk',         'brender_pix',
+  'brstm',    'c93',          'caf',         'cavsvideo',    'cdg',
+  'cdxl',     'cine',         'codec2',      'codec2raw',    'concat',
+  'crc',      'cri_pipe',     'dash',        'data',         'daud',
+  'dcstr',    'dds_pipe',     'derf',        'dfa',          'dfpwm',
+  'dhav',     'dirac',        'dnxhd',       'dpx_pipe',     'dsf',
+  'dsicin',   'dss',          'dts',         'dtshd',        'dv',
+  ... 301 more items
+]
+Available audio codecs: [
+  'aac',            'aac_at',            'ac3',
+  'ac3_fixed',      'adpcm_adx',         'adpcm_argo',
+  'adpcm_g722',     'g722',              'adpcm_g726',
+  'g726',           'adpcm_g726le',      'g726le',
+  'adpcm_ima_alp',  'adpcm_ima_amv',     'adpcm_ima_apm',
+  'adpcm_ima_qt',   'adpcm_ima_ssi',     'adpcm_ima_wav',
+  'adpcm_ima_ws',   'adpcm_ms',          'adpcm_swf',
+  'adpcm_yamaha',   'alac',              'alac_at',
+  'amr_nb',         'libopencore_amrnb', 'amr_wb',
+  'libvo_amrwbenc', 'anull',             'aptx',
+  'aptx_hd',        'comfortnoise',      'dfpwm',
+  'dts',            'dca',               'eac3',
+  'flac',           'g723_1',            'gsm',
+  'libgsm',         'gsm_ms',            'libgsm_ms',
+  'ilbc',           'ilbc_at',           'mlp',
+  'mp2',            'mp2fixed',          'libtwolame',
+  'mp3',            'libmp3lame',        'libshine',
+  'nellymoser',     'opus',              'libopus',
+  'pcm_alaw',       'pcm_alaw_at',       'pcm_bluray',
+  'pcm_dvd',        'pcm_f32be',         'pcm_f32le',
+  'pcm_f64be',      'pcm_f64le',         'pcm_mulaw',
+  'pcm_mulaw_at',   'pcm_s16be',         'pcm_s16be_planar',
+  'pcm_s16le',      'pcm_s16le_planar',  'pcm_s24be',
+  'pcm_s24daud',    'pcm_s24le',         'pcm_s24le_planar',
+  'pcm_s32be',      'pcm_s32le',         'pcm_s32le_planar',
+  'pcm_s64be',      'pcm_s64le',         'pcm_s8',
+  'pcm_s8_planar',  'pcm_u16be',         'pcm_u16le',
+  'pcm_u24be',      'pcm_u24le',         'pcm_u32be',
+  'pcm_u32le',      'pcm_u8',            'pcm_vidc',
+  'ra_144',         'real_144',          'roq_dpcm',
+  's302m',          'sbc',               'sonic',
+  'sonicls',        'speex',             'libspeex',
+  'truehd',         'tta',               'vorbis',
+  'libvorbis',
+  ... 3 more items
+]

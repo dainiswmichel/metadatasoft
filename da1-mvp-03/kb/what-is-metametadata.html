@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta -->
+    <title>DA1 Knowledge Base - What is metaMetaData?</title>
+    <meta name="description" content="An introduction to DA1metaMetaData, how it maps to 7 major filetypes, and solves critical metadata challenges in the music and media industry.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Knowledge Base - What is metaMetaData?">
+    <meta property="og:description" content="Understand DA1metaMetaData and how it transforms metadata management across WAV, MP3, FLAC, AIFF, M4A, OGG, and MP4.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../index.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../js/alpinejs-local.js"></script>
+    <script src="../sidebar.js" defer></script>
+    <script src="../../tools/ffmpeg.min.js"></script>
+    <script src="../component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1 Knowledge Base</h1>
+        <p>Welcome to the DA1 Knowledge Base. Below you will find a comprehensive guide on DA1metaMetaData, its role, and the problems it solves in today’s metadata ecosystem.</p>
+
+        <!-- Article: What is metaMetaData? -->
+        <div class="section" id="what-is-metaMetaData">
+            <h2>✅ What is metaMetaData?</h2>
+            <p><strong>metaMetaData</strong> refers to metadata about metadata. It describes the structure, rules, and mappings that govern how different metadata standards interconnect and function together.</p>
+            <p><strong>DA1metaMetaData</strong> is the industry’s first comprehensive, immutable, and structured metaMetaData system designed specifically for media files and digital content. It acts as the single source of truth, ensuring consistency and accuracy across every distribution platform and file format.</p>
+            <p>By utilizing DA1metaMetaData, content creators and rights holders can map a single authoritative metadata entry to multiple file formats and platforms—without duplication, loss, or human error.</p>
+        </div>
+
+        <!-- Article: DA1metaMetaData and 7 Supported Filetypes -->
+        <div class="section" id="filetype-mapping">
+            <h2>✅ DA1metaMetaData Maps to 7 Major Filetypes</h2>
+            <p>DA1metaMetaData bridges the gap between different file formats and their native metadata standards. By creating a unified data layer, DA1 ensures accurate mapping to the 7 most common audio and video filetypes:</p>
+            <ul>
+                <li>WAV (BWF / INFO / iXML)</li>
+                <li>MP3 (ID3v2 / APEv2)</li>
+                <li>FLAC (Vorbis Comments)</li>
+                <li>AIFF (ID3v2 / iXML)</li>
+                <li>M4A (MP4 Metadata / iTunes Atoms)</li>
+                <li>OGG (Vorbis Comments)</li>
+                <li>MP4 (ISO BMFF / iTunes Atoms)</li>
+            </ul>
+        </div>
+
+        <!-- Table: Top 10 Most In-Demand Metadata Fields -->
+        <div class="section" id="top-metadata-fields">
+            <h2>✅ Top 10 Most In-Demand Metadata Tags</h2>
+
+            <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>DA1metaMetaTag</th>
+                        <th>Description</th>
+                        <th>WAV</th>
+                        <th>MP3</th>
+                        <th>FLAC</th>
+                        <th>AIFF</th>
+                        <th>M4A</th>
+                        <th>OGG</th>
+                        <th>MP4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Title</td>
+                        <td>Title of the work</td>
+                        <td>INAM</td>
+                        <td>TIT2</td>
+                        <td>TITLE</td>
+                        <td>TIT2</td>
+                        <td>©nam</td>
+                        <td>TITLE</td>
+                        <td>©nam</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Artist</td>
+                        <td>Primary artist or creator</td>
+                        <td>IART</td>
+                        <td>TPE1</td>
+                        <td>ARTIST</td>
+                        <td>TPE1</td>
+                        <td>©ART</td>
+                        <td>ARTIST</td>
+                        <td>©ART</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Album</td>
+                        <td>Album or collection title</td>
+                        <td>IPRD</td>
+                        <td>TALB</td>
+                        <td>ALBUM</td>
+                        <td>TALB</td>
+                        <td>©alb</td>
+                        <td>ALBUM</td>
+                        <td>©alb</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Genre</td>
+                        <td>Comma-separated list of genres</td>
+                        <td>IGNR</td>
+                        <td>TCON</td>
+                        <td>GENRE</td>
+                        <td>TCON</td>
+                        <td>©gen</td>
+                        <td>GENRE</td>
+                        <td>©gen</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Track Number</td>
+                        <td>Track’s position in an album</td>
+                        <td>ITRK</td>
+                        <td>TRCK</td>
+                        <td>TRACKNUMBER</td>
+                        <td>TRCK</td>
+                        <td>trkn</td>
+                        <td>TRACKNUMBER</td>
+                        <td>trkn</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>ISRC</td>
+                        <td>International Standard Recording Code</td>
+                        <td>ISRC</td>
+                        <td>TSRC</td>
+                        <td>ISRC</td>
+                        <td>TSRC</td>
+                        <td><nobr>----:com.apple.iTunes:ISRC</nobr></td>
+                        <td>ISRC</td>
+                        <td><nobr>----:com.apple.iTunes:ISRC</nobr></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Release Date</td>
+                        <td>Date of publication (ISO format)</td>
+                        <td>ICRD</td>
+                        <td>TDRC</td>
+                        <td>DATE</td>
+                        <td>TDRC</td>
+                        <td>©day</td>
+                        <td>DATE</td>
+                        <td>©day</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Duration</td>
+                        <td>Length of track in milliseconds</td>
+                        <td>LENG</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Cover Art</td>
+                        <td>Embedded image for artwork</td>
+                        <td>APIC</td>
+                        <td>APIC</td>
+                        <td>METADATA_BLOCK_PICTURE</td>
+                        <td>APIC</td>
+                        <td>covr</td>
+                        <td>METADATA_BLOCK_PICTURE</td>
+                        <td>covr</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Publisher</td>
+                        <td>Name of publisher or label</td>
+                        <td>IPRD</td>
+                        <td>TPUB</td>
+                        <td>PUBLISHER</td>
+                        <td>TPUB</td>
+                        <td>©pub</td>
+                        <td>PUBLISHER</td>
+                        <td>©pub</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+        <!-- Industry Problems DA1metaMetaData Solves -->
+        <div class="section" id="industry-problems">
+            <h2>✅ Problems DA1metaMetaData Solves</h2>
+            <p><strong>Fragmented Metadata Systems:</strong> Metadata today is fragmented across filetypes and platforms. DA1metaMetaData creates a unified structure that maps to all major standards, eliminating duplication and inconsistencies.</p>
+            <p><strong>Loss of Data Integrity:</strong> Metadata is often stripped, overwritten, or lost when files move between platforms. DA1metaMetaData ensures permanent, immutable provenance by embedding consistent information across all outputs.</p>
+            <p><strong>Royalties and Rights Management:</strong> Incomplete or inaccurate metadata leads to lost royalties and disputes. DA1metaMetaData provides a verifiable, accurate source of truth that supports PRO registration, ISRC assignment, and neighboring rights reporting.</p>
+            <p><strong>Compliance and Legal Proof:</strong> DA1metaMetaData produces machine-readable exports (DA1XML) that provide audit trails, ownership validation, and legal compliance documentation on demand.</p>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="./index.js"></script>
+</body>
+
+</html>

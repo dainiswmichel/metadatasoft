@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta Core -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta -->
+  <title>DA1 Knowledge Base - Dev Notes & Engineering Journal</title>
+  <meta name="description"
+    content="DA1 Dev Notes and Engineering Journal. Log critical issues, ideas, and future refactors in one place.">
+
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="DA1 Dev Notes & Engineering Journal" />
+  <meta property="og:description"
+    content="DA1 Dev Notes and Engineering Journal. Log critical issues, ideas, and future refactors in one place." />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DA1 Knowledge Base" />
+
+  <!-- CSS Links -->
+  <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css" />
+  <link rel="stylesheet" href="../index.css" />
+
+  <!-- JS Dependencies -->
+  <script defer type="module" src="../js/alpinejs-local.js"></script>
+  <script src="../sidebar.js" defer></script>
+  <script src="../../tools/ffmpeg.min.js"></script>
+  <script src="../component-loader.js"></script>
+</head>
+
+<body>
+  <!-- Left Sidebar -->
+  <div id="left-sidebar-container"></div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1>DA1 Development Notes</h1>
+    <p>Engineering Journal for ongoing decisions, future refactors, and quick wins. These notes are raw, direct, and logged in real-time.</p>
+
+    <!-- ✅ Note 001 -->
+    <div class="section note" id="note-001">
+      <h2>📝 Note 001 - Express vs. bodyParser</h2>
+      <p><span class="tag critical">[Critical]</span> <span class="tag refactor">[Refactor]</span></p>
+
+      <ul>
+        <li><strong>Current:</strong> Using <code>bodyParser.json()</code> and <code>bodyParser.urlencoded()</code> in <code>server.js</code>.</li>
+        <li><strong>Future:</strong> Switch to native <code>express.json()</code> and <code>express.urlencoded()</code>.</li>
+        <li><strong>Why:</strong> Built into Express (since 4.16.0). No need for extra dependency.</li>
+        <li><strong>When:</strong> Post MVP 03, in preparation for DA1.fm launch cleanup.</li>
+        <li><strong>Status:</strong> Logged for future implementation ✅</li>
+      </ul>
+    </div>
+
+    <!-- You can add more notes below by duplicating the section -->
+
+  </div>
+
+  <!-- Right Sidebar -->
+  <div id="right-sidebar-container"></div>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script src="./index.js"></script>
+
+  <style>
+    /* Local styling for notes panel (optional refinement later) */
+    .note {
+      padding: 1rem;
+      margin: 1rem 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      margin-right: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border-radius: 4px;
+      background-color: #eee;
+      color: #333;
+    }
+
+    .tag.critical {
+      background-color: #ff4d4d;
+      color: white;
+    }
+
+    .tag.refactor {
+      background-color: #ffcc00;
+      color: black;
+    }
+
+    .tag.idea {
+      background-color: #00ccff;
+      color: white;
+    }
+
+    .tag.fix {
+      background-color: #28a745;
+      color: white;
+    }
+  </style>
+</body>
+
+</html>

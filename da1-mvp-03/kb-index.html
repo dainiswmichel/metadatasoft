@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 Blog - Latest Updates and News</title>
+    
+    <!-- CSS files first -->
+    <link rel="stylesheet" href="../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="./index.css">
+    
+    <!-- Alpine.js must be loaded before sidebar.js -->
+    <script defer type="module" src="./js/alpinejs-local.js"></script>
+    <script src="./sidebar.js" defer></script>
+    
+    <!-- Other scripts -->
+    <script src="../tools/ffmpeg.min.js"></script>
+    <script src="./component-loader.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 14pt; margin: 0; padding: 20px; background: #f9f9f9; color: #333; }
+        h1 { font-size: 111%; font-weight: bold; }
+        h2 { font-size: 107%; margin-left: 20px; }
+        h3 { font-size: 103%; margin-left: 40px; }
+        a { font-size: 111%; color: #007BFF; font-weight: bold; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul { list-style-type: none; padding-left: 0; }
+        .file-block { margin-bottom: 20px; }
+        .loading { font-style: italic; color: #777; }
+      </style>
+</head>
+
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <h1>DA1 Knowledge Base and Task Lists</h1>
+        <p class="loading">Loading files...</p>
+        <div id="toc"></div>
+      
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Page-specific scripts -->
+    <script src="./kb/toc.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1XML Technical Reference - DA1 Format</title>
+    
+    <!-- CSS files first -->
+    <link rel="stylesheet" href="../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="./index.css">
+    
+    <!-- Alpine.js must be loaded before sidebar.js -->
+    <script defer type="module" src="./js/alpinejs-local.js"></script>
+    <script src="./sidebar.js" defer></script>
+    
+    <!-- Other scripts -->
+    <script src="../tools/ffmpeg.min.js"></script>
+    <script src="./component-loader.js"></script>
+</head>
+
+
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1XML Technical Reference</h1>
+        
+        <div class="section">
+            <h2><i class="bi bi-file-earmark-code"></i> Introduction to DA1XML</h2>
+            <p>DA1XML is the metadata standard used within DA1 container files to provide comprehensive information about media content, rights, ownership, and technical specifications. This reference guide provides detailed information about the structure and implementation of DA1XML files.</p>
+            
+            <p>The DA1XML format has been designed to address the limitations of existing metadata formats by providing a unified, extensible structure that maintains integrity throughout the distribution chain.</p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="bi bi-braces"></i> DA1XML Structure</h2>
+            <p>A DA1XML file follows a hierarchical structure with the root element <code>&lt;DA1XML&gt;</code>. Below is a simplified example of a basic DA1XML file:</p>
+            
+            <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;DA1XML version="1.0"&gt;
+    &lt;MediaPackage id="DA1-12345-6789" timestamp="2025-03-01T14:30:00Z"&gt;
+        &lt;Title&gt;Sample Media Package&lt;/Title&gt;
+        &lt;Creator&gt;
+            &lt;Name&gt;John Doe&lt;/Name&gt;
+            &lt;Role&gt;Producer&lt;/Role&gt;
+            &lt;ContactInfo type="email"&gt;john@example.com&lt;/ContactInfo&gt;
+        &lt;/Creator&gt;
+        &lt;Contents&gt;
+            &lt;MediaItem type="audio" id="AUDIO-001"&gt;
+                &lt;Filename&gt;main_track.wav&lt;/Filename&gt;
+                &lt;Format&gt;WAV&lt;/Format&gt;
+                &lt;Duration&gt;00:03:45&lt;/Duration&gt;
+                &lt;SampleRate&gt;48000&lt;/SampleRate&gt;
+                &lt;BitDepth&gt;24&lt;/BitDepth&gt;
+            &lt;/MediaItem&gt;
+            &lt;MediaItem type="document" id="DOC-001"&gt;
+                &lt;Filename&gt;liner_notes.pdf&lt;/Filename&gt;
+                &lt;Format&gt;PDF&lt;/Format&gt;
+                &lt;PageCount&gt;4&lt;/PageCount&gt;
+            &lt;/MediaItem&gt;
+        &lt;/Contents&gt;
+        &lt;Rights&gt;
+            &lt;License type="CC-BY-4.0" /&gt;
+            &lt;Copyright&gt;© 2025 Example Label&lt;/Copyright&gt;
+            &lt;BlockchainVerification&gt;
+                &lt;ChainType&gt;Ethereum&lt;/ChainType&gt;
+                &lt;TransactionID&gt;0x123abc...&lt;/TransactionID&gt;
+                &lt;VerificationDate&gt;2025-03-01&lt;/VerificationDate&gt;
+            &lt;/BlockchainVerification&gt;
+        &lt;/Rights&gt;
+        &lt;CustomProperties&gt;
+            &lt;Property name="Genre"&gt;Electronic&lt;/Property&gt;
+            &lt;Property name="BPM"&gt;128&lt;/Property&gt;
+            &lt;Property name="MoodTags"&gt;energetic, uplifting, driving&lt;/Property&gt;
+        &lt;/CustomProperties&gt;
+    &lt;/MediaPackage&gt;
+&lt;/DA1XML&gt;</pre>
+        </div>
+        
+        <div class="section">
+            <h2><i class="bi bi-tags"></i> Core Element Reference</h2>
+            <p>The following table describes the core elements of a DA1XML file:</p>
+            
+            <table class="tag-table">
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Attributes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>&lt;DA1XML&gt;</code></td>
+                        <td>Root element for all DA1XML documents</td>
+                        <td class="required">Required</td>
+                        <td>version</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;MediaPackage&gt;</code></td>
+                        <td>Container for all media package information</td>
+                        <td class="required">Required</td>
+                        <td>id, timestamp</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;Title&gt;</code></td>
+                        <td>Title of the media package</td>
+                        <td class="required">Required</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;Creator&gt;</code></td>
+                        <td>Information about the creator(s)</td>
+                        <td class="required">Required</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;Contents&gt;</code></td>
+                        <td>Container for all media items</td>
+                        <td class="required">Required</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;MediaItem&gt;</code></td>
+                        <td>Individual media file information</td>
+                        <td class="required">Required</td>
+                        <td>type, id</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;Rights&gt;</code></td>
+                        <td>Licensing and copyright information</td>
+                        <td class="optional">Optional</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;CustomProperties&gt;</code></td>
+                        <td>User-defined metadata</td>
+                        <td class="optional">Optional</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2><i class="bi bi-list-check"></i> Best Practices</h2>
+            <h3>Metadata Completeness</h3>
+            <ul>
+                <li>Include as much metadata as possible to enhance searchability and identification.</li>
+                <li>Use standardized values for properties like genres, countries, and languages.</li>
+                <li>Include technical specifications for all media items.</li>
+            </ul>
+            
+            <h3>Rights Management</h3>
+            <ul>
+                <li>Always include clear copyright information.</li>
+                <li>Use standardized license types where possible.</li>
+                <li>Include blockchain verification when available for enhanced rights tracking.</li>
+            </ul>
+            
+            <h3>Custom Properties</h3>
+            <ul>
+                <li>Use descriptive property names.</li>
+                <li>Follow consistent naming conventions.</li>
+                <li>Document any specialized custom properties in separate documentation.</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="bi bi-download"></i> Resources</h2>
+            <ul>
+                <li><a href="#"><i class="bi bi-file-earmark-pdf"></i> Complete DA1XML Specification (PDF)</a></li>
+                <li><a href="#"><i class="bi bi-braces"></i> XML Schema Definition (XSD)</a></li>
+                <li><a href="#"><i class="bi bi-code-square"></i> Example DA1XML Files</a></li>
+                <li><a href="#"><i class="bi bi-tools"></i> DA1XML Validation Tool</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Page-specific scripts -->
+    <script src="./index.js"></script>
+</body>
+</html>

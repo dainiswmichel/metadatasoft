@@ -1,0 +1,13 @@
+[2025-03-19T15:03:24.957Z] 🟢 processDA1() STARTED
+[2025-03-19T15:03:24.959Z] 🟦 Original filename: 18 Time Flies.wav
+[2025-03-19T15:03:24.961Z] 🟦 Title field: Time Flies
+[2025-03-19T15:03:24.964Z] 🟦 Formats: ["mp3"]
+[2025-03-19T15:03:24.964Z] processDA1 FUNCTION CALLED
+[2025-03-19T15:03:24.964Z] 📦 Files to process: 1
+[2025-03-19T15:03:24.964Z] 🎛️ Formats to process: 1
+[2025-03-19T15:03:24.964Z] 🗂️ Metadata provided: {"title":"Time Flies","artist":"Dainis W. Michel with Bloom","album":"Champaign Underground Best Kept Secrets","genre":"Romantic Rock, Sensuous Songs, Singer-Songwriter","composer":"","year":"","comment":""}
+[2025-03-19T15:03:24.964Z] ✅ Initial parameters logged. Beginning processing...
+[2025-03-19T15:03:24.971Z] 📁 Output base directory: /Users/dainismichel/dainisne/output
+[2025-03-19T15:03:24.972Z]    ⮡ Exists? true
+[2025-03-19T15:03:24.973Z] 🔄 Starting DA1 package processing
+[2025-03-19T15:03:24.979Z] 📦 Processing 1 files with 1 formats

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta -->
+    <title>DA1 Knowledge Base - DA1 Code Commenting Standards</title>
+    <meta name="description" content="Learn about the DA1 Code Commenting Standards, our educational philosophy for code clarity, and our future roadmap for world-class documentation.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Knowledge Base - DA1 Code Commenting Standards">
+    <meta property="og:description" content="Explore DA1's unique code commenting system: structured, educational, and focused on delivering clarity and teaching through code.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../index.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../js/alpinejs-local.js"></script>
+    <script src="../sidebar.js" defer></script>
+    <script src="../../tools/ffmpeg.min.js"></script>
+    <script src="../component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1 Knowledge Base</h1>
+        <p>Welcome to the DA1 Knowledge Base. This guide outlines our <strong>DA1 Code Commenting Standards</strong>—how we write, structure, and present comments within our code to maximize clarity, teachability, and ease of use.</p>
+
+        <!-- Article: DA1 Code Commenting Standards -->
+        <div class="section" id="da1-code-commenting-standards">
+            <h2>✅ DA1 Code Commenting Standards (Current Implementation)</h2>
+            <p>The <strong>DA1 Code Commenting Standards</strong> ensure that anyone reading or working with our code can immediately understand its purpose, structure, and flow—whether they are a beginner or an expert.</p>
+            
+            <ul>
+                <li><strong>File Header Block:</strong> Every file begins with a descriptive title block that includes the file path, version, and timestamp. Example:
+<pre><code>// ==========================================================
+// 📂: /dainisne/da1-mvp-03/index.js
+// 🔥 Version: March 18, 2025
+// 📅 🕒: 2025-03m-18d-11h-01m-17s
+// ==========================================================
+</code></pre>
+                </li>
+                <li><strong>Section-Based Comments:</strong> Code is divided into <code>numbered sections</code>, each with a clear title and description. Example:
+<pre><code>/*---------------------------------
+  START 3. PROCESS DA1 PACKAGE
+  Collects inputs and sends files + meta to backend /api/embed
+---------------------------------*/</code></pre>
+                </li>
+                <li><strong>Section Closures:</strong> Each section ends with a comment that reinforces readability:
+<pre><code>// <!-- end section 3 Process DA1 Package --></code></pre>
+                </li>
+                <li><strong>Numbering Convention:</strong> Sections follow a hierarchy (e.g., <code>4.1.2</code>), making it easy to insert new sections without breaking the flow.</li>
+                <li><strong>Commenting Tone:</strong> Comments are <strong>educational and explanatory</strong>, not just descriptive. They offer just-in-time explanations for what, why, and how, targeted to a developer who may need extra context.</li>
+            </ul>
+        </div>
+
+        <!-- Article: DA1 Commenting Roadmap -->
+        <div class="section" id="da1-commenting-roadmap">
+            <h2>✅ Where We're Headed: Educational References & Documentation</h2>
+            <p>We are building towards a codebase that includes a full <strong>education-first commenting system</strong> that will integrate external resources and detailed documentation for each section.</p>
+            <ul>
+                <li><strong>Glossary and Tech Reference URLs:</strong> Each file will include a list of glossary links and technical references at the end, similar to academic footnotes.</li>
+                <li><strong>DA1 Knowledge Base Integration:</strong> Every major function will link back to an educational article in the DA1 Knowledge Base.</li>
+                <li><strong>Consistent Tagging:</strong> Tags like <code>@purpose</code>, <code>@inputs</code>, and <code>@returns</code> will appear inside comments for functions and classes, ensuring comprehensive explanations for future readers.</li>
+            </ul>
+        </div>
+
+        <!-- Article: Future DA1 Code Commenting Standards (Vision) -->
+        <div class="section" id="future-da1-code-commenting-standards">
+            <h2>✅ Future DA1 Code Commenting Standards (Vision)</h2>
+            <p>Our long-term vision is to create the <strong>most comprehensive and readable code documentation system in existence</strong>. We call it <strong>DA1 Code Commenting Standards v2.0</strong>.</p>
+            <ul>
+                <li><strong>Live Doc Embeds:</strong> Comments that automatically generate live documentation files, including diagrams and examples.</li>
+                <li><strong>Intelligent Doc Parsing:</strong> DA1-aware AI tools that can scan comments and provide instant explanations, examples, or debug guidance inside the IDE.</li>
+                <li><strong>Global Comment Style Consistency:</strong> Commenting styles that adapt to the specific language or framework while maintaining DA1 standards.</li>
+                <li><strong>Versioned Code Comments:</strong> Comment histories that show the evolution of functions over time—when and why decisions were made.</li>
+            </ul>
+            <p>The <strong>DA1 Code Commenting Standards</strong> aim to transform every piece of code into an <strong>educational asset</strong>—self-explanatory, easy to navigate, and practical for anyone working in high-stakes, real-world environments.</p>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="./index.js"></script>
+</body>
+
+</html>
