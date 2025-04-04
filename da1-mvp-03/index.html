@@ -167,7 +167,12 @@
 </div>
 <!-- SECTION END: Output Options -->
 
-        <!-- Start Processing -->
+<!-- ========================= -->
+<!--  START DA1 Processing  -->
+<!-- ========================= -->
+
+
+        <!-- Start Processing draft 01 working Start Compilation Section
         <div class="section">
             <h2><i class="bi bi-play-circle"></i> Start Compilation</h2>
             <button onclick="processDA1()" class="primary-button">
@@ -177,7 +182,33 @@
               <div id="progress-bar"></div>
               <div id="progress-label">0%</div>
             </div>
-        </div>
+        </div> -->
+
+        <!-- Start Start Processing Section -->
+<div class="section">
+  <h2><i class="bi bi-play-circle"></i> Start Compilation</h2>
+  <button onclick="processDA1()" class="primary-button">
+      <div class="button-content">
+          <i id="compile-icon" class="bi bi-gear"></i>
+          <span>Compile DA1 Package</span>
+      </div>
+      <div id="progress-circle-container" style="display: none;">
+          <svg class="progress-circle" width="66" height="66" viewBox="0 0 66 66">
+              <defs>
+                  <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#e67e22" />
+                      <stop offset="100%" stop-color="#f39c12" />
+                  </linearGradient>
+              </defs>
+              <circle class="circle-bg" cx="33" cy="33" r="30" />
+              <circle class="circle-progress" cx="33" cy="33" r="30" />
+          </svg>
+          <div class="progress-circle-label" id="progress-circle-label">0%</div>
+      </div>
+  </button>
+  <div id="processing-status"></div>
+</div>
+<!-- End Start Processing Section -->
 
         <!-- Download Links -->
         <div class="section">

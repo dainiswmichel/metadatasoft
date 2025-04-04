@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta -->
+    <title>DA1 Task List - 2025-03m-17d</title>
+    <meta name="description" content="DA1MetaMetaTags implementation task list and mission briefing for 2025-03m-17d. Comprehensive overview of embedding DA1MetaMetaTags in all supported file types.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Task List - 2025-03m-17d">
+    <meta property="og:description" content="DA1MetaMetaTags implementation task list and mission briefing for 2025-03m-17d. Comprehensive overview of embedding DA1MetaMetaTags in all supported file types.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../index.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../js/alpinejs-local.js"></script>
+    <script src="../sidebar.js" defer></script>
+    <script src="../../tools/ffmpeg.min.js"></script>
+    <script src="../component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>DA1 Task List</h1>
+        <p>Comprehensive task list and mission focus for 2025-03m-17d.</p>
+
+        <!-- Table of Contents -->
+        <div class="section toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#task-list">DA1MetaMetaTags Embedding Task List</a></li>
+                <li><a href="#metadata-chaos">The Metadata Chaos Problem</a></li>
+                <li><a href="#da1-solution">How DA1 Fixes It</a></li>
+                <li><a href="#todays-breakthrough">Today’s Breakthrough</a></li>
+            </ul>
+        </div>
+
+        <!-- Section: Task List -->
+        <div class="section" id="task-list">
+            <h2>✅ DA1MetaMetaTags Embedding Task List</h2>
+            <ul>
+                <li><strong>Finalize the DA1MetaMetaTag Schema</strong>
+                    <ul>
+                        <li>Standard fields</li>
+                        <li>Extended fields</li>
+                        <li>Custom fields</li>
+                    </ul>
+                </li>
+                <li><strong>Validate Mapping for All Major Metadata Formats</strong>
+                    <ul>
+                        <li>ID3v2 (MP3)</li>
+                        <li>Vorbis Comments (FLAC, OGG)</li>
+                        <li>RIFF INFO & BWF iXML/XMP (WAV, BWF)</li>
+                        <li>MP4 atoms (M4A/MP4)</li>
+                        <li>APE Tags (Monkey’s Audio, WavPack)</li>
+                        <li>DA1XML as the single source of truth (master file)</li>
+                    </ul>
+                </li>
+                <li><strong>Define Fallback Rules</strong> (when a format doesn't support certain fields)</li>
+            </ul>
+
+            <ul>
+                <li><strong>Embed Metadata in Each File Type</strong>
+                    <ul>
+                        <li>Prepare test files for each format</li>
+                        <li>Use FFmpeg CLI to embed DA1MetaMetaTags</li>
+                        <li>Use Mutagen, eyed3, or FFmpeg.wasm for programmatic embedding</li>
+                        <li>Validate embedded metadata with:
+                            <ul>
+                                <li>ffprobe</li>
+                                <li>MediaInfo</li>
+                                <li>Custom JS scripts</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul>
+                <li><strong>Develop DA1MetaMetaTag Embedding Script</strong>
+                    <ul>
+                        <li>Build Node.js CLI Tool (DA1MetaEmbedder)</li>
+                        <li>Input: Any supported file type</li>
+                        <li>Read: DA1XML metadata file</li>
+                        <li>Output: Fully tagged audio/video file</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul>
+                <li><strong>Confirm Cross-Platform Compatibility</strong> (Mac, Linux, Windows)</li>
+            </ul>
+
+            <ul>
+                <li><strong>Optional UI Integration (Stretch Goal)</strong>
+                    <ul>
+                        <li>Metadata Embedder UI in DA1 MVP</li>
+                        <li>Drag-and-drop file selection</li>
+                        <li>Display metadata preview</li>
+                        <li>Generate/download fully tagged files</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section: Metadata Chaos -->
+        <div class="section" id="metadata-chaos">
+            <h2>⚠️ The Metadata Chaos Problem</h2>
+            <p>The current media ecosystem is a tangled mess of metadata formats, broken standards, and missing information. Critical data—like songwriter credits, performer roles, and ownership splits—gets lost as files move between platforms, formats, and apps.</p>
+            <p>When metadata breaks, artists <strong>lose recognition</strong> and <strong>miss out on payments</strong> they deserve.</p>
+        </div>
+
+        <!-- Section: DA1 Solution -->
+        <div class="section" id="da1-solution">
+            <h2>✅ How DA1 Fixes It</h2>
+            <p>DA1 introduces <strong>DA1MetaMetaTags</strong>—a unified, comprehensive metadata standard that ensures every file carries complete, accurate, and permanent information.</p>
+            <ul>
+                <li>Your files always know <strong>who owns them</strong></li>
+                <li><strong>Performers, writers, and publishers</strong> get <strong>proper credit</strong></li>
+                <li><strong>Royalties and rights</strong> flow to the right people automatically</li>
+            </ul>
+            <p>We are <strong>systematizing</strong> metadata—so <strong>everyone gets paid</strong>, and no one gets lost in the shuffle.</p>
+        </div>
+
+        <!-- Section: Today's Breakthrough -->
+        <div class="section" id="todays-breakthrough">
+            <h2>🚀 Today’s Breakthrough</h2>
+            <p>We're embedding <strong>DA1MetaMetaTags</strong> directly into:</p>
+            <ul>
+                <li>MP3s with <strong>ID3v2</strong></li>
+                <li>FLAC and OGG with <strong>Vorbis Comments</strong></li>
+                <li>WAV/BWF with <strong>iXML and XMP</strong></li>
+                <li>MP4 and M4A with <strong>atoms</strong></li>
+                <li>And more...</li>
+            </ul>
+            <p><strong>DA1XML</strong> acts as the <strong>single source of truth</strong>, mapping seamlessly into any system.</p>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="./index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,245 @@
+// ==========================================================
+// 📂: /da1.fm/tools/blog2-index.js
+// 🔥 Version: March 29, 2025
+// 📅 🕒: 2025-03-29
+// ==========================================================
+
+/*---------------------------------
+  START 1. IMPORTS AND SETUP
+  Required dependencies for blog2 index generation
+---------------------------------*/
+const fs = require('fs');
+const path = require('path');
+const { JSDOM } = require('jsdom'); // Install with: npm install jsdom
+
+// Configuration
+const BLOG_DIR = path.join(__dirname, '..', 'blog2');
+const INDEX_PATH = path.join(BLOG_DIR, 'index.html');
+
+// Ensure blog2 directory exists
+if (!fs.existsSync(BLOG_DIR)) {
+  fs.mkdirSync(BLOG_DIR, { recursive: true });
+  console.log(`Created blog2 directory at ${BLOG_DIR}`);
+}
+// <!-- end section 1 Imports and Setup -->
+
+/*---------------------------------
+  START 2. HELPER FUNCTIONS
+  Core utilities for metadata extraction
+---------------------------------*/
+/**
+ * Attempts to find the best value among multiple metatags
+ * @param {Document} doc - DOM document to search
+ * @param {Array} selectors - Array of CSS selectors to try in order of preference
+ * @param {Function} getAttribute - Optional function to extract attribute value (default: content)
+ * @returns {string|null} The found value or null
+ */
+function findBestMetaValue(doc, selectors, getAttribute = (el) => el.getAttribute('content')) {
+  for (const selector of selectors) {
+    const element = doc.querySelector(selector);
+    if (element) {
+      const value = getAttribute(element);
+      if (value) return value;
+    }
+  }
+  return null;
+}
+
+/**
+ * Extract all citation metadata
+ * @param {Document} doc - DOM document to search
+ * @returns {Array} Array of citation objects
+ */
+function extractCitations(doc) {
+  const citations = [];
+  
+  // Look for numbered citations (da1:citation:person:1, da1:citation:person:2, etc.)
+  let index = 1;
+  while (true) {
+    const personSelector = `meta[property="da1:citation:person:${index}"]`;
+    const sourceSelector = `meta[property="da1:citation:source:${index}"]`;
+    const urlSelector = `meta[property="da1:citation:url:${index}"]`;
+    const quoteSelector = `meta[property="da1:citation:quote:${index}"]`;
+    
+    const personEl = doc.querySelector(personSelector);
+    if (!personEl) {
+      // If no numbered citation exists, and it's the first one, try without number
+      if (index === 1) {
+        const singlePersonEl = doc.querySelector('meta[property="da1:citation:person"]');
+        const singleSourceEl = doc.querySelector('meta[property="da1:citation:source"]');
+        const singleUrlEl = doc.querySelector('meta[property="da1:citation:url"]');
+        const singleQuoteEl = doc.querySelector('meta[property="da1:citation:quote"]');
+        
+        if (singlePersonEl) {
+          citations.push({
+            person: singlePersonEl.getAttribute('content'),
+            source: singleSourceEl ? singleSourceEl.getAttribute('content') : '',
+            url: singleUrlEl ? singleUrlEl.getAttribute('content') : '',
+            quote: singleQuoteEl ? singleQuoteEl.getAttribute('content') : ''
+          });
+        }
+      }
+      break;
+    }
+    
+    citations.push({
+      person: personEl.getAttribute('content'),
+      source: doc.querySelector(sourceSelector)?.getAttribute('content') || '',
+      url: doc.querySelector(urlSelector)?.getAttribute('content') || '',
+      quote: doc.querySelector(quoteSelector)?.getAttribute('content') || ''
+    });
+    
+    index++;
+  }
+  
+  // Also look for Schema.org citations
+  try {
+    const schemaScripts = doc.querySelectorAll('script[type="application/ld+json"]');
+    schemaScripts.forEach(script => {
+      try {
+        const schemaData = JSON.parse(script.textContent);
+        if (schemaData.citation && Array.isArray(schemaData.citation)) {
+          schemaData.citation.forEach(cite => {
+            if (cite.author?.name && !citations.some(c => c.person === cite.author.name)) {
+              citations.push({
+                person: cite.author.name,
+                source: cite.name || '',
+                url: cite.url || '',
+                quote: ''
+              });
+            }
+          });
+        }
+      } catch (e) {
+        // Skip invalid JSON
+      }
+    });
+  } catch (e) {
+    // Skip schema processing if errors
+  }
+  
+  return citations;
+}
+
+/**
+ * Get all tags from various metatag formats
+ * @param {Document} doc - DOM document to search
+ * @returns {Array} Array of unique tags
+ */
+function extractTags(doc) {
+  const tags = new Set();
+  
+  // Get Open Graph tags
+  const ogTags = doc.querySelectorAll('meta[property="article:tag"]');
+  ogTags.forEach(tag => tags.add(tag.getAttribute('content')));
+  
+  // Get DA1 content relevance (comma separated)
+  const relevanceTag = doc.querySelector('meta[property="da1:content:relevance"]');
+  if (relevanceTag) {
+    const relevanceValues = relevanceTag.getAttribute('content').split(',');
+    relevanceValues.forEach(value => tags.add(value.trim()));
+  }
+  
+  // Get ML entities (comma separated)
+  const entitiesTag = doc.querySelector('meta[property="ml:content:entities"]');
+  if (entitiesTag) {
+    const entitiesValues = entitiesTag.getAttribute('content').split(',');
+    entitiesValues.forEach(value => tags.add(value.trim()));
+  }
+  
+  // Convert to array
+  return Array.from(tags);
+}
+// <!-- end section 2 Helper Functions -->
+
+/*---------------------------------
+  START 3. MAIN INDEX GENERATION
+  Core logic for creating the blog index
+---------------------------------*/
+async function generateBlogIndex() {
+  console.log('Starting blog2 index generation...');
+  
+  // Get all HTML files except index.html
+  const articleFiles = fs.readdirSync(BLOG_DIR)
+    .filter(file => file.endsWith('.html') && file !== 'index.html')
+    .map(file => path.join(BLOG_DIR, file));
+  
+  console.log(`Found ${articleFiles.length} article files.`);
+  
+  // Extract metadata from each article
+  const articles = [];
+  
+  for (const filePath of articleFiles) {
+    try {
+      console.log(`Processing ${path.basename(filePath)}...`);
+      
+      const content = fs.readFileSync(filePath, 'utf8');
+      const dom = new JSDOM(content);
+      const doc = dom.window.document;
+      
+      // Basic metadata with fallbacks for different formats
+      const title = findBestMetaValue(doc, [
+        'meta[property="og:title"]',
+        'meta[name="twitter:title"]',
+        'title'
+      ], el => el.tagName === 'TITLE' ? el.textContent : el.getAttribute('content'));
+      
+      const description = findBestMetaValue(doc, [
+        'meta[property="og:description"]',
+        'meta[name="twitter:description"]',
+        'meta[name="description"]'
+      ]);
+      
+      const author = findBestMetaValue(doc, [
+        'meta[name="author"]',
+        'meta[property="article:author"]'
+      ]);
+      
+      // Article metadata with fallbacks
+      const dateStr = findBestMetaValue(doc, [
+        'meta[property="article:published_time"]',
+        'meta[property="article:modified_time"]'
+      ]);
+      
+      const section = findBestMetaValue(doc, [
+        'meta[property="article:section"]',
+        'meta[property="da1:content:domain"]'
+      ]);
+      
+      // Get excerpt - either from custom meta tag or generate from content
+      let excerpt = findBestMetaValue(doc, [
+        'meta[name="article:excerpt"]',
+        'meta[property="ml:content:summary"]'
+      ]);
+      
+      if (!excerpt) {
+        // Try to extract from first paragraph of content
+        const firstParagraph = doc.querySelector('.article-content p, main p, .content p')?.textContent;
+        if (firstParagraph) {
+          excerpt = firstParagraph.trim().substring(0, 200) + '...';
+        } else {
+          excerpt = description;
+        }
+      }
+      
+      // Get reading time
+      const readingTime = findBestMetaValue(doc, [
+        'meta[name="article:reading-time"]',
+        'meta[property="a11y:estimated-reading-time"]'
+      ]) || '5';
+      
+      // Parse date or use file date
+      let publishDate;
+      try {
+        publishDate = dateStr ? new Date(dateStr) : fs.statSync(filePath).mtime;
+      } catch (e) {
+        publishDate = new Date();
+      }
+      
+      // Extract tags
+      const tags = extractTags(doc);
+      
+      // Extract citations
+      const citations = extractCitations(doc);
+      
+      // Get image

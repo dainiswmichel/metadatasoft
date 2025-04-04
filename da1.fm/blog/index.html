@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 Blog</title>
+    <meta name="description" content="Explore the latest insights on metadata standards, music industry attribution, and the DA1 ecosystem.">
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../resources/icons/bootstrap-icons.css">
+   <link rel="stylesheet" href="./css/blog.css">
+   
+
+
+  <!-- Alpine.js must be loaded before sidebar.js -->
+  <script defer type="module" src="../js/alpinejs-local.js"></script>
+  <script src="../sidebar.js" defer></script>
+
+
+</head>
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="blog-header">
+            <h1>DA1 Blog</h1>
+            <p class="blog-description">Insights on metadata standards, music industry attribution, and the DA1 ecosystem</p>
+        </header>
+
+        <!-- Categories Navigation -->
+        <div class="blog-categories">
+            <span class="category-label">Categories:</span>
+            <a href="#" class="category-link active" data-category="all">All</a>
+            <a href="#" class="category-link" data-category="Standards">Standards</a>
+            <a href="#" class="category-link" data-category="Music Industry">Music Industry</a>
+            <a href="#" class="category-link" data-category="Technology">Technology</a>
+            <a href="#" class="category-link" data-category="Tutorials">Tutorials</a>
+        </div>
+
+        <!-- Blog Posts Container -->
+        <div id="blog-posts">
+            <!-- Loading indicator will be shown here automatically -->
+        </div>
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="./js/component-loader.js"></script>
+    <script src="./js/blog.js"></script>
+
+    <!-- Category filter script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category filter functionality
+            const categoryLinks = document.querySelectorAll('.category-link');
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the selected category
+                    const category = this.getAttribute('data-category');
+                    
+                    // Remove active class from all links
+                    categoryLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Filter blog posts based on category
+                    filterBlogPosts(category);
+                });
+            });
+            
+            // Function to filter blog posts by category
+            function filterBlogPosts(category) {
+                const blogPosts = document.querySelectorAll('.blog-post');
+                
+                blogPosts.forEach(post => {
+                    const postCategory = post.querySelector('.category-tag')?.innerText;
+                    
+                    if (category === 'all' || postCategory === category) {
+                        post.style.display = 'block';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+                
+                // Display message if no posts match the category
+                const visiblePosts = document.querySelectorAll('.blog-post[style="display: block"]');
+                const noPostsMessage = document.querySelector('.no-posts-message');
+                
+                if (visiblePosts.length === 0 && !noPostsMessage) {
+                    const message = document.createElement('p');
+                    message.className = 'no-posts-message';
+                    message.innerText = `No posts found in the "${category}" category.`;
+                    document.getElementById('blog-posts').appendChild(message);
+                } else if (visiblePosts.length > 0 && noPostsMessage) {
+                    noPostsMessage.remove();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

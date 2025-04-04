@@ -1,0 +1,6 @@
+[2025-03-24T20:07:14.583Z] 🟢 processDA1() STARTED
+[2025-03-24T20:07:14.585Z] 🟦 Original filename: 18 Time Flies.wav
+[2025-03-24T20:07:14.586Z] 🟦 Title field: da1neverblanktitle
+[2025-03-24T20:07:14.588Z] 🟦 Formats: {"title":"Time Flies ","artist":"Dainis W. Michel - DA1NI5 - with Bloom","album":"Champaign Underground Best Kept Secrets","genre":"Romantic Rock","composer":"","year":"","comment":""}
+[2025-03-24T20:07:14.589Z] 📁 Created output directory: /Users/dainismichel/dainisne/da1-mvp-03/output/package_1742846834589
+[2025-03-24T20:07:14.592Z] ✅ Created manifest file: /Users/dainismichel/dainisne/da1-mvp-03/output/package_1742846834589/DA1_Package_1742846834589.da1

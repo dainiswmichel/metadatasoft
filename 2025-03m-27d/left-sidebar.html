@@ -1,0 +1,153 @@
+<!-- Left Sidebar (Navigation) -->
+<div class="sidebar sidebar-left" 
+     x-data="{ 
+        sidebarExpanded: localStorage.getItem('sidebarExpanded') !== 'false',
+        showTooltip: null,
+        activePage: window.location.pathname.split('/').pop() || 'index.html'
+     }"
+     :class="sidebarExpanded ? 'expanded' : 'collapsed'">
+    
+    <div class="sidebar-header">
+        <h2 x-show="sidebarExpanded" class="sidebar-title">Navigation</h2>
+        <button 
+            @click="sidebarExpanded = !sidebarExpanded; localStorage.setItem('sidebarExpanded', sidebarExpanded)"
+            class="sidebar-toggle"
+            :title="sidebarExpanded ? 'Collapse menu' : 'Expand menu'"
+            @mouseover="if(!sidebarExpanded) showTooltip = 'toggle'"
+            @mouseleave="showTooltip = null"
+        >
+            <i class="bi toggle-icon" :class="sidebarExpanded ? 'bi-layout-sidebar' : 'bi-box-arrow-right'"></i>
+            <div x-show="!sidebarExpanded && showTooltip === 'toggle'" class="tooltip visible" style="top: -10px">
+                Expand menu
+            </div>
+        </button>
+    </div>
+    
+    <nav>
+        <ul style="list-style: none; padding: 0; margin-top: 15px;">
+            <li class="nav-item">
+                <a 
+                    href="about.html" 
+                    class="nav-link" 
+                    :class="{'active': activePage === 'about.html'}"
+                    @mouseover="if(!sidebarExpanded) showTooltip = 'about'"
+                    @mouseleave="showTooltip = null"
+                >
+                    <i class="bi bi-info-circle-fill"></i>
+                    <span class="nav-text" x-show="sidebarExpanded">About</span>
+                    <div x-show="!sidebarExpanded && showTooltip === 'about'" class="tooltip visible">
+                        <span>About</span>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a 
+                    href="blog.html" 
+                    class="nav-link" 
+                    :class="{'active': activePage === 'blog.html'}"
+                    @mouseover="if(!sidebarExpanded) showTooltip = 'blog'"
+                    @mouseleave="showTooltip = null"
+                >
+                    <i class="bi bi-pencil-fill"></i>
+                    <span class="nav-text" x-show="sidebarExpanded">Blog</span>
+                    <div x-show="!sidebarExpanded && showTooltip === 'blog'" class="tooltip visible">
+                        <span>Blog</span>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a 
+                    href="kb-index.html" 
+                    class="nav-link" 
+                    :class="{'active': activePage === 'knowledge-base.html'}"
+                    @mouseover="if(!sidebarExpanded) showTooltip = 'knowledge-base'"
+                    @mouseleave="showTooltip = null"
+                >
+                    <i class="bi bi-journal-bookmark-fill"></i>
+                    <span class="nav-text" x-show="sidebarExpanded">Knowledge Base</span>
+                    <div x-show="!sidebarExpanded && showTooltip === 'knowledge-base'" class="tooltip visible">
+                        <span>Knowledge Base</span>
+                    </div>
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a 
+                    href="roadmap.html" 
+                    class="nav-link" 
+                    :class="{'active': activePage === 'roadmap.html'}"
+                    @mouseover="if(!sidebarExpanded) showTooltip = 'roadmap'"
+                    @mouseleave="showTooltip = null"
+                >
+                    <i class="bi bi-map-fill"></i>
+                    <span class="nav-text" x-show="sidebarExpanded">Roadmap</span>
+                    <div x-show="!sidebarExpanded && showTooltip === 'roadmap'" class="tooltip visible">
+                        <span>Roadmap</span>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a 
+                    href="financials.html" 
+                    class="nav-link" 
+                    :class="{'active': activePage === 'financials.html'}"
+                    @mouseover="if(!sidebarExpanded) showTooltip = 'financials'"
+                    @mouseleave="showTooltip = null"
+                >
+                    <i class="bi bi-graph-up"></i>
+                    <span class="nav-text" x-show="sidebarExpanded">Financials</span>
+                    <div x-show="!sidebarExpanded && showTooltip === 'financials'" class="tooltip visible">
+                        <span>Financials</span>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a 
+                    href="investment.html" 
+                    class="nav-link" 
+                    :class="{'active': activePage === 'investment.html'}"
+                    @mouseover="if(!sidebarExpanded) showTooltip = 'investment'"
+                    @mouseleave="showTooltip = null"
+                >
+                    <i class="bi bi-cash-coin"></i>
+                    <span class="nav-text" x-show="sidebarExpanded">Investment</span>
+                    <div x-show="!sidebarExpanded && showTooltip === 'investment'" class="tooltip visible">
+                        <span>Investment</span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a 
+                    href="contact.html" 
+                    class="nav-link" 
+                    :class="{'active': activePage === 'contact.html'}"
+                    @mouseover="if(!sidebarExpanded) showTooltip = 'contact'"
+                    @mouseleave="showTooltip = null"
+                >
+                    <i class="bi bi-envelope-fill"></i>
+                    <span class="nav-text" x-show="sidebarExpanded">Contact</span>
+                    <div x-show="!sidebarExpanded && showTooltip === 'contact'" class="tooltip visible">
+                        <span>Contact</span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a 
+                    href="index.html" 
+                    class="nav-link" 
+                    :class="{'active': activePage === 'index.html'}"
+                    @mouseover="if(!sidebarExpanded) showTooltip = 'index'"
+                    @mouseleave="showTooltip = null"
+                >
+                    <i class="bi bi-house-fill"></i>
+                    <span class="nav-text" x-show="sidebarExpanded">Back to App</span>
+                    <div x-show="!sidebarExpanded && showTooltip === 'index'" class="tooltip visible">
+                        <span>Back to App</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

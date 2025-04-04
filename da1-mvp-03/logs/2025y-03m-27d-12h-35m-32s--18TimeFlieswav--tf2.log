@@ -1,0 +1,15 @@
+[2025-03-27T11:35:32.512Z] 🟢 processDA1() STARTED
+[2025-03-27T11:35:32.513Z] 🟦 Original filename: 18 Time Flies.wav
+[2025-03-27T11:35:32.513Z] 🟦 Title field: tf2
+[2025-03-27T11:35:32.514Z] 🟦 Formats: ["mp3"]
+[2025-03-27T11:35:32.514Z] 🟦 Metadata: {"title":"TF2","artist":"DM","album":"CUU","genre":"RR2","excludeNeverBlank":"false","createNewXML":"false"}
+[2025-03-27T11:35:32.515Z] 📁 Created output directory: /Users/dainismichel/dainisne/da1-mvp-03/output/package_1743075332514
+[2025-03-27T11:35:32.515Z] ✅ Created manifest file: /Users/dainismichel/dainisne/da1-mvp-03/output/package_1743075332514/DA1_Package_1743075332514.da1
+[2025-03-27T11:35:32.516Z] 🎵 processAudioFile FUNCTION CALLED
+[2025-03-27T11:35:32.516Z]    ⮡ Input path: /Users/dainismichel/dainisne/da1-mvp-03/uploads/1743075332169-18_Time_Flies.wav
+[2025-03-27T11:35:32.517Z]    ⮡ Output path: /Users/dainismichel/dainisne/da1-mvp-03/output/package_1743075332514/18 Time Flies_mp3_1743075332514.mp3
+[2025-03-27T11:35:32.517Z]    ⮡ Format: mp3
+[2025-03-27T11:35:32.517Z]    ⮡ Metadata: {"title":"TF2","artist":"DM","album":"CUU","genre":"RR2","excludeNeverBlank":"false","createNewXML":"false"}
+[2025-03-27T11:35:32.706Z] ▶️ FFMPEG Command: ffmpeg -i /Users/dainismichel/dainisne/da1-mvp-03/uploads/1743075332169-18_Time_Flies.wav -i /Users/dainismichel/dainisne/da1-mvp-03/resources/elements/DA1neverBlankmetaMetaData_Cover_01.jpg -y -acodec libmp3lame -ac 2 -b:a 320k -metadata title=TF2 -metadata artist=DM -metadata album=CUU -metadata genre=RR2 -id3v2_version 3 -map 0:a -map 1:v -c:v copy -metadata:s:v title=Album cover -metadata:s:v comment=Cover (front) /Users/dainismichel/dainisne/da1-mvp-03/output/package_1743075332514/18 Time Flies_mp3_1743075332514.mp3
+[2025-03-27T11:35:54.366Z] ✅ Successfully processed file: /Users/dainismichel/dainisne/da1-mvp-03/output/package_1743075332514/18 Time Flies_mp3_1743075332514.mp3
+[2025-03-27T11:35:54.367Z] ✅ All processing complete

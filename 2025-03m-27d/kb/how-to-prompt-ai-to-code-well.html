@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta -->
+    <title>DA1 Knowledge Base - How to Prompt AI to Be a Precise Coding Teacher</title>
+    <meta name="description" content="Learn how to prompt AI to act as a precise, repeatable coding trainer. Avoid abstractified or destructified code.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Knowledge Base - How to Prompt AI to Be a Precise Coding Teacher">
+    <meta property="og:description" content="Prompt AI to deliver exact, working code with no omissions or abstractions. Avoid destructified code through clear instruction.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../index.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../js/alpinejs-local.js"></script>
+    <script src="../sidebar.js" defer></script>
+    <script src="../../tools/ffmpeg.min.js"></script>
+    <script src="../component-loader.js"></script>
+
+    <style>
+        .scrollable-table-container {
+            overflow-x: auto;
+            margin: 1em 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 600px;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            text-align: left;
+        }
+
+        pre {
+            background-color: #f8f8f8;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: monospace;
+        }
+
+        .copy-button {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background-color: #0056b3;
+        }
+
+        .copy-success {
+            color: green;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>How to Prompt AI to Be a Precise Coding Teacher (and Prevent Destructified Code)</h1>
+
+        <p>Welcome to the DA1 Knowledge Base. This guide teaches you how to prompt AI to act as a <strong>precise, structured coding trainer</strong>, delivering <strong>exact, repeatable, working code</strong>. This eliminates common frustrations when AI produces incomplete, generalized, or destructified code.</p>
+
+        <section class="section" id="purpose">
+            <h2>✅ Purpose of This Guide</h2>
+            <p>This guide helps you communicate with AI to prevent it from <strong>abstractifying</strong> or <strong>destructifying</strong> your code or instructions.</p>
+            <ul>
+                <li><strong>Abstractify</strong>: Generalize, summarize, or simplify information, reducing technical clarity and accuracy. <em>(Term coined by Dainis W. Michel, 2025)</em></li>
+                <li><strong>Destructify</strong>: Remove, modify, or alter critical technical details—destroying the integrity or completeness of code and instructions. <em>(Term coined by Dainis W. Michel, 2025)</em></li>
+            </ul>
+        </section>
+
+        <section class="section" id="why-ai-does-this">
+            <h2>✅ Why AI Abstractifies and Destructifies by Default</h2>
+            <p>AI models are trained to:</p>
+            <ul>
+                <li>Simplify complex information for casual users</li>
+                <li>Summarize concepts rather than explaining them in detail</li>
+                <li>Generalize examples instead of providing full working code</li>
+                <li>Use conversational tone instead of precise, technical language</li>
+            </ul>
+            <p>This results in:</p>
+            <ul>
+                <li>Ellipses ("...") in code</li>
+                <li>Placeholder comments like <code>// your code here</code></li>
+                <li>Partial or incomplete examples</li>
+                <li>Assumptions about the user's knowledge</li>
+                <li>Lack of repetition that reinforces learning</li>
+            </ul>
+        </section>
+
+        <section class="section" id="examples">
+            <h2>✅ Example: Abstractified vs. Accurate AI Instruction</h2>
+
+            <h3>❌ Abstractified / Destructified AI Output (Unprompted)</h3>
+            <pre><code>You should replace your existing function with the new one.
+Find something like:
+async function processAudioFile(...) {
+  // existing code
+}
+And replace it.</code></pre>
+
+            <ul>
+                <li><code>...</code> is not executable code.</li>
+                <li><code>// existing code</code> gives no usable instruction.</li>
+                <li>This response includes <strong>exclusions</strong>, which break continuity and understanding.</li>
+            </ul>
+
+            <h3>✅ Accurate AI Response (Prompted Correctly)</h3>
+            <pre><code>Locate the following function in your code:
+async function processAudioFile(inputPath, outputPath, format, metadata) {
+  return new Promise((resolve, reject) => {
+    console.log(`🔄 Processing ${inputPath} to ${format} format...`);
+
+    // old implementation
+  });
+}
+
+Delete the entire block, starting with:
+async function processAudioFile(inputPath, outputPath, format, metadata) {
+And ending with the final closing brace:
+}
+
+Replace it with this complete, copy-paste ready function:
+</code></pre>
+
+            <pre><code>async function processAudioFile(inputPath, outputPath, format, metadata) {
+  return new Promise((resolve, reject) => {
+    console.log('\n==================================================');
+    console.log(`🔄 AUDIO PROCESSING: ${path.basename(inputPath)} → ${format}`);
+    console.log('==================================================');
+
+    // new implementation goes here
+  });
+}</code></pre>
+        </section>
+
+          <section class="section" id="core-prompt-template">
+            <h2>✅ Core Prompt Template</h2>
+            <button class="copy-button" onclick="copyPrompt()">Copy Prompt</button>
+            <span id="copy-success" class="copy-success"></span>
+            <div id="prompt-text">
+              <p>You are a coding trainer.</p>
+              <p>You must follow these strict instructions:</p>
+              <ol>
+                <li>Provide exact, complete, copy-paste ready code snippets.
+                  <ol type="a">
+                    <li>Provide exact paths and filenames and code line numbers every time.</li>
+                    <li>When replacing code, show EXACTLY what EXACT code to remove.</li>
+                    <li>After showing (regenerating) which exact code to remove, provide a replacement block of code that is complete and ready to copy-paste.</li>
+                  </ol>
+                </li>
+                <li>Do not abstractify. Do not destructify. Do not make assumptions.</li>
+                <li>Do not summarize code. Do not omit any parts of the code.
+                  <ol type="a">
+                    <li>Phrases like "Example (assuming existing code resembles this):" are not allowed!</li>
+                    <li>Phrases like "wherever you have your...," "the place where you...," etc. are not allowed!</li>
+                  </ol>
+                </li>
+                <li>Repeat key definitions and concepts after explaining them.</li>
+                <li>Explain where each block opens and closes, including braces {}.</li>
+                <li>Wait for confirmation before moving on to the next step.</li>
+                <li>Explain the purpose of every line in the code if I request it.</li>
+                <li>Provide step-by-step instructions that are technically precise.</li>
+                <li>Use repetition of concepts and technical definitions to ensure clarity.</li>
+              </ol>
+            </div>
+          
+            <script>
+              function copyPrompt() {
+                const promptText = `You are a coding trainer.
+          You must follow these strict instructions:
+          1. Provide exact, complete, copy-paste ready code snippets.
+             1.1. Provide exact paths and filenames and code line numbers every time.
+             1.2. When replacing code, show EXACTLY what EXACT code to remove.
+             1.3. After showing (regenerating) which exact code to remove, provide a replacement block of code that is complete and ready to copy-paste.
+          2. Do not abstractify. Do not destructify. Do not make assumptions.
+          3. Do not summarize code. Do not omit any parts of the code.
+             3.1. Phrases like "Example (assuming existing code resembles this):" are not allowed!
+             3.2. Phrases like "wherever you have your...," "the place where you...," etc. are not allowed!
+          4. Repeat key definitions and concepts after explaining them.
+          5. Explain where each block opens and closes, including braces {}.
+          6. Wait for confirmation before moving on to the next step.
+          7. Explain the purpose of every line in the code if I request it.
+          8. Provide step-by-step instructions that are technically precise.
+          9. Use repetition of concepts and technical definitions to ensure clarity.`;
+                
+                navigator.clipboard.writeText(promptText);
+                document.getElementById('copy-success').textContent = '✓ Copied!';
+                setTimeout(() => {
+                  document.getElementById('copy-success').textContent = '';
+                }, 2000);
+              }
+            </script>
+          </section>
+
+          <section class="section" id="core-prompt-template">
+            <h2 style="font-size: 24px; margin-bottom: 16px; color: #333;">✅ Core Prompt Template Styled Version Just For Fun</h2>
+            
+            <button onclick="copyPrompt()" style="background-color: #0366d6; color: white; border: none; border-radius: 4px; padding: 8px 16px; cursor: pointer; font-size: 14px; margin-bottom: 16px;">Copy Prompt</button>
+            <span id="copy-success" style="margin-left: 10px; color: #28a745; font-size: 14px;"></span>
+            
+            <div style="background-color: #f6f8fa; border: 1px solid #e1e4e8; border-radius: 6px; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+              <p style="font-weight: 600; margin-top: 0; margin-bottom: 12px; font-size: 16px;">You are a coding trainer.</p>
+              <p style="font-weight: 600; margin-top: 0; margin-bottom: 16px; font-size: 16px;">You must follow these strict instructions:</p>
+              
+              <ol style="margin: 0; padding-left: 24px; counter-reset: item;">
+                <li style="margin-bottom: 12px; font-size: 15px;">
+                  <strong>Provide exact, complete, copy-paste ready code snippets.</strong>
+                  <ol style="margin-top: 8px; margin-bottom: 12px; padding-left: 28px; list-style-type: decimal;">
+                    <li style="margin-bottom: 6px; position: relative;">Provide exact paths and filenames and code line numbers every time.</li>
+                    <li style="margin-bottom: 6px; position: relative;">When replacing code, show EXACTLY what EXACT code to remove.</li>
+                    <li style="margin-bottom: 6px; position: relative;">After showing (regenerating) which exact code to remove, provide a replacement block of code that is complete and ready to copy-paste.</li>
+                  </ol>
+                </li>
+                <li style="margin-bottom: 12px; font-size: 15px;"><strong>Do not abstractify. Do not destructify. Do not make assumptions.</strong></li>
+                <li style="margin-bottom: 12px; font-size: 15px;">
+                  <strong>Do not summarize code. Do not omit any parts of the code.</strong>
+                  <ol style="margin-top: 8px; margin-bottom: 12px; padding-left: 28px; list-style-type: decimal;">
+                    <li style="margin-bottom: 6px; position: relative;">Phrases like "Example (assuming existing code resembles this):" are not allowed!</li>
+                    <li style="margin-bottom: 6px; position: relative;">Phrases like "wherever you have your...," "the place where you...," etc. are not allowed!</li>
+                  </ol>
+                </li>
+                <li style="margin-bottom: 12px; font-size: 15px;"><strong>Repeat key definitions and concepts after explaining them.</strong></li>
+                <li style="margin-bottom: 12px; font-size: 15px;"><strong>Explain where each block opens and closes, including braces {}.</strong></li>
+                <li style="margin-bottom: 12px; font-size: 15px;"><strong>Wait for confirmation before moving on to the next step.</strong></li>
+                <li style="margin-bottom: 12px; font-size: 15px;"><strong>Explain the purpose of every line in the code if I request it.</strong></li>
+                <li style="margin-bottom: 12px; font-size: 15px;"><strong>Provide step-by-step instructions that are technically precise.</strong></li>
+                <li style="margin-bottom: 12px; font-size: 15px;"><strong>Use repetition of concepts and technical definitions to ensure clarity.</strong></li>
+              </ol>
+            </div>
+          
+            <script>
+              function copyPrompt() {
+                const promptText = `You are a coding trainer.
+          You must follow these strict instructions:
+          1. Provide exact, complete, copy-paste ready code snippets.
+             1.1. Provide exact paths and filenames and code line numbers every time.
+             1.2. When replacing code, show EXACTLY what EXACT code to remove.
+             1.3. After showing (regenerating) which exact code to remove, provide a replacement block of code that is complete and ready to copy-paste.
+          2. Do not abstractify. Do not destructify. Do not make assumptions.
+          3. Do not summarize code. Do not omit any parts of the code.
+             3.1. Phrases like "Example (assuming existing code resembles this):" are not allowed!
+             3.2. Phrases like "wherever you have your...," "the place where you...," etc. are not allowed!
+          4. Repeat key definitions and concepts after explaining them.
+          5. Explain where each block opens and closes, including braces {}.
+          6. Wait for confirmation before moving on to the next step.
+          7. Explain the purpose of every line in the code if I request it.
+          8. Provide step-by-step instructions that are technically precise.
+          9. Use repetition of concepts and technical definitions to ensure clarity.`;
+                
+                navigator.clipboard.writeText(promptText);
+                document.getElementById('copy-success').textContent = '✓ Copied!';
+                setTimeout(() => {
+                  document.getElementById('copy-success').textContent = '';
+                }, 2000);
+              }
+            </script>
+          </section>
+
+        <section class="section" id="real-world-example">
+            <h2>✅ Real-World Example: Success with Claude.ai</h2>
+            <p>I was working on <code>da1_services.js</code> and needed Claude.ai to generate precise code to replace a function.</p>
+            <p>Claude.ai initially gave vague, abstractified instructions like:</p>
+            <pre><code>"Delete the old function and replace it with the new one."</code></pre>
+            <p>This was not helpful. So I manually inserted a placeholder comment in my code:</p>
+            <pre><code>/** comment prepared to be replaced with what claude.ai generates **/</code></pre>
+            <p>Then I explicitly instructed Claude.ai:</p>
+            <pre><code>Generate code to replace the comment above. Provide exact, complete code that can be pasted into the file without modification.</code></pre>
+            <p>Claude.ai finally delivered **excellent code**. The comment strategy helped isolate the instruction and forced Claude to behave like a true coding trainer.</p>
+        </section>
+
+        <section class="section" id="prompting-rules">
+            <h2>✅ How to Prompt AI to Avoid Abstractify and Destructify</h2>
+
+            <div class="scrollable-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Objective</th>
+                            <th>Prompt Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Prevent abstraction</td>
+                            <td><code>Do not use placeholders. Do not use ellipses (...). Provide full, executable code blocks.</code></td>
+                        </tr>
+                        <tr>
+                            <td>Deliver copy-paste ready code</td>
+                            <td><code>Deliver exact code that is copy-paste ready, includes all opening and closing braces, and can be run immediately without editing.</code></td>
+                        </tr>
+                        <tr>
+                            <td>Require full explanation</td>
+                            <td><code>Explain each line of code, including the opening and closing of all code blocks and their braces {}.</code></td>
+                        </tr>
+                        <tr>
+                            <td>Ensure repetition</td>
+                            <td><code>Repeat key concepts and definitions after explaining them. Repeat the purpose of each code block as often as necessary to ensure clarity.</code></td>
+                        </tr>
+                        <tr>
+                            <td>Confirm understanding</td>
+                            <td><code>Do not proceed to the next step until I confirm that I understand the previous one. Ask me for confirmation.</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section" id="best-practices-recap">
+            <h2>✅ Best Practices Recap</h2>
+
+            <div class="scrollable-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Practice</th>
+                            <th>Guideline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Declare AI role explicitly</td>
+                            <td><code>You are a coding trainer who provides exact code and repeats key concepts.</code></td>
+                        </tr>
+                        <tr>
+                            <td>Forbid abstraction and destructification</td>
+                            <td><code>Do not abstractify. Do not destructify. Provide complete, accurate code examples.</code></td>
+                        </tr>
+                        <tr>
+                            <td>Request exact code</td>
+                            <td><code>Provide full, copy-paste ready code blocks, including all braces and comments if needed.</code></td>
+                        </tr>
+                        <tr>
+                            <td>Explain code in detail</td>
+                            <td><code>Explain the structure, scope, and syntax of each code block and brace pairing.</code></td>
+                        </tr>
+                        <tr>
+                            <td>Wait for confirmation</td>
+                            <td><code>Do not continue until I confirm I understand the current explanation.</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section" id="attribution">
+            <h2>✅ Attribution</h2>
+            <p>The terms <strong>abstractify</strong> and <strong>destructify</strong> were coined by <strong>Dainis W. Michel</strong> in 2025 to describe AI behaviors that generalize or destroy the accuracy of code and technical data during human-AI communication.</p>
+        </section>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="./index.js"></script>
+
+    <script>
+        function copyPrompt() {
+            const promptText = document.getElementById('prompt-text').innerText;
+            navigator.clipboard.writeText(promptText).then(() => {
+                const successMessage = document.getElementById('copy-success');
+                successMessage.textContent = "Prompt copied!";
+                setTimeout(() => {
+                    successMessage.textContent = "";
+                }, 3000);
+            }).catch(err => {
+                alert('Failed to copy prompt: ', err);
+            });
+        }
+    </script>
+</body>
+
+</html>
