@@ -79,6 +79,51 @@ function initializeUI() {
     });
 }
 
+// Function to add alphabetically sorted tags line under the article metadata
+function addTagsToArticle() {
+    // Only run this on article pages
+    if (!window.location.pathname.includes('/articles/')) {
+        return;
+    }
+    
+    // Find the blog post meta info section
+    const metaSection = document.querySelector('.blog-post-meta');
+    if (!metaSection) {
+        console.log('Blog post meta section not found');
+        return;
+    }
+    
+    // Get the metadata from the DA1 metadata script tag
+    const metadataScript = document.querySelector('script#da1-metadata');
+    if (!metadataScript) {
+        console.log('DA1 metadata not found');
+        return;
+    }
+    
+    try {
+        // Parse the metadata
+        const metadata = JSON.parse(metadataScript.textContent);
+        
+        // Check if we have tags
+        if (metadata.tags && metadata.tags.length > 0) {
+            // Sort tags alphabetically
+            const sortedTags = [...metadata.tags].sort();
+            
+            // Create the tags element
+            const tagsElement = document.createElement('div');
+            tagsElement.className = 'article-tags-display';
+            tagsElement.innerHTML = `Tags: ${sortedTags.join(', ')}`;
+            
+            // Insert after the meta section
+            metaSection.insertAdjacentElement('afterend', tagsElement);
+            
+            console.log('Added tags line to article');
+        }
+    } catch (error) {
+        console.error('Error parsing DA1 metadata:', error);
+    }
+}
+
 // Load components when DOM is ready
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Blog component loader: Loading components...");
@@ -90,6 +135,9 @@ document.addEventListener("DOMContentLoaded", function() {
         loadComponent("blog-footer.html", "footer-container")
     ]).then(() => {
         console.log("All blog components loaded successfully");
-        setTimeout(initializeUI, 50);
+        setTimeout(() => {
+            initializeUI();
+            addTagsToArticle(); // Add tags to article pages
+        }, 50);
     });
 });

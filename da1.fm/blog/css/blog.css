@@ -170,7 +170,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 5px;
+    margin-left: auto;
     position: relative;
     width: 24px;
     height: 24px;
@@ -640,6 +640,133 @@ article h3 {
 
 .read-more:hover {
     color: var(--accent);
+}
+
+/* Category and tag styles */
+.category-tag {
+    display: inline-block;
+    background-color: var(--primary-medium);
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.post-tag {
+    display: inline-block;
+    background-color: #f5f5f5;
+    color: #555;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.post-tag:hover {
+    background-color: #eaeaea;
+    border-color: #ccc;
+}
+
+/* Tag filter active state */
+.post-tag.active {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Display for unclickable tags in blog list */
+.post-tags-display {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+/* Display for tags in article page */
+.article-tags-display {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 10px 0 20px 0;
+    font-style: italic;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Popular tags section */
+.popular-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0;
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+.popular-tags-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+/* All tag has special styling */
+.all-tag {
+    background-color: var(--primary-dark);
+    color: white;
+    font-weight: 600;
+}
+
+/* All tags except 'All' have the same styling */
+
+/* Tweet content styles */
+.tweet-content {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary-medium);
+    margin: 20px 0;
+}
+
+.tweet-content p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Quick Takes category styling */
+.category-tag {
+    display: inline-block;
+    background-color: var(--primary-medium);
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+/* Special styling for Quick Takes posts */
+.blog-post-header .category-tag:nth-child(1) {
+    background-color: var(--primary-medium);
+}
+
+/* We'll add this class via JavaScript */
+.quick-takes-category {
+    background-color: #4a6fa5 !important;
 }
 
 /*---------------------------------
@@ -1422,3 +1549,15 @@ footer {
   }
 
 /*  end early adopter contribution section */
+
+/* Blog Post Messaging */
+.loading-indicator,
+.no-posts-message {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #777;
+  margin: 20px 0;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}

@@ -29,15 +29,7 @@
             <p class="blog-description">Insights on metadata standards, music industry attribution, and the DA1 ecosystem</p>
         </header>
 
-        <!-- Categories Navigation -->
-        <div class="blog-categories">
-            <span class="category-label">Categories:</span>
-            <a href="#" class="category-link active" data-category="all">All</a>
-            <a href="#" class="category-link" data-category="Standards">Standards</a>
-            <a href="#" class="category-link" data-category="Music Industry">Music Industry</a>
-            <a href="#" class="category-link" data-category="Technology">Technology</a>
-            <a href="#" class="category-link" data-category="Tutorials">Tutorials</a>
-        </div>
+        <!-- We'll rely on tags for filtering instead of categories -->
 
         <!-- Blog Posts Container -->
         <div id="blog-posts">
@@ -55,56 +47,152 @@
     <script src="./js/component-loader.js"></script>
     <script src="./js/blog.js"></script>
 
-    <!-- Category filter script -->
+    <!-- Tag-based filtering script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Category filter functionality
-            const categoryLinks = document.querySelectorAll('.category-link');
-            categoryLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+            let activeTag = null;
+            
+            // Add event delegation for tag filtering (for tags that may be added dynamically)
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('post-tag')) {
                     e.preventDefault();
                     
-                    // Get the selected category
-                    const category = this.getAttribute('data-category');
+                    // Get the selected tag text
+                    const tag = e.target.innerText;
                     
-                    // Remove active class from all links
-                    categoryLinks.forEach(l => l.classList.remove('active'));
+                    // Special handling for "All" tag
+                    if (tag === 'All' || e.target.classList.contains('all-tag')) {
+                        // Remove active class from all tags
+                        document.querySelectorAll('.post-tag').forEach(t => t.classList.remove('active'));
+                        
+                        // Add active class to All tag
+                        e.target.classList.add('active');
+                        
+                        // Reset active tag and show all posts
+                        activeTag = null;
+                        filterBlogPosts(null);
+                        return;
+                    }
                     
-                    // Add active class to clicked link
-                    this.classList.add('active');
-                    
-                    // Filter blog posts based on category
-                    filterBlogPosts(category);
-                });
+                    // Toggle tag selection for regular tags
+                    if (activeTag === tag) {
+                        activeTag = null;
+                        e.target.classList.remove('active');
+                        
+                        // Show all posts when no tag is selected
+                        filterBlogPosts(null);
+                        
+                        // Add active class to All tag
+                        document.querySelector('.all-tag')?.classList.add('active');
+                    } else {
+                        // Remove active class from all other tags
+                        document.querySelectorAll('.post-tag').forEach(t => t.classList.remove('active'));
+                        
+                        activeTag = tag;
+                        e.target.classList.add('active');
+                        
+                        // Filter posts based on tag
+                        filterBlogPosts(activeTag);
+                    }
+                }
             });
             
-            // Function to filter blog posts by category
-            function filterBlogPosts(category) {
+            // Function to filter blog posts by tag
+            function filterBlogPosts(tag) {
                 const blogPosts = document.querySelectorAll('.blog-post');
                 
                 blogPosts.forEach(post => {
-                    const postCategory = post.querySelector('.category-tag')?.innerText;
-                    
-                    if (category === 'all' || postCategory === category) {
-                        post.style.display = 'block';
+                    // If a tag is active, check if post has that tag
+                    if (tag) {
+                        const postTags = Array.from(post.querySelectorAll('.post-tag')).map(t => t.innerText);
+                        post.style.display = postTags.includes(tag) ? 'block' : 'none';
                     } else {
-                        post.style.display = 'none';
+                        // No tag selected, show all posts
+                        post.style.display = 'block';
                     }
                 });
                 
-                // Display message if no posts match the category
-                const visiblePosts = document.querySelectorAll('.blog-post[style="display: block"]');
+                // Display message if no posts match the filter
+                // Use getComputedStyle to properly check visibility
+                const visiblePosts = Array.from(document.querySelectorAll('.blog-post')).filter(post => {
+                    return window.getComputedStyle(post).display !== 'none';
+                });
+                
                 const noPostsMessage = document.querySelector('.no-posts-message');
                 
+                // Only show "no posts" message if there are truly no visible posts
                 if (visiblePosts.length === 0 && !noPostsMessage) {
                     const message = document.createElement('p');
                     message.className = 'no-posts-message';
-                    message.innerText = `No posts found in the "${category}" category.`;
+                    message.innerText = tag ? `No posts found with the "${tag}" tag.` : 'No posts found.';
                     document.getElementById('blog-posts').appendChild(message);
                 } else if (visiblePosts.length > 0 && noPostsMessage) {
                     noPostsMessage.remove();
                 }
             }
+            
+            // Add a container for popular tags at the top
+            const addPopularTags = () => {
+                setTimeout(() => {
+                    const blogPosts = document.querySelectorAll('.blog-post');
+                    if (blogPosts.length === 0) return;
+                    
+                    // Create a map to count tag occurrences
+                    const tagCounts = {};
+                    
+                    // Count occurrences of each tag
+                    blogPosts.forEach(post => {
+                        const postTags = post.querySelectorAll('.post-tag');
+                        postTags.forEach(tag => {
+                            const tagText = tag.innerText;
+                            tagCounts[tagText] = (tagCounts[tagText] || 0) + 1;
+                        });
+                    });
+                    
+                    // The specified top tags in alphabetical order, plus Quick Takes
+                    const displayTags = [
+                        "Blockchain",
+                        "Creator Rights",
+                        "Digital Rights",
+                        "Digital Transformation",
+                        "Monetization",
+                        "Music Industry", 
+                        "Music Metadata",
+                        "Photography",
+                        "Quick Takes",
+                        "Royalties",
+                        "Web3"
+                    ].sort();
+                    
+                    // If we have tags, add the popular tags section
+                    if (displayTags.length > 0) {
+                        const popularTagsContainer = document.createElement('div');
+                        popularTagsContainer.className = 'popular-tags';
+                        popularTagsContainer.innerHTML = `
+                            <span class="popular-tags-label">Tags: </span>
+                            <span class="post-tag all-tag">All</span>
+                            ${displayTags.map(tag => `<span class="post-tag">${tag}</span>`).join('')}
+                        `;
+                        
+                        // Insert after header
+                        const headerElement = document.querySelector('.blog-header');
+                        if (headerElement && !document.querySelector('.popular-tags')) {
+                            headerElement.after(popularTagsContainer);
+                        }
+                    }
+                }, 1000); // Give time for posts to load
+            };
+            
+            // Call the function after page loads
+            addPopularTags();
+            
+            // Make sure "All" is active by default when the page loads
+            setTimeout(() => {
+                const allTag = document.querySelector('.all-tag');
+                if (allTag) {
+                    allTag.classList.add('active');
+                }
+            }, 1500);
         });
     </script>
 </body>

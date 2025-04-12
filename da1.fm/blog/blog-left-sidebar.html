@@ -57,9 +57,9 @@
             </li>
             <li class="nav-item">
                 <a 
-                    :href="window.location.pathname.includes('/articles/') ? '../../knowledge-base.html' : '../knowledge-base.html'" 
+                    :href="window.location.pathname.includes('/articles/') ? '../../knowledge-base/' : '../knowledge-base/'" 
                     class="nav-link" 
-                    :class="{'active': activePage === 'knowledge-base.html'}"
+                    :class="{'active': activePage.includes('knowledge-base')}"
                     @mouseover="if(!sidebarExpanded) showTooltip = 'knowledge-base'"
                     @mouseleave="showTooltip = null"
                 >

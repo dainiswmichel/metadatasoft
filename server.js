@@ -94,6 +94,11 @@ app.use('/da1fm-output', express.static(path.join(__dirname, '../da1.fm/backend/
 app.use('/mvp-03', express.static(path.join(__dirname, '../da1-mvp-03')));
 app.use('/mvp-03/kb', express.static(path.join(__dirname, '../da1-mvp-03/kb')));
 
+// Serve the new knowledge base
+app.use('/knowledge-base', express.static(path.join(__dirname, '../da1.fm/knowledge-base')));
+// Serve the entire da1.fm directory
+app.use('/da1fm', express.static(path.join(__dirname, '../da1.fm')));
+
 console.log('✅ Static file directories configured');
 
 // =========================

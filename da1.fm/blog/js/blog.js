@@ -62,9 +62,17 @@ function scanForArticles() {
                 })
             );
             
-            // Filter out null results and sort by date (newest first)
+            // Get current date for date-based release filtering
+            const currentDate = new Date();
+            
+            // Filter out null results, future articles, and sort by date (newest first)
             const validArticles = articlesMetadata
                 .filter(article => article !== null)
+                .filter(article => {
+                    // Only show articles whose publish date has been reached
+                    const publishDate = new Date(article.datePublished);
+                    return publishDate <= currentDate;
+                })
                 .sort((a, b) => {
                     // Parse dates for sorting
                     const dateA = new Date(a.datePublished);
@@ -131,8 +139,38 @@ function createArticleElement(article) {
         }
     }
     
+    // 1. Create hidden but filterable tags for search functionality (not visible)
+    let filterableTags = '';
+    if (article.tags && article.tags.length > 0) {
+        // Include the category as a tag for filtering if it's not already in the tags
+        let filterTags = [...article.tags];
+        if (article.category && !filterTags.includes(article.category) && article.category !== 'Uncategorized') {
+            filterTags.push(article.category);
+        }
+        filterableTags = `<div class="post-tags" style="display:none;">
+            ${filterTags.map(tag => `<span class="post-tag">${tag}</span>`).join('')}
+        </div>`;
+    }
+    
+    // 2. Create visible but unclickable, alphabetically sorted tags for display
+    let displayTags = '';
+    if (article.tags && article.tags.length > 0) {
+        // Make sure to include the category as a tag if it's not already in the tags array
+        let allTags = [...article.tags];
+        if (article.category && !allTags.includes(article.category) && article.category !== 'Uncategorized') {
+            allTags.push(article.category);
+        }
+        // Sort tags alphabetically
+        const sortedTags = allTags.sort();
+        displayTags = `<div class="post-tags-display">
+            Tags: ${sortedTags.join(', ')}
+        </div>`;
+    }
+    
+    // Determine if this is a Quick Takes post and add the appropriate class
+    const categoryClass = article.category === 'Quick Takes' ? 'category-tag quick-takes-category' : 'category-tag';
+    
     articleElement.innerHTML = `
-        <div class="category-tag">${article.category || 'Uncategorized'}</div>
         <h2><a href="${article.path}">${article.title}</a></h2>
         <div class="post-meta">
             <span><i class="bi bi-person"></i> ${article.authorName}</span>
@@ -140,6 +178,8 @@ function createArticleElement(article) {
             ${article.readingTime ? `<span><i class="bi bi-clock"></i> ${article.readingTime}</span>` : ''}
         </div>
         <p>${article.excerpt}</p>
+        ${displayTags}
+        ${filterableTags}
         <a href="${article.path}" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
     `;
     
