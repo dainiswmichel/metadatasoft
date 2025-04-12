@@ -296,6 +296,12 @@ body {
     flex-grow: 1;
     box-sizing: border-box;
     width: calc(100% - 2 * var(--content-margin));
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-content.sidebar-collapsed {
+    margin-left: 80px !important; /* 60px sidebar width + 20px spacing */
+    width: calc(100% - 80px - var(--content-margin)) !important;
 }
   
 .main-content h1 {

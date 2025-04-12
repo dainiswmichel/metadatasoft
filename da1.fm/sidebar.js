@@ -20,5 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log("Current page:", pageName);
     
-    // You can add additional initialization logic here if needed
+    // Set initial state for main content based on sidebar state
+    const isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+    if (!isExpanded) {
+        document.querySelector('.main-content')?.classList.add('sidebar-collapsed');
+    }
 });

@@ -11,7 +11,7 @@
     <div class="sidebar-header">
         <h2 x-show="sidebarExpanded" class="sidebar-title">Navigation</h2>
         <button 
-            @click="sidebarExpanded = !sidebarExpanded; localStorage.setItem('sidebarExpanded', sidebarExpanded)"
+            @click="sidebarExpanded = !sidebarExpanded; localStorage.setItem('sidebarExpanded', sidebarExpanded); document.querySelector('.main-content').classList.toggle('sidebar-collapsed', !sidebarExpanded)"
             class="sidebar-toggle"
             :title="sidebarExpanded ? 'Collapse menu' : 'Expand menu'"
             @mouseover="if(!sidebarExpanded) showTooltip = 'toggle'"
