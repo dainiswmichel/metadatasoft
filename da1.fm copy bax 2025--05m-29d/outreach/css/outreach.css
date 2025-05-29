@@ -1,0 +1,289 @@
+/* 
+ * DA1 Outreach - Styles
+ * Based on the blog CSS with outreach-specific additions
+ */
+
+/* Import blog styles as base */
+@import '../../blog/css/blog.css';
+
+/* Outreach specific styles */
+.outreach-header {
+  margin-bottom: 2rem;
+}
+
+.outreach-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.outreach-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.outreach-message {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.tweet-content {
+  background-color: #f8f9fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.tweet-content p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* Tweet status indicator */
+.tweet-status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.tweet-status.pending {
+  background-color: #f1f8ff;
+  color: #0366d6;
+}
+
+.tweet-status.scheduled {
+  background-color: #fff8c5;
+  color: #735c0f;
+}
+
+.tweet-status.tweeted {
+  background-color: #e6ffed;
+  color: #22863a;
+}
+
+.tweet-status.error {
+  background-color: #ffeef0;
+  color: #cb2431;
+}
+
+/* Share buttons */
+.share-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.twitter-share {
+  background-color: #1da1f2;
+  color: white;
+}
+
+.twitter-share:hover {
+  background-color: #1a91da;
+}
+
+.copy-text {
+  background-color: #eaecef;
+  color: #24292e;
+}
+
+.copy-text:hover {
+  background-color: #dfe1e5;
+}
+
+/* Follow-up plan */
+.follow-up-plan {
+  margin-bottom: 2rem;
+}
+
+.follow-up-plan ol {
+  padding-left: 1.5rem;
+}
+
+.follow-up-plan li {
+  margin-bottom: 0.5rem;
+}
+
+/* Target info */
+.target-info {
+  background-color: #f0f6fc;
+  border: 1px solid #c8e1ff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.target-details p {
+  margin-bottom: 0.5rem;
+}
+
+/* Tweet reminder notification */
+.tweet-reminder {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 350px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  animation: slide-in 0.3s ease-out;
+}
+
+@keyframes slide-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.reminder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f0f6fc;
+  border-bottom: 1px solid #c8e1ff;
+}
+
+.reminder-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #0366d6;
+}
+
+.close-reminder {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #586069;
+}
+
+.reminder-content {
+  padding: 1rem;
+}
+
+.post-title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.reminder-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.share-now {
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.remind-later {
+  background-color: #eaecef;
+  color: #24292e;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Comments Section */
+.comments-section {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.comments-section h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #24292e;
+  border-bottom: 1px solid #e1e4e8;
+  padding-bottom: 0.75rem;
+}
+
+.giscus {
+  margin-top: 1rem;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .tweet-content {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .target-info {
+    background-color: #1e3a5f;
+    border-color: #2c5282;
+  }
+
+  .tweet-reminder {
+    background-color: #1f2937;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .reminder-header {
+    background-color: #1e3a5f;
+    border-color: #2c5282;
+  }
+
+  .close-reminder {
+    color: #9ca3af;
+  }
+
+  .remind-later {
+    background-color: #374151;
+    color: #e5e7eb;
+  }
+
+  .copy-text {
+    background-color: #374151;
+    color: #e5e7eb;
+  }
+
+  .copy-text:hover {
+    background-color: #4b5563;
+  }
+
+  .comments-section {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .comments-section h2 {
+    color: #e5e7eb;
+    border-color: #374151;
+  }
+}

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DA1metaMetadata System - Standardized Table Headers</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    th {
+      background-color: #f2f2f2;
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    td.empty-cell {
+      background-color: #f9f9f9;
+      color: #aaa;
+      font-style: italic;
+      text-align: center;
+    }
+    
+    /* Category Information - Light Blue */
+    .category-col {
+      background-color: #e6f2ff;
+    }
+    
+    /* Core Metadata - Light Green */
+    .core-metadata-col {
+      background-color: #e6ffe6;
+    }
+    
+    /* FLAC Format - Light Orange */
+    .flac-col {
+      background-color: #fff2e6;
+    }
+    
+    /* MP3 Format - Light Red */
+    .mp3-col {
+      background-color: #ffe6e6;
+    }
+    
+    /* MP4/M4A Format - Light Purple */
+    .mp4-col {
+      background-color: #f9e6ff;
+    }
+    
+    /* BWF/WAV Format - Light Cyan */
+    .wav-col {
+      background-color: #e6ffff;
+    }
+    
+    /* Other Formats - Light Yellow */
+    .other-format-col {
+      background-color: #fff9e6;
+    }
+    
+    /* DA1 XML - Light Lavender */
+    .da1-xml-col {
+      background-color: #efe6ff;
+    }
+    
+    /* Distribution Platforms - Light Green */
+    .platform-col {
+      background-color: #e6ffe6;
+    }
+    
+    /* Timestamp Information - Yellow */
+    .timestamp-col {
+      background-color: #ffffe6;
+    }
+    
+    /* Recommended field highlight */
+    .recommended {
+      position: relative;
+    }
+    
+    .recommended:after {
+      content: "★";
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      font-size: 10px;
+      color: #f57c00;
+    }
+    
+    /* Legend and notes */
+    .legend, .notes {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    
+    .legend h3, .notes h3 {
+      margin-top: 0;
+    }
+    
+    .legend ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    .legend li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .color-box {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>DA1metaMetadata System - Standardized Headers</h1>
+  
+  <table>
+    <thead>
+      <tr>
+        <!-- Category Information - Blue Section -->
+        <th class="category-col">Category ID</th>
+        <th class="category-col">Category Name</th>
+        <th class="category-col">Tag ID</th>
+        
+        <!-- Core MetaMetadata - Green Section -->
+        <th class="core-metadata-col">DA1metaMetaTag</th>
+        <th class="core-metadata-col">Description</th>
+        <th class="core-metadata-col">Max Length</th>
+        <th class="core-metadata-col">Data Format</th>
+        <th class="core-metadata-col">Recommended</th>
+        <th class="core-metadata-col">Validation Rules</th>
+        <th class="core-metadata-col">DA1metaMetaData Content</th>
+        
+        <!-- FLAC Format - Orange Section -->
+        <th class="flac-col">FLAC Tag</th>
+        <th class="flac-col">FLAC Tag Content</th>
+        
+        <!-- MP3 Format - Red Section -->
+        <th class="mp3-col">MP3 ID3v2 Tag</th>
+        <th class="mp3-col">MP3 ID3v2 Content</th>
+        <th class="mp3-col">MP3 APEv2 Tag</th>
+        <th class="mp3-col">MP3 APEv2 Content</th>
+        
+        <!-- MP4/M4A Format - Purple Section -->
+        <th class="mp4-col">MP4/M4A Tag</th>
+        <th class="mp4-col">MP4/M4A Content</th>
+        
+        <!-- BWF/WAV Format - Cyan Section -->
+        <th class="wav-col">BWF/WAV XMP Tag</th>
+        <th class="wav-col">BWF/WAV XMP Content</th>
+        <th class="wav-col">BWF/WAV INFO Tag</th>
+        <th class="wav-col">BWF/WAV INFO Content</th>
+        <th class="wav-col">BWF/WAV iXML Tag</th>
+        <th class="wav-col">BWF/WAV iXML Content</th>
+        
+        <!-- Other Formats - Yellow Section -->
+        <th class="other-format-col">OGG Opus Tag</th>
+        <th class="other-format-col">OGG Opus Content</th>
+        <th class="other-format-col">AIFF Tag</th>
+        <th class="other-format-col">AIFF Content</th>
+        
+        <!-- DA1 XML - Lavender Section -->
+        <th class="da1-xml-col">DA1 XML Tag</th>
+        <th class="da1-xml-col">DA1 XML Content</th>
+        
+        <!-- Distribution Platforms - Green Section -->
+        <th class="platform-col">DistroKid Field</th>
+        <th class="platform-col">DistroKid Field Max Length</th>
+        <th class="platform-col">DistroKid Field Data Format</th>
+        <th class="platform-col">DistroKid Field Content</th>
+        
+        <th class="platform-col">TuneCore Field</th>
+        <th class="platform-col">TuneCore Field Max Length</th>
+        <th class="platform-col">TuneCore Field Data Format</th>
+        <th class="platform-col">TuneCore Field Content</th>
+        
+        <th class="platform-col">Apple Music Field</th>
+        <th class="platform-col">Apple Music Field Max Length</th>
+        <th class="platform-col">Apple Music Field Data Format</th>
+        <th class="platform-col">Apple Music Field Content</th>
+        
+        <th class="platform-col">Spotify Field</th>
+        <th class="platform-col">Spotify Field Max Length</th>
+        <th class="platform-col">Spotify Field Data Format</th>
+        <th class="platform-col">Spotify Field Content</th>
+        
+        <th class="platform-col">YouTube Field</th>
+        <th class="platform-col">YouTube Field Max Length</th>
+        <th class="platform-col">YouTube Field Data Format</th>
+        <th class="platform-col">YouTube Field Content</th>
+        
+        <!-- Timestamp Information - Yellow Section -->
+        <th class="timestamp-col">Sync Timestamp</th>
+        <th class="timestamp-col">Timecode Format</th>
+        <th class="timestamp-col">Lyrics Timestamp Format</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Sample row showing field mappings -->
+      <tr>
+        <td class="category-col">C1</td>
+        <td class="category-col">Core Identification</td>
+        <td class="category-col">C1.T1</td>
+        <td class="core-metadata-col">TITLE</td>
+        <td class="core-metadata-col">Track title or name</td>
+        <td class="core-metadata-col">128</td>
+        <td class="core-metadata-col">String</td>
+        <td class="core-metadata-col recommended">Yes</td>
+        <td class="core-metadata-col">Non-empty</td>
+        <td class="core-metadata-col">[User entered DA1metaMetaData title]</td>
+        <td class="flac-col">TITLE</td>
+        <td class="flac-col">[Custom FLAC title or DA1neverBlank data]</td>
+        <td class="mp3-col">TIT2</td>
+        <td class="mp3-col">[Custom ID3v2 title or DA1neverBlank data]</td>
+        <td class="mp3-col">Title</td>
+        <td class="mp3-col">[Custom APEv2 title or DA1neverBlank data]</td>
+        <td class="mp4-col">©nam</td>
+        <td class="mp4-col">[Custom MP4 title or DA1neverBlank data]</td>
+        <td class="wav-col">dc:title</td>
+        <td class="wav-col">[Custom XMP title or DA1neverBlank data]</td>
+        <td class="wav-col">INAM</td>
+        <td class="wav-col">[Custom INFO title or DA1neverBlank data]</td>
+        <td class="wav-col">TITLE</td>
+        <td class="wav-col">[Custom iXML title or DA1neverBlank data]</td>
+        <td class="other-format-col">TITLE</td>
+        <td class="other-format-col">[Custom OGG title or DA1neverBlank data]</td>
+        <td class="other-format-col">NAME</td>
+        <td class="other-format-col">[Custom AIFF title or DA1neverBlank data]</td>
+        <td class="da1-xml-col">title</td>
+        <td class="da1-xml-col">&lt;title&gt;[DA1metaMetaData title]&lt;/title&gt;</td>
+        <td class="platform-col">The title of the track</td>
+        <td class="platform-col">100</td>
+        <td class="platform-col">String</td>
+        <td class="platform-col">[Custom DistroKid title or inherits DA1metaMetaData title or is populated with DA1neverBlank data]</td>
+        
+        <td class="platform-col">Title</td>
+        <td class="platform-col">100</td>
+        <td class="platform-col">String</td>
+        <td class="platform-col">[Custom TuneCore title or inherits DA1metaMetaData title or is populated with DA1neverBlank data]</td>
+        
+        <td class="platform-col">Name</td>
+        <td class="platform-col">100</td>
+        <td class="platform-col">String</td>
+        <td class="platform-col">[Custom Apple Music title or inherits DA1metaMetaData title or is populated with DA1neverBlank data]</td>
+        
+        <td class="platform-col">Track Name</td>
+        <td class="platform-col">100</td>
+        <td class="platform-col">String</td>
+        <td class="platform-col">[Custom Spotify title or inherits DA1metaMetaData title or is populated with DA1neverBlank data]</td>
+        
+        <td class="platform-col">Title</td>
+        <td class="platform-col">100</td>
+        <td class="platform-col">String</td>
+        <td class="platform-col">[Custom YouTube title or inherits DA1metaMetaData title or is populated with DA1neverBlank data]</td>
+        <td class="timestamp-col">N/A</td>
+        <td class="timestamp-col">N/A</td>
+        <td class="timestamp-col">N/A</td>
+      </tr>
+      <tr>
+        <td class="empty-cell" colspan="60">Additional data rows will be populated here</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="legend">
+    <h3>Color Legend</h3>
+    <ul>
+      <li><div class="color-box" style="background-color: #e6f2ff;"></div> Category Information</li>
+      <li><div class="color-box" style="background-color: #e6ffe6;"></div> Core MetaMetadata and Distribution Platforms</li>
+      <li><div class="color-box" style="background-color: #fff2e6;"></div> FLAC Format</li>
+      <li><div class="color-box" style="background-color: #ffe6e6;"></div> MP3 Format</li>
+      <li><div class="color-box" style="background-color: #f9e6ff;"></div> MP4/M4A Format</li>
+      <li><div class="color-box" style="background-color: #e6ffff;"></div> BWF/WAV Format</li>
+      <li><div class="color-box" style="background-color: #fff9e6;"></div> Other Formats</li>
+      <li><div class="color-box" style="background-color: #efe6ff;"></div> DA1 XML</li>
+      <li><div class="color-box" style="background-color: #ffffe6;"></div> Timestamp Information</li>
+    </ul>
+  </div>
+  
+  <div class="notes">
+    <h3>Notes on MetaMetadata Flow</h3>
+    <p><strong>How DA1metaMetaData streamlines workflow across formats:</strong></p>
+    <ol>
+      <li><strong>Central Management:</strong> Users fill in the "DA1metaMetaData Content" fields once, which serve as the primary source for all subFormats</li>
+      <li><strong>Automatic Mapping & Distribution:</strong> The DA1metaMetaData automatically maps and distributes to corresponding fields in each subFormat-specific field</li>
+      <li><strong>SubFormat Customization:</strong> Users can customize individual subFormat-specific fields if desired</li>
+      <li><strong>Smart Defaults:</strong> Empty fields get DA1neverBlank data</li>
+    </ol>
+    <p>The "Recommended" column indicates fields that are suggested for best practices but are not strictly required. These are indicated with a star (★).</p>
+    
+    <h3>Notes on Comprehensive Coverage</h3>
+    <p>The DA1metaMetaTag system is designed to incorporate ALL metadata tags from various ecosystems:</p>
+    <ul>
+      <li>Common tags (like title, artist, album) are mapped across all systems</li>
+      <li>When subtle differences exist between platforms, unique DA1metaMetaTags can be created</li>
+      <li>Modern metadata systems with 100+ specialized tags are all incorporated</li>
+      <li>The DA1 system provides a unified access point for managing metaMetaData across all these systems</li>
+    </ul>
+  </div>
+</body>
+</html>

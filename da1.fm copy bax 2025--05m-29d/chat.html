@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Dawon - Your Friendly da1.fm Chat Assistant</title>
+    
+    <!-- CSS files first -->
+    <link rel="stylesheet" href="./resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="./index.css">
+    
+    <!-- Alpine.js must be loaded before sidebar.js -->
+    <script defer type="module" src="./js/alpinejs-local.js"></script>
+    <script src="./sidebar.js" defer></script>
+    
+    <!-- Other scripts -->
+    <script src="./component-loader.js"></script>
+
+    <style>
+        /* Chat container styles */
+        .chat-container {
+            background-color: var(--bg-light);
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        /* Ensure the Voiceflow chat takes appropriate height */
+        #voiceflow-chat-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            background-color: white;
+        }
+
+        /* Simple site footer within main content */
+        .site-footer {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: linear-gradient(to right, #f0f2f5, #e5e8ec);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .copyright-text {
+            margin: 0;
+            color: #555;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            #voiceflow-chat-frame {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Chat with Dawon - Your Friendly da1.fm Chat Assistant</h1>
+        
+
+        <!-- Chat container in the main content area with fixed height -->
+        <div class="chat-container section">
+            <div id="voiceflow-chat-frame"></div>
+        </div>
+
+        <!-- Footer included directly in main content area -->
+        <div class="site-footer">
+            <p class="copyright-text">© 2025 DA1 Media Compilation. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Voiceflow Chat Widget -->
+    <script type="text/javascript">
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+                window.voiceflow.chat.load({
+                    verify: { projectID: '680a8e4c97fa0aa36623c010' },
+                    url: 'https://general-runtime.voiceflow.com',
+                    versionID: 'production',
+                    render: {
+                        mode: 'embedded',
+                        target: document.getElementById('voiceflow-chat-frame'),
+                    },
+                    autostart: true,
+                    voice: {
+                        url: "https://runtime-api.voiceflow.com"
+                    }
+                });
+            }
+            v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+            v.type = "text/javascript"; 
+            s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+    </script>
+</body>
+</html>

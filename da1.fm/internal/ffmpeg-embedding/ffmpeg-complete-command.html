@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete FFmpeg MP3 Metadata Embedding Command - Migla Migla</title>
+    
+    <!-- DA1 Metadata -->
+    <script id="da1-metadata" type="application/json">
+    {
+        "title": "Complete FFmpeg MP3 Metadata Embedding Command - Migla Migla",
+        "description": "Comprehensive FFmpeg command with every possible MP3/ID3v2 metadata tag using DA1neverBlank philosophy",
+        "author": "DA1 Technical Team",
+        "created": "2025-05-26",
+        "category": "Technical Documentation"
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .description {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .description h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .code-container {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 0;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .code-header {
+            background: #2d2d2d;
+            padding: 15px 20px;
+            border-bottom: 1px solid #404040;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-title {
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+        
+        .copy-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-button:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        
+        .copy-button:active {
+            transform: translateY(0);
+        }
+        
+        .copy-button.copied {
+            background: #28a745;
+        }
+        
+        .code-content {
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .code-block {
+            color: #f8f8f2;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        /* Syntax highlighting */
+        .comment { color: #6a9955; }
+        .string { color: #ce9178; }
+        .keyword { color: #569cd6; }
+        .flag { color: #dcdcaa; }
+        .value { color: #ce9178; }
+        .section-header { 
+            color: #4fc3f7; 
+            font-weight: bold;
+            display: block;
+            margin: 20px 0 10px 0;
+        }
+        
+        .section-divider {
+            color: #666;
+            margin: 15px 0;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .da1-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin: 0 5px;
+        }
+        
+        /* Custom scrollbar for code */
+        .code-content::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        .code-content::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+        
+        .code-content::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 6px;
+        }
+        
+        .code-content::-webkit-scrollbar-thumb:hover {
+            background: #5a6fd8;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .code-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .code-block {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 Complete FFmpeg MP3 Metadata Command</h1>
+            <p>Migla Migla - Every Possible Metadata Tag with DA1neverBlank Philosophy</p>
+        </div>
+        
+        <div class="content">
+            <div class="description">
+                <h2>📋 Command Overview</h2>
+                <p>This is the most comprehensive FFmpeg metadata embedding command possible for MP3 files. It includes every standard ID3v2.4 tag, extended fields, custom DA1 tags, and blockchain/W3C integration placeholders. Following the <span class="da1-badge">DA1neverBlank</span> philosophy, no field is left empty.</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Metadata Fields</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Custom Extensions</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">DA1neverBlank Coverage</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">Future</span>
+                    <span class="stat-label">Blockchain Ready</span>
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <div class="code-title">🚀 Complete FFmpeg Command</div>
+                    <button class="copy-button" onclick="copyToClipboard()">
+                        <span id="copy-icon">📋</span>
+                        <span id="copy-text">Copy Command</span>
+                    </button>
+                </div>
+                <div class="code-content">
+                    <div class="code-block" id="ffmpeg-command"><span class="section-header"># ====================================================================================================</span>
+<span class="section-header"># COMPLETE FFMPEG MP3 METADATA EMBEDDING COMMAND - MIGLA MIGLA</span>
+<span class="section-header"># DA1neverBlank Philosophy: Every field populated with meaningful data</span>
+<span class="section-header"># Generated: 2025-05-26 | Command Version: 2.0.0 | Coverage: 200+ metadata fields</span>
+<span class="section-header"># ====================================================================================================</span>
+
+<span class="keyword">ffmpeg</span> <span class="flag">-i</span> <span class="string">"migla-migla-source.mp3"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🎵 CORE TRACK IDENTIFICATION</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">title</span>=<span class="value">"Migla migla (Akustiskā dzīvajā versijā. 3x3 Brīvais Mikrofons. Koknesē, Latvijā)"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">subtitle</span>=<span class="value">"[DA1neverBlank: Track subtitle or alternate title - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">album</span>=<span class="value">"Sadziedāšana ar Daini (Dzīvajā)"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">artist</span>=<span class="value">"Dainis W. Michel, Dainis V. Michelis, Da1ni5, Emīlija Michele, Olīvija un Hugo"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">album_artist</span>=<span class="value">"Dainis W. Michel & OEH"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">track</span>=<span class="value">"00"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">disc</span>=<span class="value">"1"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">year</span>=<span class="value">"2024"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">date</span>=<span class="value">"2024-07-03"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">grouping</span>=<span class="value">"Latvian Folk Collection"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">version</span>=<span class="value">"1.0"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">content_group_description</span>=<span class="value">"Traditional Latvian Folk Songs - Live Performance Series"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🎼 CREATORS & CONTRIBUTORS</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">composer</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">lyricist</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">songwriter</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">arranger</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">conductor</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">producer</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">performer</span>=<span class="value">"Dainis W. Michel on piano, Emīlija Michele on vocals, Olīvija and Hugo on guitar"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">engineer</span>=<span class="value">"[DA1neverBlank: Recording engineer name - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">technician</span>=<span class="value">"[DA1neverBlank: Technical support staff - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">studio_musicians</span>=<span class="value">"[DA1neverBlank: Additional studio musicians - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">vocal_credits</span>=<span class="value">"Emīlija Michele (lead vocals), Olīvija (harmony), Hugo (backing vocals)"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">instrument_credits</span>=<span class="value">"Dainis W. Michel (piano), Olīvija (acoustic guitar), Hugo (rhythm guitar)"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">session_musicians</span>=<span class="value">"None - Family Performance"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">featured_artist</span>=<span class="value">"Dainis W. Michel & Family Ensemble"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">contributing_artists</span>=<span class="value">"Emīlija Michele (vocals), Olīvija (guitar), Hugo (guitar)"</span> <span class="flag">\</span>
+
+<span class="comment"># Sorting Fields</span>
+<span class="flag">-metadata</span> <span class="keyword">album_sort</span>=<span class="value">"Sadziedāšana ar Daini"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">artist_sort</span>=<span class="value">"Michel, Dainis"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">composer_sort</span>=<span class="value">"Michel, Dainis"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">title_sort</span>=<span class="value">"Migla migla"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🔧 TECHNICAL PROPERTIES</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">bpm</span>=<span class="value">"60"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">tempo</span>=<span class="value">"Slow, Gentle"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">tempo_exact</span>=<span class="value">"60.0 BPM"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">key</span>=<span class="value">"Bb Major"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">time_signature</span>=<span class="value">"4/2"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">sample_rate</span>=<span class="value">"48000"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">bit_depth</span>=<span class="value">"24"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">channels</span>=<span class="value">"2"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">audio_codec</span>=<span class="value">"MP3"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">encoding_settings</span>=<span class="value">"24-bit/48kHz WAV"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">encoded_by</span>=<span class="value">"FFmpeg"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">duration</span>=<span class="value">"4:01"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">duration_frames</span>=<span class="value">"[DA1neverBlank: Duration in frames - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">audio_quality</span>=<span class="value">"24-bit/48kHz"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">noise_reduction</span>=<span class="value">"[DA1neverBlank: Noise reduction applied - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">dither_type</span>=<span class="value">"[DA1neverBlank: Dithering algorithm used - 32 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">true_peak</span>=<span class="value">"[DA1neverBlank: True peak level in dBFS - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">average_loudness</span>=<span class="value">"[DA1neverBlank: Average loudness LUFS - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">headroom</span>=<span class="value">"[DA1neverBlank: Dynamic headroom dB - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">phase_correlation</span>=<span class="value">"[DA1neverBlank: Phase correlation coefficient - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">signal_chain</span>=<span class="value">"Microphone → Audio Interface → DAW → Mastering"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">monitoring_environment</span>=<span class="value">"[DA1neverBlank: Studio monitoring setup - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">file_type</span>=<span class="value">"MP3"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">format</span>=<span class="value">"MPEG Audio Layer 3"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 📝 LYRICS & TEXT CONTENT</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">lyrics</span>=$<span class="value">'Migla, migla, liela rasa,\nMan pazuda kumeliņis.\n\nNokrīt migla, nokrīt rasa,\nEs dabūju kumeliņu.\n\nTumša nakte, zaļa zāle,\nLaukā laidu kumeliņu.\n\nDievs sargāja kumeliņu,\nEs pats savu līgaviņu.'</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">lyrics_language</span>=<span class="value">"Latvian"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">lyrics_script</span>=<span class="value">"Latin"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">lyrics_verification</span>=<span class="value">"Verified by Native Speaker"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">lyrics_copyright</span>=<span class="value">"© 2024 Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">translation_author</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">english_translation</span>=$<span class="value">'Mist, mist, heavy dew,\nI lost my steed.\n\nThe mist falls, the dew falls,\nI found my steed.\n\nDark night, green grass,\nI let my steed out to pasture.\n\nGod protected my steed,\nAs I protected my bride.'</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">comment</span>=<span class="value">"Traditional Latvian folk song arrangement, live performance"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">description</span>=<span class="value">"Intimate acoustic performance with natural room ambience"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">synopsis</span>=<span class="value">"A traditional Latvian folk song about losing and finding one's horse in the mist"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">narrative_theme</span>=<span class="value">"Loss, recovery, protection, love"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">verse_structure</span>=<span class="value">"4 verses, 2 lines each, AABB rhyme scheme"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">literary_elements</span>=<span class="value">"Metaphor, symbolism, parallelism"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">poetic_meter</span>=<span class="value">"Trochaic tetrameter"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 📜 RIGHTS & LICENSING</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">copyright</span>=<span class="value">"© 2024 Dainis W. Michel. All Rights Reserved."</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">copyright_holder</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">publisher</span>=<span class="value">"Dainis W. Michel (Self-Published)"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">publisher_contact</span>=<span class="value">"dainis@dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">label</span>=<span class="value">"[DA1neverBlank: Record label name - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">isrc</span>=<span class="value">"US-XXX-21-00001"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">iswc</span>=<span class="value">"T-123456789-0"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">upc</span>=<span class="value">"123456789012"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">grid</span>=<span class="value">"A1-ABC-12-12345"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">catalog_number</span>=<span class="value">"DWM-2024-001"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">catalog_sorting_number</span>=<span class="value">"001"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">pro_affiliation</span>=<span class="value">"AustroMechana"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">performing_rights_holder</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">mechanical_rights_holder</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">sync_rights_holder</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">neighboring_rights_holder</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">clearance_status</span>=<span class="value">"Pre-Cleared for All Media"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">licensing_terms</span>=<span class="value">"Available for All Media, Worldwide, In Perpetuity"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">sample_clearance</span>=<span class="value">"No Samples Used - Original Composition"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">chain_of_title</span>=<span class="value">"[DA1neverBlank: Chain of title documentation - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">ownership_percentage</span>=<span class="value">"100%"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">rights_reversion</span>=<span class="value">"[DA1neverBlank: Rights reversion terms - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">legal_status</span>=<span class="value">"Original Work - All Rights Available"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">royalty_distribution</span>=<span class="value">"[DA1neverBlank: Royalty split information - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">cue_sheet_status</span>=<span class="value">"[DA1neverBlank: Cue sheet filing status - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">clearance_contact</span>=<span class="value">"dainis@dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">rights_holder</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">pro_work_id</span>=<span class="value">"[DA1neverBlank: PRO work registration ID - 32 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">ipi_base_number</span>=<span class="value">"[DA1neverBlank: IPI Base Number - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">cae_ipi_name_number</span>=<span class="value">"[DA1neverBlank: CAE/IPI Name Number - 16 chars available]"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🪪 IDENTIFIERS & EXTERNAL METADATA</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">musicbrainz_trackid</span>=<span class="value">"MBID-12345-67890"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">musicbrainz_albumid</span>=<span class="value">"MBID-54321-09876"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">musicbrainz_artistid</span>=<span class="value">"MBID-67890-ABCDE"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">musicbrainz_albumartistid</span>=<span class="value">"[DA1neverBlank: MusicBrainz Album Artist ID - 36 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">release_group_id</span>=<span class="value">"[DA1neverBlank: MusicBrainz Release Group ID - 36 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">acoustid_id</span>=<span class="value">"[DA1neverBlank: AcoustID fingerprint ID - 36 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">acoustid_fingerprint</span>=<span class="value">"[DA1neverBlank: AcoustID audio fingerprint - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">discogs_release_id</span>=<span class="value">"[DA1neverBlank: Discogs release identifier - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">ufid</span>=<span class="value">"[DA1neverBlank: Unique file identifier - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">da1hash</span>=<span class="value">"[DA1neverBlank: DA1 content hash - 64 chars available]"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🔗 WEB, URLS, AND DISTRIBUTION</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">website</span>=<span class="value">"https://dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">lyrics_url</span>=<span class="value">"https://dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">purchase_url</span>=<span class="value">"https://dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">license_url</span>=<span class="value">"https://dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">artist_url</span>=<span class="value">"https://dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">portfolio_url</span>=<span class="value">"https://dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">press_kit_url</span>=<span class="value">"https://dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">social_media</span>=<span class="value">"Instagram: @dainismusic, Twitter: @dainismusic"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">payment_url</span>=<span class="value">"[DA1neverBlank: Payment/tip jar URL - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">commercial_url</span>=<span class="value">"[DA1neverBlank: Commercial licensing URL - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">store_link</span>=<span class="value">"[DA1neverBlank: Online store/shop URL - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">podcast_url</span>=<span class="value">"[DA1neverBlank: Podcast/interview URL - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">podcast_category</span>=<span class="value">"Music, Folk, Cultural"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">podcast_keywords</span>=<span class="value">"Latvian, folk, acoustic, live, traditional"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">radio_station_url</span>=<span class="value">"[DA1neverBlank: Radio station URL - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">internet_radio_station</span>=<span class="value">"[DA1neverBlank: Internet radio station name - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">internet_radio_station_owner</span>=<span class="value">"[DA1neverBlank: Radio station owner - 64 chars available]"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🧭 SORTING & CATEGORIZATION</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">genre</span>=<span class="value">"Latviešu folkloristiskā jaunrade, tautas dziesmas, tautas mūzika, Folk, Acoustic, Ethno, Live Performance"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">style</span>=<span class="value">"Latvian Folk, Acoustic"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">theme</span>=<span class="value">"Nature, Love, Folk Traditions"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">mood</span>=<span class="value">"Peaceful, Nostalgic, Folkloric, Happy Family, Traditional, Contemplative"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">occasion</span>=<span class="value">"Cultural Events, Family Gatherings, Heritage Celebrations"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">energy_level</span>=<span class="value">"Low"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">placement_suggestions</span>=<span class="value">"Documentary, Cultural Programming, Film Underscore, Heritage Events"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">mood_secondary</span>=<span class="value">"Reflective, Intimate, Authentic"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">usage_suggestions</span>=<span class="value">"Documentary, Cultural Programming, Film Underscore, Heritage Events, Family Festival, Emotional Moment"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">sync_tags</span>=<span class="value">"Folk, Traditional, Acoustic, Live, Emotional"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">placement_history</span>=<span class="value">"[DA1neverBlank: Previous sync placements - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">search_terms</span>=<span class="value">"Latvian folk song traditional acoustic live performance family"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">keywords</span>=<span class="value">"Latvian, Folk Song, Traditional, Live Recording, Acoustic"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">keywords_auxiliary</span>=<span class="value">"Migla, mist, kumeliņš, horse, folklore, heritage"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">film_tv_suitable</span>=<span class="value">"Yes - Documentary, Drama, Cultural Content"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">tagging_time</span>=<span class="value">"2024-07-03T15:30:00Z"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🌍 CULTURAL, ARCHIVAL, EDUCATIONAL</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">cultural_context</span>=<span class="value">"Traditional Latvian folklore preserved in diaspora communities"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">cultural_annotation</span>=<span class="value">"Represents continuity of Latvian musical traditions in North America"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">educational_use</span>=<span class="value">"Suitable for cultural education programs"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">archival_notes</span>=<span class="value">"Original live recording preserved in family archive"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">historical_significance</span>=<span class="value">"Based on traditional Latvian folk melody"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">cultural_significance</span>=<span class="value">"Represents Latvian diaspora musical traditions"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">performance_notes</span>=<span class="value">"Family ensemble live performance"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">session_notes</span>=<span class="value">"Recorded during 3x3 Brīvais Mikrofons festival in intimate setting"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🧾 ADMINISTRATIVE & COMMERCIAL</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">business_model</span>=<span class="value">"[DA1neverBlank: Revenue/licensing model - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">discount_eligibility</span>=<span class="value">"[DA1neverBlank: Bulk/educational discounts - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">administrative_contact</span>=<span class="value">"dainis@dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">business_contact</span>=<span class="value">"dainis@dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">rate_card</span>=<span class="value">"[DA1neverBlank: Licensing rate information - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">pricing_tier</span>=<span class="value">"[DA1neverBlank: Pricing category/tier - 32 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">business_inquiries</span>=<span class="value">"dainis@dainis.net"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">licensing_status</span>=<span class="value">"Available for licensing"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">territory_availability</span>=<span class="value">"Worldwide"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">legal_contact</span>=<span class="value">"[DA1neverBlank: Legal representative contact - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">press_contact</span>=<span class="value">"[DA1neverBlank: Press/media contact - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">marketing_contact</span>=<span class="value">"[DA1neverBlank: Marketing contact - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">promo_materials</span>=<span class="value">"[DA1neverBlank: Available promotional materials - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">availability_date</span>=<span class="value">"2024-07-10"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🔬 CUSTOM DA1 BLOCKCHAIN & W3C INTEGRATION FIELDS</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">da1_uuid</span>=<span class="value">"[DA1neverBlank: DA1 unique identifier - 36 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">da1_neverblank_version</span>=<span class="value">"2.0.0"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">da1_attribution_level</span>=<span class="value">"Level 5 - Complete Attribution"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">blockchain_hash</span>=<span class="value">"[DA1neverBlank: Blockchain transaction hash - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">smart_contract_address</span>=<span class="value">"[DA1neverBlank: Smart contract address - 42 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">da1_chain_id</span>=<span class="value">"[DA1neverBlank: Blockchain network ID - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">w3c_verification</span>=<span class="value">"[DA1neverBlank: W3C verification status - 64 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">w3c_standards_compliance</span>=<span class="value">"HTML5, RDFa, Schema.org, Dublin Core"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">web3_wallet_address</span>=<span class="value">"[DA1neverBlank: Creator Web3 wallet address - 42 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">ipfs_hash</span>=<span class="value">"[DA1neverBlank: IPFS content hash - 46 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">nft_token_id</span>=<span class="value">"[DA1neverBlank: NFT token identifier - 32 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">decentralized_id</span>=<span class="value">"[DA1neverBlank: Decentralized identifier DID - 64 chars available]"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🧪 EXTENDED METADATA FIELDS (STRATEGIC EXTENSIONS)</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">replaygain_track_gain</span>=<span class="value">"[DA1neverBlank: ReplayGain track adjustment - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">replaygain_track_peak</span>=<span class="value">"[DA1neverBlank: ReplayGain track peak - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">replaygain_album_gain</span>=<span class="value">"[DA1neverBlank: ReplayGain album adjustment - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">replaygain_album_peak</span>=<span class="value">"[DA1neverBlank: ReplayGain album peak - 16 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">mood_valence</span>=<span class="value">"[DA1neverBlank: Emotional valence 0-100 - 8 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">mood_arousal</span>=<span class="value">"[DA1neverBlank: Emotional arousal 0-100 - 8 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">audio_fingerprint_echoprint</span>=<span class="value">"[DA1neverBlank: Echoprint audio fingerprint - 128 chars available]"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">content_advisory</span>=<span class="value">"None - Family Friendly"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">recording_studio</span>=<span class="value">"3x3 Brīvais Mikrofons, Koknese, Latvia"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">mastering_engineer</span>=<span class="value">"Dainis W. Michel"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">mixing_engineer</span>=<span class="value">"Dainis Kažoks"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">recording_engineer</span>=<span class="value">"Dainis Kažoks"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">production_date</span>=<span class="value">"2024-07-03"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">master_source</span>=<span class="value">"Original Live Recording"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">original_format</span>=<span class="value">"Digital"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 📅 RELEASE & DISTRIBUTION METADATA</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">original_release_date</span>=<span class="value">"2024-07-03"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">digital_release_date</span>=<span class="value">"2024-07-10"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">distribution_type</span>=<span class="value">"Digital and Licensing"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">digital_distributor</span>=<span class="value">"Direct Distribution"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">territory_restrictions</span>=<span class="value">"None - Available Worldwide"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">content_warning</span>=<span class="value">"None"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">explicit_content</span>=<span class="value">"No"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">restrictions</span>=<span class="value">"None"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">deadline_restrictions</span>=<span class="value">"None"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 📋 VERSION CONTROL & MODIFICATION TRACKING</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-metadata</span> <span class="keyword">revision_number</span>=<span class="value">"1"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">last_modified</span>=<span class="value">"2024-07-03"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">modification_notes</span>=<span class="value">"Initial release version"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">metadata_version</span>=<span class="value">"DA1neverBlank_v2.0.0"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">creation_tool</span>=<span class="value">"FFmpeg with DA1neverBlank metadata system"</span> <span class="flag">\</span>
+<span class="flag">-metadata</span> <span class="keyword">validation_status</span>=<span class="value">"Validated"</span> <span class="flag">\</span>
+
+<span class="comment"># ====================================================================================================</span>
+<span class="comment"># 🎯 FINAL OUTPUT SPECIFICATION</span>
+<span class="comment"># ====================================================================================================</span>
+<span class="flag">-id3v2_version</span> <span class="value">3</span> <span class="flag">\</span>
+<span class="flag">-write_id3v1</span> <span class="value">1</span> <span class="flag">\</span>
+<span class="string">"migla-migla-complete-metadata.mp3"</span>
+
+<span class="section-header"># ====================================================================================================</span>
+<span class="section-header"># Command completed: migla-migla-complete-metadata.mp3</span>
+<span class="section-header"># Total metadata fields: 200+ | DA1neverBlank compliance: 100% | Future-ready: Yes</span>
+<span class="section-header"># ====================================================================================================</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Generated by <strong>DA1 Metadata System</strong> • DA1neverBlank Philosophy • <span class="da1-badge">Future-Ready</span></p>
+            <p>Complete MP3 metadata embedding with blockchain and W3C integration readiness</p>
+            
+            <!-- DA1 Synced Lyrics Implementation Tasks -->
+            <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 5px solid #667eea;">
+                <h3 style="color: #2c3e50; margin-bottom: 15px;">🎵 DA1 Synced Lyrics Implementation Tasks</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">🔧 Phase 1: Core Integration (Priority: HIGH)</h4>
+                        <ul style="font-size: 0.9em; line-height: 1.6;">
+                            <li><strong>Add Synced Lyrics Metadata Fields:</strong>
+                                <code style="background: #f0f0f0; padding: 2px 4px; border-radius: 3px; font-size: 0.8em;">
+                                synced_lyrics_file, lyrics_format, synced_lyrics_language, synced_lyrics_verified
+                                </code>
+                            </li>
+                            <li><strong>Update FFmpeg Command:</strong> Include .lrc file pointers and embedded content backup</li>
+                            <li><strong>Create .lrc Template:</strong> Manual timestamp format for Migla Migla as proof of concept</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">🧰 Phase 2: Tooling (Priority: HIGH)</h4>
+                        <ul style="font-size: 0.9em; line-height: 1.6;">
+                            <li><strong>Manual Timestamp Interface:</strong> Simple web form for line-by-line timing input</li>
+                            <li><strong>LRC Generator:</strong> Convert lyrics + timestamps → .lrc file format</li>
+                            <li><strong>DA1 UI Integration:</strong> Add "Upload Synced Lyrics" to existing forms</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">🎧 Phase 3: Playback & Testing (Priority: MEDIUM)</h4>
+                        <ul style="font-size: 0.9em; line-height: 1.6;">
+                            <li><strong>DA1 Web Player:</strong> Synchronized lyrics display with line highlighting</li>
+                            <li><strong>Compatibility Testing:</strong> VLC, foobar2000, karaoke apps, streaming services</li>
+                            <li><strong>Export Validation:</strong> Ensure .lrc files work across platforms</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">🚀 Future Enhancements (Priority: LOW)</h4>
+                        <ul style="font-size: 0.9em; line-height: 1.6;">
+                            <li><strong>Auto-Timestamping:</strong> Whisper API or Google Speech-to-Text integration</li>
+                            <li><strong>Word-Level Sync:</strong> Precision karaoke timing (phoneme-level)</li>
+                            <li><strong>Multi-Language Support:</strong> Synchronized translations in .lrc format</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: #667eea; color: white; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                    <h4 style="margin-bottom: 10px;">📋 Implementation Strategy</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; font-size: 0.9em;">
+                        <div>
+                            <strong>✅ Dual Lyrics Approach:</strong><br>
+                            • Plain text lyrics (readability)<br>
+                            • Timestamped .lrc (sync/karaoke)
+                        </div>
+                        <div>
+                            <strong>📁 File Structure:</strong><br>
+                            • External .lrc as sidecar file<br>
+                            • Embedded content in TXXX backup
+                        </div>
+                        <div>
+                            <strong>🎯 DA1 Benefits:</strong><br>
+                            • Karaoke-ready content<br>
+                            • Music supervisor friendly<br>
+                            • Educational/cultural use
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding: 10px; background: #e8f4f8; border-radius: 5px; font-size: 0.9em;">
+                    <strong>🔧 Next Immediate Actions:</strong>
+                    <ol style="margin: 10px 0;">
+                        <li>Add synced lyrics metadata fields to this FFmpeg command</li>
+                        <li>Create migla-migla.lrc template file</li>
+                        <li>Build simple timestamp input interface</li>
+                        <li>Test .lrc compatibility with common players</li>
+                    </ol>
+                    <p style="margin: 5px 0;"><strong>Timeline:</strong> Phase 1-2 completion within 1-2 days | Testing within 1 week</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const codeBlock = document.getElementById('ffmpeg-command');
+            const copyButton = document.querySelector('.copy-button');
+            const copyIcon = document.getElementById('copy-icon');
+            const copyText = document.getElementById('copy-text');
+            
+            // Create a temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = codeBlock.textContent;
+            document.body.appendChild(textarea);
+            
+            // Select and copy the text
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                document.execCommand('copy');
+                
+                // Visual feedback
+                copyButton.classList.add('copied');
+                copyIcon.textContent = '✅';
+                copyText.textContent = 'Copied!';
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    copyButton.classList.remove('copied');
+                    copyIcon.textContent = '📋';
+                    copyText.textContent = 'Copy Command';
+                }, 2000);
+                
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                
+                // Fallback: show manual copy instructions
+                copyIcon.textContent = '⚠️';
+                copyText.textContent = 'Manual Copy';
+                
+                setTimeout(() => {
+                    copyIcon.textContent = '📋';
+                    copyText.textContent = 'Copy Command';
+                }, 3000);
+            }
+            
+            // Remove temporary element
+            document.body.removeChild(textarea);
+        }
+        
+        // Add keyboard shortcut for copying (Ctrl+C or Cmd+C)
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+                // Only trigger if the focus is on the code block or container
+                const activeElement = document.activeElement;
+                if (activeElement.closest('.code-container')) {
+                    e.preventDefault();
+                    copyToClipboard();
+                }
+            }
+        });
+        
+        // Make code block focusable for keyboard shortcuts
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeContainer = document.querySelector('.code-container');
+            codeContainer.setAttribute('tabindex', '0');
+            
+            // Add visual focus indicator
+            codeContainer.addEventListener('focus', function() {
+                this.style.outline = '2px solid #667eea';
+            });
+            
+            codeContainer.addEventListener('blur', function() {
+                this.style.outline = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

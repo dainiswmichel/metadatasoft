@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 Outreach Strategy - Simplified Implementation</title>
+    <style>
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1, h2, h3, h4 {
+            color: #1a5276;
+        }
+        .highlight {
+            background-color: #e9f7fe;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .feature {
+            background-color: #f0fff0;
+            border-left: 4px solid #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .warning {
+            background-color: #FCF3CF;
+            border-left: 4px solid #F1C40F;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: monospace;
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .section {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>DA1 Outreach Strategy - Simplified Implementation</h1>
+    <p>This document outlines a revised strategy for implementing the "Outreach" section with both automated and manual social media sharing capabilities.</p>
+
+    <div class="highlight">
+        <h3>Key Improvements</h3>
+        <ul>
+            <li><strong>HTML-Native Approach</strong>: Uses HTML5 data attributes instead of JSON for metadata</li>
+            <li><strong>Dual Sharing Model</strong>: Both automated sharing and manual share buttons</li>
+            <li><strong>Consistent with Blog/KB</strong>: Follows the same structural pattern as existing sections</li>
+            <li><strong>Optimized for Sharing</strong>: Pre-formatted text sections specifically designed for social media</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>1. Directory Structure</h2>
+        <pre>
+/outreach/
+├── css/
+│   └── outreach.css
+├── js/
+│   ├── component-loader.js       # Similar to blog/kb component loaders
+│   ├── outreach-sharing.js       # Handles UI share buttons and copy functionality
+│   └── outreach-scheduler.js     # Optional: Background scheduler for auto-sharing
+├── posts/
+│   └── [individual outreach HTML files]
+├── images/
+│   └── [outreach images]
+├── components/
+│   ├── outreach-footer.html
+│   ├── outreach-left-sidebar.html
+│   └── outreach-right-sidebar.html
+├── outreach-posts.txt            # List of posts for navigation (updated by script)
+├── update-posts.sh               # Updates the post listing (like blog)
+└── index.html                    # Main outreach landing page
+        </pre>
+        
+        <h3>Key File Purposes</h3>
+        <table>
+            <tr>
+                <th>File</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>component-loader.js</td>
+                <td>Handles dynamic loading of sidebars/footer, adapted from blog/KB</td>
+            </tr>
+            <tr>
+                <td>outreach-sharing.js</td>
+                <td>Provides social media buttons and copy functionality</td>
+            </tr>
+            <tr>
+                <td>outreach-scheduler.js</td>
+                <td>Optional: For scheduled automatic social sharing</td>
+            </tr>
+            <tr>
+                <td>outreach-posts.txt</td>
+                <td>List of posts to be displayed in navigation</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>2. Outreach Post Structure</h2>
+        
+        <h3>HTML Template (No JSON)</h3>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    
+    &lt;!-- Basic metadata --&gt;
+    &lt;title&gt;Outreach to Dr. Ramani Durvasula - DA1&lt;/title&gt;
+    
+    &lt;!-- DA1 metadata using HTML5 data attributes instead of JSON --&gt;
+    &lt;meta name="da1:title" content="Outreach to Dr. Ramani Durvasula"&gt;
+    &lt;meta name="da1:description" content="Personalized outreach about digital rights for creators"&gt;
+    &lt;meta name="da1:url" content="https://da1.fm/outreach/posts/dr-ramani.html"&gt;
+    &lt;meta name="da1:author" content="Dainis W. Michel"&gt;
+    &lt;meta name="da1:published-date" content="2025-05-10T09:00:00Z"&gt;
+    &lt;meta name="da1:tags" content="Psychology,Mental Health,Creators,Digital Rights"&gt;
+    &lt;meta name="da1:category" content="Outreach"&gt;
+    &lt;meta name="da1:target" content="Dr. Ramani Durvasula"&gt;
+    &lt;meta name="da1:target-twitter" content="@DoctorRamani"&gt;
+    
+    &lt;!-- Social media specific metadata --&gt;
+    &lt;meta name="da1:tweet-text" content="@DoctorRamani Your work on narcissism has been groundbreaking. I'd love to discuss how digital rights intersect with mental health advocacy. #DigitalRights #MentalHealth"&gt;
+    &lt;meta name="da1:social-image" content="../images/dr-ramani.jpg"&gt;
+    &lt;meta name="da1:scheduled-share" content="2025-05-10T10:00:00Z"&gt;
+    &lt;meta name="da1:share-status" content="scheduled"&gt;
+
+    &lt;!-- Open Graph and Twitter Card tags (auto-generated from metadata) --&gt;
+    &lt;meta property="og:title" content="Outreach to Dr. Ramani Durvasula"&gt;
+    &lt;meta property="og:description" content="Personalized outreach about digital rights for creators"&gt;
+    &lt;meta property="og:image" content="https://da1.fm/outreach/images/dr-ramani.jpg"&gt;
+    &lt;meta property="og:url" content="https://da1.fm/outreach/posts/dr-ramani.html"&gt;
+    &lt;meta property="og:type" content="article"&gt;
+    
+    &lt;meta name="twitter:card" content="summary_large_image"&gt;
+    &lt;meta name="twitter:title" content="Outreach to Dr. Ramani Durvasula"&gt;
+    &lt;meta name="twitter:description" content="Personalized outreach about digital rights for creators"&gt;
+    &lt;meta name="twitter:image" content="https://da1.fm/outreach/images/dr-ramani.jpg"&gt;
+    
+    &lt;!-- CSS Links --&gt;
+    &lt;link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css"&gt;
+    &lt;link rel="stylesheet" href="../css/outreach.css"&gt;
+    
+    &lt;!-- JS Dependencies --&gt;
+    &lt;script defer type="module" src="../../js/alpinejs-local.js"&gt;&lt;/script&gt;
+    &lt;script src="../../sidebar.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Left Sidebar Container --&gt;
+    &lt;div id="left-sidebar-container"&gt;&lt;/div&gt;
+
+    &lt;!-- Main Content --&gt;
+    &lt;div class="main-content"&gt;
+        &lt;article class="outreach-post" data-status="scheduled"&gt;
+            &lt;div class="outreach-header"&gt;
+                &lt;div class="category-tag"&gt;Outreach&lt;/div&gt;
+                &lt;h1&gt;Outreach to Dr. Ramani Durvasula&lt;/h1&gt;
+                &lt;div class="outreach-meta"&gt;
+                    &lt;span&gt;&lt;i class="bi bi-person"&gt;&lt;/i&gt; Target: Dr. Ramani Durvasula&lt;/span&gt;
+                    &lt;span&gt;&lt;i class="bi bi-calendar3"&gt;&lt;/i&gt; May 10, 2025&lt;/span&gt;
+                    &lt;span&gt;&lt;i class="bi bi-twitter"&gt;&lt;/i&gt; @DoctorRamani&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Message to the Outreach Target --&gt;
+            &lt;div class="outreach-message"&gt;
+                &lt;h2&gt;Personalized Message&lt;/h2&gt;
+                &lt;p&gt;Dr. Ramani, your work on narcissism has been instrumental in helping millions understand toxic relationships. At DA1, we're working to ensure that creators like yourself maintain attribution and control over your content across all platforms.&lt;/p&gt;
+                
+                &lt;p&gt;The intersection of digital rights and mental health advocacy is an area where your expertise would be invaluable. I'd love to discuss how our metametadata solutions could help mental health content creators preserve their work's integrity.&lt;/p&gt;
+            &lt;/div&gt;
+            
+            &lt;!-- Social Sharing Section --&gt;
+            &lt;div class="social-sharing-section"&gt;
+                &lt;h2&gt;Share on Social Media&lt;/h2&gt;
+                
+                &lt;!-- Tweet Preview --&gt;
+                &lt;div class="tweet-preview"&gt;
+                    &lt;h3&gt;Twitter&lt;/h3&gt;
+                    &lt;div class="social-preview-box"&gt;
+                        &lt;p id="tweet-text-content"&gt;@DoctorRamani Your work on narcissism has been groundbreaking. I'd love to discuss how digital rights intersect with mental health advocacy. #DigitalRights #MentalHealth&lt;/p&gt;
+                        &lt;img src="../images/dr-ramani.jpg" alt="Digital rights and mental health intersection"&gt;
+                        
+                        &lt;!-- Share buttons --&gt;
+                        &lt;div class="share-actions"&gt;
+                            &lt;button class="share-btn twitter-share" data-text="@DoctorRamani Your work on narcissism has been groundbreaking. I'd love to discuss how digital rights intersect with mental health advocacy. #DigitalRights #MentalHealth"&gt;
+                                &lt;i class="bi bi-twitter"&gt;&lt;/i&gt; Share on Twitter
+                            &lt;/button&gt;
+                            &lt;button class="share-btn copy-text" data-text="@DoctorRamani Your work on narcissism has been groundbreaking. I'd love to discuss how digital rights intersect with mental health advocacy. #DigitalRights #MentalHealth"&gt;
+                                &lt;i class="bi bi-clipboard"&gt;&lt;/i&gt; Copy Text
+                            &lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                
+                &lt;!-- Automated Sharing Status --&gt;
+                &lt;div class="auto-share-status"&gt;
+                    &lt;h3&gt;Automated Sharing&lt;/h3&gt;
+                    &lt;p&gt;
+                        &lt;span class="status-badge scheduled"&gt;Scheduled&lt;/span&gt;
+                        for May 10, 2025 at 10:00 AM
+                    &lt;/p&gt;
+                    &lt;div class="auto-share-controls"&gt;
+                        &lt;button class="btn btn-reschedule"&gt;&lt;i class="bi bi-calendar"&gt;&lt;/i&gt; Reschedule&lt;/button&gt;
+                        &lt;button class="btn btn-cancel"&gt;&lt;i class="bi bi-x-circle"&gt;&lt;/i&gt; Cancel&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;!-- Follow-up Plan --&gt;
+            &lt;div class="follow-up-plan"&gt;
+                &lt;h2&gt;Follow-up Plan&lt;/h2&gt;
+                &lt;ol&gt;
+                    &lt;li&gt;Monitor for response within 48 hours of tweet&lt;/li&gt;
+                    &lt;li&gt;Send follow-up email on May 12 if no response&lt;/li&gt;
+                    &lt;li&gt;Connect with mutual contacts in psychology field&lt;/li&gt;
+                &lt;/ol&gt;
+            &lt;/div&gt;
+            
+            &lt;!-- Outreach metrics/analytics (optional) --&gt;
+            &lt;div class="outreach-metrics"&gt;
+                &lt;h2&gt;Engagement Metrics&lt;/h2&gt;
+                &lt;div class="metrics-placeholder"&gt;
+                    &lt;p&gt;Metrics will appear here after sharing.&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/article&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Right Sidebar Container --&gt;
+    &lt;div id="right-sidebar-container"&gt;&lt;/div&gt;
+
+    &lt;!-- Footer Container --&gt;
+    &lt;div id="footer-container"&gt;&lt;/div&gt;
+
+    &lt;!-- Scripts --&gt;
+    &lt;script src="../js/component-loader.js"&gt;&lt;/script&gt;
+    &lt;script src="../js/outreach-sharing.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2>3. Sharing Mechanism - Hybrid Approach</h2>
+        
+        <div class="feature">
+            <h3>Dual Sharing Strategy</h3>
+            <p>The implementation offers both automated sharing and manual share buttons to provide maximum flexibility:</p>
+            <ol>
+                <li><strong>Automated Sharing</strong>: Schedule posts to be shared automatically at a designated time</li>
+                <li><strong>Manual Share Buttons</strong>: Let users share immediately with one click or copy text to clipboard</li>
+            </ol>
+        </div>
+        
+        <h3>3.1 Automated Sharing Implementation</h3>
+        <p>For the auto-sharing functionality, two options are available:</p>
+        
+        <h4>Option A: Client-Side Reminders (Simple)</h4>
+        <pre>
+// In outreach-sharing.js - Client-side reminder/notification system
+document.addEventListener('DOMContentLoaded', function() {
+    // Check for scheduled posts
+    const metaTags = document.querySelectorAll('meta[name="da1:scheduled-share"]');
+    metaTags.forEach(meta => {
+        const scheduledTime = new Date(meta.getAttribute('content'));
+        const now = new Date();
+        
+        if (scheduledTime > now) {
+            // Calculate time until scheduled share
+            const timeUntilShare = scheduledTime.getTime() - now.getTime();
+            
+            // Set a timer to show notification
+            setTimeout(() => {
+                // Check if already shared
+                const status = document.querySelector('meta[name="da1:share-status"]');
+                if (status && status.getAttribute('content') !== 'shared') {
+                    showShareNotification();
+                }
+            }, timeUntilShare);
+        }
+    });
+});
+
+function showShareNotification() {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'share-notification';
+    notification.innerHTML = `
+        <div class="notification-header">
+            <h3>Time to Share!</h3>
+            <button class="close-notification">&times;</button>
+        </div>
+        <div class="notification-body">
+            <p>Your scheduled outreach post is ready to share on social media.</p>
+            <div class="notification-actions">
+                <button class="share-btn twitter-share-now">
+                    <i class="bi bi-twitter"></i> Share Now
+                </button>
+                <button class="remind-later">Remind Me Later</button>
+            </div>
+        </div>
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Add event listeners
+    notification.querySelector('.close-notification').addEventListener('click', () => {
+        notification.remove();
+    });
+    
+    notification.querySelector('.twitter-share-now').addEventListener('click', () => {
+        // Get tweet text from meta tag
+        const tweetMeta = document.querySelector('meta[name="da1:tweet-text"]');
+        const tweetText = tweetMeta ? tweetMeta.getAttribute('content') : '';
+        
+        // Open Twitter intent in new window
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`, 
+            '_blank', 'width=550,height=420');
+        
+        // Update share status
+        updateShareStatus('shared');
+        notification.remove();
+    });
+    
+    notification.querySelector('.remind-later').addEventListener('click', () => {
+        // Remind again in 30 minutes
+        setTimeout(() => {
+            const status = document.querySelector('meta[name="da1:share-status"]');
+            if (status && status.getAttribute('content') !== 'shared') {
+                showShareNotification();
+            }
+        }, 30 * 60 * 1000);
+        
+        notification.remove();
+    });
+}
+
+function updateShareStatus(status) {
+    // Update meta tag
+    const statusMeta = document.querySelector('meta[name="da1:share-status"]');
+    if (statusMeta) {
+        statusMeta.setAttribute('content', status);
+    }
+    
+    // Update UI
+    const statusBadge = document.querySelector('.status-badge');
+    if (statusBadge) {
+        statusBadge.className = `status-badge ${status}`;
+        statusBadge.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+    }
+}
+        </pre>
+        
+        <h4>Option B: Server-Side Scheduler (Advanced)</h4>
+        <p>For true automation, a simple PHP script can be created to run via cron job daily:</p>
+        <pre>
+// PHP scheduler example (outreach-scheduler.php)
+&lt;?php
+// Configuration
+$outreach_dir = __DIR__ . '/posts/';
+$log_file = __DIR__ . '/logs/outreach-sharing.log';
+
+// Twitter API configuration 
+$twitter_api_key = getenv('TWITTER_API_KEY');
+$twitter_api_secret = getenv('TWITTER_API_SECRET');
+$twitter_access_token = getenv('TWITTER_ACCESS_TOKEN');
+$twitter_access_secret = getenv('TWITTER_ACCESS_SECRET');
+
+// Function to post to Twitter
+function postToTwitter($text, $image = null) {
+    global $twitter_api_key, $twitter_api_secret, $twitter_access_token, $twitter_access_secret;
+    
+    // Initialize cURL session
+    $ch = curl_init();
+    
+    // Set cURL options
+    // ... (Twitter API integration code)
+    
+    // Execute and return results
+    $result = curl_exec($ch);
+    curl_close($ch);
+    return $result;
+}
+
+// Current time for comparison
+$now = new DateTime();
+
+// Scan outreach posts directory
+$files = glob($outreach_dir . '*.html');
+foreach ($files as $file) {
+    // Read file content
+    $content = file_get_contents($file);
+    
+    // Use Simple HTML DOM Parser to find metadata
+    $dom = new DOMDocument();
+    @$dom->loadHTML($content);
+    $xpath = new DOMXPath($dom);
+    
+    // Extract share status
+    $statusNodes = $xpath->query("//meta[@name='da1:share-status']");
+    if ($statusNodes->length > 0) {
+        $status = $statusNodes->item(0)->getAttribute('content');
+        
+        // Only proceed if scheduled and not already shared
+        if ($status === 'scheduled') {
+            // Get scheduled time
+            $scheduleNodes = $xpath->query("//meta[@name='da1:scheduled-share']");
+            if ($scheduleNodes->length > 0) {
+                $scheduledTimeStr = $scheduleNodes->item(0)->getAttribute('content');
+                $scheduledTime = new DateTime($scheduledTimeStr);
+                
+                // If scheduled time has passed, share it
+                if ($scheduledTime <= $now) {
+                    // Get tweet text
+                    $tweetNodes = $xpath->query("//meta[@name='da1:tweet-text']");
+                    $tweetText = $tweetNodes->length > 0 ? $tweetNodes->item(0)->getAttribute('content') : '';
+                    
+                    // Get image if any
+                    $imageNodes = $xpath->query("//meta[@name='da1:social-image']");
+                    $imagePath = $imageNodes->length > 0 ? __DIR__ . '/' . $imageNodes->item(0)->getAttribute('content') : null;
+                    
+                    if (!empty($tweetText)) {
+                        // Post to Twitter
+                        $result = postToTwitter($tweetText, $imagePath);
+                        
+                        // Update share status in file
+                        $statusNodes->item(0)->setAttribute('content', 'shared');
+                        
+                        // Save updated file
+                        file_put_contents($file, $dom->saveHTML());
+                        
+                        // Log the share
+                        file_put_contents($log_file, date('Y-m-d H:i:s') . " - Shared post: " . basename($file) . "\n", FILE_APPEND);
+                    }
+                }
+            }
+        }
+    }
+}
+
+echo "Outreach sharing process completed.\n";
+        </pre>
+        
+        <h3>3.2 Manual Share Buttons</h3>
+        <p>Manual share buttons are implemented through client-side JavaScript:</p>
+        <pre>
+// Part of outreach-sharing.js - Manual share buttons
+document.addEventListener('DOMContentLoaded', function() {
+    // Twitter share button functionality
+    document.querySelectorAll('.twitter-share').forEach(button => {
+        button.addEventListener('click', function() {
+            const text = this.getAttribute('data-text');
+            const url = window.location.href;
+            
+            // Open Twitter intent in new window
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, 
+                '_blank', 'width=550,height=420');
+            
+            // Update share status
+            updateShareStatus('shared');
+        });
+    });
+    
+    // Copy text functionality
+    document.querySelectorAll('.copy-text').forEach(button => {
+        button.addEventListener('click', function() {
+            const text = this.getAttribute('data-text');
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    // Show success message
+                    const originalText = button.innerHTML;
+                    button.innerHTML = '<i class="bi bi-check"></i> Copied!';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Could not copy text: ', err);
+                });
+        });
+    });
+});
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2>4. Workflow & Integration with Blog/KB</h2>
+        
+        <h3>4.1 Post Creation Workflow</h3>
+        <ol>
+            <li><strong>Create Post Template</strong>: Start with the outreach template HTML file</li>
+            <li><strong>Fill in Content</strong>: Add personalized message, outreach target info, and social media text</li>
+            <li><strong>Set Metadata</strong>: Update &lt;meta&gt; tags with proper values</li>
+            <li><strong>Schedule Sharing</strong>: Set the scheduled date/time for automatic sharing</li>
+            <li><strong>Add to Post List</strong>: Run update-posts.sh to add the file to outreach-posts.txt</li>
+        </ol>
+        
+        <h3>4.2 Integration with Blog/KB Navigation</h3>
+        <p>Integrate the Outreach section into the main site navigation by:</p>
+        <ol>
+            <li>Adding an "Outreach" entry to the main navigation menu</li>
+            <li>Linking to /outreach/index.html</li>
+            <li>Ensuring the left/right sidebars incorporate outreach navigation</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>5. Implementation Plan</h2>
+        
+        <h3>5.1 Phase 1: Core Structure (1 day)</h3>
+        <ul>
+            <li>Create directory structure mirroring blog/KB patterns</li>
+            <li>Adapt component loader JS from existing code</li>
+            <li>Create basic outreach CSS</li>
+            <li>Create sidebar and footer templates</li>
+        </ul>
+        
+        <h3>5.2 Phase 2: Post Template & Sharing (1 day)</h3>
+        <ul>
+            <li>Develop outreach post HTML template</li>
+            <li>Create manual share/copy buttons functionality</li>
+            <li>Implement client-side scheduled reminders</li>
+        </ul>
+        
+        <h3>5.3 Phase 3: Integration & Polish (1 day)</h3>
+        <ul>
+            <li>Create update-posts.sh script similar to blog</li>
+            <li>Integrate with site navigation</li>
+            <li>Create index.html to display outreach posts</li>
+            <li>Add responsive styling for mobile</li>
+        </ul>
+        
+        <h3>5.4 Phase 4 (Optional): Advanced Automation (1-2 days)</h3>
+        <ul>
+            <li>Set up Twitter API credentials</li>
+            <li>Develop server-side scheduler script</li>
+            <li>Configure cron job for daily check</li>
+            <li>Add sharing analytics</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>6. Summary & Benefits</h2>
+        
+        <div class="feature">
+            <h3>Key Advantages of This Approach</h3>
+            <ul>
+                <li><strong>No JSON Dependencies</strong>: Uses standard HTML5 meta tags for data</li>
+                <li><strong>Hybrid Sharing Model</strong>: Both automated and manual options available</li>
+                <li><strong>Consistent with Existing Sections</strong>: Follows blog/KB patterns</li>
+                <li><strong>Low Technical Debt</strong>: Minimal dependencies and maintenance required</li>
+                <li><strong>Progressive Enhancement</strong>: Works even without JavaScript enabled</li>
+                <li><strong>Mobile-Friendly</strong>: Responsive design for all device sizes</li>
+            </ul>
+        </div>
+        
+        <div class="warning">
+            <h3>Implementation Notes</h3>
+            <ul>
+                <li>If using server-side automation, Twitter API credentials should be stored securely via environment variables</li>
+                <li>The client-side reminder approach will only work if the browser remains open</li>
+                <li>Consider a "share all pending" button on the outreach index page for batch sharing</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>7. Next Steps</h2>
+        <ol>
+            <li>Approve this implementation approach</li>
+            <li>Begin with Phase 1 by creating the core directory structure</li>
+            <li>Decide on preferred sharing method (client-side reminders or server-side automation)</li>
+            <li>Implement components in order of dependency (structure → templates → functionality)</li>
+        </ol>
+    </div>
+</body>
+</html>

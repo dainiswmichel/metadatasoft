@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DA1 SubFileTypes Outputs</title>
+  <link rel="stylesheet" href="index-02.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+</head>
+<body>
+
+<!-- ========================= -->
+<!--  SubFileTypes Outputs     -->
+<!-- ========================= -->
+
+<section class="section">
+  <h2><i class="bi bi-gear"></i> Output Options</h2>
+  <p class="subtext">
+    Select which <strong>subFileTypes</strong> you want to include in your DA1 package.<br>
+    Choose one, some, or all. Future-proof your release. 💪
+  </p>
+
+  <!-- Master Control -->
+  <div class="control-row">
+    <label class="master-checkbox">
+      <input type="checkbox" id="check-all-subfiletypes" onclick="toggleAllSubFileTypes(this)">
+      <span class="checkbox-label"><strong>Check / Uncheck All subFileTypes</strong></span>
+    </label>
+  </div>
+
+  <!-- Categories Wrapper -->
+  <div class="subfiletypes-container">
+
+    <!-- Audio subFileTypes -->
+    <div class="subfiletype-category">
+      <h3><i class="bi bi-music-note-beamed"></i> Audio subFileTypes</h3>
+      <div class="subfiletype-cards">
+
+        <!-- MP3 -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="mp3" class="subfiletype-checkbox">
+              <span class="format-name">MP3</span>
+            </label>
+            <span class="subfiletype-label">subFileType</span>
+          </div>
+          <div class="card-body">
+            <p>ID3v2 tagging with TITLE, ARTIST, ALBUM, GENRE, and Cover Art.</p>
+          </div>
+        </div>
+
+        <!-- WAV -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="wav" class="subfiletype-checkbox">
+              <span class="format-name">WAV</span>
+            </label>
+            <span class="subfiletype-label">subFileType</span>
+          </div>
+          <div class="card-body">
+            <p>BWF / RIFF INFO tagging, archival and broadcast-ready.</p>
+          </div>
+        </div>
+
+        <!-- FLAC -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="flac" class="subfiletype-checkbox">
+              <span class="format-name">FLAC</span>
+            </label>
+            <span class="subfiletype-label">subFileType</span>
+          </div>
+          <div class="card-body">
+            <p>Lossless compression with Vorbis Comments metadata.</p>
+          </div>
+        </div>
+
+        <!-- AIFF -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="aiff" class="subfiletype-checkbox">
+              <span class="format-name">AIFF</span>
+            </label>
+            <span class="subfiletype-label">subFileType</span>
+          </div>
+          <div class="card-body">
+            <p>ID3 tagging for high-resolution audio with metadata.</p>
+          </div>
+        </div>
+
+        <!-- M4A -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="m4a" class="subfiletype-checkbox">
+              <span class="format-name">M4A</span>
+            </label>
+            <span class="subfiletype-label">subFileType</span>
+          </div>
+          <div class="card-body">
+            <p>iTunes tagging with metadata fields for name, artist, album, and cover art.</p>
+          </div>
+        </div>
+
+        <!-- OGG -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="ogg" class="subfiletype-checkbox">
+              <span class="format-name">OGG</span>
+            </label>
+            <span class="subfiletype-label">subFileType</span>
+          </div>
+          <div class="card-body">
+            <p>Vorbis Comments optimized for open-source platforms.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Platform Packages -->
+    <div class="subfiletype-category">
+      <h3><i class="bi bi-box-seam"></i> Platform Packages</h3>
+      <div class="subfiletype-cards">
+
+        <!-- Spotify -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="spotify" class="subfiletype-checkbox">
+              <span class="format-name">Spotify Package</span>
+            </label>
+            <span class="subfiletype-label">Platform Package</span>
+          </div>
+          <div class="card-body">
+            <p>Meets Spotify's loudness, artwork, and metadata standards.</p>
+          </div>
+        </div>
+
+        <!-- YouTube Music -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="youtube" class="subfiletype-checkbox">
+              <span class="format-name">YouTube Music Package</span>
+            </label>
+            <span class="subfiletype-label">Platform Package</span>
+          </div>
+          <div class="card-body">
+            <p>MP4 video files optimized for YouTube Music uploads.</p>
+          </div>
+        </div>
+
+        <!-- Shazamify Upgrade -->
+        <div class="subfiletype-card upgrade">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="shazamify" class="subfiletype-checkbox">
+              <span class="format-name">Shazamify Upgrade</span>
+            </label>
+            <span class="subfiletype-label upgrade">Optional Upgrade</span>
+          </div>
+          <div class="card-body">
+            <p>Register your track with Shazam for instant music recognition.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Reports & Sheets -->
+    <div class="subfiletype-category">
+      <h3><i class="bi bi-file-earmark-text"></i> Reports & Sheets</h3>
+      <div class="subfiletype-cards">
+
+        <!-- ISRC Sheet -->
+        <div class="subfiletype-card">
+          <div class="card-header">
+            <label class="card-checkbox">
+              <input type="checkbox" name="outputFormats" value="isrc" class="subfiletype-checkbox">
+              <span class="format-name">ISRC Sheet</span>
+            </label>
+            <span class="subfiletype-label">Report</span>
+          </div>
+          <div class="card-body">
+            <p>Exports ISRC codes in CSV/JSON/XML formats for royalty tracking.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Coming Soon -->
+    <div class="subfiletype-category">
+      <h3><i class="bi bi-hourglass-split"></i> Coming Soon</h3>
+      <div class="subfiletype-cards">
+
+        <!-- DA1 Karaoke King -->
+        <div class="subfiletype-card coming-soon">
+          <div class="card-header">
+            <span class="format-name">DA1 Karaoke King</span>
+            <span class="subfiletype-label coming-soon">Coming Soon</span>
+          </div>
+          <div class="card-body">
+            <p><em>Export instrumental versions with synchronized lyrics (LRC/CDG) for karaoke playback.</em></p>
+          </div>
+        </div>
+
+        <!-- SiriusXM -->
+        <div class="subfiletype-card coming-soon">
+          <div class="card-header">
+            <span class="format-name">SiriusXM Package</span>
+            <span class="subfiletype-label coming-soon">Coming Soon</span>
+          </div>
+          <div class="card-body">
+            <p><em>Prepare broadcast-ready masters for SiriusXM submission.</em></p>
+          </div>
+        </div>
+
+        <!-- SoundExchange Reporting -->
+        <div class="subfiletype-card coming-soon">
+          <div class="card-header">
+            <span class="format-name">SoundExchange Reporting</span>
+            <span class="subfiletype-label coming-soon">Coming Soon</span>
+          </div>
+          <div class="card-body">
+            <p><em>Generate SoundExchange-ready reporting sheets to track royalties.</em></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

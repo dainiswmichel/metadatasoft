@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DA1 Metadata JSON Block for Knowledge Base System -->
+    <script id="da1-metadata" type="application/json">
+    {
+        "title": "DA1 NPM Instructions and Standards",
+        "description": "Comprehensive guide to NPM usage, best practices, and standards for DA1 developers.",
+        "excerpt": "This guide provides detailed instructions for NPM package management in DA1 projects, including installation, dependency management, scripts, and best practices.",
+        "publishedDate": "2025-03-19T08:59:00Z",
+        "modifiedDate": "2025-04-03T11:30:00Z",
+        "author": {
+            "name": "DA1 Development Team",
+            "jobTitle": "DA1 Engineering"
+        },
+        "category": "Development",
+        "tags": ["NPM", "Node.js", "Installation", "Development", "Tools"],
+        "readingTime": "8 min read"
+    }
+    </script>
+
+    <!-- SEO Meta -->
+    <title>DA1 Knowledge Base - NPM Instructions and Standards</title>
+    <meta name="description" content="Comprehensive guide to NPM usage, best practices, and standards for DA1 developers.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Knowledge Base - NPM Instructions and Standards">
+    <meta property="og:description" content="Learn how to properly use NPM in DA1 projects with our standardized approach to package management.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+    <meta property="article:published_time" content="2025-03-19T08:59:00Z">
+    <meta property="article:modified_time" content="2025-04-03T11:30:00Z">
+    <meta property="article:author" content="DA1 Development Team">
+    <meta property="article:section" content="Development">
+    <meta property="article:tag" content="NPM">
+    <meta property="article:tag" content="Node.js">
+    <meta property="article:tag" content="Installation">
+    <meta property="article:tag" content="Development">
+    <meta property="article:tag" content="Tools">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/kb.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../../js/alpinejs-local.js"></script>
+    <script src="../../sidebar.js" defer></script>
+    <script src="../js/component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="topic-header">
+            <h1>DA1 NPM Instructions and Standards</h1>
+            <div class="topic-meta">
+                <span><i class="bi bi-person"></i> DA1 Development Team</span>
+                <span><i class="bi bi-calendar3"></i> March 19, 2025</span>
+                <span><i class="bi bi-clock"></i> 8 min read</span>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc-container">
+            <h3>Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#npm-intro">NPM Overview for DA1</a></li>
+                <li><a href="#installation">Installation and Setup</a></li>
+                <li><a href="#dependency-management">Dependency Management</a></li>
+                <li><a href="#scripts">NPM Scripts Standards</a></li>
+                <li><a href="#version-control">Version Control Best Practices</a></li>
+                <li><a href="#deployment">Deployment Considerations</a></li>
+            </ul>
+        </div>
+
+        <!-- NPM Introduction -->
+        <div class="section" id="npm-intro">
+            <h2>✅ NPM Overview for DA1</h2>
+            <p>Node Package Manager (NPM) is a critical tool in the DA1 development ecosystem. We use NPM to:</p>
+            <ul>
+                <li>Manage all JavaScript dependencies</li>
+                <li>Run standardized build, test, and development scripts</li>
+                <li>Ensure consistent development environments across the team</li>
+                <li>Automate repetitive development tasks</li>
+            </ul>
+            <p>All DA1 JavaScript projects use NPM with consistent standards to maintain code quality and project organization.</p>
+        </div>
+
+        <!-- Installation and Setup -->
+        <div class="section" id="installation">
+            <h2>✅ Installation and Setup</h2>
+            <h3>Required Versions</h3>
+            <p>For all DA1 projects, we standardize on:</p>
+            <ul>
+                <li>Node.js version 18.x or higher</li>
+                <li>NPM version 8.x or higher</li>
+            </ul>
+            
+            <h3>Installation Verification</h3>
+            <p>After installing Node.js and NPM, verify your installation with:</p>
+            <pre><code>node --version
+npm --version</code></pre>
+            
+            <h3>Project Initialization</h3>
+            <p>When creating a new DA1 project:</p>
+            <ol>
+                <li>Create a new directory for your project</li>
+                <li>Initialize NPM with <code>npm init</code></li>
+                <li>Provide accurate project information during initialization</li>
+                <li>Set the license to <code>"private"</code> unless specifically instructed otherwise</li>
+            </ol>
+        </div>
+
+        <!-- Dependency Management -->
+        <div class="section" id="dependency-management">
+            <h2>✅ Dependency Management</h2>
+            <h3>Adding Dependencies</h3>
+            <p>When adding dependencies, always specify the exact version:</p>
+            <pre><code># Production dependency
+npm install express@4.17.1 --save
+
+# Development dependency
+npm install jest@27.0.6 --save-dev</code></pre>
+            
+            <h3>Dependency Types</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Flag</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Production</td>
+                        <td><code>--save</code> or no flag</td>
+                        <td>Required for runtime</td>
+                        <td>express, axios, mongoose</td>
+                    </tr>
+                    <tr>
+                        <td>Development</td>
+                        <td><code>--save-dev</code></td>
+                        <td>Only needed for development</td>
+                        <td>jest, eslint, nodemon</td>
+                    </tr>
+                    <tr>
+                        <td>Global</td>
+                        <td><code>-g</code></td>
+                        <td>Tools available system-wide</td>
+                        <td>npm, nodemon, pm2</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Dependency Auditing</h3>
+            <p>Regularly audit your dependencies for security vulnerabilities:</p>
+            <pre><code>npm audit</code></pre>
+            <p>Fix security issues with:</p>
+            <pre><code>npm audit fix</code></pre>
+        </div>
+
+        <!-- NPM Scripts Standards -->
+        <div class="section" id="scripts">
+            <h2>✅ NPM Scripts Standards</h2>
+            <p>All DA1 projects should include the following standard scripts in their package.json:</p>
+            <pre><code>"scripts": {
+  "start": "node index.js",
+  "dev": "nodemon index.js",
+  "test": "jest",
+  "lint": "eslint .",
+  "build": "webpack --mode production"
+}</code></pre>
+            
+            <h3>Script Purposes</h3>
+            <ul>
+                <li><code>start</code>: Runs the production server</li>
+                <li><code>dev</code>: Runs development server with auto-restart</li>
+                <li><code>test</code>: Runs all unit and integration tests</li>
+                <li><code>lint</code>: Checks code quality against our standards</li>
+                <li><code>build</code>: Creates production-ready assets</li>
+            </ul>
+            
+            <h3>Custom Scripts</h3>
+            <p>Project-specific scripts should use descriptive names that clearly indicate their purpose:</p>
+            <pre><code>"scripts": {
+  // ... standard scripts ...
+  "seed-db": "node scripts/seed-database.js",
+  "generate-docs": "jsdoc -c jsdoc.json",
+  "deploy-staging": "scripts/deploy.sh staging"
+}</code></pre>
+        </div>
+
+        <!-- Version Control Best Practices -->
+        <div class="section" id="version-control">
+            <h2>✅ Version Control Best Practices</h2>
+            <h3>package.json and package-lock.json</h3>
+            <p>Always commit both <code>package.json</code> and <code>package-lock.json</code> to version control. The lock file ensures all developers get exactly the same dependency versions.</p>
+            
+            <h3>node_modules</h3>
+            <p>Never commit the <code>node_modules</code> directory to git. Always add it to your <code>.gitignore</code> file:</p>
+            <pre><code># .gitignore
+node_modules/
+</code></pre>
+            
+            <h3>Environment-Specific Dependencies</h3>
+            <p>For environment-specific dependencies:</p>
+            <ol>
+                <li>Use <code>.npmrc</code> files for environment-specific configurations</li>
+                <li>Document required global dependencies in the README.md</li>
+                <li>Consider using Docker to provide consistent environments</li>
+            </ol>
+        </div>
+
+        <!-- Deployment Considerations -->
+        <div class="section" id="deployment">
+            <h2>✅ Deployment Considerations</h2>
+            <h3>Production Installations</h3>
+            <p>When deploying to production:</p>
+            <pre><code>npm ci</code></pre>
+            <p>This command installs exact versions from package-lock.json and is faster for CI environments.</p>
+            
+            <h3>Package Optimization</h3>
+            <p>Before deploying, run:</p>
+            <pre><code>npm prune --production</code></pre>
+            <p>This removes development dependencies to reduce deployment size.</p>
+            
+            <h3>Environment Variables</h3>
+            <p>Manage environment-specific variables with:</p>
+            <ul>
+                <li><code>.env</code> files (never commit to git)</li>
+                <li>Environment variables set in your deployment platform</li>
+                <li>The <code>dotenv</code> package to load variables in your application</li>
+            </ul>
+        </div>
+
+        <!-- Technical Note -->
+        <div class="technical-note">
+            <h4>Important Note</h4>
+            <p>While these NPM standards apply to all DA1 projects, certain specialized projects may have additional requirements. Check the project-specific README.md for any variations from these standards.</p>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+</body>
+
+</html>

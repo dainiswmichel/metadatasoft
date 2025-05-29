@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 Comprehensive HTML MetaMetadata Mapping Table (2025)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .category {
+            font-weight: bold;
+            background-color: #e9f7fe;
+        }
+        .notes {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #2c3e50;
+        }
+        .standard-date {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+        .yes {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .no {
+            color: #F44336;
+        }
+        .limited {
+            color: #FF9800;
+        }
+        .implementation {
+            font-family: monospace;
+            background-color: #f8f8f8;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+        .note {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-top: 4px;
+        }
+        .section-title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        .code {
+            font-family: monospace;
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>DA1 Comprehensive HTML MetaMetadata Mapping Table (2025)</h1>
+    
+    <div class="notes">
+        <p>This comprehensive reference maps DA1 MetaMetadata fields to all major metadata standards, ensuring maximum compatibility while enhancing capabilities. The table is organized chronologically by standard establishment date, showing how DA1 serves as a bridge between existing standards while adding critical enhancements for modern web needs.</p>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>DA1 MetaMetadata<br><span class="standard-date">est. 2025</span></th>
+                <th>HTML Standard<br><span class="standard-date">est. 1991</span></th>
+                <th>Dublin Core<br><span class="standard-date">est. 1995</span></th>
+                <th>Open Graph (Facebook)<br><span class="standard-date">est. 2010</span></th>
+                <th>Schema.org JSON-LD<br><span class="standard-date">est. 2011</span></th>
+                <th>Twitter Cards<br><span class="standard-date">est. 2012</span></th>
+                <th>Implementation Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- DOCUMENT BASICS -->
+            <tr class="category">
+                <td colspan="7">DOCUMENT BASICS</td>
+            </tr>
+            <tr>
+                <td>charsetUTF8</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta charset="UTF-8"&gt;</code></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="limited">Limited</span><br>encoding</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta charset="UTF-8"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>viewport</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="viewport"&gt;</code></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>contentType</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta http-equiv="Content-Type"&gt;</code></td>
+                <td><span class="yes">Yes</span><br>DC.format</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>encoding</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>xUACompatible</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta http-equiv="X-UA-Compatible"&gt;</code></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;</code></td>
+            </tr>
+            
+            <!-- CORE IDENTITY -->
+            <tr class="category">
+                <td colspan="7">CORE IDENTITY</td>
+            </tr>
+            <tr>
+                <td>title80</td>
+                <td><span class="yes">Yes</span><br><code>&lt;title&gt;</code></td>
+                <td><span class="yes">Yes</span><br>DC.title</td>
+                <td><span class="yes">Yes</span><br>og:title</td>
+                <td><span class="yes">Yes</span><br>headline</td>
+                <td><span class="yes">Yes</span><br>twitter:title</td>
+                <td class="implementation"><code>&lt;title&gt;When Metadata Meets Blockchain: We Come in Peace | DA1 Blog&lt;/title&gt;</code>
+                <div class="note">Optimal length: 50-60 characters (525-535 pixels) for desktop</div></td>
+            </tr>
+            <tr>
+                <td>titleShort40</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>alternativeHeadline</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;script type="application/ld+json"&gt;{"alternativeHeadline": "Metadata Meets Blockchain"}&lt;/script&gt;</code>
+                <div class="note">Used for mobile, smaller displays, or when space is limited</div></td>
+            </tr>
+            <tr>
+                <td>titleSEO60</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="title"&gt;</code></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="title" content="When Metadata Meets Blockchain: DA1's Peaceful Solution"&gt;</code>
+                <div class="note">SEO-optimized variant with primary keywords</div></td>
+            </tr>
+            <tr>
+                <td>slug</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><span class="note">URL-friendly identifier: "metadata-peace"</span></td>
+            </tr>
+            
+            <!-- DESCRIPTION -->
+            <tr class="category">
+                <td colspan="7">DESCRIPTION</td>
+            </tr>
+            <tr>
+                <td>description160</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="description"&gt;</code></td>
+                <td><span class="yes">Yes</span><br>DC.description</td>
+                <td><span class="yes">Yes</span><br>og:description</td>
+                <td><span class="yes">Yes</span><br>description</td>
+                <td><span class="yes">Yes</span><br>twitter:description</td>
+                <td class="implementation"><code>&lt;meta name="description" content="Metadata fragmentation is killing royalties. DA1 offers a peaceful, accurate, blockchain-anchored solution bridging existing standards."&gt;</code>
+                <div class="note">Optimal length: 150-160 characters (920 pixels) for desktop</div></td>
+            </tr>
+            <tr>
+                <td>descriptionShort80</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>DC.description.abstract</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>abstract</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="DC.description.abstract" content="DA1's metadata solution connects standards rather than replacing them."&gt;</code>
+                <div class="note">For Twitter and mobile (120 chars/680 pixels max)</div></td>
+            </tr>
+            <tr>
+                <td>descriptionLong400</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>description (long)</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;script type="application/ld+json"&gt;{"description": "The music industry faces a crisis of disconnection. Metadata fragmentation has created a chaotic ecosystem where creators lose royalties, platforms bear legal risks, and the entire value chain suffers. DA1 offers a peaceful, accurate, blockchain-anchored solution bridging the gap between standards."}&lt;/script&gt;</code></td>
+            </tr>
+            <tr>
+                <td>descriptionExcerpt</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="article:excerpt"&gt;</code></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>abstract</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="article:excerpt" content="The music industry faces a crisis of disconnection. As Ellie Rennie perfectly captured in her insightful analysis, metadata fragmentation has created a chaotic ecosystem where creators lose royalties, platforms bear legal risks, and the entire value chain suffers from inefficiency and mistrust."&gt;</code></td>
+            </tr>
+            
+            <!-- AUTHORSHIP -->
+            <tr class="category">
+                <td colspan="7">AUTHORSHIP</td>
+            </tr>
+            <tr>
+                <td>authorName</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="author"&gt;</code></td>
+                <td><span class="yes">Yes</span><br>DC.creator</td>
+                <td><span class="yes">Yes</span><br>article:author</td>
+                <td><span class="yes">Yes</span><br>author.name</td>
+                <td><span class="yes">Yes</span><br>twitter:creator</td>
+                <td class="implementation"><code>&lt;meta name="author" content="Dainis W. Michel"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>authorTitle</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>author.jobTitle</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;script type="application/ld+json"&gt;{"author": {"@type": "Person", "name": "Dainis W. Michel", "jobTitle": "Founder, DA1"}}&lt;/script&gt;</code></td>
+            </tr>
+            <tr>
+                <td>authorEmail</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="reply-to"&gt;</code></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>author.email</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="reply-to" content="dainis@da1.fm"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>authorSocialTwitter</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>author.sameAs</td>
+                <td><span class="yes">Yes</span><br>twitter:creator</td>
+                <td class="implementation"><code>&lt;meta name="twitter:creator" content="@dainismichel"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>authorSocialLinkedIn</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>author.sameAs</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;script type="application/ld+json"&gt;{"author": {"sameAs": ["https://www.linkedin.com/in/dainismichel"]}}&lt;/script&gt;</code></td>
+            </tr>
+            <tr>
+                <td>authorBio</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>author.description</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;script type="application/ld+json"&gt;{"author": {"description": "Dainis is a music technology expert focused on solving metadata fragmentation issues in the industry."}}&lt;/script&gt;</code></td>
+            </tr>
+            <tr>
+                <td>contributor</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>DC.contributor</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>contributor</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="DC.contributor" content="Jane Smith"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>copyright</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="copyright"&gt;</code></td>
+                <td><span class="yes">Yes</span><br>DC.rights</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>copyrightHolder</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="copyright" content="© 2025 DA1. All rights reserved."&gt;</code></td>
+            </tr>
+            
+            <!-- PUBLISHER INFORMATION -->
+            <tr class="category">
+                <td colspan="7">PUBLISHER INFORMATION</td>
+            </tr>
+            <tr>
+                <td>publisherName</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>DC.publisher</td>
+                <td><span class="yes">Yes</span><br>article:publisher</td>
+                <td><span class="yes">Yes</span><br>publisher.name</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta property="article:publisher" content="https://facebook.com/DA1metaMetaData"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>publisherLogo</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>publisher.logo</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;script type="application/ld+json"&gt;{"publisher": {"@type": "Organization", "name": "DA1", "logo": {"@type": "ImageObject", "url": "https://da1.fm/logo.png", "width": 600, "height": 60}}}&lt;/script&gt;</code></td>
+            </tr>
+            <tr>
+                <td>publisherUrl</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>publisher.url</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;script type="application/ld+json"&gt;{"publisher": {"url": "https://da1.fm"}}&lt;/script&gt;</code></td>
+            </tr>
+            
+            <!-- DATES AND TIMES -->
+            <tr class="category">
+                <td colspan="7">DATES AND TIMES</td>
+            </tr>
+            <tr>
+                <td>datePublished</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="date"&gt;</code></td>
+                <td><span class="yes">Yes</span><br>DC.date</td>
+                <td><span class="yes">Yes</span><br>article:published_time</td>
+                <td><span class="yes">Yes</span><br>datePublished</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta property="article:published_time" content="2025-03-29T14:30:00+00:00"&gt;</code>
+                <div class="note">Uses ISO 8601 format</div></td>
+            </tr>
+            <tr>
+                <td>dateModified</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="revised"&gt;</code></td>
+                <td><span class="yes">Yes</span><br>DC.date.modified</td>
+                <td><span class="yes">Yes</span><br>article:modified_time</td>
+                <td><span class="yes">Yes</span><br>dateModified</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta property="article:modified_time" content="2025-03-29T16:45:00+00:00"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>dateCreated</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>DC.date.created</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>dateCreated</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="DC.date.created" content="2025-03-25T10:30:00+00:00"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>datePublishedHuman</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="da1:datePublishedHuman" content="2025y-03m-29d-14h-30m-00s"&gt;</code>
+                <div class="note">DA1 format with unit markers for human readability</div></td>
+            </tr>
+            <tr>
+                <td>dateModifiedHuman</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="da1:dateModifiedHuman" content="2025y-03m-29d-16h-45m-00s"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>datePublishedUnix</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="da1:datePublishedUnix" content="1743234600"&gt;</code>
+                <div class="note">Unix timestamp for technical applications</div></td>
+            </tr>
+            <tr>
+                <td>dateExpires</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="expires"&gt;</code></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>expires</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="expires" content="2030-03-29T16:45:00+00:00"&gt;</code>
+                <div class="note">For time-sensitive content</div></td>
+            </tr>
+            
+            <!-- CATEGORIZATION -->
+            <tr class="category">
+                <td colspan="7">CATEGORIZATION</td>
+            </tr>
+            <tr>
+                <td>categoryPrimary</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>DC.subject</td>
+                <td><span class="yes">Yes</span><br>article:section</td>
+                <td><span class="yes">Yes</span><br>articleSection</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta property="article:section" content="Industry Standards"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>categoriesSecondary</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>about</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;script type="application/ld+json"&gt;{"about": ["Metadata", "Blockchain", "Attribution"]}&lt;/script&gt;</code></td>
+            </tr>
+            <tr>
+                <td>tags</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="keywords"&gt;</code></td>
+                <td><span class="yes">Yes</span><br>DC.subject</td>
+                <td><span class="yes">Yes</span><br>article:tag</td>
+                <td><span class="yes">Yes</span><br>keywords</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta property="article:tag" content="Metadata"&gt;
+&lt;meta property="article:tag" content="Blockchain"&gt;
+&lt;meta property="article:tag" content="Music Industry"&gt;
+&lt;meta property="article:tag" content="Standards"&gt;
+&lt;meta property="article:tag" content="Attribution"&gt;
+&lt;meta property="article:tag" content="Digital Rights"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>genre</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>DC.type</td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>genre</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="DC.type" content="Technical Article"&gt;</code></td>
+            </tr>
+            
+            <!-- CONTENT METRICS -->
+            <tr class="category">
+                <td colspan="7">CONTENT METRICS</td>
+            </tr>
+            <tr>
+                <td>readingTimeMinutes</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>timeRequired</td>
+                <td><span class="yes">Yes</span><br>twitter:label1/data1</td>
+                <td class="implementation"><code>&lt;meta name="twitter:label1" content="Reading time"&gt;
+&lt;meta name="twitter:data1" content="6 minutes"&gt;</code></td>
+            </tr>
+            <tr>
+                <td>wordCount</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>wordCount</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;script type="application/ld+json"&gt;{"wordCount": 1250}&lt;/script&gt;</code></td>
+            </tr>
+            <tr>
+                <td>pageCount</td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>numberOfPages</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;script type="application/ld+json"&gt;{"numberOfPages": 3}&lt;/script&gt;</code></td>
+            </tr>
+            <tr>
+                <td>contentRating</td>
+                <td><span class="yes">Yes</span><br><code>&lt;meta name="rating"&gt;</code></td>
+                <td><span class="no">No</span></td>
+                <td><span class="no">No</span></td>
+                <td><span class="yes">Yes</span><br>contentRating</td>
+                <td><span class="no">No</span></td>
+                <td class="implementation"><code>&lt;meta name="rating" content="General"&gt;</code>
+                <div class="note">Options: General, Mature, Restricted, 14 Years, Adult</div></td>
+            </tr>
+            
+            <!-- MEDIA -->
+            <tr class="category">
+                <td colspan="7">MEDIA</td>
+            </tr>

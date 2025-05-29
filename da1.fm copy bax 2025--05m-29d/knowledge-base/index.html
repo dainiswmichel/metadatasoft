@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 Knowledge Base</title>
+    <meta name="description" content="Technical documentation and guides for the DA1 ecosystem and MetaMetadata technology.">
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../resources/icons/bootstrap-icons.css">
+   <link rel="stylesheet" href="./css/kb.css">
+   
+
+
+  <!-- Alpine.js must be loaded before sidebar.js -->
+  <script defer type="module" src="../js/alpinejs-local.js"></script>
+  <script src="../sidebar.js" defer></script>
+
+
+</head>
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="kb-header">
+            <h1>DA1 Knowledge Base</h1>
+            <p class="kb-description">Technical documentation and guides for the DA1 ecosystem</p>
+        </header>
+
+        <!-- We'll rely on tags for filtering instead of categories -->
+
+        <!-- KB Topics Container -->
+        <div id="kb-topics">
+            <!-- Loading indicator will be shown here automatically -->
+        </div>
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="./js/component-loader.js"></script>
+    <script src="./js/kb.js"></script>
+
+    <!-- Tag-based filtering script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let activeTag = null;
+            
+            // Add event delegation for tag filtering (for tags that may be added dynamically)
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('topic-tag')) {
+                    e.preventDefault();
+                    
+                    // Get the selected tag text
+                    const tag = e.target.innerText;
+                    
+                    // Special handling for "All" tag
+                    if (tag === 'All' || e.target.classList.contains('all-tag')) {
+                        // Remove active class from all tags
+                        document.querySelectorAll('.topic-tag').forEach(t => t.classList.remove('active'));
+                        
+                        // Add active class to All tag
+                        e.target.classList.add('active');
+                        
+                        // Reset active tag and show all topics
+                        activeTag = null;
+                        filterKBTopics(null);
+                        return;
+                    }
+                    
+                    // Toggle tag selection for regular tags
+                    if (activeTag === tag) {
+                        activeTag = null;
+                        e.target.classList.remove('active');
+                        
+                        // Show all topics when no tag is selected
+                        filterKBTopics(null);
+                        
+                        // Add active class to All tag
+                        document.querySelector('.all-tag')?.classList.add('active');
+                    } else {
+                        // Remove active class from all other tags
+                        document.querySelectorAll('.topic-tag').forEach(t => t.classList.remove('active'));
+                        
+                        activeTag = tag;
+                        e.target.classList.add('active');
+                        
+                        // Filter topics based on tag
+                        filterKBTopics(activeTag);
+                    }
+                }
+            });
+            
+            // Function to filter KB topics by tag
+            function filterKBTopics(tag) {
+                const kbTopics = document.querySelectorAll('.kb-topic');
+                
+                kbTopics.forEach(topic => {
+                    // If a tag is active, check if topic has that tag
+                    if (tag) {
+                        const topicTags = Array.from(topic.querySelectorAll('.topic-tag')).map(t => t.innerText);
+                        topic.style.display = topicTags.includes(tag) ? 'block' : 'none';
+                    } else {
+                        // No tag selected, show all topics
+                        topic.style.display = 'block';
+                    }
+                });
+                
+                // Display message if no topics match the filter
+                // Use getComputedStyle to properly check visibility
+                const visibleTopics = Array.from(document.querySelectorAll('.kb-topic')).filter(topic => {
+                    return window.getComputedStyle(topic).display !== 'none';
+                });
+                
+                const noTopicsMessage = document.querySelector('.no-topics-message');
+                
+                // Only show "no topics" message if there are truly no visible topics
+                if (visibleTopics.length === 0 && !noTopicsMessage) {
+                    const message = document.createElement('p');
+                    message.className = 'no-topics-message';
+                    message.innerText = tag ? `No topics found with the "${tag}" tag.` : 'No topics found.';
+                    document.getElementById('kb-topics').appendChild(message);
+                } else if (visibleTopics.length > 0 && noTopicsMessage) {
+                    noTopicsMessage.remove();
+                }
+            }
+            
+            // Add a container for popular tags at the top
+            const addPopularTags = () => {
+                setTimeout(() => {
+                    const kbTopics = document.querySelectorAll('.kb-topic');
+                    if (kbTopics.length === 0) return;
+                    
+                    // Create a map to count tag occurrences
+                    const tagCounts = {};
+                    
+                    // Count occurrences of each tag
+                    kbTopics.forEach(topic => {
+                        const topicTags = topic.querySelectorAll('.topic-tag');
+                        topicTags.forEach(tag => {
+                            const tagText = tag.innerText;
+                            tagCounts[tagText] = (tagCounts[tagText] || 0) + 1;
+                        });
+                    });
+                    
+                    // The specified top tags in alphabetical order
+                    const displayTags = [
+                        "Code Standards",
+                        "Development",
+                        "Documentation",
+                        "Installation",
+                        "MetaMetaData",
+                        "Node.js", 
+                        "NPM",
+                        "Process",
+                        "Standards",
+                        "Tools"
+                    ].sort();
+                    
+                    // If we have tags, add the popular tags section
+                    if (displayTags.length > 0) {
+                        const popularTagsContainer = document.createElement('div');
+                        popularTagsContainer.className = 'popular-tags';
+                        popularTagsContainer.innerHTML = `
+                            <span class="popular-tags-label">Tags: </span>
+                            <span class="topic-tag all-tag">All</span>
+                            ${displayTags.map(tag => `<span class="topic-tag">${tag}</span>`).join('')}
+                        `;
+                        
+                        // Insert after header
+                        const headerElement = document.querySelector('.kb-header');
+                        if (headerElement && !document.querySelector('.popular-tags')) {
+                            headerElement.after(popularTagsContainer);
+                        }
+                    }
+                }, 1000); // Give time for topics to load
+            };
+            
+            // Call the function after page loads
+            addPopularTags();
+            
+            // Make sure "All" is active by default when the page loads
+            setTimeout(() => {
+                const allTag = document.querySelector('.all-tag');
+                if (allTag) {
+                    allTag.classList.add('active');
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

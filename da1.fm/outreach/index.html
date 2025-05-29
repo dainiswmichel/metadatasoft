@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 Outreach</title>
+    <meta name="description" content="DA1's outreach to thought leaders, creators, and organizations working to improve digital attribution and creator rights.">
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="./css/outreach.css">
+    
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../js/alpinejs-local.js"></script>
+    <script src="../sidebar.js" defer></script>
+</head>
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="outreach-header">
+            <h1>DA1 Outreach</h1>
+            <p class="outreach-description">Connected Conversations About the Future of Digital Attribution</p>
+        </header>
+
+        <!-- Outreach Posts Container -->
+        <div id="outreach-posts">
+            <!-- Loading indicator will be shown here automatically -->
+        </div>
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="./js/component-loader.js"></script>
+    
+    <!-- Outreach Post Lister Script (Based on Blog JS) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add a loading indicator
+            const outreachPostsContainer = document.getElementById('outreach-posts');
+            if (outreachPostsContainer && !outreachPostsContainer.querySelector('.loading-indicator')) {
+                const loadingIndicator = document.createElement('div');
+                loadingIndicator.className = 'loading-indicator';
+                loadingIndicator.textContent = 'Loading outreach posts...';
+                outreachPostsContainer.appendChild(loadingIndicator);
+            }
+            
+            // Scan for outreach posts
+            scanForOutreachPosts();
+        });
+        
+        /**
+         * Scan for outreach posts
+         */
+        function scanForOutreachPosts() {
+            // Fetch outreach-posts.txt
+            fetch('./outreach-posts.txt')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch outreach posts: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(async text => {
+                    const postFiles = text.split('\n')
+                        .map(line => line.trim())
+                        .filter(line => line && line.endsWith('.html'));
+                    
+                    console.log('Outreach post files found:', postFiles);
+                    
+                    if (postFiles.length === 0) {
+                        showNoPostsMessage();
+                        return;
+                    }
+                    
+                    // Fetch metadata from each post
+                    const postsMetadata = await Promise.all(
+                        postFiles.map(async filename => {
+                            try {
+                                const postUrl = './posts/' + filename;
+                                console.log('Fetching post:', postUrl);
+                                
+                                const response = await fetch(postUrl);
+                                if (!response.ok) {
+                                    throw new Error(`Failed to fetch post: ${response.status}`);
+                                }
+                                
+                                const html = await response.text();
+                                const metadata = extractPostMetadata(html, postUrl, filename);
+                                
+                                return metadata;
+                            } catch (error) {
+                                console.error(`Error processing post ${filename}:`, error);
+                                return null;
+                            }
+                        })
+                    );
+                    
+                    // Get current date for date-based filtering
+                    const currentDate = new Date();
+                    
+                    // Filter out null results, future posts, and sort by date (newest first)
+                    const validPosts = postsMetadata
+                        .filter(post => post !== null)
+                        .filter(post => {
+                            const publishDate = new Date(post.publishDate);
+                            return publishDate <= currentDate;
+                        })
+                        .sort((a, b) => {
+                            const dateA = new Date(a.publishDate);
+                            const dateB = new Date(b.publishDate);
+                            return dateB - dateA; // Newest first
+                        });
+                    
+                    // Display posts
+                    const outreachPostsContainer = document.getElementById('outreach-posts');
+                    if (outreachPostsContainer) {
+                        outreachPostsContainer.innerHTML = ''; // Clear loading indicator
+                        
+                        if (validPosts.length > 0) {
+                            validPosts.forEach(post => {
+                                const postElement = createPostElement(post);
+                                outreachPostsContainer.appendChild(postElement);
+                            });
+                        } else {
+                            showNoPostsMessage();
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error scanning for outreach posts:', error);
+                    
+                    // Show error message
+                    const outreachPostsContainer = document.getElementById('outreach-posts');
+                    if (outreachPostsContainer) {
+                        outreachPostsContainer.innerHTML = '<p class="error-message">Error loading outreach posts. Please try again later.</p>';
+                    }
+                });
+        }
+        
+        // Display a message when no posts are found
+        function showNoPostsMessage() {
+            const outreachPostsContainer = document.getElementById('outreach-posts');
+            if (outreachPostsContainer) {
+                outreachPostsContainer.innerHTML = '';
+                const noPostsMsg = document.createElement('p');
+                noPostsMsg.className = 'no-posts-message';
+                noPostsMsg.textContent = 'No outreach posts found.';
+                outreachPostsContainer.appendChild(noPostsMsg);
+            }
+        }
+        
+        // Extract metadata from post HTML
+        function extractPostMetadata(html, postUrl, filename) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Extract metadata using various methods
+            
+            // 1. Check for meta tags
+            function getMeta(name) {
+                const meta = doc.querySelector(`meta[name="da1:${name}"]`);
+                return meta ? meta.getAttribute('content') : null;
+            }
+            
+            // Extract base data
+            const title = doc.querySelector('title')?.textContent || 'Untitled Post';
+            const target = getMeta('target') || doc.querySelector('.target-name')?.textContent || '';
+            const targetRole = getMeta('target-role') || doc.querySelector('.target-role')?.textContent || '';
+            const targetTwitter = getMeta('target-twitter') || '';
+            const publishDate = getMeta('publish-date') || new Date().toISOString();
+            const category = getMeta('category') || 'Outreach';
+            const tagsStr = getMeta('tags') || '';
+            const tags = tagsStr ? tagsStr.split(',').map(tag => tag.trim()) : [];
+            
+            // Extract tweet data
+            const tweetElement = doc.querySelector('.tweet-content p');
+            const tweetText = tweetElement ? tweetElement.textContent.trim() : '';
+            const tweetStatus = doc.documentElement.getAttribute('data-tweet-status') || 'pending';
+            
+            // Extract message/excerpt
+            const messageElement = doc.querySelector('.outreach-message p');
+            const message = messageElement ? messageElement.textContent.trim() : '';
+            const excerpt = message.substring(0, 150) + (message.length > 150 ? '...' : '');
+            
+            // Format the base filename for display
+            const displayName = filename.replace('.html', '')
+                .replace(/-/g, ' ')
+                .replace(/\b\w/g, c => c.toUpperCase()); // Capitalize first letter of each word
+            
+            return {
+                title,
+                target,
+                targetRole,
+                targetTwitter,
+                publishDate,
+                category,
+                tags,
+                tweetText,
+                tweetStatus,
+                message,
+                excerpt,
+                path: postUrl,
+                displayName
+            };
+        }
+        
+        // Create a post element from metadata
+        function createPostElement(post) {
+            const postElement = document.createElement('article');
+            postElement.className = 'outreach-post';
+            
+            // Format the date
+            let displayDate = 'Unknown Date';
+            if (post.publishDate) {
+                try {
+                    const dateObj = new Date(post.publishDate);
+                    displayDate = dateObj.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                } catch (e) {
+                    console.error('Error formatting date:', e);
+                }
+            }
+            
+            // Generate tags HTML
+            let tagsHtml = '';
+            if (post.tags && post.tags.length > 0) {
+                tagsHtml = `<div class="post-tags-display">
+                    Tags: ${post.tags.join(', ')}
+                </div>`;
+            }
+            
+            // Generate tweet status badge
+            const tweetStatusClass = post.tweetStatus === 'tweeted' ? 'tweeted' : 
+                                    post.tweetStatus === 'scheduled' ? 'scheduled' : 'pending';
+            const tweetStatusLabel = post.tweetStatus.charAt(0).toUpperCase() + post.tweetStatus.slice(1);
+            
+            postElement.innerHTML = `
+                <h2><a href="${post.path}">${post.title}</a></h2>
+                <div class="post-meta">
+                    <span><i class="bi bi-person"></i> Target: ${post.target}</span>
+                    <span><i class="bi bi-calendar3"></i> ${displayDate}</span>
+                    ${post.targetTwitter ? `<span><i class="bi bi-twitter"></i> ${post.targetTwitter}</span>` : ''}
+                </div>
+                <p>${post.excerpt}</p>
+                ${tagsHtml}
+                <div class="post-footer">
+                    <span class="tweet-status ${tweetStatusClass}">${tweetStatusLabel}</span>
+                    <a href="${post.path}" class="read-more">View Outreach <i class="bi bi-arrow-right"></i></a>
+                </div>
+            `;
+            
+            return postElement;
+        }
+    </script>
+    
+    <style>
+    /* Additional styles specific to outreach index page */
+    .outreach-header {
+        margin-bottom: 2rem;
+    }
+    
+    .outreach-description {
+        font-size: 1.1rem;
+        color: #666;
+        margin-top: 0.5rem;
+    }
+    
+    .outreach-post {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s;
+    }
+    
+    .outreach-post:hover {
+        transform: translateY(-5px);
+    }
+    
+    .outreach-post h2 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+    }
+    
+    .outreach-post h2 a {
+        color: #0066cc;
+        text-decoration: none;
+    }
+    
+    .outreach-post h2 a:hover {
+        text-decoration: underline;
+    }
+    
+    .post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        color: #666;
+        margin-bottom: 1rem;
+    }
+    
+    .post-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .post-tags-display {
+        margin: 1rem 0;
+        color: #666;
+        font-style: italic;
+    }
+    
+    .post-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+    
+    .tweet-status {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    
+    .tweet-status.pending {
+        background-color: #f1f8ff;
+        color: #0366d6;
+    }
+    
+    .tweet-status.scheduled {
+        background-color: #fff8c5;
+        color: #735c0f;
+    }
+    
+    .tweet-status.tweeted {
+        background-color: #e6ffed;
+        color: #22863a;
+    }
+    
+    .read-more {
+        color: #0066cc;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+    }
+    
+    .read-more:hover {
+        text-decoration: underline;
+    }
+    
+    .loading-indicator {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+    }
+    
+    .error-message, .no-posts-message {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+    
+    .error-message {
+        color: #d32f2f;
+    }
+    
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        .outreach-post {
+            background-color: #1f2937;
+        }
+        
+        .error-message, .no-posts-message {
+            background-color: #1f2937;
+        }
+    }
+    </style>
+</body>
+</html>

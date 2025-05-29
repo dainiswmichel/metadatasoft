@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 HTML MetaMetadata Mapping Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .category {
+            font-weight: bold;
+            background-color: #e9f7fe;
+        }
+        .notes {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h1>DA1 HTML MetaMetadata Mapping Table</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>DA1 MetaMetadata</th>
+                <th>HTML Standard</th>
+                <th>Open Graph (Facebook)</th>
+                <th>Twitter Cards</th>
+                <th>Schema.org (JSON-LD)</th>
+                <th>Dublin Core</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- CORE IDENTITY -->
+            <tr class="category">
+                <td colspan="6">CORE IDENTITY</td>
+            </tr>
+            <tr>
+                <td>title80</td>
+                <td>&lt;title&gt;</td>
+                <td>og:title</td>
+                <td>twitter:title</td>
+                <td>headline</td>
+                <td>DC.title</td>
+            </tr>
+            <tr>
+                <td>titleShort40</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>alternativeHeadline</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>titleSEO60</td>
+                <td>meta name="title"</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>slug</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- DESCRIPTION -->
+            <tr class="category">
+                <td colspan="6">DESCRIPTION</td>
+            </tr>
+            <tr>
+                <td>description160</td>
+                <td>meta name="description"</td>
+                <td>og:description</td>
+                <td>twitter:description</td>
+                <td>description</td>
+                <td>DC.description</td>
+            </tr>
+            <tr>
+                <td>descriptionShort80</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>abstract</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>descriptionLong400</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>description (long)</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- AUTHOR -->
+            <tr class="category">
+                <td colspan="6">AUTHOR INFORMATION</td>
+            </tr>
+            <tr>
+                <td>authorName</td>
+                <td>meta name="author"</td>
+                <td>article:author</td>
+                <td>twitter:creator</td>
+                <td>author.name</td>
+                <td>DC.creator</td>
+            </tr>
+            <tr>
+                <td>authorTitle</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>author.jobTitle</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>authorSocialTwitter</td>
+                <td>-</td>
+                <td>-</td>
+                <td>twitter:creator</td>
+                <td>author.sameAs</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>authorSocialLinkedIn</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>author.sameAs</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- DATES -->
+            <tr class="category">
+                <td colspan="6">PUBLICATION DATES</td>
+            </tr>
+            <tr>
+                <td>datePublished</td>
+                <td>meta name="date"</td>
+                <td>article:published_time</td>
+                <td>-</td>
+                <td>datePublished</td>
+                <td>DC.date</td>
+            </tr>
+            <tr>
+                <td>dateModified</td>
+                <td>meta name="revised"</td>
+                <td>article:modified_time</td>
+                <td>-</td>
+                <td>dateModified</td>
+                <td>DC.date.modified</td>
+            </tr>
+            <tr>
+                <td>datePublishedHuman</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>dateModifiedHuman</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>datePublishedUnix</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- CATEGORIZATION -->
+            <tr class="category">
+                <td colspan="6">CATEGORIZATION</td>
+            </tr>
+            <tr>
+                <td>categoryPrimary</td>
+                <td>-</td>
+                <td>article:section</td>
+                <td>-</td>
+                <td>articleSection</td>
+                <td>DC.subject</td>
+            </tr>
+            <tr>
+                <td>categoriesSecondary</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>about</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>tags</td>
+                <td>meta name="keywords"</td>
+                <td>article:tag</td>
+                <td>-</td>
+                <td>keywords</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- CONTENT METRICS -->
+            <tr class="category">
+                <td colspan="6">CONTENT METRICS</td>
+            </tr>
+            <tr>
+                <td>readingTimeMinutes</td>
+                <td>-</td>
+                <td>-</td>
+                <td>twitter:label1/data1</td>
+                <td>timeRequired</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>wordCount</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>wordCount</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- MEDIA -->
+            <tr class="category">
+                <td colspan="6">MEDIA</td>
+            </tr>
+            <tr>
+                <td>imageMain</td>
+                <td>-</td>
+                <td>og:image</td>
+                <td>twitter:image</td>
+                <td>image</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>imageWidth</td>
+                <td>-</td>
+                <td>og:image:width</td>
+                <td>-</td>
+                <td>image.width</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>imageHeight</td>
+                <td>-</td>
+                <td>og:image:height</td>
+                <td>-</td>
+                <td>image.height</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>imageAlt</td>
+                <td>-</td>
+                <td>og:image:alt</td>
+                <td>twitter:image:alt</td>
+                <td>image.caption</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- CITATION -->
+            <tr class="category">
+                <td colspan="6">CITATION</td>
+            </tr>
+            <tr>
+                <td>citation.personName</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>citation.author.name</td>
+                <td>DC.relation.references</td>
+            </tr>
+            <tr>
+                <td>citation.workTitle</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>citation.name</td>
+                <td>DC.relation.references</td>
+            </tr>
+            <tr>
+                <td>citation.workUrl</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>citation.url</td>
+                <td>DC.relation.references</td>
+            </tr>
+            <tr>
+                <td>citation.quotedText</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>citation.publicationDate</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>citation.datePublished</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- CONTENT CLASSIFICATION -->
+            <tr class="category">
+                <td colspan="6">CONTENT CLASSIFICATION</td>
+            </tr>
+            <tr>
+                <td>contentType</td>
+                <td>-</td>
+                <td>og:type</td>
+                <td>-</td>
+                <td>@type</td>
+                <td>DC.type</td>
+            </tr>
+            <tr>
+                <td>contentDomain</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>about</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>contentRelevance</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>about</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>contentPurpose</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- VERIFICATION -->
+            <tr class="category">
+                <td colspan="6">VERIFICATION</td>
+            </tr>
+            <tr>
+                <td>verificationHash</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>verificationTimestamp</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>verificationAuthority</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- WEB3 INTEGRATION -->
+            <tr class="category">
+                <td colspan="6">WEB3 INTEGRATION</td>
+            </tr>
+            <tr>
+                <td>web3ContentId</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>web3ContentLicense</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>license</td>
+                <td>DC.rights</td>
+            </tr>
+            <tr>
+                <td>web3ContentChain</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            
+            <!-- ACCESSIBILITY -->
+            <tr class="category">
+                <td colspan="6">ACCESSIBILITY</td>
+            </tr>
+            <tr>
+                <td>a11yReadabilityGrade</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>a11yLanguagePrimary</td>
+                <td>html lang attribute</td>
+                <td>og:locale</td>
+                <td>-</td>
+                <td>inLanguage</td>
+                <td>DC.language</td>
+            </tr>
+            
+            <!-- LINKS -->
+            <tr class="category">
+                <td colspan="6">LINKS</td>
+            </tr>
+            <tr>
+                <td>canonicalUrl</td>
+                <td>link rel="canonical"</td>
+                <td>og:url</td>
+                <td>-</td>
+                <td>url</td>
+                <td>DC.identifier</td>
+            </tr>
+            
+            <!-- CALL TO ACTION -->
+            <tr class="category">
+                <td colspan="6">CALL TO ACTION</td>
+            </tr>
+            <tr>
+                <td>primaryCTA</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>potentialAction.name</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>primaryCTAUrl</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>potentialAction.target</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="notes">
+        <h3>Notes on DA1 MetaMetadata Naming Conventions:</h3>
+        <ul>
+            <li><strong>Character Limits in Names:</strong> Fields with character limits (e.g., title80, description160) include the maximum recommended character count in the field name itself, making it self-documenting.</li>
+            <li><strong>Hierarchical Structure:</strong> Related fields use dot notation for hierarchy (e.g., citation.personName).</li>
+            <li><strong>Human Readability:</strong> DA1-specific date formats (datePublishedHuman) use explicit unit markers for improved human readability.</li>
+            <li><strong>Standardized Prefixes:</strong> Fields use domain-specific prefixes (a11y for accessibility, web3 for blockchain integration) to group related concepts.</li>
+            <li><strong>Descriptive Suffixes:</strong> Where multiple variants exist, suffixes clearly indicate purpose (Primary, Secondary, Short, Long).</li>
+        </ul>
+        
+        <h3>DA1 Bridge Approach:</h3>
+        <p>The DA1 approach doesn't replace existing standards but acts as a bridge between them. Fields with "-" in other standards are unique DA1 enhancements that extend traditional metadata systems while maintaining backward compatibility.</p>
+    </div>
+</body>
+</html>

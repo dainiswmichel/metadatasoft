@@ -1,0 +1,946 @@
+00:00:00	so as you guys know getting your metadata right is extremely important in the sync licensing business why well if your metadata is not properly tagged and associated with your music nobody can find it okay so I've made this analogy a few times where imagine you go to the grocery store and there are boxes and boxes of cereal but none of them have any labels on them no artwork no indication as to which one of these blank white boxes are going to be most appealing to you right depending on what mood you're in that week so how you
+
+00:00:33	Market your tracks really starts with the title of the track but most importantly the metadata so I've put out quite a few tutorials especially in sync Academy on how to do this but of course there is a lot to unpack with that and because there are so many different ways you can kind of go with how do you classify your music how much metadata do you need to include um how much is too much how much is too little it would be helpful if we had some sort of a platform that would basically take care of that for us and
+
+00:01:02	essentially give us some guard rails specifically for the production Music World the TV Film Production music that we've sort of uh make in our careers and having a place to kind of walk us through that process step by step well the sponsor of today's video is going to do exactly that for us okay I want to introduce you guys to Marina Garza of tag team analysis Marina reached out to me to let me know about tag team and essentially what service they specifically provide for us in the production music world and when we got
+
+00:01:33	on a zoom call and she shared with me what her product is all about what her service really is I thought Bingo a perfect fit for us for music producers for composers for people that might need a little extra help to get a little bit more organization with our metadata and specifically what I wanted to do is partner with them because they have specifically focused on the production music world as you'll see very soon here I'm going to toss it over to Marina she's gonna walk us through her platform
+
+00:02:02	and how Tag Team Works and how easy it can be for you to basically get your tracks all of your entire catalog if you have you know dozens of albums or if you just have one album doesn't matter you can basically use Tag Team to essentially get you more organized can walk you through the process of getting your tracks meta tagged and sort of categorized and organize in a way that when you do ship them off to let's say a production music library or you know more importantly if you want to basically start maybe shopping your
+
+00:02:30	music directly to certain clients well tag team is certainly going to be one of your potential allies in this and what I love about tag team and what I love about any company that I've ever worked with on my Channel or through sync up our recent event is I really like partnering with companies that Empower composers and producers to create their own direct relationships in this business and this is exactly what Marina and the team do at tag team so I'm going to toss it over to you Marina right now
+
+00:02:55	thank you so much for being on the show and please walk us through how Tag Team Works and how our community they can essentially benefit from your services hi Jesse thank you thanks me on the show really excited to show everyone we do here at tag team analysis we provide a high quality descriptive metadata for our clients and for their sync licensing tracks um so what I mean by descriptive metadata I'm talking about moods and styles and genres and sub-genres featured instrumentation Etc so all the granular
+
+00:03:27	level metadata that really helps get your tracks found in that sea of production music um so we've been doing this for the last 12 years and in 2017 we created a platform called toontagger that's our tagging platform that we use with our clients and then quite recently we've been offering subscriptions to the platform so we have some clients that want to use tune tagger in-house instead of having someone else tag their music and a lot of times they're looking for some way of customizing um their their metadata so they'll use a
+
+00:04:06	tune tagger to customize maybe even create their own keyword schemas or taxonomies that better suits their Library so we offer that but our main kind of job is providing the metadata for our clients and we do that on our website we have a service page where you can actually submit your tracks and then we would tag them for you and we usually have a Turn Around from like somewhere between five and seven business days and so I'd love to show you guys our website and how you could go to our service page
+
+00:04:36	and get your music tagged by us so I will send you off to um the the website first and then we'll go into toontagger and I'll show you kind of how behind the scenes how we tag music so on to our website this is our home page tag teamanalysis.com so this is the this is the place you start to go to submit your tracks for tagging if you go under our services page you'll know you'll notice that there's a tag your music section um so most of our clients that will use this are clients that really kind of
+
+00:05:12	want to just Outsource this type of job out instead of doing it in-house so if you notice at the beginning here we have our pricing guide on the right side and it's our pricing is based on volume and then on on this section here it gives you information on how to submit your tracks it's a very simple process you just go through the file submission and payment form here add your names email addresses and any messages or any notes that you may have for us you can put them there you'll upload your mp3s and zip them in
+
+00:05:46	this section and then also you can submit a spreadsheet if it's something that you use that we don't have you can you know if you have a formatted spreadsheet that you need us to um to implement the metadata on we can do that and then at the bottom here are the pricing tiers so you will select one of these and then just add your track number a number of tracks that you're submitting and then you will just hit the submit button and it's fairly simple and like I was saying before we you know our turnaround is five to seven business
+
+00:06:19	days so that's kind of how that works also we have other services if you need any types of tagging consultations or music library consultations you know helping build keyword taxonomies or schemas for your library we we do that we provide database Services we do album creation and playlistings we do track retitlings and then also metadata embedding so if any of these services are of Interest please go on to our website and check them out in more detail so moving right along this is the home page of the toontagger tagging platform
+
+00:06:59	it is an active projects page and here's where you would organize your projects based on albums or however folders you have set up that of tracks that need to be tagged it's just a great way of just keeping things organized so how we do it is we'll just start a new project you can type in a project name we'll call this album eight and then you have this section where you can add more information about the uh about the album or the project you can add your album name your descriptions your writer information your pro
+
+00:07:36	information so if you're actually if you're doing a project or an album that has all of the same Pro and all the same writer information this is kind of just a really a great way of organizing all your metadata in one place so we'll add the project and it's sitting right here so then you want to get started and we want to get started on getting all of our tracks onto the platform or all of our song titles onto the platform so we can start tagging so we will click add songs you have three options of how you want to
+
+00:08:12	bring in your tracks one you can just manually type in the track names or you can upload a CSV of your song titles but probably the most popular way of doing it is to just import your songs from the Dropbox it's a lot more simpler and you have a lot more options that way usually takes somewhere around five minutes to sync everything up onto the platform so let's just go ahead and go back to the home page and you know for time's sake we'll just pick a project that's already been synced so we'll go
+
+00:08:47	with this one orchestral Mega beasts this project has six tracks left to categorize it will show you how many tracks have been synced up and then you'll know when it's completed so we'll hit get started notice that you'll have three different sections here in red or tracks that need to be tagged yellow that are tracks in progress and then green are the completed tracks so these have all been completely Tagged so let's go with this one here and this is the first page if you notice we have BPM and key finder analyzers and
+
+00:09:22	they've already analyzed the audio and this is why it takes a little bit of time for it to sync up because the BPM um analyzer and the key finder analyzer are working and then it gives us the information so we have BPM which I'm going to say is about 80 effective or accurate uh depends on the track uh if it's a cut and dry steady beat track like if it's a EDM track or something that has a steady beat it will it will analyze it really well if it's a track that is multi-tempoed you'll probably have to
+
+00:09:56	manually tap in or manually enter the bpms it's very simple you'll just have to use the control button on your computer and tap four steady Beats and then it'll give you the BPM readout or you can also manually tap it in like that on the key finder you'll have to also tag major minor or neutral so I'll just grab major for now and then we'll move forward we'll have vocals Q types and sound alikes as Fields they this one is optional and these you can add you can edit and customize these and add more tags if you
+
+00:10:39	need it now here this section is our scores I mean our genres and our subgenres section uh and we have these separated in um these are commercial genres and then these are production music genres so they're organized in that fashion so the rule is for genres you can only tag one and for sub-genres for sub-genres you can tag up to four so let's go ahead and listen to the track [Music] okay so right off bat I'm gonna say it's a production track and I'm gonna throw a score and I'm gonna grab cinematic
+
+00:11:32	action and let's go with orchestral hybrid and maybe it could be a trailer track so we've got right now we have three sub genres and the subgenres are really key to how this whole tagging process works so these subgenres are going to draw out and all of the preset tags for this type of song and if we go down here you'll notice that we have a style section so Styles is a music for or music usage field and for those of you that understand production music this is a really very important field because
+
+00:12:09	these tags are going to really describe how your song can be used in a film spot so let's hit get recommended style So based on my subgenres these are what come up so let's listen again [Music] so I would I would say generally speaking these tags will work well with a track like this um and you know since we know that songs can be subjective and in our mind we might conceive that maybe we want more tags or maybe want less or maybe there's more tags that would be even a better fit for this track so we have the option of
+
+00:12:51	adding more tags or deleting Tags by just clicking on them here or unassigning them all so this part is what we call the style or keyword Bank and all of these tags are organized under themes so we have action themes adventure themes and these are your drop downs with additional tags that reflect these themes so you can add more and the good thing is like so from subgenres on you have no limitations on how many keywords or how many tags you want to populate so you can you can tag as many as you want here
+
+00:13:30	we also have lyrical a lyrical theme section for the commercial related types of tracks that have lyrics and these are all based on tags that are also in a theme related uh structure so if we go Angry all of these tags are all synonymous to anger Etc so let's move on and so we'll go to the next tagging field and our next tagging field we have errors and regions these are optional but these are also drop downs we also have featured instrumentation now these are all preset based on our subgenres they may or may not be correct there
+
+00:14:17	there may be better you know suggestions here and these are our instrument tags and they're all grouped on instrument families we have sound design tags as well and we also have World instrument tags and again these are all customizable and editable so if you wanted to add more percussion or add more Loops you know descriptions you can do that as we move forward we have textures and in this section you have to tag up to two two keywords and in this situation we have three preset tags and if we hear
+
+00:15:01	so maybe it's heavy it could be edgy um maybe it's it's more gritty you can you can always change these up you can add more you can take out take out what doesn't make sense as we go to moods you'll see that these are also preset um again like Styles you can edit them and you can customize them with all of the mood tags that we have here that are all based on on themes as well and then we have this preview section this is like your last chance of changing tags if you want to delete something this is
+
+00:15:36	this is the place to do it before you go on to the next description section of the next section which is your sentence descriptions so once you've completed everything you've tagged these tracks you've got all of these tags that you've used for this particular track this this section we have six different sentence Styles and with all of those tags that you used they're implemented onto these sentence Styles and we use synonyms as well based on the keywords that you've used and these are all the
+
+00:16:07	different styles and these are this is the definer that just tells you what kind of style this the sentence is so um in the last two or shorter and I use these for stems and for alt mixes so you want to select one if if they don't sound right to you you can always randomize them to where maybe they start to sound better and you grab one and it sits up on this description box where you can edit it even more so if you don't want say the strings aren't so commanding well I'll just delete that maybe that synth isn't too heavy so I'll
+
+00:16:42	just do that but you can add more too so maybe it's a maybe it's a gritty synthesizer so you can add more words to it you can take words out Etc so once you're done with that then you can hit the project page it'll take you back to the top and if you notice down here we finished this song and one other thing I wanted to show everyone that's pretty useful if we're dealing with an album let's say that has a lot of alt mixes and stems and you want to copy the metadata from the main track to the alt mixes and to the other cut down
+
+00:17:16	types of tracks you can do it this way so we have this box that's main tracks to the alt mixes and then this box is for a main track to a main track and why we want to change it differently is this so let's say we have a main track we just finished the song um the last song and we're on on a new song now and let's say this song is similar to the first song that we tagged we have this drop down box and we can take the first this is the first track that I did we can use that track and copy paste it to this Main
+
+00:17:52	and if you notice that bpms and the key are going to stay are are not going to be copy pasted over these are going to be the only things that stay true to what the the track is that you were on on so um that's the that's the good thing about that now if it's a main track to an ALT mix if you select this it's going to copy over BPM and key information and when you hit it it's going to direct you to the featured instrument section where you'll probably want to edit let's say it's a stem and it's drums and bass so
+
+00:18:29	you want to get rid of anything that's not that and then you can add let's say it's electric bass and it's drum kit and then you can edit everything down here if you want to change the textures you want to change moods you can do that if you just want to keep it you can keep it go to the description section and then in this situation here you can you can either do one of two things you can rewrite the description with the new instruments and just leave it as is or you can pick one of these and I you
+
+00:18:58	know as if I'm doing a stem I actually like a smaller shorter description that's to the point so I'll just kind of just do that and then that will be your sentence and once you're done you can either go to the next song or you can save and go to the song list once you complete a project it'll all be in green and then you can output your metadata on in different formats so we have our format we have Harvest and source audio some of some of our clients use these aggregators as well as BMG but for uh if
+
+00:19:37	you're not using any of those it's probably just safe to just use Tag Team CSV it's very cut and dry and very to the point and you'll notice your output is a CSV and here's your titles and here are the tracks that were tagged the rest have not been tagged or they're in progress or they're not you know they haven't been they haven't been tagged yet but if you notice you have all of your descriptive Fields right up here your description your moods your Styles Q types Etc and um yeah this is kind of how we set
+
+00:20:14	it up and you can use you can use your csvs and ingest them into a website or however you need it however you need it fit this is a sneak peek of what we're working on right now this is toontagger 2.0 and it's currently in beta so you'll notice that all of the tagging fields are on the first page you'll have your genres your Styles the moods the textures instruments and lyrical Fields so everything from the second and third pages are now on the first page and it's quite simple you just have to tag your
+
+00:20:46	genres and your subgenres first and once you've done that you just click the get recommended tags and then all of the preset tags for the rest of the fields will show up and here's where you can edit the tags you can delete them or you can add to them and how you can do that is by selecting one of the tagging Fields And if you look notice below we hit instruments you'll see featured instruments below you can add extra instruments and you can do the same with the moods so all of the all of the additional tags will be accessible on
+
+00:21:21	the same page so more great things in store for this platform so check our website out for the details on when this version will be available thanks again for having me on the show much appreciated and if anyone has any questions please feel free to reach out to me via my website we provide free trials and also if you want a demo run through you can easily sign up for that on our website under toontagger thanks again bye well thank you so much Marina for coming here and sharing tag team with us letting us know
+
+00:21:54	essentially how this service can really benefit composers and producers that are serious about getting their tracks placed in TV shows movies and commercials so if you guys want to check out tag team get that free demo go get a free trial or at least go play around with it a little bit to see if it's going to be something that could really be useful for you the link will be down in the description box below and it'll also be the pinned comment down below so go ahead and click on it check it out
+
+00:22:15	and Marina thank you so much for sponsoring this video for being a part of this amazing community and we wish you guys all the best of luck obviously tagging your tracks getting yourself prepared for this really exciting journey of TV film sync licensing
+
+
+
+TagTeam Analysis
+Home
+About
+TuneTagger
+Services
+Our Clients
+Blog
+Contact
+TAG YOUR MUSIC
+It’s no use having great music if people can’t find it
+Submit Your Tracks
+For tagging small to mid sized projects we offer a convenient process for track submission and payment. For more information about how we work please see the Our Process page.
+
+Turnaround Time
+Your order should be completed within 5-7 business days.
+
+Projects Over 2,000 Tracks
+If you have a larger library, please contact us and we can provide you details on additional pricing. We will consult with you and create a custom keyword taxonomy that is most useful and relevant to your business. We offer an initial consultation by tagging up to 5 of your library tracks. Contact us today for a free consultation and quote.
+
+
+
+Our Pricing
+$5.50 / TRACK
+1 - 200 tracks
+$5.00 / TRACK
+201 - 500 tracks
+$4.50 / TRACK
+501 - 2,000 tracks
+$4.00 / TRACK
+over 2,000 tracks
+$1.50 / TRACK Alt Mixes/Stems
+1 - 10,000 tracks
+TagTeam Analysis
+Tagteam Analysis offers music tagging services to music licensing companies and sound libraries. We are a team of music analysts with extensive experience and training. We optimize music tracks for search visibility.
+Contact Us
+TagTeam Analysis
+407 Orange Street #302
+Oakland, CA 94610 USA
+
+Phone: 415-269-7507
+Email: info@tagteamanalysis.com
+
+Careers
+Recent Posts
+
+AI In Training, Part 2: Tapping the Well
+Sep 13th, 2024
+
+AI In Training: Data In, Data Out
+May 21st, 2024
+SUBSCRIBE
+We would like to keep you updated on our services and new developments as well as industry news and guidance for good metadata practices.
+
+email address
+
+
+
+© Copyright TagTeam Analysis. Site by Nicole Roberts Creative
+
+
+
+
+Docs 
+Pricing
+Case studies
+Samples 
+Blog
+Contact
+OneMusicAPI to rule them all
+OneMusicAPI is a low cost music metadata API. It works by aggregating several popular existing online music databases. This leads to an extensive and accurate range of music data of around 8,000,000 albums and 4,000,000 artists.
+
+Try OneMusicAPI
+Coverage, accuracy
+OneMusicAPI is able to provide metadata about an astonishing range of music because it aggregates existing, well maintained, online databases.
+
+The databases OneMusicAPI aggregates are:
+
+MusicBrainz
+Cover Art Archive
+Acoustid
+Wikipedia
+Discogs
+FreeDB
+Cost effective
+OneMusicAPI is optimised for developers who seek a stable, dependable API at a fraction of the cost of the existing expensive music metadata providers.
+
+We provide per-request and also monthly pricing plans. Let us know what works for you!
+
+A one-stop-shop
+OneMusicAPI aggregates multiple online music metadata services so you only need to write your integration code once.
+
+An important part of our service is to provide a stable API. We won't change APIs our customers use and we'll seek to offer enterprise-class dependability for our service.
+
+© 2012-2024 elsten software limited, Unit 4934, PO Box 6945, London, W1A 6US, UK | terms and conditions | privacy policy
+back
+Choose the plan that’s right for you!
+Pay for what you need with our made to measure plans.
+Get in touch, we’ll calculate the price which match you the best.
+
+Monthly
+Yearly
+Individual
+Enables music rights administration for Individuals
+$15/monthly
+Sign Up Now
+Rights Registrations & Metadata Delivery
+Purchase ISRCs
+1 User
+500 Works
+1,000 Recordings
+Unlimited Releases
+Unlimited Contacts
+5 GB Storage
+100% Direct Royalty Payouts
+Chat & E-mail Support
+Team
+Enables music rights administration for Teams
+$35/monthly
+Sign Up Now
+Rights Registrations & Metadata Delivery
+Free ISRCs
+5 Users
+2,500 Works
+5,000 Recordings
+Unlimited Releases
+Unlimited Contacts
+15 GB Storage
+100% Direct Royalty Payouts
+Chat & E-mail Support
+Business
+Enables music rights administration for Businesses
+$95/monthly
+Sign Up Now
+Rights Registrations & Metadata Delivery
+U.S. Mechanical Only Registration
+Free ISRCs
+15 Users
+10,000 Works
+Unlimited Recordings
+Unlimited Releases
+Unlimited Contacts
+1 Sub-Catalog (Info)
+30 GB Storage
+100% Direct Royalty Payouts
+Chat & E-mail Support
+Enterprise
+Enables music rights administration for Enterprises
+$490/monthly
+Sign Up Now
+Rights Registrations & Metadata Delivery
+U.S. Mechanical Only Registration
+Purchase ISRCs
+Unlimited Users
+100,000 Works
+Unlimited Recordings
+Unlimited Releases
+Unlimited Contacts
+5 Sub-Catalogs (Info)
+60 GB Storage
+100% Direct Royalty Payouts
+Chat & E-mail Support
+1.7.0
+
+tuneregistry_logo_music_catalog_managerFeaturesNEtworkPricing
+loginsign up
+Make Music - Forget Forms
+TuneRegistry helps you keep your music info up-to-date and streamlines your music business administration.
+Catalog
+An easy-to-use catalog manager that helps you keep your music metadata organized.
+
+
+Songs
+Keep your songs and underlying rights information in one place.
+
+TitlesMusic Codes (ISWC & Custom)LyricsWritersProduction Music DetailsPublishersPublic Domain DetailsOwnership Splits
+Recordings
+Upload your recordings and input the metadata and ownership details.
+
+Track DetailsMusic Codes (ISRC & Custom)Artist DetailsTrack CreditsLabel DetailsPerformer Ownership SplitsProduction DetailsSound Recording Ownership
+Releases
+Build releases from your recordings with ease.
+
+Titles & FormatsMusic Codes (UPC & Custom)Distribution DetailsMeta Tags
+Contacts
+
+Manage your music contacts - writers, artists, labels, publishers, and contributors - in one place.
+
+Create multiple aliases for music creators in the same contact record and eliminate double-entry on contact information.
+
+Documents
+
+Staying organized in the music business means keeping important agreements, paperwork, and communications in a secure place.
+
+Stay organized. Upload and save important documents in TuneRegistry.
+
+Registrations
+TuneRegistry streamlines your registrations process by aggregating U.S. music rights organizations, licensing agencies, metadata services, and other exchanges into our integrated Registrations module. View the TuneRegistry Network for a list of exchanges where we can deliver your registrations.
+
+
+
+TuneRegistry Product Demo
+Explore the in's and out's of the TuneRegistry music rights administration platform in this walk-through by TuneRegistry's founder Dae Bogan.
+Register
+Join our newsletter to get updates and industry insights:
+Email Address
+PRODUCT
+Features
+Network
+Pricing
+Login
+resources
+Blog
+Webinars
+Self Published Musician eBook
+Help Center
+company
+About
+Privacy Policy
+Terms of Use
+Copyright Policy
+connect
+
+TuneRegistry is a publishing administration platform that streamlines Independent Artists, Songwriters and Producers to self administer their publishing & Sound Recording rights.
+
+© 2018-2022 TuneRegistry, LLC. All rights reserved.
+MusicBrainz
+Log in
+Create account
+Search
+
+Artist
+Search
+About us ▾
+About MusicBrainz
+Sponsors
+Team
+Shop
+Contact us
+Data licenses
+Social contract
+Code of Conduct
+Privacy policy
+GDPR compliance
+Copyright and DMCA compliance
+Data removal policy
+Auto-editor elections
+Privileged user accounts
+Statistics
+Timeline graph
+MusicBrainz history
+Products ▾
+MusicBrainz Picard
+AudioRanger
+Mp3tag
+Yate Music Tagger
+MusicBrainz for Android
+MusicBrainz Server
+MusicBrainz Database
+Developer resources
+MusicBrainz API
+Live Data Feed
+Search ▾
+Advanced search
+Edit search
+Tag cloud
+Top CD stubs
+Documentation ▾
+Beginners guide
+Style guidelines
+How tos
+FAQs
+Documentation index
+Edit types
+Relationship types
+Instrument list
+Genre list
+Development
+English ▾
+Deutsch
+English
+Français
+Italiano
+Nederlands
+(reset language)
+Help translate
+Welcome to MusicBrainz!
+MusicBrainz is an open music encyclopedia that collects music metadata and makes it available to the public.
+
+MusicBrainz aims to be:
+
+The ultimate source of music information by allowing anyone to contribute and releasing the data under open licenses.
+The universal lingua franca for music by providing a reliable and unambiguous form of music identification, enabling both people and machines to have meaningful conversations about music.
+Like Wikipedia, MusicBrainz is maintained by a global community of users and we want everyone — including you — to participate and contribute.
+
+More Information — FAQs — Contact Us
+MusicBrainz is operated by the MetaBrainz Foundation, a California based 501(c)(3) tax-exempt non-profit corporation dedicated to keeping MusicBrainz free and open source.
+
+MetaBrainz blog
+Latest posts:
+
+Rest in Peace drsaunde!
+Updates to Audiobooks, Audio Dramas, Broadcasts and Podcasts
+MusicBrainz Server update, 2025-04-14
+MusicBrainz Server update, 2025-03-24
+Schema change release: May 19, 2025
+Google Summer of Code 2025: MetaBrainz has been accepted!
+Read more »
+
+Tag your music
+MusicBrainz Picard
+AudioRanger
+Mp3tag
+Yate Music Tagger
+Quick start
+Beginners guide
+Editing introduction
+Style guidelines
+FAQs
+How to add artists
+How to add releases
+Community
+How to contribute
+Bug tracker
+Forums
+MusicBrainz Database
+The majority of the data in the MusicBrainz Database is released into the Public Domain and can be downloaded and used for free.
+
+Developers
+Use our XML web service or development libraries to create your own MusicBrainz-enabled applications.
+
+Recently added releases
+青と瞬き by NaYuriプロポーズ by 麻婆豆腐Babyfur Freestyle by Daxbakド屑 by 麻婆豆腐Mountain Song by GoslowImagination by Daxbakくらげ by 麻婆豆腐Bite by Daxbak feat. GOJIIsunset memories by BhxaHarness by Daxbak
+Recently added events
+Elements Festival 2023Max StylerLes Sables Électroniques 2023, Day 1Les Sables Électroniques 2023Live At Leeds 2025TOHO - 東方良音 -The Polish Ambassador with Scott Nice & Grandfather GoldUpton Country Park Festival: Super Family SingalongUpton Country Park Festival: Ladies Night2024 MAMA Awards
+DonateWikiForumsChatBug trackerBlogMastodonBlueskyUse beta siteBrought to you by MetaBrainz Foundation and our sponsors and supporters.
+Privacy Policy
+Soundcharts
+Blog
+All
+Mechanics
+Music Markets
+Insiders
+Users stories
+Our partners
+Log in
+Soundcharts
+Blog
+How Broken Metadata Affects the Music Industry (And What We Can Do About It)?
+MetaData
+Mechanics • 17 min read
+
+How Broken Metadata Affects the Music Industry (And What We Can Do About It)?
+
+By Dmitry Pastukhov
+
+Published January 1, 2024
+
+Jump to
+What is Music Metadata? 
+3 Types of Music Metadata 
+1. Descriptive Metadata
+2. Ownership/Performing Rights Metadata
+3. Recommendation Metadata
+The Problems of Music Metadata    
+1. Lack of Database Standardization
+2. Multiplicity of the Music Data.
+3. Shortfallings of Music ID Standard
+4. Human Errors
+How Do We Fix the Metadata?
+Metadata Clean Up, Management and Administration Solutions 
+New Database Standards
+What you can do to help fix the music metadata? 
+1. Keep Track of the Metadata From the Get-Go 
+2. Finalize Agreements and Define Splits Before a Song Leaves the Studio
+3. Make Sure That the Metadata is Filled Correctly 
+4. Follow Metadata Guidelines 
+5. Spread the Word
+As a big data company tapping into dozens of data sources to build the data analytics tool of the music industry, Soundcharts deals with corrupted metadata every day. Over the years, we’ve developed several algorithms, that ensure sure that our database is as clean as it can be, but even now we have to keep up some sort of manual maintenance. Soundcharts’ team learned how broken music metadata can be the hard way — by managing a database of 2M+ artists.
+
+But it's not only about us. The fact is that metadata issues cause a lot of damage to the industry. Compromised metadata hurts the user experience on the streaming services, cuts off a portion of publishing revenues, robs songwriters of well-deserved credit — and that’s just the beginning. But let’s start with the basics:
+
+What is Music Metadata? 
+Music metadata is the identifying data embedded in a music file, comprised of hundreds of text-based meta tags that are attached via metadata containers (ID3v1 and ID3v2 being by far the most widespread), detailing everything from the artist’s name and the song’s release date to associated genres and songwriters credits.
+
+At first, Metadata might sound like an insignificant little thing, but consider the following. Every time a user searches for a song on Spotify; every time BMI attributes performance royalties; every time Pandora’s algorithm queues up a song — metadata is at play. It’s the oil that makes the cogs of the industry spin. 
+
+
+3 Types of Music Metadata 
+Generally, music metadata can be divided into three main types:
+
+1. Descriptive Metadata
+Descriptive Metadata details the contents of the recording, with objective text tags like song title, release date, track number, performing artist, cover art, main genre and so on. It has about a million different applications. Descriptive metadata is used every time someone needs to query, organize, sort or present the music — whether it’s to put together an artist page on Spotify, build an organized music library, or identify and attribute a radio spin. 
+
+Descriptive metadata issues are the most visible to the end user. If you’ve been using any streaming service long enough, chances are you’ve stumbled upon the errors resulting from corrupted descriptions. Think of multiple artist’s songs mashed on the same Spotify artist page, compound artist pages, misspelled song names, mixed up release dates — all those are the consequences of compromised descriptive metadata. Such issues cause a great deal of confusion to the consumer — but that’s just the tip of the iceberg. 
+
+2. Ownership/Performing Rights Metadata
+Whether we’re talking digital streams, airplay or movie synch, numerous parties, from performing artists to lyricists, producers and songwriters, will share the revenue. Hence the need for ownership metadata, specifying the contractual agreements behind the release for the purposes of royalty calculation (and allocation). Ownership metadata is there to make sure that each and every side taking part in music creation process, is remunerated accordingly. 
+
+Given the complex nature of splits behind most of the tracks (as well as differences in legislation across the globe) getting the consumer’s dollar divided up correctly is no small feat in itself. Now, if we add missing or inconsistent metadata in the mix, the issue becomes 10 times more complicated. Ownership metadata issues hit where it hurts the most: a human error here, a database glitch there — and a songwriter can miss out on tens of thousands of dollars. 
+
+However, that’s just part of the problem. The artist credits are also the primary way for songwriters, producers, session musicians, and engineers to make themselves visible to the music industry, a kind of “b2b” promotion space. Corrupted ownership metadata robs musicians of both money and credit.  
+
+
+3. Recommendation Metadata
+The first two types of metadata tags are objective — there’s just one real song name, and just one list of song’s credits. Recommendation metadata is different. In its core, it consists of subjective tags that aim to reflect the contents of the recording and describe how it sounds. Mood labels, generative genre tags, song similarity scores  — recommendation metadata is used to make a meaningful connection between tracks and power the recommendation engines. 
+
+Of course, other types of metadata can be used to enhance music discovery as well. The release dates can help you detect the music from the same era, and matching producer’s name can help find similar recordings. However, the critical distinction is the origin of recommendation metadata. 
+
+Discovery is a huge differentiator between the streaming services. That's why recommendation metadata tags are usually proprietary data that doesn’t travel the industry as descriptive and ownership meta does. Instead, each platform will have its own approach to recommendation metadata generation and its own database behind the recommendation algorithm. So, if description and ownership metadata is created on the artist's end, the recommendation meta is produced by the DSPs (or their affiliates).  
+
+For example, Pandora takes a human classification approach with its Music Genome Project. Spotify, on the other hand, employs a mix of user-generated data and The Echo Nest discovery meta tags, produced through a combination of machine learning and human curation. If you want to get a sneak peek into recommendation meta tags structure of The Echo Nest/Spotify and get a general idea of how recommendation meta looks like, check out Organize Your Music project.
+
+Discovery metadata is the fastest developing subset of the entire landscape. The new tech is pushing the borders of discovery, calling for new solutions and approaches to recommendation. 
+
+Just think about how smart speakers will change the way we access and discover music. Voice-mediated music consumption turns users from structured text queries to amorphous requests along the lines of “Alexa, play something I like”. That brings a new challenge to the recommendation engines of streaming platforms and search engines like Google. It won’t be enough to find similar songs and generate radio-like song queues. Streaming platforms will have to figure out what is the best song to play to that exact person at that exact time. The way they approach this challenge will affect the livelihood of thousands of artists and music pros, shaping the future of the music industry for years to come. 
+
+
+Compound Artist Errors in Action
+
+The Problems of Music Metadata    
+At this point, a curious reader might ask: but if the music metadata is so essential for the music business, why haven’t we fixed it yet? Why songwriters are still losing money and why iTunes database is full of compound artist’s errors? Well, the thing is that the music metadata management system was always dragging behind the audio distribution formats. 
+
+For example, when CD first came about, it didn’t allow for any tags apart from the basic descriptive data — CD cases and booklets played the role of metadata attachment. Then, Napster took over, and the chaos followed with it. The MP3 files (or FLAC files) ripped from CDs had next to no metadata attached, and even less made it over the P2P networks, creating a massive archive of poorly tagged audio files. 
+
+1. Lack of Database Standardization
+Then, the digital music entered the stage and replaced the physical recording formats. All the sides of the industry began to store and exchange data, but back in the day, no one really saw the need for unified metadata standards. All the different digital storefronts, labels, publishers, PROs and distributors set up their own databases — and the streaming services followed in their footsteps. 
+
+Up to this date, there’s no unified database structure. Metadata runs through an unstandardized intertwinement of databases across the industry: from labels to distributors, from distributors to DSPs, from DSPs to PROs, from PROs to publishers. 
+
+All those parties are exchanging data, but the columns and fields of their databases don’t always match up. Imagine that a database receives a value in the field “Back Vocalist” — when its own corresponding column is called “Back Vocals”. Algorithms won’t be able to make that match (unless there’s a specific rule for it) and in 99% of the cases, the back vocalist's credit will just get scraped. A big chunk of metadata gets lost on its way through the music data chain. 
+
+Furthermore, for each music company, there’s rarely a single database. Instead, the data is stored across multiple internal music libraries in different formats — and so it needs to be adjusted and validated to set up a proper exchange with external databases. 
+
+The current metadata management system was created in the wake of digital music when no one really knew how the landscape is going to develop. Then, data production grew exponentially. Now, 20,000 songs are released every day and pushed through the intricate system of not-all-that-compatible databases — spawning thousands of errors.
+
+Spotify Compound Artist Errors
+Don't worry, Spotify is not any better
+
+2. Multiplicity of the Music Data.
+The problem is not even that there are 20 thousand songs. It’s also about the fact that those songs can be different variations of the same musical work. Let’s get a bit technical for a moment. Every song is structured through three layers of abstraction:
+
+A musical work or composition — a result of the creative thought process of songwriters and producers, bread and butter of music publishers.
+A sound recording of the musical work, produced and recorded by performing artists. Sound recording is a particular expression of the music work 
+A release — a specific, packaged manifestation of the sound recording. 
+So, it all starts with songwriters and composers creating a musical work. Then, that composition can be expressed in a hundred different ways — think of cover versions, remixes, radio edits, and so forth. Furthermore, each of these sound recordings can be released as a single, a part of an album, a part of a deluxe edition, a part of a compilation, etc. 
+
+In the end, a single composition can create hundreds (if not thousands) of separate metadata entities, which hugely complicates the landscape. Music companies need to match all those different layers of abstraction. For example, if ASCAP gets a report of a radio spin for a specific release, it needs to pair it with the underlying composition to locate songwriters.
+
+3. Shortfallings of Music ID Standard
+
+Well, one would think that the music industry would develop a standard to be able to tell which release is a version of which sound recording and match all the layers of abstraction. Well, not really.
+
+Currently, the primary standard for music identification across all file formats is the ISRC code — “a fixed point of reference when the recording is used across different services, across borders, or under different licensing deals”. However, ISRC codes are assigned to sound recordings — just one of the layers of music data.
+
+Based on ISRC alone, you won’t be able to tell what is the original musical work behind that particular recording. It doesn’t allow to aggregate the entries to the higher level of abstraction to compile all the versions of the same track or composition. The limits of ISRC standard make it really hard for music companies to fix broken metadata. To make sense of the incoming data, the industry players have to rely on descriptive metadata tags to match the ISRC with other persistent IDs, like UPC for releases or ISWC for compositions. That results in all sorts of errors, duplicates, and conflicts across the music data chain.
+
+There were several attempts to create a global music reference database, but up to this date, there is no ultimate source of truth that would allow resolving the metadata conflicts. Now, the most notable public music databases are MusicBrainz and Discogs open-source platforms and IFPI’s ISRC code catalog — but, unfortunately, all of them are far from complete.
+
+The shortfallings of the ID system mean that music companies have to go through hoops every time they encounter the metadata error. Trying to connect the dots by cross-referencing the databases that are full of inconsistencies themselves is a daily routine of music data management. That is, if the company cares enough. 
+
+
+Spotify Song Credits Section Highlights the Ownership Metadata Issues
+
+4. Human Errors
+
+Last, but not least, we have what some would call the weakest link of any system. Most of descriptive and ownership metadata is created and filled in manually. Considering the scale, that inevitably leads to all sorts of typos, misspelled names, titles, release dates — or even straight-up missing data.
+
+Take the ownership data, for example. Song’s credits can become extremely complicated, with dozens of different songwriters, engineers, session musicians and producers working on the same release. At the same time, the deadlines won’t wait — and so the ownership agreements and splits often get overlooked when the team is trying to push out the new track on time. Quite often, splits will be decided after the fact — and once the song is already out, it’s extremely hard to add or edit the meta.  
+
+All those different factors, from human errors and database incompatibility to flawed ID standards and multi-sided nature of music copyrights, create the grim reality of the modern music metadata. The backbone of the music industry is perhaps the biggest mess the data-world has ever seen. 
+
+How Do We Fix the Metadata?
+The current lose-lose situation is calling for a change. Clean metadata could help a session musician get the next gig, pay the songwriter’s rent, optimize user experience for streaming services — and save millions to the industry along the way. However, there’s no clear answer as for how do we fix the problem. Don’t get too pessimistic, though — there’s several companies, initiatives, and organizations working towards a better system. 
+
+Metadata Clean Up, Management and Administration Solutions 
+The first type of metadata companies are working towards putting together music databases and then cleaning, mending, and expanding the meta tags. Companies like Gracenote,  Musicstory and, to some extent, The Echo Nest are the metadata providers for various DSPs across the industry. Such companies are primarily concerned with descriptive and recommendation metadata. They use a mix of metadata cleaning algorithms and audio-recognition tech to empower search, playlisting, and music discovery while ensuring correct display for the digital storefronts.
+
+On the other side of the data chain, companies like VivaData, Exploration and TuneRegistry are working out solutions for independent record labels, publishers and artists. Their aim is to help music companies with internal metadata management, audit the existing databases for incomplete/corrupted metadata and streamline outgoing data flows at the very root of the music data flow. 
+
+However, all those companies are treating the symptoms, and not the cause of the issue. Don’t get me wrong, it’s vital to try and clean up the existing mess — but that won’t solve the systematic problems.
+
+New Database Standards
+
+Perhaps the most significant shift would come if we ensure that the databases across the music industry are fully compatible.  However, optimization of the industry-wide metadata system would take coordination between all the sides of the business, which is no easy task.
+
+The most visible player in that space is the DDEX, an international organization developing and promoting new data standards and protocols to optimize the digital data chain. Offering solutions covering the entirety of the music data system, DDEX has already made significant progress, counting some of the biggest names in the industry as its members. DDEX standards aim to facilitate metadata management in the studio, harmonize the metadata transfers between content owners and DSPs and much, much more. 
+
+
+Essentially, the goal of the organization is to build a full-circle pipe for the music metadata, from the point where it’s created to the final destination. Putting in place standard exchange protocols for music metadata could potentially cleanse the industry from thousands of incompatibility errors. However, while the DDEX initiatives can help develop a better system, that won’t fix all of the metadata issues. 
+
+Not to sound cliché, but when it comes to fixing the metadata, you have to start with yourself. A considerable portion of errors is due to the lack of awareness amongst music professionals — which is part of the reason we wrote this article in the first place. 
+
+What you can do to help fix the music metadata? 
+The simple rule of thumb is to make sure that all of the song’s metadata is adequately filled out and verified before the song (or album) release. That’s not as easy as it sounds. Here’s some advice to help you make sure that you won’t contribute to the pile of corrupted music metadata:
+
+1. Keep Track of the Metadata From the Get-Go 
+Each song can have dozens (if not hundreds) or contributors, and so keeping track of all the people working on the release can get out of hand really quick. That’s why it’s crucial to keep track of the song’s credits from the very moment there’s more than one person involved with the project.
+
+Sound Credit and Auddly’s Creator Credits (the feature was still in development at the moment of writing this article) can help you there. Those solutions allow embedding credits and other metadata directly into the DAW-files that fly around the studio. That way you can keep credits in the same place and maintain the consistent record of all song versions and collaborators across all music files. 
+
+2. Finalize Agreements and Define Splits Before a Song Leaves the Studio
+Music rights tend to get very complicated, and the rush to meet the release deadline can often leave the ownership metadata incomplete. However, incomplete ownership metadata can mean that some, or even all of the collaborators will miss out on the pay check completely. To make the contractual side of things easier, consider using Splits, a free application created to track and manage a song’s collaborators and, well... splits.
+
+3. Make Sure That the Metadata is Filled Correctly 
+The typos might seem insignificant, but they really have an impact. Track outline will be used to make matches in the database, and so corrupted descriptive metadata has a tendency of breaking things. Be sure to double- and triple-check the song’s metadata before you send it out — or set up a two-step vetting system. Once the song is out there, fixing the typos will become very problematic. 
+
+4. Follow Metadata Guidelines 
+It’s not only about what you put in, but also about how you format that data. The difference between writing out the song name as “Song Name (Radio Edit)” and “Song Name — Radio Edit” might not seem like much, but consider the following. Music data is like a room full of false mirrors. Every error will travel the music industry, getting magnified on its way through the maze of databases. Even the smallest mistake can turn into the real issue for an artist, with songs ending up on a wrong Spotify page or performance royalties getting lost in the mail. 
+
+To make sure that not only the contents but also the formats are correct, you can use metadata guidelines. Stick with the distributor’s guide — most of them are easy to follow. If the distributor’s instructions don’t have all the answers, check in with the general guidelines like the one provided by the Music Business Association.
+
+5. Spread the Word
+Following those steps, of course, won’t fix all the metadata issues in the industry. The problem itself is too complicated, and we can only solve it if the entire music industry is on the same page. In that sense, the first step is to raise awareness amongst the music professionals.
+
+Metadata is at the core of the music industry, and right now it’s broken. Musicians miss out on royalties. The songwriters and engineers don’t get the credit they deserve. The streaming services have developed algorithms to make sure that the top of the catalog looks clean, but once you take a deep dive on the long tail, all sorts of errors start falling through the cracks.  We need to start moving towards a better system.
+
+We at Soundcharts do the best we can with the system as it is. As a data analytics platform, we have to draw in the data from dozens of sources and dirty databases. Then, we carefully aggregate the data and cross-check meta tags to ensure every chart position, every streaming playlist addition, every radio spin and every digital press mention is properly attributed. We continuously improve our metadata cleansing and matching algorithms, all while keeping a dedicated manual maintenance team to tackle the issues that do slip through the cracks. That’s what makes us the cleanest music analytics platform in the industry.
+
+Share this article:
+
+Dmitry Pastukhov
+
+Content creator for Soundcharts. Deciphering the music business so you don't have to.
+
+Related articles
+Streaming Services Payout Per Stream 
+What Music Streaming Services Pay Per Stream (And Why It Actually Doesn’t Matter) 
+January 1, 2019 • 17 min read
+
+Mechanics of Music Streaming: The 5 Trends Shaping the Streaming Business
+How Music Streaming Works and The Popular Music Streaming Trends of Today
+March 17, 2022 • 28 min read
+
+Soundcharts
+
+Product
+
+Data Sources
+Artist Analytics
+Airplay
+Charts
+Socials
+Playlists
+API
+Streaming
+
+Spotify
+Apple Music
+YouTube
+Shazam
+JioSaavn/Gaana
+Anghami
+Melon
+Boomplay
+Social
+
+Instagram
+TikTok
+Use cases
+
+A&R research
+Promoters
+Radio programmers
+Artists
+Publishers
+Students
+Company
+
+Blog
+Partners
+Careers
+Contact us
+Resources
+
+Help center
+Terms of Service
+Privacy Policy
+Pricing
+Downloads
+What's new
+© 2025 Soundcharts
+
+loader imageCloseSkip to content
+
+LOGIN TRY NOW
+FR
+EN
+DE
+日本語
+한국어
+Why Music Story
+Metadata Solutions
+Integration Services
+Customers
+About us
+Music metadata solutions
+19M
+Tracks
+300K
+Artists
+2.25M
+Releases
+A catalog that is deep, rich and accurate
+We solve for the music your customers listen to, with more than 19 million tracks by 300,000 artists covering 2.25 million releases.
+Artist profiles, including their name translated for your markets. Also their country, role, gender, band affiliation and related artists
+
+Primary and secondary music genres, covering more than 800 distinct genres
+
+Cleaned discographies with canonical album, original release date, cover art, format, label and popular hits
+
+Audio descriptors and identifications, offered in partnership with labels
+
+Our international network of writers and editors create content customized for your needs
+Music Story creates content upon request for your customer or subscriber, in the languages you need and tailored to your markets. We built our own planning, task distribution, monitoring and quality assurance tools to ensure you get great music content, stable curation and production processes with controlled costs.
+
+North America
+Canada
+U.S.A.
+Latin America
+Argentina
+Brazil
+Chile
+Colombia
+Costa Rica
+Ecuador
+Mexico
+Peru
+Uruguay
+Europe
+Austria
+Belgium
+Denmark
+Finland
+France
+Germany
+Greece
+Ireland
+Italy
+Netherlands
+Norway
+Portugal
+Spain
+Sweden
+Switzerland
+UK
+Asia
+China
+Hong-Kong
+Indonesia
+Japan
+Malaysia
+Philippines
+Singapore
+South Korea
+Thailand
+Oceania
+Australia
+New Zealand
+
+
+
+
+
+
+
+
+
+Normalized and cleared for your use
+Music Story normalizes data from different sources and in different formats for fast and easy integration into your system.
+Power your recommendation engine
+We build the music recommendation systems that lead to subscriber engagement and increase time spent with your service.
+Song level descriptors, including related artists and songs, genre classifications and release dates
+
+Guaranteed coverage for the most popular songs played on your platform
+
+Management of audio or video files to calculate audio descriptors such as for danceability or for vocals and instrumentals
+
+Ongoing aggregation and data feeds
+
+
+External IDs permanently matched with the Music Story catalog
+Our database is permanently matched with third-party databases to ensure you have the content and licenses you need.
+Industry IDs
+ISNI, EAN/UPC, ISRC
+External IDs
+Musicbrainz, Apple, Spotify, Napster, Deezer, Qobuz
+Social IDs
+YouTube, Facebook, Twitter, Instagram, TikTok
+See the complete list of external matches
+
+Apple Music
+Spotify
+Deezer
+Discogs
+Napster
+Qobuz
+LyricFind
+MusicBrainz
+TikTok
+Facebook
+Twitter
+Soundcloud
+Instagram
+Wikipedia
+YouTube
+More External IDs
+contact
+What service are you looking for today?
+
+Orders
+Try Fiverr Go
+Switch to Selling
+
+d
+dainiswmichel
+
+Graphics & Design
+Programming & Tech
+Digital Marketing
+Video & Animation
+Writing & Translation
+Music & Audio
+Business
+Finance
+AI Services
+Personal Growth
+Consulting
+Data
+Photography
+Results for music metadata
+
+
+
+
+7 results
+
+Sort by:
+
+N
+Natig Y
+Natig Y
+I will add and edit mp3 music metadata id3 tags, album cover art for your songs files
+
+4.5
+(8)
+From €10
+add metadata tags to your music
+D
+David C
+David C
+
+I will add metadata tags to your music
+
+5.0
+(4)
+From €10
+to give you music packs with metadata for your radio of all genres
+A
+Anthonycb
+Anthonycb
+
+I will to give you music packs with metadata for your radio of all genres
+
+3.6
+(4)
+From €10
+analyze your music metadata to maximize your music online
+V
+Valentina S.
+Valentina S.
+I will analyze your music metadata to maximize your music online
+
+From €33
+tag and fix your mp3 music albums with your metadata
+M
+Marcello G
+Marcello G
+I will tag and fix your mp3 music albums with your metadata
+
+4.9
+(12)
+From €5
+edit and add metadata to your music tracks
+R
+Redouane B
+Redouane B
+I will edit and add metadata to your music tracks
+
+From €5
+add metadata tags, cover, lyrics to your music files
+A
+Arthur
+Arthur
+I will add metadata tags, cover, lyrics to your music files
+
+From €10
+1
+
+Categories
+
+Graphics & Design
+Digital Marketing
+Writing & Translation
+Video & Animation
+Music & Audio
+Programming & Tech
+AI Services
+Consulting
+Data
+Business
+Personal Growth & Hobbies
+Photography
+Finance
+End-to-End Projects
+Service Catalog
+For Clients
+
+How Fiverr Works
+Customer Success Stories
+Trust & Safety
+Quality Guide
+Fiverr Learn - Online Courses
+Fiverr Guides
+Fiverr Answers
+For Freelancers
+
+Become a Fiverr Freelancer
+Become an Agency
+Freelancer Equity Program
+Kickstart
+Community Hub
+Forum
+Events
+Business Solutions
+
+Fiverr Pro
+Project Management Service
+ClearVoice - Content Marketing
+Working Not Working - Creative Talent
+AutoDS - Dropshipping Tool
+AI store builder
+Fiverr Logo Maker
+Contact Sales
+Fiverr Go
+Company
+
+About Fiverr
+Help & Support
+Social Impact
+Careers
+Terms of Service
+Privacy Policy
+Do not sell or share my personal information
+Partnerships
+Creator Network
+Affiliates
+Invite a Friend
+Press & News
+Investor Relations
+© Fiverr International Ltd. 2025
+
+
+English
+€ EUR
+
+

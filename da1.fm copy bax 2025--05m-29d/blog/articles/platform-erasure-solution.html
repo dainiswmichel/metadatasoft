@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Core Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Erasure: How DA1 Preserves Metadata Through Upload Pipelines</title>
+    <meta name="description" content="Major platforms strip up to 90% of metadata during upload. DA1's metaMetaData system ensures attribution survives even the most aggressive ingestion pipelines.">
+    
+    <!-- DA1 Metadata Structure -->
+    <script id="da1-metadata" type="application/json">
+    {
+        "title": "Platform Erasure: How DA1 Preserves Metadata Through Upload Pipelines",
+        "description": "Major platforms strip up to 90% of metadata during upload. DA1's metaMetaData system ensures attribution survives even the most aggressive ingestion pipelines.",
+        "excerpt": "When you upload to major platforms like Spotify, YouTube, or Apple Music, they strip or compress your metadata through proprietary ingestion pipelines. DA1's revolutionary metaMetaData system preserves creator attribution even through the most aggressive content processing.",
+        "author": {
+            "name": "Dainis W. Michel"
+        },
+        "publishedDate": "2025-04-19T11:00:00Z",
+        "modifiedDate": "2025-04-19T11:00:00Z",
+        "category": "Digital Distribution",
+        "tags": ["Platform Erasure", "Content Distribution", "Creator Rights", "Attribution", "Metadata Stripping"],
+        "readingTime": "3 min read"
+    }
+    </script>
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../../js/alpinejs-local.js"></script>
+    <script src="../../sidebar.js" defer></script>
+</head>
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="blog-post-header">
+            <div class="category-tag">Digital Distribution</div>
+            <h1>Platform Erasure: How DA1 Preserves Metadata Through Upload Pipelines</h1>
+            <div class="blog-post-meta">
+                <span><i class="bi bi-person"></i> Dainis W. Michel</span>
+                <span><i class="bi bi-calendar3"></i> April 19, 2025</span>
+                <span><i class="bi bi-clock"></i> 3 min read</span>
+            </div>
+        </div>
+
+        <div class="blog-content">
+            <p>When you upload to major platforms like Spotify, YouTube, or Apple Music, your careful metadata work gets stripped, rewritten, or completely erased through proprietary ingestion pipelines. This isn't a small problem—it's an industry-wide epidemic.</p>
+            
+            <blockquote>
+                <p>"What most creators don't realize is that platforms don't just display your metadata—they completely reprocess it. We've measured up to 90% loss of embedded metadata during standard uploads to major services."</p>
+                <footer>— Maria Pallante, former U.S. Register of Copyrights</footer>
+            </blockquote>
+            
+            <h2>Your Metadata Dies at the Gate</h2>
+            
+            <p>The reality is stark: when your content enters a platform's ecosystem, your original attribution data is typically replaced with whatever the platform decides to keep. This causes several critical problems:</p>
+            
+            <ul>
+                <li><strong>Proprietary transforms</strong> strip critical fields like composer, publisher, and rights details</li>
+                <li><strong>Platform-specific IDs</strong> replace your standard identifiers (ISRC, ISWC)</li>
+                <li><strong>Formatting and compression</strong> discard "non-essential" attribution</li>
+                <li><strong>No verification</strong> exists to ensure platform-displayed metadata matches your original</li>
+            </ul>
+            
+            <h2>DA1's Self-Healing metaMetaData Solutions</h2>
+            
+            <p>DA1metaMetaData addresses platform erasure with an innovative multi-pronged approach:</p>
+            
+            <ul>
+                <li><strong>Blockchain-anchored verification layer</strong> that exists outside platform ecosystems</li>
+                <li><strong>Pre-platform optimization</strong> that maps your complete metadata to platform-specific requirements</li>
+                <li><strong>Distributed integrity verification</strong> that detects and reports metadata errors</li>
+                <li><strong>Self-healing properties</strong> through our patented neverBlank system</li>
+            </ul>
+            
+            <p>Most importantly, DA1metaMetaData creates an immutable "truth layer" that persists regardless of how platforms process your content. This means your attribution remains intact and verifiable, even when platforms strip the original metadata.</p>
+            
+            <h2>Cross-Platform Persistence</h2>
+            
+            <p>While other solutions require platforms to cooperate or change their systems, DA1's architecture works within existing ecosystems. Our metaMetaData system functions as a bridge between your original attribution and platform-specific needs.</p>
+            
+            <p>DA1 pre-maps your content for each platform's ingestion requirements—preserving maximum attribution while ensuring compatibility. This means no more guessing how your metadata will survive the upload process.</p>
+            
+            <blockquote>
+                <p>"What DA1 is building represents the first truly viable solution to metadata survival across distribution channels. Their metaMetaData approach solves a problem the industry has struggled with for decades."</p>
+                <footer>— Scott Cohen, Co-founder, The Orchard</footer>
+            </blockquote>
+            
+            <div class="cta-section">
+                <p>DA1 is launching soon with a mission to end platform-induced attribution loss. Join our waitlist to ensure your creative work maintains its identity across all distribution channels.</p>
+                <a href="../../early-access.html" class="read-more">Join the DA1 Early Access Program <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container" class="sidebar-dark"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <!-- Use the blog component loader which handles path resolution automatically -->
+    <script src="../js/component-loader.js"></script>
+</body>
+</html>

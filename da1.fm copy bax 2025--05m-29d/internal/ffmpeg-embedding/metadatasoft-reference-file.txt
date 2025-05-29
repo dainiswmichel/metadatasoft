@@ -1,0 +1,312 @@
+#!/bin/bash
+# Complete FFmpeg metadata command for professional audio
+# Optimized for PRO registration, music supervision, and cultural preservation
+# Version: 1.0.0 (2024-02-17)
+# Part 1 of 3: Basic Track Information through Technical Specifications
+
+ffmpeg -i "migla-migla-mastering-normalized.wav" \
+
+# Basic Track Information
+-metadata title="Migla migla (Akustiskā dzīvajā versijā. 3x3 Brīvais Mikrofons. Koknesē, Latvijā. 2024. g. 3. jūlijā)" \
+-metadata artist="Dainis W. Michel, Dainis V. Michelis, Da1ni5, Emīlija Michele, Olīvija un Hugo" \
+-metadata album="Sadziedāšana ar Daini (Dzīvajā)" \
+-metadata genre="Latviešu folkloristiskā jaunrade, tautas dziesmas, tautas mūzika, Folk, Acoustic, Ethno, Live Performance" \
+-metadata date="2024-07-03" \
+-metadata year="2024" \
+-metadata track="00" \
+-metadata disc="1" \
+-metadata release_type="Live Recording" \
+-metadata compilation="0" \
+-metadata album_artist="Dainis W. Michel ar meitu Emīlija un draugiem Olīviju un Hugo" \
+-metadata album_type="Live Album" \
+
+# PRO and Rights Society Information
+-metadata pro_affiliations="AustroMechana (Primary), ASCAP (Secondary)" \
+-metadata ipi_cae_number="123456789" \
+-metadata performing_rights_society="AustroMechana" \
+-metadata mechanical_rights_society="AustroMechana" \
+-metadata pro_territory="European Union, United States" \
+-metadata pro_collection_share="100%" \
+-metadata pro_registration_date="2024-07-03" \
+-metadata pro_work_id="12345678" \
+-metadata sub_publisher="None" \
+-metadata publishing_administrator="Self-Administered" \
+-metadata collection_society_splits="Composer: 50%, Lyricist: 50%" \
+-metadata performing_rights_split="Writer: 100%" \
+-metadata mechanical_rights_split="Publisher: 100%" \
+-metadata neighboring_rights="Yes" \
+-metadata society_work_codes="AustroMechana: AM123456, ASCAP: AS789012" \
+-metadata international_standard_codes="ISWC: T-123456789-0, ISRC: US-XXX-21-00001" \
+-metadata cae_ipi_name_number="123456789" \
+-metadata ipi_base_number="I-123456789-0" \
+-metadata pro_registration_status="Registered" \
+-metadata royalty_collection_territory="Worldwide" \
+
+# Music Supervision and Mood Tags
+-metadata mood="Peaceful, Nostalgic, Folkloric, Happy Family, Traditional, Contemplative, Serene, Caring" \
+-metadata mood_secondary="Spiritual, Reverent, Natural, Rural" \
+-metadata tempo="Slow, Gentle, Flowing, Traditional 3+3+2 Latvian Folk Rhythm" \
+-metadata tempo_exact="60 BPM" \
+-metadata rhythm_structure="4/2 meter with folkloric 3+3+2, 3+3+2 subdivision pattern" \
+-metadata rhythmic_style="Traditional Baltic folk rhythm with asymmetric internal grouping (3+3+2)" \
+-metadata rhythmic_tradition="Classic Baltic folk timing pattern, characteristic of traditional Latvian folk songs" \
+-metadata theme="Nature, Love, Folk Traditions, Family Bonds, Cultural Heritage" \
+-metadata style="Latvian Folk, Acoustic, Traditional, World Music" \
+-metadata instruments="Acoustic Guitar (Martin D-1), Vocals (Live), Natural Room Acoustics" \
+-metadata energy_level="Low" \
+-metadata intensity_curve="Gentle Build" \
+-metadata dynamic_range="High (Live Recording)" \
+-metadata vocal_type="Male Lead, Youth Harmony, Family Ensemble" \
+-metadata sound_alike="Traditional Latvian Folk, Baltic Folk Music" \
+-metadata keywords="Latvian, Folk Song, Traditional, Live Recording, Acoustic, Family Performance, Cultural Heritage, Diaspora Music" \
+-metadata usage_suggestions="Documentary, Cultural Programming, Film Underscore, Heritage Events, Family Festivals, Emotional Moments, Cultural Education, Museum Installations" \
+-metadata placement_suggestions="Family Scenes, Cultural Documentaries, Heritage Moments, Contemplative Sequences" \
+-metadata alternate_versions="Original Studio Version Available" \
+-metadata stems_available="No - Live Recording" \
+-metadata instrumental_version="Available Upon Request" \
+-metadata musical_period="Contemporary interpretation of Traditional Folk" \
+-metadata ethnic_origin="Latvian Traditional" \
+-metadata folklore_category="Traditional Folk Song (Tautas dziesma)" \
+-metadata cultural_significance="Historic Latvian folk melody with traditional 3+3+2 rhythm pattern" \
+-metadata musical_features="Complex Rhythmic Structure, Traditional Melody, Family Harmonies" \
+-metadata sync_notes="Ideal for cultural, historical, or family-themed content" \
+-metadata mood_progression="Consistent, contemplative throughout" \
+-metadata emotional_content="Nostalgic, Warm, Family-Oriented" \
+-metadata cultural_context="Traditional Latvian Folk Music in Modern Context" \
+-metadata performance_style="Traditional Baltic Folk with Family Ensemble" \
+
+# Technical Specifications
+-metadata language="lat" \
+-metadata original_language="lat" \
+-metadata duration="4:01" \
+-metadata duration_frames="11548800" \
+-metadata bpm="60" \
+-metadata key="Bb Major" \
+-metadata time_signature="4/2 (3+3+2, 3+3+2 subdivision)" \
+-metadata audio_quality="24-bit/48kHz" \
+-metadata sample_rate="48000" \
+-metadata bit_depth="24" \
+-metadata channels="2" \
+-metadata recording_type="Live" \
+-metadata mastering_engineer="Dainis W. Michel" \
+-metadata mastering_facility="Home Studio" \
+-metadata mastering_gear="RME ADI-2 Pro FS R Black Edition" \
+-metadata mixing_engineer="Dainis Kažoks" \
+-metadata mixing_facility="3x3 Live Sound" \
+-metadata recording_engineer="Dainis Kažoks" \
+-metadata recording_gear="DPA 4006A Omnidirectional Microphones" \
+-metadata signal_chain="DPA 4006A > RME Fireface UCX II > Reaper DAW" \
+-metadata production_date="2024-07-03" \
+-metadata master_source="Original Live Recording" \
+-metadata original_format="Digital" \
+-metadata noise_reduction="None - Natural Room Sound Preserved" \
+-metadata audio_restoration="None" \
+-metadata dither_type="TPDF" \
+-metadata headroom="18dB" \
+-metadata peak_level="-1.0dBFS" \
+-metadata average_loudness="-14 LUFS" \
+-metadata true_peak="-1.0dBTP" \
+-metadata phase_correlation="+0.8" \
+-metadata audio_codec="PCM" \
+-metadata bit_rate="2304kbps" \
+-metadata stereo_field="Natural Room Image" \
+-metadata acoustic_environment="Outdoor Festival Stage, Natural Acoustics" \
+-metadata equipment_notes="All microphones matched pairs" \
+-metadata recording_method="Live stereo capture" \
+-metadata monitoring_environment="Professional headphones on-site" \
+-metadata technical_notes="Natural acoustic performance captured with minimal processing" \
+
+
+
+
+# Legal and Rights Management
+-metadata copyright_holder="Dainis W. Michel" \
+-metadata copyright="© 2024 Dainis W. Michel. All Rights Reserved." \
+-metadata copyright_notice="All Rights Reserved - Protected under International Copyright Law" \
+-metadata publisher="Dainis W. Michel (Self-Published)" \
+-metadata publisher_rights="100% All Rights" \
+-metadata pro_affiliation="AustroMechana Primary, ASCAP Secondary" \
+-metadata iswc="T-123456789-0" \
+-metadata isrc="US-XXX-21-00001" \
+-metadata catalog_number="DWM-2024-001" \
+-metadata rights_holder="Dainis W. Michel" \
+-metadata master_rights_holder="Dainis W. Michel" \
+-metadata master_rights_territory="Worldwide" \
+-metadata sync_rights_holder="Dainis W. Michel" \
+-metadata mechanical_rights_holder="Dainis W. Michel" \
+-metadata performance_rights_holder="Dainis W. Michel" \
+-metadata neighboring_rights_holder="Dainis W. Michel" \
+-metadata clearance_status="Pre-Cleared for All Media" \
+-metadata clearance_contact="licensing@dainis.net" \
+-metadata clearance_response_time="24-48 hours" \
+-metadata licensing_terms="Available for All Media, Worldwide, In Perpetuity" \
+-metadata licensing_contact_primary="Dainis W. Michel (licensing@dainis.net)" \
+-metadata licensing_contact_secondary="Legal Representative (legal@dainis.net)" \
+-metadata licensing_restrictions="None" \
+-metadata sample_clearance="No Samples Used - Original Composition" \
+-metadata legal_status="Original Work - All Rights Available" \
+-metadata territory_restrictions="None - Available Worldwide" \
+-metadata usage_restrictions="None" \
+-metadata moral_rights="Protected" \
+-metadata chain_of_title="Original Creation - Complete Chain Maintained" \
+-metadata ownership_percentage="100% Dainis W. Michel" \
+-metadata rights_reversion="None" \
+-metadata legal_documentation="Available Upon Request" \
+-metadata cue_sheet_status="Available" \
+-metadata legal_clearance_notes="All rights fully owned and cleared for worldwide usage" \
+-metadata rights_administration="Direct via Rights Holder" \
+-metadata royalty_distribution="Direct Payment" \
+-metadata legal_representation="Self-Represented" \
+-metadata rights_society_registration="Fully Registered" \
+-metadata legal_clearance_verification="Complete Chain of Title Verified" \
+
+# Credits and Personnel
+-metadata composer="Dainis W. Michel" \
+-metadata composer_nationality="Latvian-American" \
+-metadata composer_ipi="123456789" \
+-metadata lyricist="Dainis W. Michel" \
+-metadata lyricist_ipi="123456789" \
+-metadata arranger="Dainis W. Michel" \
+-metadata arranger_ipi="123456789" \
+-metadata producer="Dainis W. Michel" \
+-metadata conductor="Dainis W. Michel" \
+-metadata performer="Dainis W. Michel on vocals, Emīlija Michele on vocals, Olīvija and Hugo on guitar" \
+-metadata featured_artist="Dainis W. Michel & Family Ensemble" \
+-metadata contributing_artists="Emīlija Michele (vocals), Olīvija (guitar), Hugo (guitar)" \
+-metadata performance_date="2024-07-03" \
+-metadata recording_location="3x3 Brīvais Mikrofons, Koknese, Latvia" \
+-metadata recording_venue="Open Air Festival Stage" \
+-metadata session_musicians="None - Family Performance" \
+-metadata performer_notes="Live Family Performance" \
+-metadata studio_musicians="N/A - Live Recording" \
+-metadata vocal_credits="Lead: Dainis W. Michel, Harmony: Emīlija Michele, Olīvija, and Hugo (last names intentionally withheld)" \
+-metadata instrument_credits="Acoustic Guitar: Olīvija and Hugo" \
+-metadata technical_credits="Live Sound: Dainis Kažoks" \
+-metadata performance_notes="Authentic live performance featuring traditional Baltic folk rhythm patterns" \
+-metadata cultural_context="Traditional Latvian folk song adaptation performed by family ensemble" \
+-metadata credits_additional="All arrangements and adaptations by Dainis W. Michel" \
+-metadata production_notes="Live recording from cultural festival" \
+
+# Business and Administration
+-metadata publisher_contact="dainis@dainis.net" \
+-metadata publisher_phone="+1 (773) 288-3889" \
+-metadata administrative_contact="dainis@dainis.net" \
+-metadata business_contact="dainis@dainis.net" \
+-metadata legal_contact="dainis@dainis.net" \
+-metadata sync_contact="dainis@dainis.net" \
+-metadata licensing_contact="dainis@dainis.net" \
+-metadata registrations="AustroMechana, ASCAP, Library of Congress, EU Copyright Office" \
+-metadata registration_numbers="AustroMechana: ABC123, ASCAP: XYZ789" \
+-metadata cue_sheet_notes="Traditional Latvian folk song arrangement, live performance, family ensemble" \
+-metadata content_warning="None" \
+-metadata explicit_content="No" \
+-metadata restrictions="None" \
+-metadata deadline_restrictions="None" \
+-metadata territory_availability="Worldwide" \
+-metadata business_model="Direct Licensing" \
+-metadata rate_card="Available Upon Request" \
+-metadata pricing_tier="Premium Cultural Content" \
+-metadata discount_eligibility="Educational and Cultural Institutions" \
+-metadata administrative_notes="Contact for custom licensing arrangements" \
+-metadata business_inquiries="business@dainis.net" \
+-metadata licensing_status="Active" \
+-metadata business_territory="Worldwide" \
+-metadata administrative_region="European Union, United States" \
+
+# Distribution and Technical Delivery
+-metadata upc="123456789012" \
+-metadata grid="A1-ABC-12-12345" \
+-metadata encoded_by="FFmpeg" \
+-metadata encoding_settings="24-bit/48kHz WAV" \
+-metadata encoding_date="2024-07-03" \
+-metadata technical_notes="Archival Quality Master" \
+-metadata original_release_date="2024-07-03" \
+-metadata digital_release_date="2024-07-10" \
+-metadata availability_date="2024-07-10" \
+-metadata distribution_type="Digital and Licensing" \
+-metadata digital_distributor="Direct Distribution" \
+-metadata digital_availability="Streaming and Download" \
+-metadata archival_location="Secure Cloud Storage + Local Backup" \
+-metadata master_location="Secure Cloud Storage" \
+-metadata backup_status="Triple Redundancy" \
+-metadata quality_control="Passed - July 3, 2024" \
+-metadata restoration_status="No Restoration Needed" \
+-metadata transfer_engineer="Dainis W. Michel" \
+-metadata transfer_date="2024-07-03" \
+-metadata technical_contact="tech@dainis.net" \
+-metadata archival_notes="Original performance preserved with full dynamic range" \
+-metadata delivery_format="24-bit/48kHz WAV" \
+-metadata master_format="24-bit/48kHz WAV" \
+-metadata distribution_territory="Worldwide" \
+-metadata release_schedule="Immediate Availability" \
+-metadata distribution_rights="All Rights Available" \
+
+# Database and Sorting Information
+-metadata album_artist="Dainis W. Michel & Family Ensemble" \
+-metadata artist_sort="Michel, Dainis" \
+-metadata composer_sort="Michel, Dainis" \
+-metadata title_sort="Migla migla" \
+-metadata album_sort="Sadziedāšana ar Daini" \
+-metadata musicbrainz_trackid="MBID-12345-67890" \
+-metadata musicbrainz_albumid="MBID-54321-09876" \
+-metadata musicbrainz_artistid="MBID-67890-ABCDE" \
+-metadata release_group_id="RG-123-456" \
+-metadata acoustid_id="AID-123-456" \
+-metadata discogs_release_id="DR-123-456" \
+-metadata catalog_sorting_number="2024-001" \
+-metadata search_terms="Latvian Folk, Traditional Music, Live Performance, Family Ensemble" \
+-metadata keywords_auxiliary="Baltic Music, Folk Traditions, Cultural Heritage, Live Recording" \
+
+# Lyrics and Translation Information
+-metadata lyrics="Migla, migla, liela rasa,
+Man pazuda kumeliņis.
+
+Nokrīt migla, nokrīt rasa,
+Es dabūju kumeliņu.
+
+Tumša nakte, zaļa zāle,
+Laukā laidu kumeliņu.
+
+Dievs sargāja kumeliņu,
+Es pats savu līgaviņu." \
+-metadata lyrics_language="Latvian" \
+-metadata lyrics_script="Latin" \
+-metadata lyrics_verification="Verified by Author" \
+-metadata english_translation="Mist, mist, heavy dew,
+I lost my steed.
+
+The mist falls, the dew falls,
+I found my steed.
+
+Dark night, green grass,
+I let my steed out to pasture.
+
+God protected my steed,
+As I protected my bride." \
+-metadata translation_author="Dainis W. Michel" \
+-metadata lyrics_copyright="© 2024 Dainis W. Michel" \
+-metadata lyrics_notes="Traditional Latvian Folk Poetry" \
+-metadata literary_elements="Nature Imagery, Metaphor, Traditional Form" \
+-metadata poetic_meter="Trochaic Octometer with 3+3+2 rhythmic pattern" \
+-metadata verse_structure="Four Verses, Traditional Form" \
+-metadata narrative_theme="Loss and Recovery, Divine Protection, Nature, Love" \
+-metadata cultural_annotation="Traditional Latvian folk poetry with preserved rhythmic structure" \
+
+# Web and Reference Information
+-metadata website="https://dainis.net" \
+-metadata lyrics_url="https://dainis.net/muzika/migla-migla" \
+-metadata purchase_url="https://dainis.net/shop" \
+-metadata license_url="https://dainis.net/muzika/migla-migla" \
+-metadata artist_url="https://dainis.net" \
+-metadata portfolio_url="https://dainis.net/portfolio" \
+-metadata press_kit_url="https://dainis.net/press" \
+-metadata social_media="Instagram: @dainismusic, Twitter: @dainismusic" \
+-metadata promotional_materials="Available at press_kit_url" \
+-metadata marketing_contact="marketing@dainis.net" \
+-metadata press_contact="press@dainis.net" \
+-metadata media_assets="High-Resolution Photos Available" \
+-metadata online_presence="Active" \
+-metadata social_media_handles="@dainismusic (all platforms)" \
+
+# File Output
+"migla-migla-mastering-normalized-tagged.wav"

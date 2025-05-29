@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID3v2.4.0 MetaTags Reference - DA1 Knowledge Base</title>
+    
+    <!-- KB metadata for indexing and display -->
+    <script id="da1-metadata" type="application/json">
+    {
+        "title": "Complete ID3v2.4.0 MetaTags Reference",
+        "description": "Comprehensive reference table of all ID3v2.4.0 metatags with their descriptions, DA1XML mappings, and DA1neverBlank input fields",
+        "excerpt": "Complete technical reference of ID3v2.4.0 metatags with their DA1 mappings and implementation details for metadata preservation and enhancement.",
+        "publishedDate": "2025-04-12T12:00:00Z",
+        "modifiedDate": "2025-04-12T12:00:00Z",
+        "author": {
+            "name": "DA1 Technical Team",
+            "jobTitle": "MetaMetadata Specialists"
+        },
+        "tags": ["Technical", "MetaMetaData", "ID3v2", "Audio", "Standards", "Reference"],
+        "readingTime": "12 min read"
+    }
+    </script>
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/kb.css">
+    
+    <!-- Alpine.js -->
+    <script defer type="module" src="../../js/alpinejs-local.js"></script>
+    <script src="../../sidebar.js" defer></script>
+
+    <style>
+        /* Additional styles for the table */
+        .metatag-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        
+        .metatag-table th {
+            background-color: var(--primary-medium);
+            color: white;
+            text-align: left;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
+        }
+        
+        .metatag-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .metatag-table tr:nth-child(even) {
+            background-color: rgba(0,0,0,0.02);
+        }
+        
+        .metatag-table tr:hover {
+            background-color: rgba(44, 83, 100, 0.05);
+        }
+        
+        .tag-id {
+            font-family: monospace;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+        
+        .deprecated {
+            color: #e74c3c;
+            font-style: italic;
+        }
+        
+        .mapping-note {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+        }
+        
+        .search-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+        
+        #tagSearch {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .search-btn {
+            background: var(--primary-medium);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .search-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .reset-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .reset-btn:hover {
+            background: #5a6268;
+        }
+
+        .toc-container {
+            margin-bottom: 30px;
+        }
+        
+        .category-heading {
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-medium);
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Complete ID3v2.4.0 MetaTags Reference</h1>
+            <div class="topic-meta">
+                <span><i class="bi bi-person"></i> DA1 Technical Team</span>
+                <span><i class="bi bi-calendar3"></i> April 12, 2025</span>
+                <span><i class="bi bi-clock"></i> 12 min read</span>
+            </div>
+        </header>
+        
+        <!-- Topic Content -->
+        <div class="topic-content">
+            <p>This comprehensive reference documents all ID3v2.4.0 metatags with their descriptions, DA1XML mappings, and DA1neverBlank input fields. The table serves as the definitive resource for understanding how audio metadata is preserved and enhanced in the DA1 ecosystem.</p>
+            
+            <div class="technical-note">
+                <h4>About ID3v2.4.0</h4>
+                <p>ID3v2.4.0 is the latest stable version of the ID3 metadata container used primarily in MP3 files but also supported in other file formats. It provides a standard way to include metadata such as title, artist, album, track number, and other information in audio files.</p>
+            </div>
+            
+            <!-- Table of Contents -->
+            <div class="toc-container">
+                <h3><i class="bi bi-list-ul"></i> Quick Navigation</h3>
+                <ul class="toc-list">
+                    <li><a href="#core-tags">Core Metadata Tags</a></li>
+                    <li><a href="#technical-tags">Technical and Identification Tags</a></li>
+                    <li><a href="#copyright-tags">Copyright and Ownership Tags</a></li>
+                    <li><a href="#extended-tags">Extended and Supplementary Tags</a></li>
+                    <li><a href="#custom-tags">Custom and Application-Specific Tags</a></li>
+                </ul>
+            </div>
+            
+            <!-- Search Functionality -->
+            <div class="search-container">
+                <input type="text" id="tagSearch" placeholder="Search for tags, descriptions, or mappings...">
+                <button class="search-btn" onclick="searchTable()"><i class="bi bi-search"></i> Search</button>
+                <button class="reset-btn" onclick="resetSearch()"><i class="bi bi-x-circle"></i> Reset</button>
+            </div>
+            
+            <!-- Table Category: Core Metadata Tags -->
+            <h2 id="core-tags" class="category-heading">Core Metadata Tags</h2>
+            <div class="table-container">
+                <table class="metatag-table">
+                    <thead>
+                        <tr>
+                            <th>Tag ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>DA1XML Mapping</th>
+                            <th>DA1neverBlank Input</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tag-id">TIT2</td>
+                            <td>Title</td>
+                            <td>The title of the audio file or song</td>
+                            <td>&lt;da1:title&gt;</td>
+                            <td>Title field (required)</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TPE1</td>
+                            <td>Lead Artist/Performer</td>
+                            <td>The main artist, performer, or band name associated with the track</td>
+                            <td>&lt;da1:artist&gt;</td>
+                            <td>Artist field (required)</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TALB</td>
+                            <td>Album</td>
+                            <td>The name of the album or collection the track appears on</td>
+                            <td>&lt;da1:album&gt;</td>
+                            <td>Album field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TYER</td>
+                            <td>Year</td>
+                            <td>The year the track was released or recorded (deprecated in v2.4 in favor of TDRC)</td>
+                            <td>&lt;da1:year&gt;</td>
+                            <td>Year field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TDRC</td>
+                            <td>Recording Time</td>
+                            <td>The date and time when the audio was recorded (replaces TYER in v2.4)</td>
+                            <td>&lt;da1:recordingDate&gt;</td>
+                            <td>Recording Date field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TRCK</td>
+                            <td>Track Number</td>
+                            <td>The position of the track on its album (e.g., "4" or "4/12")</td>
+                            <td>&lt;da1:trackNumber&gt;</td>
+                            <td>Track # field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TCON</td>
+                            <td>Content Type/Genre</td>
+                            <td>The genre of the track, either as a text string or numeric genre code</td>
+                            <td>&lt;da1:genre&gt;</td>
+                            <td>Genre dropdown</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">COMM</td>
+                            <td>Comments</td>
+                            <td>General comments about the track. Can include multiple instances with different languages and descriptors</td>
+                            <td>&lt;da1:comment&gt;</td>
+                            <td>Comments field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TPE2</td>
+                            <td>Band/Orchestra/Accompaniment</td>
+                            <td>The band, orchestra, or accompanying performers</td>
+                            <td>&lt;da1:band&gt;</td>
+                            <td>Band/Orchestra field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TPE3</td>
+                            <td>Conductor</td>
+                            <td>The conductor of the performance</td>
+                            <td>&lt;da1:conductor&gt;</td>
+                            <td>Conductor field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TPE4</td>
+                            <td>Interpreted/Remixed by</td>
+                            <td>The person or entity who interpreted, remixed, or modified the track</td>
+                            <td>&lt;da1:remixer&gt;</td>
+                            <td>Remixer field</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Table Category: Technical and Identification Tags -->
+            <h2 id="technical-tags" class="category-heading">Technical and Identification Tags</h2>
+            <div class="table-container">
+                <table class="metatag-table">
+                    <thead>
+                        <tr>
+                            <th>Tag ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>DA1XML Mapping</th>
+                            <th>DA1neverBlank Input</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tag-id">TLEN</td>
+                            <td>Length</td>
+                            <td>The length of the audio in milliseconds</td>
+                            <td>&lt;da1:duration&gt;</td>
+                            <td>Auto-populated</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TMED</td>
+                            <td>Media Type</td>
+                            <td>The source media type of the recording (e.g., "CD", "Vinyl", "Tape")</td>
+                            <td>&lt;da1:mediaType&gt;</td>
+                            <td>Media Type dropdown</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TFLT</td>
+                            <td>File Type</td>
+                            <td>The audio file type or format (e.g., "MPG/3", "VQF")</td>
+                            <td>&lt;da1:fileType&gt;</td>
+                            <td>Auto-populated</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TSSE</td>
+                            <td>Software/Hardware Settings</td>
+                            <td>The software or hardware used to encode the audio</td>
+                            <td>&lt;da1:encodingTool&gt;</td>
+                            <td>Auto-populated with "DA1 MetaMetadata Processor"</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TENC</td>
+                            <td>Encoded By</td>
+                            <td>The person or organization that encoded the audio file</td>
+                            <td>&lt;da1:encodedBy&gt;</td>
+                            <td>Auto-populated with user info</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TKEY</td>
+                            <td>Initial Key</td>
+                            <td>The musical key of the track</td>
+                            <td>&lt;da1:musicalKey&gt;</td>
+                            <td>Musical Key field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TBPM</td>
+                            <td>Beats Per Minute</td>
+                            <td>The tempo of the track in beats per minute</td>
+                            <td>&lt;da1:bpm&gt;</td>
+                            <td>BPM field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TDAT</td>
+                            <td>Date</td>
+                            <td>The recording date as DD/MM format (deprecated in v2.4 in favor of TDRC)</td>
+                            <td>&lt;da1:recordingDate&gt;</td>
+                            <td>Recording Date field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TIME</td>
+                            <td>Time</td>
+                            <td>The recording time as HH:MM format (deprecated in v2.4 in favor of TDRC)</td>
+                            <td>&lt;da1:recordingTime&gt;</td>
+                            <td>Recording Time field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TDEN</td>
+                            <td>Encoding Time</td>
+                            <td>The time the audio file was encoded</td>
+                            <td>&lt;da1:encodingTime&gt;</td>
+                            <td>Auto-populated</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TDRL</td>
+                            <td>Release Time</td>
+                            <td>The time the audio was officially released</td>
+                            <td>&lt;da1:releaseDate&gt;</td>
+                            <td>Release Date field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TDTG</td>
+                            <td>Tagging Time</td>
+                            <td>The time the audio file was tagged</td>
+                            <td>&lt;da1:taggingTime&gt;</td>
+                            <td>Auto-populated</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Table Category: Copyright and Ownership Tags -->
+            <h2 id="copyright-tags" class="category-heading">Copyright and Ownership Tags</h2>
+            <div class="table-container">
+                <table class="metatag-table">
+                    <thead>
+                        <tr>
+                            <th>Tag ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>DA1XML Mapping</th>
+                            <th>DA1neverBlank Input</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tag-id">TCOP</td>
+                            <td>Copyright</td>
+                            <td>Copyright information for the audio file</td>
+                            <td>&lt;da1:copyright&gt;</td>
+                            <td>Copyright field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TPUB</td>
+                            <td>Publisher</td>
+                            <td>The name of the organization or company that published the track</td>
+                            <td>&lt;da1:publisher&gt;</td>
+                            <td>Publisher field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TOWN</td>
+                            <td>File Owner</td>
+                            <td>The owner of the file</td>
+                            <td>&lt;da1:owner&gt;</td>
+                            <td>Owner field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TRSN</td>
+                            <td>Internet Radio Station Name</td>
+                            <td>The name of the internet radio station where the track was played or originated</td>
+                            <td>&lt;da1:radioStation&gt;</td>
+                            <td>Radio Station field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TRSO</td>
+                            <td>Internet Radio Station Owner</td>
+                            <td>The owner of the internet radio station</td>
+                            <td>&lt;da1:radioStationOwner&gt;</td>
+                            <td>Station Owner field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TOFN</td>
+                            <td>Original Filename</td>
+                            <td>The original filename of the audio file</td>
+                            <td>&lt;da1:originalFilename&gt;</td>
+                            <td>Auto-populated</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TOLY</td>
+                            <td>Original Lyricist</td>
+                            <td>The original lyricist or text writer</td>
+                            <td>&lt;da1:originalLyricist&gt;</td>
+                            <td>Original Lyricist field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TORY</td>
+                            <td>Original Release Year</td>
+                            <td>The year of the original recording (deprecated in v2.4 in favor of TDOR)</td>
+                            <td>&lt;da1:originalReleaseYear&gt;</td>
+                            <td>Original Year field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TDOR</td>
+                            <td>Original Release Time</td>
+                            <td>The date and time of the original recording</td>
+                            <td>&lt;da1:originalReleaseDate&gt;</td>
+                            <td>Original Release Date field</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Table Category: Extended and Supplementary Tags -->
+            <h2 id="extended-tags" class="category-heading">Extended and Supplementary Tags</h2>
+            <div class="table-container">
+                <table class="metatag-table">
+                    <thead>
+                        <tr>
+                            <th>Tag ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>DA1XML Mapping</th>
+                            <th>DA1neverBlank Input</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tag-id">TEXT</td>
+                            <td>Lyricist/Text Writer</td>
+                            <td>The writer of the lyrics or text</td>
+                            <td>&lt;da1:lyricist&gt;</td>
+                            <td>Lyricist field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TXXX</td>
+                            <td>User Defined Text</td>
+                            <td>Custom text field that can contain any information. Includes a description field to identify the content</td>
+                            <td>&lt;da1:customMetadata key="[description]"&gt;</td>
+                            <td>Custom Fields section</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TPOS</td>
+                            <td>Part of Set</td>
+                            <td>The part number of a set (e.g., "1/2" for disc 1 of 2)</td>
+                            <td>&lt;da1:discNumber&gt;</td>
+                            <td>Disc # field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TSOT</td>
+                            <td>Title Sort Order</td>
+                            <td>The string to use for sorting by title</td>
+                            <td>&lt;da1:titleSortOrder&gt;</td>
+                            <td>Title Sort field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TSOA</td>
+                            <td>Album Sort Order</td>
+                            <td>The string to use for sorting by album name</td>
+                            <td>&lt;da1:albumSortOrder&gt;</td>
+                            <td>Album Sort field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TSOP</td>
+                            <td>Performer Sort Order</td>
+                            <td>The string to use for sorting by performer name</td>
+                            <td>&lt;da1:artistSortOrder&gt;</td>
+                            <td>Artist Sort field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TSST</td>
+                            <td>Set Subtitle</td>
+                            <td>The subtitle for the set/collection the track belongs to</td>
+                            <td>&lt;da1:setSubtitle&gt;</td>
+                            <td>Set Subtitle field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TBPM</td>
+                            <td>Beats Per Minute</td>
+                            <td>The tempo of the track in beats per minute</td>
+                            <td>&lt;da1:bpm&gt;</td>
+                            <td>BPM field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TIPL</td>
+                            <td>Involved People List</td>
+                            <td>A list of people involved in the track and their roles</td>
+                            <td>&lt;da1:contributors&gt;</td>
+                            <td>Contributors section</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TMCL</td>
+                            <td>Musician Credits List</td>
+                            <td>A list of musicians and their instruments</td>
+                            <td>&lt;da1:musicians&gt;</td>
+                            <td>Musicians section</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">TMOO</td>
+                            <td>Mood</td>
+                            <td>The mood of the audio (e.g., "Happy", "Sad", "Energetic")</td>
+                            <td>&lt;da1:mood&gt;</td>
+                            <td>Mood field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">USLT</td>
+                            <td>Unsynchronized Lyrics</td>
+                            <td>The lyrics or text transcription of the track</td>
+                            <td>&lt;da1:lyrics&gt;</td>
+                            <td>Lyrics field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">SYLT</td>
+                            <td>Synchronized Lyrics</td>
+                            <td>Time-synchronized lyrics with timestamps</td>
+                            <td>&lt;da1:synchronizedLyrics&gt;</td>
+                            <td>Synced Lyrics section</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Table Category: Custom and Application-Specific Tags -->
+            <h2 id="custom-tags" class="category-heading">Custom and Application-Specific Tags</h2>
+            <div class="table-container">
+                <table class="metatag-table">
+                    <thead>
+                        <tr>
+                            <th>Tag ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>DA1XML Mapping</th>
+                            <th>DA1neverBlank Input</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tag-id">UFID</td>
+                            <td>Unique File Identifier</td>
+                            <td>A unique identifier for the audio file, such as a MusicBrainz or proprietary ID</td>
+                            <td>&lt;da1:uniqueIdentifier&gt;</td>
+                            <td>Generated automatically</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">PRIV</td>
+                            <td>Private Frame</td>
+                            <td>Frame containing private data for software or entity identified by an owner ID</td>
+                            <td>&lt;da1:privateData owner="[ownerID]"&gt;</td>
+                            <td>Preserved during processing</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">PCNT</td>
+                            <td>Play Counter</td>
+                            <td>The number of times the file has been played</td>
+                            <td>&lt;da1:playCount&gt;</td>
+                            <td>Preserved during processing</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">POPM</td>
+                            <td>Popularimeter</td>
+                            <td>Rating and play count information from a specified email/user</td>
+                            <td>&lt;da1:rating user="[email]"&gt;</td>
+                            <td>Preserved during processing</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">GEOB</td>
+                            <td>General Encapsulated Object</td>
+                            <td>Binary data embedded in the tag, such as album artwork not in APIC, documents, etc.</td>
+                            <td>&lt;da1:encapsulatedObject&gt;</td>
+                            <td>Advanced section</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">COMR</td>
+                            <td>Commercial</td>
+                            <td>Commercial information about the track, such as purchase info</td>
+                            <td>&lt;da1:commercialInfo&gt;</td>
+                            <td>Commercial Info section</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">RBUF</td>
+                            <td>Recommended Buffer Size</td>
+                            <td>Technical information about the recommended buffer size for playing the file</td>
+                            <td>&lt;da1:bufferSize&gt;</td>
+                            <td>Preserved during processing</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">AENC</td>
+                            <td>Audio Encryption</td>
+                            <td>Information about how the audio is encrypted</td>
+                            <td>&lt;da1:encryption&gt;</td>
+                            <td>Preserved during processing</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">LINK</td>
+                            <td>Linked Information</td>
+                            <td>Links to external resources related to the track</td>
+                            <td>&lt;da1:externalLink&gt;</td>
+                            <td>External Links section</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">POSS</td>
+                            <td>Position Synchronization</td>
+                            <td>Technical information about position synchronization</td>
+                            <td>&lt;da1:positionSync&gt;</td>
+                            <td>Preserved during processing</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">USER</td>
+                            <td>Terms of Use</td>
+                            <td>Legal terms of use for the audio file</td>
+                            <td>&lt;da1:termsOfUse&gt;</td>
+                            <td>Terms of Use field</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">OWNE</td>
+                            <td>Ownership</td>
+                            <td>Detailed ownership information including purchase date</td>
+                            <td>&lt;da1:ownershipInfo&gt;</td>
+                            <td>Ownership Info section</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">RVA2</td>
+                            <td>Relative Volume Adjustment</td>
+                            <td>Suggested volume adjustment for the audio</td>
+                            <td>&lt;da1:volumeAdjustment&gt;</td>
+                            <td>Preserved during processing</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">EQU2</td>
+                            <td>Equalization</td>
+                            <td>Suggested equalization for the audio</td>
+                            <td>&lt;da1:equalization&gt;</td>
+                            <td>Preserved during processing</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">RVRB</td>
+                            <td>Reverb</td>
+                            <td>Reverb settings for the audio</td>
+                            <td>&lt;da1:reverbSettings&gt;</td>
+                            <td>Preserved during processing</td>
+                        </tr>
+                        <tr>
+                            <td class="tag-id">APIC</td>
+                            <td>Attached Picture</td>
+                            <td>Embedded images, typically album artwork</td>
+                            <td>&lt;da1:artwork&gt;</td>
+                            <td>Artwork section</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="technical-note">
+                <h4>DA1 MetaMetadata Enhancement</h4>
+                <p>The DA1 system preserves all existing ID3v2.4.0 tags during processing while also enhancing them with additional metadata through the DA1XML format. This ensures that no metadata is lost while providing a richer, more comprehensive metadata profile for audio content.</p>
+            </div>
+            
+            <p>This reference table is maintained and updated by the DA1 Technical Team to ensure compatibility with evolving metadata standards and best practices in digital audio archiving.</p>
+        </div>
+    </div>
+    
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+    
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+    
+    <!-- Scripts -->
+    <script src="../js/component-loader.js"></script>
+    
+    <!-- Search script -->
+    <script>
+        function searchTable() {
+            const input = document.getElementById('tagSearch').value.toLowerCase();
+            const tables = document.querySelectorAll('.metatag-table');
+            const headings = document.querySelectorAll('.category-heading');
+            
+            // Hide all category headings first
+            headings.forEach(heading => {
+                heading.style.display = 'none';
+            });
+            
+            let foundAny = false;
+            
+            tables.forEach((table, tableIndex) => {
+                let foundInTable = false;
+                const rows = table.getElementsByTagName('tr');
+                
+                // Skip the header row (index 0)
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    const cells = row.getElementsByTagName('td');
+                    let found = false;
+                    
+                    // Check all cells in the row
+                    for (let j = 0; j < cells.length; j++) {
+                        const cellText = cells[j].textContent.toLowerCase();
+                        if (cellText.includes(input)) {
+                            found = true;
+                            foundInTable = true;
+                            foundAny = true;
+                            break;
+                        }
+                    }
+                    
+                    // Show/hide row based on search
+                    row.style.display = found ? '' : 'none';
+                }
+                
+                // Show/hide entire table and its heading
+                table.closest('.table-container').style.display = foundInTable ? '' : 'none';
+                if (foundInTable) {
+                    headings[tableIndex].style.display = '';
+                }
+            });
+            
+            // Show message if no results found
+            const noResultsElem = document.getElementById('no-results');
+            if (!foundAny) {
+                if (!noResultsElem) {
+                    const message = document.createElement('p');
+                    message.id = 'no-results';
+                    message.className = 'no-topics-message';
+                    message.textContent = `No metatags found matching "${input}". Try a different search term.`;
+                    document.querySelector('.search-container').after(message);
+                }
+            } else if (noResultsElem) {
+                noResultsElem.remove();
+            }
+        }
+        
+        function resetSearch() {
+            document.getElementById('tagSearch').value = '';
+            const tables = document.querySelectorAll('.metatag-table');
+            const headings = document.querySelectorAll('.category-heading');
+            const noResultsElem = document.getElementById('no-results');
+            
+            // Show all rows and tables
+            tables.forEach(table => {
+                const rows = table.getElementsByTagName('tr');
+                for (let i = 0; i < rows.length; i++) {
+                    rows[i].style.display = '';
+                }
+                table.closest('.table-container').style.display = '';
+            });
+            
+            // Show all category headings
+            headings.forEach(heading => {
+                heading.style.display = '';
+            });
+            
+            // Remove no results message if present
+            if (noResultsElem) {
+                noResultsElem.remove();
+            }
+        }
+        
+        // Add keyboard support for search
+        document.getElementById('tagSearch').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                searchTable();
+            } else if (event.key === 'Escape') {
+                resetSearch();
+            }
+        });
+    </script>
+</body>
+</html>

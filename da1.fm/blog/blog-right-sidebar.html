@@ -5,62 +5,99 @@
 </head>
 <body>
     <div id="header-placeholder"></div>
-    <!-- Right Sidebar (Why DA1) -->
-<aside class="sidebar sidebar-right">
-    <h2><i class="bi bi-lightbulb"></i> Why the World NEEDS DA1!</h2>
-    
-    <div class="accordion-container">
-        <div class="accordion-item">
-            <div class="accordion-header active">
-                <h3>Metadata Chaos Solved</h3>
-                <span class="accordion-icon"><i class="bi bi-chevron-down"></i></span>
-            </div>
-            <div class="accordion-content active">
-                <p>Current media formats lose critical metadata during distribution, causing attribution and rights confusion. DA1 preserves all metadata permanently, ensuring creators get proper credit and compensation.</p>
-            </div>
+    <!-- Right Sidebar (Why DA1) with Alpine.js for collapse functionality -->
+    <div x-data="{ 
+        sidebarRightExpanded: localStorage.getItem('sidebarRightExpanded') !== 'false',
+        toggleRightSidebar() {
+            this.sidebarRightExpanded = !this.sidebarRightExpanded;
+            localStorage.setItem('sidebarRightExpanded', this.sidebarRightExpanded);
+            document.querySelector('.main-content').classList.toggle('sidebar-right-collapsed', !this.sidebarRightExpanded);
+        }
+    }" x-cloak>
+        <!-- Collapsed state - top tab with plus icon -->
+        <div 
+            x-show="!sidebarRightExpanded" 
+            @click="toggleRightSidebar()" 
+            class="sidebar-right-tab"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform translate-y-4"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+        >
+            <i class="bi bi-plus-lg"></i>
         </div>
         
-        <div class="accordion-item">
-            <div class="accordion-header">
-                <h3>Complete Media Kits</h3>
-                <span class="accordion-icon"><i class="bi bi-chevron-down"></i></span>
+        <!-- Expanded state - full sidebar -->
+        <aside 
+            class="sidebar sidebar-right" 
+            :class="{'expanded': sidebarRightExpanded, 'collapsed': !sidebarRightExpanded}"
+            x-show="sidebarRightExpanded"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform -translate-y-full"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+            x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="opacity-100 transform translate-y-0"
+            x-transition:leave-end="opacity-0 transform -translate-y-full"
+        >
+            <h2><i class="bi bi-lightbulb"></i> Why the World NEEDS DA1!</h2>
+            
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <div class="accordion-header active">
+                        <h3>Metadata Chaos Solved</h3>
+                        <span class="accordion-icon"><i class="bi bi-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content active">
+                        <p>Current media formats lose critical metadata during distribution, causing attribution and rights confusion. DA1 preserves all metadata permanently, ensuring creators get proper credit and compensation.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Complete Media Kits</h3>
+                        <span class="accordion-icon"><i class="bi bi-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Instead of distributing multiple files in various formats, DA1 packages everything together - audio, video, documents, and images - in one comprehensive container that ensures nothing gets lost in transit.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Blockchain Verification</h3>
+                        <span class="accordion-icon"><i class="bi bi-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>DA1 includes built-in blockchain verification to prove authenticity and ownership, combating piracy and unauthorized distribution while creating new opportunities for creators to monetize their work.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Legal Remediation Built In</h3>
+                        <span class="accordion-icon"><i class="bi bi-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>With embedded legal documentation and rights management, DA1 simplifies licensing and usage tracking, reducing disputes and ensuring proper compensation for intellectual property.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Self-Sustaining Ecosystem</h3>
+                        <span class="accordion-icon"><i class="bi bi-chevron-down"></i></span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>The DA1 token-based ecosystem ensures the format remains future-proof, with ongoing development and compatibility funded through a decentralized governance model that benefits all stakeholders.</p>
+                    </div>
+                </div>
             </div>
-            <div class="accordion-content">
-                <p>Instead of distributing multiple files in various formats, DA1 packages everything together - audio, video, documents, and images - in one comprehensive container that ensures nothing gets lost in transit.</p>
+            
+            <!-- Collapse button at bottom of sidebar -->
+            <div class="sidebar-right-collapse-button" @click="toggleRightSidebar()">
+                <i class="bi bi-chevron-up"></i>
+                <span>Collapse</span>
             </div>
-        </div>
-        
-        <div class="accordion-item">
-            <div class="accordion-header">
-                <h3>Blockchain Verification</h3>
-                <span class="accordion-icon"><i class="bi bi-chevron-down"></i></span>
-            </div>
-            <div class="accordion-content">
-                <p>DA1 includes built-in blockchain verification to prove authenticity and ownership, combating piracy and unauthorized distribution while creating new opportunities for creators to monetize their work.</p>
-            </div>
-        </div>
-        
-        <div class="accordion-item">
-            <div class="accordion-header">
-                <h3>Legal Remediation Built In</h3>
-                <span class="accordion-icon"><i class="bi bi-chevron-down"></i></span>
-            </div>
-            <div class="accordion-content">
-                <p>With embedded legal documentation and rights management, DA1 simplifies licensing and usage tracking, reducing disputes and ensuring proper compensation for intellectual property.</p>
-            </div>
-        </div>
-        
-        <div class="accordion-item">
-            <div class="accordion-header">
-                <h3>Self-Sustaining Ecosystem</h3>
-                <span class="accordion-icon"><i class="bi bi-chevron-down"></i></span>
-            </div>
-            <div class="accordion-content">
-                <p>The DA1 token-based ecosystem ensures the format remains future-proof, with ongoing development and compatibility funded through a decentralized governance model that benefits all stakeholders.</p>
-            </div>
-        </div>
+        </aside>
     </div>
-</aside>
-
 </body>
 </html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DA1 Metadata JSON Block for Knowledge Base System -->
+    <script id="da1-metadata" type="application/json">
+    {
+        "title": "MetaMetaData Schema Mapping",
+        "description": "Technical documentation on how DA1's MetaMetaTag Map creates a unified schema that maps precisely to all major metadata formats across file types.",
+        "excerpt": "The MetaMetaTag Map provides comprehensive field mapping between incompatible metadata formats. This schema ensures perfect translation of attribution data across all major file types and platforms.",
+        "publishedDate": "2025-05-17T13:30:00Z",
+        "modifiedDate": "2025-05-17T13:30:00Z",
+        "author": {
+            "name": "Technical Documentation Team",
+            "jobTitle": "DA1 Engineering"
+        },
+        "category": "Technical Standards",
+        "tags": ["MetaMetaTag", "Schema Mapping", "Metadata Translation", "Cross-Format Compatibility"],
+        "readingTime": "5 min read"
+    }
+    </script>
+
+    <!-- SEO Meta -->
+    <title>DA1 Knowledge Base - MetaMetaData Schema Mapping</title>
+    <meta name="description" content="Technical documentation on how DA1's MetaMetaTag Map creates a unified schema that maps precisely to all major metadata formats across file types.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Knowledge Base - MetaMetaData Schema Mapping">
+    <meta property="og:description" content="Learn how DA1's MetaMetaTag Map creates a unified schema for perfect metadata translation across formats.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+    <meta property="article:published_time" content="2025-05-17T13:30:00Z">
+    <meta property="article:modified_time" content="2025-05-17T13:30:00Z">
+    <meta property="article:author" content="Technical Documentation Team">
+    <meta property="article:section" content="Technical Standards">
+    <meta property="article:tag" content="MetaMetaTag">
+    <meta property="article:tag" content="Schema Mapping">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/kb.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../../js/alpinejs-local.js"></script>
+    <script src="../../sidebar.js" defer></script>
+    <script src="../js/component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="topic-header">
+            <h1>MetaMetaData Schema Mapping</h1>
+            <div class="topic-meta">
+                <span><i class="bi bi-person"></i> Technical Documentation Team</span>
+                <span><i class="bi bi-calendar3"></i> May 17, 2025</span>
+                <span><i class="bi bi-clock"></i> 5 min read</span>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc-container">
+            <h3>Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#concept">The MetaMetaTag Concept</a></li>
+                <li><a href="#schema-structure">Schema Structure</a></li>
+                <li><a href="#format-mapping">Format-Specific Mapping</a></li>
+                <li><a href="#implementation">Technical Implementation</a></li>
+            </ul>
+        </div>
+
+        <!-- Article: The Concept -->
+        <div class="section" id="concept">
+            <h2>✅ The MetaMetaTag Concept</h2>
+            <p>The MetaMetaTag Map is a comprehensive metadata schema that serves as a universal translator between incompatible metadata formats. Rather than replacing existing standards, it creates a higher-level schema that maps perfectly to native fields in all major metadata systems.</p>
+            
+            <p>Key characteristics of the MetaMetaTag approach include:</p>
+            
+            <ul>
+                <li><strong>Format Agnosticism</strong>: The schema exists independently of any specific file format</li>
+                <li><strong>Comprehensive Coverage</strong>: Includes all fields from major metadata standards</li>
+                <li><strong>Semantic Mapping</strong>: Maps fields based on meaning rather than just names</li>
+                <li><strong>Value Normalization</strong>: Handles different data formats and constraints</li>
+                <li><strong>Extensibility</strong>: Can accommodate new metadata standards as they emerge</li>
+            </ul>
+            
+            <blockquote>
+                <p>"The MetaMetaTag approach represents the first truly viable solution to the format fragmentation problem. By creating a semantic mapping layer rather than yet another standard, DA1 has found a path forward that doesn't require universal adoption to be effective."</p>
+                <footer>— Dave Holroyd, former Head of Metadata, British Broadcasting Corporation</footer>
+            </blockquote>
+        </div>
+
+        <!-- Article: Schema Structure -->
+        <div class="section" id="schema-structure">
+            <h2>✅ Schema Structure</h2>
+            <p>The MetaMetaTag schema is organized into logical categories that group related metadata fields:</p>
+            
+            <h3>Core Identity</h3>
+            <p>Fields that establish the fundamental identity of the content:</p>
+            <ul>
+                <li><strong>Title</strong>: The primary name of the work</li>
+                <li><strong>Identifier</strong>: Unique identifiers (ISRC, UUID, etc.)</li>
+                <li><strong>Creator</strong>: The primary person or entity responsible</li>
+                <li><strong>CreationDate</strong>: When the work was created</li>
+            </ul>
+            
+            <h3>Attribution</h3>
+            <p>Fields that specify who contributed to the work:</p>
+            <ul>
+                <li><strong>Contributor</strong>: All entities who contributed (with role specification)</li>
+                <li><strong>Publisher</strong>: Entity responsible for distribution</li>
+                <li><strong>Producer</strong>: Entity overseeing creation</li>
+                <li><strong>Rights</strong>: Copyright and other rights information</li>
+            </ul>
+            
+            <h3>Content Description</h3>
+            <p>Fields that describe the nature of the content:</p>
+            <ul>
+                <li><strong>Description</strong>: Text summary of the content</li>
+                <li><strong>Keywords</strong>: Terms for search and categorization</li>
+                <li><strong>Language</strong>: Primary language(s) of the content</li>
+                <li><strong>Classification</strong>: Genre, category, or other taxonomies</li>
+            </ul>
+            
+            <h3>Technical Metadata</h3>
+            <p>Fields that describe technical characteristics:</p>
+            <ul>
+                <li><strong>Format</strong>: File format, encoding, etc.</li>
+                <li><strong>Duration</strong>: Length of time-based media</li>
+                <li><strong>Dimensions</strong>: Size of visual media</li>
+                <li><strong>Quality</strong>: Resolution, bitrate, etc.</li>
+            </ul>
+            
+            <h3>Relationships</h3>
+            <p>Fields that express connections to other content:</p>
+            <ul>
+                <li><strong>Collection</strong>: Album, series, portfolio, etc.</li>
+                <li><strong>Source</strong>: Original work if derivative</li>
+                <li><strong>Related</strong>: Other connected works</li>
+                <li><strong>Version</strong>: Relationship to other versions</li>
+            </ul>
+            
+            <p>Each field in the schema has comprehensive specifications for data types, validation rules, and mapping instructions for all supported formats.</p>
+        </div>
+
+        <!-- Article: Format Mapping -->
+        <div class="section" id="format-mapping">
+            <h2>✅ Format-Specific Mapping</h2>
+            
+            <p>The MetaMetaTag schema maps to all major metadata formats through precise field mappings:</p>
+            
+            <h3>Sample Mapping: Creator Fields</h3>
+            
+            <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>MetaMetaTag</th>
+                        <th>ID3v2 (MP3)</th>
+                        <th>XMP (Images)</th>
+                        <th>BWF (WAV)</th>
+                        <th>Vorbis (FLAC)</th>
+                        <th>iTunes Atoms (M4A)</th>
+                        <th>MP4 (Video)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Creator.Primary</td>
+                        <td>TPE1</td>
+                        <td>dc:creator</td>
+                        <td>IART</td>
+                        <td>ARTIST</td>
+                        <td>©ART</td>
+                        <td>©ART</td>
+                    </tr>
+                    <tr>
+                        <td>Creator.Composer</td>
+                        <td>TCOM</td>
+                        <td>xmpDM:composer</td>
+                        <td>IMUS</td>
+                        <td>COMPOSER</td>
+                        <td>©wrt</td>
+                        <td>©com</td>
+                    </tr>
+                    <tr>
+                        <td>Creator.Producer</td>
+                        <td>TPRO</td>
+                        <td>xmpDM:engineer</td>
+                        <td>IENG</td>
+                        <td>PRODUCER</td>
+                        <td><nobr>----:com.apple.iTunes:PRODUCER</nobr></td>
+                        <td>purd</td>
+                    </tr>
+                    <tr>
+                        <td>Creator.Performers</td>
+                        <td>TPE2</td>
+                        <td>xmpDM:artist</td>
+                        <td>IPRF</td>
+                        <td>PERFORMER</td>
+                        <td>©ART (list)</td>
+                        <td>©ART (list)</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            
+            <p>For each format, the MetaMetaTag system includes:</p>
+            
+            <ul>
+                <li><strong>Field name translations</strong> that match native format expectations</li>
+                <li><strong>Data format conversions</strong> to handle format-specific requirements</li>
+                <li><strong>Character encoding transformations</strong> between UTF-8, Latin-1, etc.</li>
+                <li><strong>Length limitations handling</strong> with intelligent truncation where needed</li>
+                <li><strong>Alternate field mappings</strong> when primary fields aren't available</li>
+            </ul>
+            
+            <blockquote>
+                <p>"The comprehensiveness of DA1's format mapping is unprecedented. I've seen many attempts to solve metadata interoperability, but none have achieved this level of detailed mapping across all major formats."</p>
+                <footer>— Mike Jbara, former President, WEA Corp (Warner Music Group)</footer>
+            </blockquote>
+        </div>
+
+        <!-- Technical Implementation -->
+        <div class="section" id="implementation">
+            <h2>✅ Technical Implementation</h2>
+            
+            <p>The MetaMetaTag Map is implemented through several key technical components:</p>
+            
+            <h3>DA1XML Schema</h3>
+            <p>The canonical representation of the MetaMetaTag schema is defined in XML Schema Definition (XSD) format. This provides:</p>
+            <ul>
+                <li>Formal definition of all fields, types, and relationships</li>
+                <li>Validation rules for ensuring data integrity</li>
+                <li>Machine-readable schema that can be used by automated systems</li>
+            </ul>
+            
+            <h3>Mapping Engine</h3>
+            <p>A sophisticated transformation engine that converts between formats:</p>
+            <ul>
+                <li>Bidirectional mapping between DA1XML and native formats</li>
+                <li>Field-level transformation rules for data normalization</li>
+                <li>Field presence validation and automatic fallbacks</li>
+                <li>Custom handling for format-specific edge cases</li>
+            </ul>
+            
+            <h3>Implementation Libraries</h3>
+            <p>Developer tools for working with the MetaMetaTag system:</p>
+            <ul>
+                <li>Cross-platform libraries (JavaScript, Python, Java, C#, etc.)</li>
+                <li>Native format readers/writers for all supported formats</li>
+                <li>Format detection and automatic handling</li>
+                <li>Batch processing capabilities for catalog management</li>
+            </ul>
+            
+            <h3>Versioning and Evolution</h3>
+            <p>The MetaMetaTag schema is designed for graceful evolution:</p>
+            <ul>
+                <li>Backward compatibility with earlier schema versions</li>
+                <li>Extensibility points for industry-specific additions</li>
+                <li>Regular updates to incorporate new format standards</li>
+                <li>Transformation maps for handling schema changes</li>
+            </ul>
+            
+            <p>The entire system is available via both user-friendly interfaces and comprehensive APIs, ensuring that it can be integrated into any workflow or system that handles digital content.</p>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+</body>
+
+</html>

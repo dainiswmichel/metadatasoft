@@ -1,0 +1,384 @@
+Here is the most complete, exhaustive, maxed-out list of FFmpeg-compatible metadata tags drawn from all your files and official spec documents — no tags left behind. This includes everything from ID3v2.4 (MP3), Vorbis (FLAC/OGG), BWF (WAV), iTunes (M4A), ReplayGain, MusicBrainz, and DA1-specific fields.
+✅ Ultimate FFmpeg Metadata Reference Template
+
+Each field below can be adapted using:
+
+-metadata <key>="your value"
+
+🎵 Basic Track Information
+
+    title
+
+    subtitle
+
+    album
+
+    artist
+
+    album_artist
+
+    track
+
+    disc
+
+    year
+
+    date
+
+    grouping
+
+    version
+
+    content_group_description (TIT1)
+
+🎼 Creators & Contributors
+
+    composer
+
+    lyricist
+
+    songwriter
+
+    arranger
+
+    conductor
+
+    producer
+
+    performer
+
+    engineer
+
+    technician
+
+    studio_musicians
+
+    vocal_credits
+
+    instrument_credits
+
+    session_musicians
+
+    featured_artist
+
+    contributing_artists
+
+    album_sort
+
+    artist_sort
+
+    composer_sort
+
+    title_sort
+
+🔧 Technical Properties
+
+    bpm / TBPM
+
+    tempo / tempo_exact
+
+    key / TKEY
+
+    time_signature
+
+    sample_rate
+
+    bit_depth
+
+    channels
+
+    audio_codec
+
+    encoding_settings
+
+    encoded_by
+
+    duration
+
+    duration_frames
+
+    audio_quality
+
+    noise_reduction
+
+    dither_type
+
+    true_peak
+
+    average_loudness
+
+    headroom
+
+    phase_correlation
+
+    signal_chain
+
+    monitoring_environment
+
+    file_type
+
+    format
+
+📝 Lyrics & Text
+
+    lyrics
+
+    lyrics_language
+
+    lyrics_script
+
+    lyrics_verification
+
+    lyrics_copyright
+
+    translation_author
+
+    english_translation
+
+    subtitle
+
+    comment
+
+    description
+
+    synopsis
+
+    narrative_theme
+
+    verse_structure
+
+    literary_elements
+
+    poetic_meter
+
+🖼️ Visual & Cover Art
+
+    picture
+
+    coverart
+
+    picture_type
+
+    picture_mime
+
+📜 Rights & Licensing
+
+    copyright
+
+    copyright_holder
+
+    publisher
+
+    publisher_contact
+
+    label
+
+    isrc
+
+    iswc
+
+    upc
+
+    grid
+
+    catalog_number
+
+    catalog_sorting_number
+
+    pro_affiliation
+
+    performing_rights_holder
+
+    mechanical_rights_holder
+
+    sync_rights_holder
+
+    neighboring_rights_holder
+
+    clearance_status
+
+    licensing_terms
+
+    sample_clearance
+
+    chain_of_title
+
+    ownership_percentage
+
+    rights_reversion
+
+    legal_status
+
+    royalty_distribution
+
+    cue_sheet_status
+
+    clearance_contact
+
+    rights_holder
+
+    pro_work_id
+
+    ipi_base_number
+
+    cae_ipi_name_number
+
+🪪 Identifiers & External Metadata
+
+    musicbrainz_trackid
+
+    musicbrainz_albumid
+
+    musicbrainz_artistid
+
+    musicbrainz_albumartistid
+
+    release_group_id
+
+    acoustid_id
+
+    acoustid_fingerprint
+
+    discogs_release_id
+
+    ufid
+
+    da1hash (custom tag for DA1 pre-blockchain)
+
+🔗 Web, URLs, and Distribution
+
+    website
+
+    lyrics_url
+
+    purchase_url
+
+    license_url
+
+    artist_url
+
+    portfolio_url
+
+    press_kit_url
+
+    social_media
+
+    payment_url
+
+    commercial_url
+
+    store_link
+
+    podcast_url
+
+    podcast_category
+
+    podcast_keywords
+
+    radio_station_url
+
+    internet_radio_station
+
+    internet_radio_station_owner
+
+🧭 Sorting & Categorization
+
+    genre
+
+    style
+
+    theme
+
+    mood
+
+    occasion
+
+    energy_level
+
+    placement_suggestions
+
+    mood_secondary
+
+    usage_suggestions
+
+    sync_tags
+
+    placement_history
+
+    search_terms
+
+    keywords
+
+    keywords_auxiliary
+
+    film_tv_suitable
+
+    tagging_time
+
+🌍 Cultural, Archival, Educational
+
+    cultural_context
+
+    cultural_annotation
+
+    educational_use
+
+    archival_notes
+
+    historical_significance
+
+    cultural_significance
+
+    performance_notes
+
+    session_notes
+
+🧾 Administrative & Commercial
+
+    business_model
+
+    discount_eligibility
+
+    administrative_contact
+
+    business_contact
+
+    rate_card
+
+    pricing_tier
+
+    business_inquiries
+
+    licensing_status
+
+    territory_availability
+
+    legal_contact
+
+    press_contact
+
+    marketing_contact
+
+    promo_materials
+
+    availability_date
+
+🧪 Experimental / Advanced
+
+    TXXX → User-defined text frame (e.g. TXXX:DA1UUID)
+
+    WXXX → User-defined URL
+
+    PRIV / GEOB → Encrypted or binary data
+
+    SIGN, UFID, MLLT, SEEK → Advanced ID3v2.4 features
+
+Would you like this turned into:
+
+    ✅ A downloadable .sh file template?
+
+    ✅ A .json or .da1.xml sample?
+
+    ✅ A form interface to generate a command interactively?
+
+I’m ready to generate any of those now.

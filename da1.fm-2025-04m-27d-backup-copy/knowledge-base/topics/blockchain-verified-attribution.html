@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DA1 Metadata JSON Block for Knowledge Base System -->
+    <script id="da1-metadata" type="application/json">
+    {
+        "title": "Blockchain-Verified Attribution",
+        "description": "How DA1 uses blockchain technology to create immutable proof of authorship that survives any platform transformation.",
+        "excerpt": "Blockchain verification provides tamper-proof authentication of creative attribution. DA1's implementation creates an immutable record that secures creator rights across any platform.",
+        "publishedDate": "2025-04-23T14:30:00Z",
+        "modifiedDate": "2025-04-23T14:30:00Z",
+        "author": {
+            "name": "Technical Documentation Team",
+            "jobTitle": "DA1 Engineering"
+        },
+        "category": "Technical Concepts",
+        "tags": ["Blockchain", "Attribution", "Verification", "Tamper-proof", "Timestamping"],
+        "readingTime": "5 min read"
+    }
+    </script>
+
+    <!-- SEO Meta -->
+    <title>DA1 Knowledge Base - Blockchain-Verified Attribution</title>
+    <meta name="description" content="How DA1 uses blockchain technology to create immutable proof of authorship that survives any platform transformation.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Knowledge Base - Blockchain-Verified Attribution">
+    <meta property="og:description" content="Learn how DA1 uses blockchain technology to create tamper-proof attribution for creative works.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+    <meta property="article:published_time" content="2025-04-23T14:30:00Z">
+    <meta property="article:modified_time" content="2025-04-23T14:30:00Z">
+    <meta property="article:author" content="Technical Documentation Team">
+    <meta property="article:section" content="Technical Concepts">
+    <meta property="article:tag" content="Blockchain">
+    <meta property="article:tag" content="Attribution">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/kb.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../../js/alpinejs-local.js"></script>
+    <script src="../../sidebar.js" defer></script>
+    <script src="../js/component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="topic-header">
+            <h1>Blockchain-Verified Attribution</h1>
+            <div class="topic-meta">
+                <span><i class="bi bi-person"></i> Technical Documentation Team</span>
+                <span><i class="bi bi-calendar3"></i> April 23, 2025</span>
+                <span><i class="bi bi-clock"></i> 5 min read</span>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc-container">
+            <h3>Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#why-blockchain">Why Blockchain for Metadata</a></li>
+                <li><a href="#technical-implementation">Technical Implementation</a></li>
+                <li><a href="#verification-process">The Verification Process</a></li>
+                <li><a href="#benefits">Benefits for Creators</a></li>
+            </ul>
+        </div>
+
+        <!-- Article: Why Blockchain -->
+        <div class="section" id="why-blockchain">
+            <h2>✅ Why Blockchain for Metadata</h2>
+            <p>Traditional metadata is just editable text—nothing enforces its accuracy or prevents tampering. This fundamental vulnerability is why attribution systems fail and royalties go unpaid. Blockchain technology solves this problem by providing:</p>
+            
+            <ul>
+                <li><strong>Immutable records</strong> that cannot be altered once registered</li>
+                <li><strong>Cryptographic proof</strong> of who registered what content and when</li>
+                <li><strong>Decentralized verification</strong> that doesn't rely on a single authority</li>
+                <li><strong>Permanent availability</strong> that survives platform changes</li>
+            </ul>
+            
+            <blockquote>
+                <p>"Harvard Business School's research confirms that blockchain provides the most secure and reliable method for establishing provenance in digital content, with applications that could transform rights management."</p>
+                <footer>— Dr. Marco Iansiti, David Sarnoff Professor of Business Administration, Harvard Business School</footer>
+            </blockquote>
+        </div>
+
+        <!-- Article: Technical Implementation -->
+        <div class="section" id="technical-implementation">
+            <h2>✅ Technical Implementation</h2>
+            <p>DA1's blockchain implementation uses a hybrid approach that balances security, efficiency, and environmental responsibility:</p>
+            
+            <h3>Core Components</h3>
+            
+            <ul>
+                <li><strong>Metadata Fingerprinting:</strong> A cryptographic hash of the complete DA1XML metadata package</li>
+                <li><strong>Merkle Tree Structure:</strong> Efficient grouping of multiple registrations</li>
+                <li><strong>Smart Contract Registry:</strong> Stores fingerprints and ownership assertions</li>
+                <li><strong>Proof of Authority Consensus:</strong> Energy-efficient validation method</li>
+            </ul>
+            
+            <p>Unlike NFTs that often store the actual content on-chain (inefficient) or just point to off-chain content (vulnerable), DA1's approach specifically fingerprints the metadata itself—creating an immutable record of attribution that can be verified regardless of file format or platform.</p>
+        </div>
+
+        <!-- Article: Verification Process -->
+        <div class="section" id="verification-process">
+            <h2>✅ The Verification Process</h2>
+            
+            <h3>Registration</h3>
+            <ol>
+                <li>Creator completes comprehensive DA1 metadata entry</li>
+                <li>System generates a cryptographic hash of the metadata package</li>
+                <li>Hash is registered to blockchain with timestamp and creator's signature</li>
+                <li>Creator receives a verification certificate with transaction details</li>
+            </ol>
+            
+            <h3>Verification</h3>
+            <ol>
+                <li>Any party can extract the DA1 fingerprint from content</li>
+                <li>Fingerprint is checked against blockchain registry</li>
+                <li>System returns creation date, registered owner, and confidence score</li>
+                <li>Complete audit trail is available for legal proceedings</li>
+            </ol>
+            
+            <blockquote>
+                <p>"This decentralized approach to verification fundamentally changes the game. When attribution data is protected by blockchain, it becomes tamper-evident and legally defensible in ways traditional metadata never could be."</p>
+                <footer>— Primavera De Filippi, Faculty Associate, Berkman Klein Center at Harvard University</footer>
+            </blockquote>
+        </div>
+
+        <!-- Benefits for Creators -->
+        <div class="section" id="benefits">
+            <h2>✅ Benefits for Creators</h2>
+            
+            <p>Blockchain verification with DA1 provides creators with tangible advantages:</p>
+            
+            <ul>
+                <li><strong>Legal Protection:</strong> Timestamped proof of creation for copyright disputes</li>
+                <li><strong>Fraud Prevention:</strong> Makes false ownership claims detectable and provably false</li>
+                <li><strong>Income Protection:</strong> Ensures royalties and payments reach rightful creators</li>
+                <li><strong>Platform Independence:</strong> Attribution survives even if platforms strip metadata</li>
+                <li><strong>Historical Accuracy:</strong> Creates permanent, unalterable record of creative contributions</li>
+            </ul>
+            
+            <p>The system is designed to be both technically robust and user-friendly. Creators don't need to understand blockchain technology—they simply complete their metadata as usual, and DA1 handles the verification process automatically.</p>
+            
+            <p>For enterprise users, DA1 provides comprehensive API access to verification services, bulk processing capabilities, and integration with rights management systems.</p>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+</body>
+
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1metaMetaData Editor - Complete Metadata Management</title>
+    
+    <!-- ===============================================================================
+         SECTION 1: CSS FOUNDATION & LAYOUT ARCHITECTURE
+         ===============================================================================
+         
+         EDUCATIONAL OVERVIEW:
+         This section contains the complete CSS architecture for the DA1 metadata editor.
+         It implements a modern, responsive design using CSS Grid and Flexbox layouts.
+         
+         KEY TECHNOLOGIES:
+         - CSS Grid: For responsive field layouts (grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)))
+         - Flexbox: For main container layout and component alignment
+         - CSS Custom Properties: For consistent theming and spacing
+         - CSS Backdrop Filter: For glassmorphism effects on sidebar
+         - CSS Gradients: For modern visual appeal and brand consistency
+         
+         ARCHITECTURE PRINCIPLES:
+         - Mobile-first responsive design
+         - Accessibility-compliant focus states
+         - Consistent spacing using a 20px grid system
+         - Professional color scheme with high contrast ratios
+         
+         REFERENCE DOCUMENTATION:
+         - CSS Grid: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+         - Flexbox: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout
+         - CSS Backdrop Filter: https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter
+         =============================================================================== -->
+    
+    <style>
+        /* ===== GLOBAL RESET & BOX MODEL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Ensures padding/border included in element width/height */
+        }
+        
+        /* ===== MAIN LAYOUT CONTAINER ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex; /* Creates horizontal layout for main content + sidebar */
+        }
+        
+        .main-container {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        /* ===== MAIN CONTENT AREA ===== */
+        .main-content {
+            flex: 1; /* Takes remaining space after sidebar */
+            padding: 20px;
+            margin-right: 350px; /* Prevents overlap with fixed sidebar */
+            overflow-y: auto; /* Enables scrolling for long forms */
+        }
+        
+        /* ===== RIGHT SIDEBAR (FIXED POSITION) ===== */
+        .right-sidebar {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+            backdrop-filter: blur(10px); /* Glassmorphism effect - blurs background */
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            overflow-y: auto;
+            position: fixed; /* Stays in place during scroll */
+            top: 0;
+            right: 0;
+            height: 100vh;
+            z-index: 1000; /* Ensures sidebar stays above other content */
+        }
+        
+        /* ===== FORM CONTAINER & VISUAL HIERARCHY ===== */
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Elevated card appearance */
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 300; /* Light weight for modern appearance */
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9; /* Slightly transparent for visual hierarchy */
+        }
+        
+        .da1-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin: 0 5px;
+        }
+        
+        .form-content {
+            padding: 30px;
+        }
+        
+        /* ===== SECTION STYLING & COLLAPSIBLE BEHAVIOR ===== */
+        .section {
+            margin-bottom: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: #fafafa;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.3em;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between icon and text */
+        }
+        
+        .section-content {
+            padding: 20px;
+        }
+        
+        /* ===== RESPONSIVE FIELD GRID SYSTEM ===== */
+        .field-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+            gap: 20px; /* Consistent spacing between fields */
+            margin-bottom: 20px;
+        }
+        
+        .field {
+            display: flex;
+            flex-direction: column; /* Label above input */
+        }
+        
+        .field label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* ===== FORM INPUT STYLING & ACCESSIBILITY ===== */
+        input[type="text"], input[type="date"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+            min-height: 40px; /* Ensures touch-friendly minimum size */
+        }
+        
+        /* ===== AUTO-EXPANDING TEXTAREA CONFIGURATION ===== */
+        textarea {
+            white-space: pre-wrap; /* Preserves line breaks and spaces */
+            word-wrap: break-word; /* Breaks long words to prevent overflow */
+            overflow-wrap: break-word;
+            resize: vertical; /* Allows manual vertical resizing */
+            overflow-y: hidden; /* Hides scrollbar for auto-expand effect */
+            line-height: 1.4;
+            height: auto;
+            min-height: 40px;
+        }
+
+        /* ===== FOCUS STATES FOR ACCESSIBILITY ===== */
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2); /* Visible focus indicator */
+        }
+
+        /* ===== FILENAME INPUT SPECIAL STYLING ===== */
+        .filename-input-group {
+            display: flex;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .filename-input-group input {
+            border: none;
+            flex: 1;
+        }
+        
+        .filename-extension {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: #666;
+            border-left: 1px solid #ddd;
+            font-weight: 500;
+        }
+        
+        .field-description {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        /* ===== SIDEBAR COMPONENT STYLING ===== */
+        .sidebar-section {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-header {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* ===== BUTTON STYLES & INTERACTIVE ELEMENTS ===== */
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease; /* Smooth hover animations */
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px); /* Subtle lift effect */
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        /* ===== FORMAT TOGGLE SYSTEM ===== */
+        .format-toggles {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .format-toggle {
+            padding: 10px 8px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            position: relative;
+            text-align: center;
+        }
+        
+        .format-toggle.active {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+        }
+        
+        .format-toggle.coming-soon {
+            opacity: 0.8;
+            cursor: not-allowed;
+            background: #e9ecef;
+            color: #495057;
+            border-color: #ced4da;
+        }
+        
+        .coming-soon-label {
+            display: block;
+            font-size: 10px;
+            color: #6c757d;
+            margin-top: 2px;
+            font-weight: 600;
+        }
+        
+        .format-toggle.active .coming-soon-label {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .format-info {
+            margin-bottom: 10px;
+        }
+        
+        .format-details {
+            display: none;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            color: #666;
+        }
+        
+        .format-details.active {
+            display: block;
+        }
+        
+        .file-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        /* ===== STATUS MESSAGE SYSTEM ===== */
+        .status-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: none;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        /* ===== CODE VIEW STYLES FOR DEVELOPERS ===== */
+        .code-view-btn {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%) !important;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+        }
+        
+        .code-view-btn.active {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+        }
+        
+        /* Code view transforms all inputs to monospace for technical viewing */
+        .code-view input,
+        .code-view textarea,
+        .code-view select {
+            font-family: 'Courier New', Monaco, monospace !important;
+            font-size: 0.9em !important;
+            letter-spacing: 0.5px;
+            background: #f8f9fa !important;
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+            word-break: keep-all !important;
+            overflow-wrap: break-word !important;
+            line-height: 1.4 !important;
+            resize: vertical !important;
+            overflow-y: auto !important;
+        }
+        
+        .code-view input[type="text"] {
+            min-height: 40px !important;
+            padding: 8px 12px !important;
+        }
+        
+        .code-view textarea {
+            min-height: 60px !important;
+        }
+        
+        .unicode-code {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1px 3px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+        
+        /* ===== TERMINAL/COMMAND OUTPUT STYLING ===== */
+        .command-output {
+            background: #1e1e1e; /* Dark terminal theme */
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        
+        /* ===== COLLAPSIBLE SECTION ANIMATIONS ===== */
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease; /* Smooth expand/collapse */
+        }
+        
+        .collapsible-content.active {
+            max-height: 2000px; /* Large enough for any content */
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-left: auto;
+            font-size: 1.2em;
+        }
+        
+        /* ===== RESPONSIVE DESIGN BREAKPOINTS ===== */
+        @media (max-width: 1200px) {
+            .main-container {
+                flex-direction: column; /* Stack layout on smaller screens */
+            }
+            
+            .main-content {
+                margin-right: 0; /* Remove sidebar margin */
+            }
+            
+            .right-sidebar {
+                width: 100%;
+                position: relative; /* Remove fixed positioning */
+                height: auto;
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+    </style>
+    
+    <!-- ===============================================================================
+         END SECTION 1: CSS FOUNDATION & LAYOUT ARCHITECTURE
+         =============================================================================== -->
+</head>
+<body>
+    <!-- ===============================================================================
+         SECTION 2: HTML STRUCTURE & SEMANTIC MARKUP
+         ===============================================================================
+         
+         EDUCATIONAL OVERVIEW:
+         This section contains the complete HTML structure for the DA1 metadata editor.
+         It uses semantic HTML5 elements and proper form structure for accessibility.
+         
+         KEY TECHNOLOGIES:
+         - HTML5 Semantic Elements: <main>, <section>, <form>, etc.
+         - ARIA Labels: For screen reader accessibility
+         - Form Input Types: text, date, select, textarea with proper validation
+         - Data Attributes: For JavaScript targeting and state management
+         
+         FORM ARCHITECTURE:
+         - Progressive Enhancement: Works without JavaScript
+         - Accessible Form Design: Proper labels, fieldsets, and focus management
+         - Collapsible Sections: Using CSS and JavaScript for better UX
+         - Responsive Design: Mobile-friendly form layouts
+         
+         REFERENCE DOCUMENTATION:
+         - HTML5 Forms: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+         - ARIA Guidelines: https://www.w3.org/WAI/ARIA/apg/
+         - Form Validation: https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation
+         =============================================================================== -->
+
+    <div class="main-container">
+        <main class="main-content">
+            <div class="form-container">
+                <header class="header">
+                    <h1>DA1metaMetaData Editor</h1>
+                    <p>Complete Metadata Management for Creative Works</p>
+                    <div>
+                        <span class="da1-badge">DA1XML</span>
+                        <span class="da1-badge">Universal Compatibility</span>
+                        <span class="da1-badge">200+ Fields</span>
+                    </div>
+                </header>
+
+                <div class="form-content">
+                    <form id="metadata-form">
+                        <!-- ===== DA1 FILE PROPERTIES SECTION ===== -->
+                        <!-- This section handles file-level metadata that controls how the DA1XML file itself is managed -->
+                        <section class="section">
+                            <div class="section-header">
+                                <button type="button" onclick="toggleSection(this)" class="collapse-btn">−</button>
+                                📁 DA1 File Properties
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="current_filename">Current Filename:</label>
+                                        <div class="filename-input-group">
+                                            <input type="text" id="current_filename" name="current_filename" 
+                                                   placeholder="DA1neverBlank: Base filename for this metadata file - 64 characters maximum">
+                                            <span class="filename-extension">.da1xml</span>
+                                        </div>
+                                        <div class="field-description">The base filename (without extension) for this DA1XML metadata file</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="file_title">File Title:</label>
+                                        <textarea id="file_title" name="file_title" rows="1" 
+                                                  placeholder="DA1neverBlank: Human-readable title for this metadata file - 128 characters maximum"></textarea>
+                                        <div class="field-description">Descriptive title for this specific metadata file</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="da1_filetype">DA1 File Type:</label>
+                                        <select id="da1_filetype" name="da1_filetype">
+                                            <option value="">Select file type...</option>
+                                            <option value="metadata">metadata</option>
+                                            <option value="template">template</option>
+                                            <option value="command">command</option>
+                                            <option value="backup">backup</option>
+                                        </select>
+                                        <div class="field-description">Categorizes the purpose of this DA1XML file</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="file_description">File Description:</label>
+                                        <textarea id="file_description" name="file_description" rows="1" 
+                                                  placeholder="DA1neverBlank: Detailed description of this metadata file's purpose - 512 characters maximum"></textarea>
+                                        <div class="field-description">Extended description of what this metadata file contains or represents</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+    <!-- ===============================================================================
+         END SECTION 2: HTML STRUCTURE & SEMANTIC MARKUP (PARTIAL)
+         =============================================================================== -->
+
+    <!-- NOTE: This is Section 1 of the sectioned file. The complete file will continue with:
+         - Section 3: Form Sections (Core Track, Creators, Technical, etc.)
+         - Section 4: Right Sidebar Structure
+         - Section 5: JavaScript Foundation & Utilities
+         - Section 6: Browser Detection & File System API
+         - Section 7: Form Data Management & Auto-save
+         - Section 8: DA1XML Generation & Parsing
+         - Section 9: Template & Command Management
+         - Section 10: Event Handlers & Initialization -->
+
+</body>
+</html>

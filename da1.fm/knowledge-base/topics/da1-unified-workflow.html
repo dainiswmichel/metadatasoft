@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DA1 Metadata JSON Block for Knowledge Base System -->
+    <script id="da1-metadata" type="application/json">
+    {
+        "title": "DA1 Unified Workflow for Multi-Format Metadata",
+        "description": "How DA1's unified workflow solves the metadata tooling fragmentation problem across audio, video, and image formats.",
+        "excerpt": "DA1's unified workflow eliminates the need for multiple specialized metadata tools. Learn how a single platform handles comprehensive attribution across all major media formats.",
+        "publishedDate": "2025-04-26T09:00:00Z",
+        "modifiedDate": "2025-04-26T09:00:00Z",
+        "author": {
+            "name": "Technical Documentation Team",
+            "jobTitle": "DA1 Engineering"
+        },
+        "category": "Workflow Solutions",
+        "tags": ["Unified Workflow", "Metadata Tools", "Technical Integration", "Format Support"],
+        "readingTime": "4 min read"
+    }
+    </script>
+
+    <!-- SEO Meta -->
+    <title>DA1 Knowledge Base - Unified Workflow for Multi-Format Metadata</title>
+    <meta name="description" content="How DA1's unified workflow solves the metadata tooling fragmentation problem across audio, video, and image formats.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Knowledge Base - Unified Workflow for Multi-Format Metadata">
+    <meta property="og:description" content="Learn how DA1's unified platform simplifies metadata management across all media formats.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+    <meta property="article:published_time" content="2025-04-26T09:00:00Z">
+    <meta property="article:modified_time" content="2025-04-26T09:00:00Z">
+    <meta property="article:author" content="Technical Documentation Team">
+    <meta property="article:section" content="Workflow Solutions">
+    <meta property="article:tag" content="Unified Workflow">
+    <meta property="article:tag" content="Metadata Tools">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/kb.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../../js/alpinejs-local.js"></script>
+    <script src="../../sidebar.js" defer></script>
+    <script src="../js/component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="topic-header">
+            <h1>DA1 Unified Workflow for Multi-Format Metadata</h1>
+            <div class="topic-meta">
+                <span><i class="bi bi-person"></i> Technical Documentation Team</span>
+                <span><i class="bi bi-calendar3"></i> April 26, 2025</span>
+                <span><i class="bi bi-clock"></i> 4 min read</span>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc-container">
+            <h3>Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#current-tools">Current Metadata Tooling Landscape</a></li>
+                <li><a href="#da1-approach">The DA1 Unified Approach</a></li>
+                <li><a href="#format-support">Comprehensive Format Support</a></li>
+                <li><a href="#workflow-integration">Integration With Existing Workflows</a></li>
+            </ul>
+        </div>
+
+        <!-- Article: Current Tools -->
+        <div class="section" id="current-tools">
+            <h2>✅ Current Metadata Tooling Landscape</h2>
+            <p>The current metadata management ecosystem requires creators to master multiple specialized tools:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Media Type</th>
+                        <th>Common Tools</th>
+                        <th>Technical Barriers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Audio (MP3/WAV)</td>
+                        <td>MP3Tag, MusicBrainz Picard, BWF MetaEdit</td>
+                        <td>Different interfaces for ID3 vs BWF, limited format support per tool</td>
+                    </tr>
+                    <tr>
+                        <td>Images</td>
+                        <td>ExifTool, Adobe Bridge</td>
+                        <td>Command-line complexity, expensive software licenses</td>
+                    </tr>
+                    <tr>
+                        <td>Video</td>
+                        <td>FFmpeg, MediaInfo</td>
+                        <td>High technical knowledge required, complex syntax</td>
+                    </tr>
+                    <tr>
+                        <td>Cross-Format</td>
+                        <td>Custom scripts, specialized programming</td>
+                        <td>Requires coding knowledge, no standardization</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <blockquote>
+                <p>"The fragmentation of metadata tools represents one of the most significant barriers to proper attribution in digital media. Most creators simply lack the technical resources to navigate this complexity."</p>
+                <footer>— David Kaefer, former VP of Licensing, Vimeo</footer>
+            </blockquote>
+        </div>
+
+        <!-- Article: DA1 Approach -->
+        <div class="section" id="da1-approach">
+            <h2>✅ The DA1 Unified Approach</h2>
+            <p>DA1 solves the tooling fragmentation problem with a unified workflow that handles all metadata needs in a single platform:</p>
+            
+            <h3>Core Workflow Components</h3>
+            
+            <ol>
+                <li><strong>Universal Metadata Entry</strong>: Single form captures all attribution data regardless of target format</li>
+                <li><strong>Smart Field Mapping</strong>: Automatically maps entered data to appropriate format-specific fields</li>
+                <li><strong>Built-in Validation</strong>: Ensures compliance with standards for each target format</li>
+                <li><strong>Format-Specific Preview</strong>: Shows exactly how metadata will appear in each output format</li>
+                <li><strong>Batch Export</strong>: Creates properly formatted files for all required output formats</li>
+            </ol>
+            
+            <p>This approach eliminates the need to learn multiple tools or re-enter the same information across different interfaces. Enter once, export everywhere.</p>
+        </div>
+
+        <!-- Article: Format Support -->
+        <div class="section" id="format-support">
+            <h2>✅ Comprehensive Format Support</h2>
+            
+            <p>DA1's unified platform supports all major media formats used in creative industries:</p>
+            
+            <h3>Audio Formats & Standards</h3>
+            <ul>
+                <li>WAV/BWF (Broadcast Wave Format)</li>
+                <li>MP3 (ID3v2 tags)</li>
+                <li>FLAC (Vorbis Comments)</li>
+                <li>AIFF (Chunk-based metadata)</li>
+                <li>AAC/M4A (MP4 atoms)</li>
+                <li>OGG (Vorbis Comments)</li>
+            </ul>
+            
+            <h3>Image Formats & Standards</h3>
+            <ul>
+                <li>JPEG/JPG (EXIF, XMP, IPTC)</li>
+                <li>PNG (Textual chunks)</li>
+                <li>TIFF (Tags)</li>
+                <li>WebP (EXIF, XMP)</li>
+                <li>RAW camera formats</li>
+            </ul>
+            
+            <h3>Video Formats & Standards</h3>
+            <ul>
+                <li>MP4/MOV (QuickTime atoms)</li>
+                <li>MXF (Broadcast standard)</li>
+                <li>WebM (Matroska tags)</li>
+                <li>AVI (INFO chunks)</li>
+            </ul>
+            
+            <h3>Document Formats</h3>
+            <ul>
+                <li>PDF (XMP packets)</li>
+                <li>ePub (metadata section)</li>
+            </ul>
+            
+            <p>For each format, DA1 handles the technical complexity of correct implementation, including character encoding, field length limitations, and format-specific requirements.</p>
+        </div>
+
+        <!-- Workflow Integration -->
+        <div class="section" id="workflow-integration">
+            <h2>✅ Integration With Existing Workflows</h2>
+            
+            <p>While DA1 provides a complete standalone solution, it also integrates with existing professional workflows:</p>
+            
+            <h3>API Integration</h3>
+            <ul>
+                <li><strong>REST API</strong> for programmatic access to all metadata functionality</li>
+                <li><strong>SDK libraries</strong> for popular languages (JavaScript, Python, C#)</li>
+                <li><strong>Webhook support</strong> for triggering actions on metadata changes</li>
+            </ul>
+            
+            <h3>Professional Software Integration</h3>
+            <ul>
+                <li><strong>Adobe Creative Cloud extension</strong> (Photoshop, Premiere Pro, Audition)</li>
+                <li><strong>Pro Tools AAX plugin</strong> for audio production workflows</li>
+                <li><strong>Final Cut Pro/Logic Pro extensions</strong> for Apple ecosystems</li>
+                <li><strong>Command-line tools</strong> for batch processing and automation</li>
+            </ul>
+            
+            <h3>Enterprise Features</h3>
+            <ul>
+                <li><strong>Team roles and permissions</strong> for collaborative workflows</li>
+                <li><strong>Template management</strong> for consistent metadata across projects</li>
+                <li><strong>Bulk operations</strong> for handling large catalogs</li>
+                <li><strong>Audit logs</strong> for tracking changes and compliance</li>
+            </ul>
+            
+            <p>This flexibility ensures that DA1 can adapt to any workflow, from individual creators to enterprise media operations, without forcing a complete retooling of existing processes.</p>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+</body>
+
+</html>

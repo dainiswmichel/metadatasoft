@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Core -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- DA1 Metadata JSON Block for Knowledge Base System -->
+    <script id="da1-metadata" type="application/json">
+    {
+        "title": "How to Prompt AI to Code Well",
+        "description": "Learn effective strategies for prompting AI to write high-quality, maintainable code for the DA1 platform.",
+        "excerpt": "When working with AI to generate code, how you structure your prompts dramatically impacts the quality and usefulness of the output. This guide provides practical strategies for getting the best results.",
+        "publishedDate": "2025-03-25T11:30:00Z",
+        "modifiedDate": "2025-04-01T09:15:00Z",
+        "author": {
+            "name": "DA1 Development Team",
+            "jobTitle": "DA1 Engineering"
+        },
+        "category": "Development",
+        "tags": ["AI", "Development", "Best Practices", "Tools"],
+        "readingTime": "10 min read"
+    }
+    </script>
+
+    <!-- SEO Meta -->
+    <title>DA1 Knowledge Base - How to Prompt AI to Code Well</title>
+    <meta name="description" content="Learn effective strategies for prompting AI to write high-quality, maintainable code for the DA1 platform.">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="DA1 Knowledge Base - How to Prompt AI to Code Well">
+    <meta property="og:description" content="Master the art of AI prompting for code generation with practical strategies and examples for DA1 development.">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DA1 Knowledge Base">
+    <meta property="article:published_time" content="2025-03-25T11:30:00Z">
+    <meta property="article:modified_time" content="2025-04-01T09:15:00Z">
+    <meta property="article:author" content="DA1 Development Team">
+    <meta property="article:section" content="Development">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Development">
+    <meta property="article:tag" content="Best Practices">
+    <meta property="article:tag" content="Tools">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/kb.css">
+
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../../js/alpinejs-local.js"></script>
+    <script src="../../sidebar.js" defer></script>
+    <script src="../js/component-loader.js"></script>
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="topic-header">
+            <h1>How to Prompt AI to Code Well</h1>
+            <div class="topic-meta">
+                <span><i class="bi bi-person"></i> DA1 Development Team</span>
+                <span><i class="bi bi-calendar3"></i> March 25, 2025</span>
+                <span><i class="bi bi-clock"></i> 10 min read</span>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc-container">
+            <h3>Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#fundamentals">Prompt Engineering Fundamentals for Code</a></li>
+                <li><a href="#techniques">Advanced Techniques for Quality Code</a></li>
+                <li><a href="#da1-specific">DA1-Specific Prompting Guidelines</a></li>
+                <li><a href="#examples">Practical Examples</a></li>
+                <li><a href="#debugging">Using AI for Code Debugging</a></li>
+            </ul>
+        </div>
+
+        <p>When working with AI to generate code, how you structure your prompts dramatically impacts the quality and usefulness of the output. This guide provides practical strategies for getting the best results.</p>
+
+        <!-- Section: Fundamentals -->
+        <div class="section" id="fundamentals">
+            <h2>✅ Prompt Engineering Fundamentals for Code</h2>
+            
+            <h3>Be Specific About Context</h3>
+            <p>Always begin by providing essential context about the codebase, frameworks, and patterns being used:</p>
+            <ul>
+                <li>Describe the tech stack: "This is a Node.js application using Express and MongoDB with a React frontend."</li>
+                <li>Mention file purpose: "This module handles user authentication including login, registration, and password reset."</li>
+                <li>Reference existing patterns: "Use the existing error handling pattern as shown in utils/errorHandler.js."</li>
+            </ul>
+            
+            <h3>Set Clear Requirements</h3>
+            <p>Clearly articulate what you need the AI to do:</p>
+            <ul>
+                <li>Be explicit about inputs and outputs: "The function should accept a user object and return a JWT token."</li>
+                <li>Specify error handling needs: "Include proper error handling for network failures, invalid inputs, and database errors."</li>
+                <li>State performance expectations: "This function will be called frequently, so optimize for performance."</li>
+            </ul>
+
+            <h3>Provide Examples</h3>
+            <p>Show the AI examples of similar code from your codebase:</p>
+            <ul>
+                <li>"Here's how we've implemented similar functions: [example code]"</li>
+                <li>"Follow the pattern used in these routes: [example routes]"</li>
+            </ul>
+        </div>
+
+        <!-- Section: Advanced Techniques -->
+        <div class="section" id="techniques">
+            <h2>✅ Advanced Techniques for Quality Code</h2>
+            
+            <h3>Use Multi-Step Prompting</h3>
+            <p>Break complex tasks into manageable steps:</p>
+            <ol>
+                <li>First, ask for a high-level design or pseudocode</li>
+                <li>Review and refine the approach</li>
+                <li>Then ask for actual implementation</li>
+                <li>Request tests for the implementation</li>
+            </ol>
+            
+            <h3>Request Explanations</h3>
+            <p>Ask the AI to explain its approach and reasoning:</p>
+            <ul>
+                <li>"Please explain your approach and why you chose this implementation."</li>
+                <li>"Comment your code to explain any non-obvious choices or optimizations."</li>
+            </ul>
+
+            <h3>Iterate and Refine</h3>
+            <p>Use follow-up prompts to improve the initial output:</p>
+            <ul>
+                <li>"The code looks good, but can you refactor it to be more modular?"</li>
+                <li>"Can you optimize this function for better performance?"</li>
+                <li>"Let's add robust error handling to this implementation."</li>
+            </ul>
+        </div>
+
+        <!-- Section: DA1-Specific Guidelines -->
+        <div class="section" id="da1-specific">
+            <h2>✅ DA1-Specific Prompting Guidelines</h2>
+            
+            <h3>Consistent Naming Conventions</h3>
+            <p>Request that the AI follows DA1's established naming patterns:</p>
+            <ul>
+                <li>Variables: camelCase (e.g., <code>audioFilePath</code>)</li>
+                <li>Constants: UPPER_SNAKE_CASE (e.g., <code>MAX_FILE_SIZE</code>)</li>
+                <li>Classes: PascalCase (e.g., <code>AudioProcessor</code>)</li>
+                <li>Private methods: Prefix with underscore (e.g., <code>_processMetadata</code>)</li>
+            </ul>
+            
+            <h3>Comment Style Standards</h3>
+            <p>Specify our commenting approach:</p>
+            <ul>
+                <li>"Follow DA1 code commenting standards with section headers and end markers."</li>
+                <li>"Include JSDoc-style comments for all public functions."</li>
+                <li>"Use numbered sections for major code blocks."</li>
+            </ul>
+
+            <h3>DA1 Architecture Integration</h3>
+            <p>Ensure code fits into our architecture:</p>
+            <ul>
+                <li>"This code will be part of the audio processing pipeline at the embedding stage."</li>
+                <li>"This component needs to integrate with the metadata service."</li>
+                <li>"Follow the existing patterns in the packageService.js file."</li>
+            </ul>
+        </div>
+
+        <!-- Section: Practical Examples -->
+        <div class="section" id="examples">
+            <h2>✅ Practical Examples</h2>
+            
+            <h3>Example 1: Feature Implementation</h3>
+            <p>A good prompt for implementing a new feature:</p>
+<pre><code>I need to implement a function that extracts metadata from an uploaded audio file.
+
+Context:
+- Working in Node.js with the ffmpeg library
+- This will be part of processService.js which handles all media processing
+- Our error handling uses a try/catch pattern with custom ErrorHandler class
+
+Requirements:
+- Function named extractAudioMetadata that accepts a filePath parameter
+- Returns a structured object with title, artist, album, and duration
+- Handle audio formats: mp3, wav, flac
+- If metadata is missing, use filename as fallback for title
+- Log processing steps using our logger.js module
+
+Here's how we've implemented similar functions:
+[example code from an existing function]
+
+Please follow our DA1 commenting standards with section headers.</code></pre>
+            
+            <h3>Example 2: Bug Fix</h3>
+            <p>A good prompt for fixing a bug:</p>
+<pre><code>I'm trying to fix a bug in our metadata extraction function. When processing FLAC files, the artist name is not being extracted correctly.
+
+Here's the current function:
+[problematic function code]
+
+I've traced the issue to how we're accessing the metadata object from FFmpeg's output. For MP3 and WAV files it works fine, but FLAC has a different metadata structure.
+
+Can you help me update this function to correctly extract the artist name from FLAC files while maintaining compatibility with the other formats?
+
+We're using FFmpeg version 4.4 and the metadata typically looks like this:
+[sample output for different formats]
+
+Please make sure the solution is robust and includes appropriate error handling.</code></pre>
+        </div>
+
+        <!-- Section: Debugging -->
+        <div class="section" id="debugging">
+            <h2>✅ Using AI for Code Debugging</h2>
+            
+            <h3>Provide Full Context</h3>
+            <p>When asking AI to help debug, include:</p>
+            <ul>
+                <li>The code that's not working</li>
+                <li>Error messages or unexpected behaviors</li>
+                <li>What you've already tried</li>
+                <li>Expected behavior</li>
+            </ul>
+            
+            <h3>Step-by-Step Debugging</h3>
+            <p>Ask the AI to walk through the debugging process:</p>
+<pre><code>Can you help me debug this function? It's supposed to validate and process metadata before embedding, but I'm getting inconsistent results.
+
+Function code:
+[function code]
+
+Error cases:
+1. When I pass a valid MP3 file, I sometimes get: "Cannot read property 'format' of undefined"
+2. Files over 50MB silently fail with no error
+
+Can you:
+1. Explain what might be causing these issues
+2. Suggest debugging steps to verify the cause
+3. Propose a fix that's consistent with our error handling pattern</code></pre>
+
+            <h3>Validate Solutions</h3>
+            <p>Always test AI-provided solutions in your actual codebase before implementing them fully. AI might miss important contextual details or edge cases specific to your project.</p>
+        </div>
+
+        <!-- Technical Note -->
+        <div class="technical-note">
+            <h4>AI Models and Capabilities</h4>
+            <p>Remember that different AI models have different capabilities. More advanced models generally produce better code with fewer issues. If you get poor results from one model, try another or try refining your prompt with more specific guidance.</p>
+        </div>
+
+        <!-- Warning Note -->
+        <div class="warning-note">
+            <h4>Important Security Consideration</h4>
+            <p>Never share sensitive information such as API keys, passwords, or proprietary business logic in your prompts. Always sanitize your code examples before sharing them with AI services.</p>
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+</body>
+
+</html>

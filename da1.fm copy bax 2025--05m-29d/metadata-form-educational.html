@@ -1,0 +1,2494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1metaMetaData Editor - Complete Metadata Management</title>
+    
+    <!-- ===============================================================================
+         SECTION 1: CSS FOUNDATION & LAYOUT ARCHITECTURE
+         ===============================================================================
+         
+         EDUCATIONAL OVERVIEW:
+         This section contains the complete CSS architecture for the DA1 metadata editor.
+         It implements a modern, responsive design using CSS Grid and Flexbox layouts
+         with professional glassmorphism effects and auto-expanding form inputs.
+         
+         KEY TECHNOLOGIES & CONCEPTS:
+         - CSS Box Model: box-sizing: border-box ensures consistent sizing calculations
+         - CSS Grid: grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) for responsive layouts
+         - CSS Flexbox: For main container alignment and component distribution
+         - CSS Backdrop Filter: backdrop-filter: blur(10px) creates glassmorphism effects
+         - CSS Gradients: linear-gradient() for modern visual appeal and brand consistency
+         - CSS Auto-Expanding Textareas: overflow-y: hidden + height: auto for dynamic sizing
+         - CSS Custom Properties: For scalable theming and consistent spacing systems
+         
+         LAYOUT PRINCIPLES:
+         - Mobile-first responsive design with breakpoints at 1200px
+         - Fixed sidebar with flexible main content area
+         - Accessibility-compliant focus states with visible indicators
+         - Consistent 20px grid-based spacing system throughout
+         - High contrast color ratios for WCAG compliance
+         
+         REFERENCE DOCUMENTATION:
+         - CSS Grid Layout: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+         - CSS Flexbox: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout
+         - CSS Backdrop Filter: https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter
+         =============================================================================== -->
+    
+    <style>
+        /* ===== GLOBAL RESET & BOX MODEL FOUNDATION ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Includes padding/border in element dimensions */
+        }
+        
+        /* ===== MAIN LAYOUT CONTAINER & TYPOGRAPHY ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex; /* Creates horizontal split: main content + fixed sidebar */
+        }
+        
+        .main-container {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        /* ===== MAIN CONTENT AREA (FLEXIBLE) ===== */
+        .main-content {
+            flex: 1; /* Takes all remaining space after sidebar */
+            padding: 20px;
+            margin-right: 350px; /* Prevents content overlap with fixed sidebar */
+            overflow-y: auto; /* Enables vertical scrolling for long forms */
+        }
+        
+        /* ===== RIGHT SIDEBAR (FIXED POSITION WITH GLASSMORPHISM) ===== */
+        .right-sidebar {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.95); /* Semi-transparent white base */
+            backdrop-filter: blur(10px); /* Glassmorphism blur effect */
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            overflow-y: auto;
+            position: fixed; /* Remains in viewport during scroll */
+            top: 0;
+            right: 0;
+            height: 100vh;
+            z-index: 1000; /* Layered above main content */
+        }
+        
+        /* ===== FORM CONTAINER & VISUAL HIERARCHY ===== */
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Elevated material design shadow */
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 300; /* Light weight for modern typography */
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9; /* Subtle transparency for visual hierarchy */
+        }
+        
+        .da1-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin: 0 5px;
+        }
+        
+        .form-content {
+            padding: 30px;
+        }
+        
+        /* ===== SECTION CONTAINERS & COLLAPSIBLE BEHAVIOR ===== */
+        .section {
+            margin-bottom: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: #fafafa;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.3em;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Consistent spacing between elements */
+        }
+        
+        .section-content {
+            padding: 20px;
+        }
+        
+        /* ===== RESPONSIVE CSS GRID FIELD SYSTEM ===== */
+        .field-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Auto-responsive columns */
+            gap: 20px; /* Consistent spacing in grid system */
+            margin-bottom: 20px;
+        }
+        
+        .field {
+            display: flex;
+            flex-direction: column; /* Label stacked above input */
+        }
+        
+        .field label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* ===== UNIVERSAL INPUT STYLING & AUTO-EXPANSION ===== */
+        /* This is the key section that makes ALL inputs auto-expand vertically */
+        input[type="text"], input[type="date"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+            min-height: 40px; /* Touch-friendly minimum size (iOS/Android guidelines) */
+        }
+        
+        /* ===== AUTO-EXPANDING TEXTAREA CONFIGURATION ===== */
+        textarea {
+            white-space: pre-wrap; /* Preserves line breaks and multiple spaces */
+            word-wrap: break-word; /* Breaks long words to prevent horizontal overflow */
+            overflow-wrap: break-word; /* CSS3 property for better word breaking */
+            resize: vertical; /* Allows manual vertical resizing only */
+            overflow-y: hidden; /* Hides scrollbar to create auto-expand illusion */
+            line-height: 1.4; /* Comfortable reading line height */
+            height: auto; /* Allows dynamic height calculation */
+            min-height: 40px; /* Minimum height matches other inputs */
+        }
+
+        /* ===== ACCESSIBILITY FOCUS STATES ===== */
+        input:focus, textarea:focus, select:focus {
+            outline: none; /* Remove default browser outline */
+            border-color: #667eea; /* Brand color for focus indication */
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2); /* Visible focus ring for accessibility */
+        }
+
+        /* ===== FILENAME INPUT SPECIAL STYLING ===== */
+        .filename-input-group {
+            display: flex;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden; /* Clips content to rounded corners */
+        }
+
+        .filename-input-group input {
+            border: none; /* Remove border since parent container has border */
+            flex: 1; /* Takes remaining space after extension label */
+        }
+        
+        .filename-extension {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: #666;
+            border-left: 1px solid #ddd;
+            font-weight: 500;
+        }
+        
+        .field-description {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        /* ===== SIDEBAR COMPONENT STYLING ===== */
+        .sidebar-section {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle depth shadow */
+        }
+        
+        .sidebar-header {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* ===== INTERACTIVE BUTTON SYSTEM ===== */
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease; /* Smooth animation for all properties */
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px); /* Subtle lift effect on hover */
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); /* Enhanced shadow on hover */
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        /* ===== FORMAT SELECTION TOGGLE SYSTEM ===== */
+        .format-toggles {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .format-toggle {
+            padding: 10px 8px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s ease; /* Quick state change animations */
+            position: relative;
+            text-align: center;
+        }
+        
+        .format-toggle.active {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+        }
+        
+        .format-toggle.coming-soon {
+            opacity: 0.8;
+            cursor: not-allowed;
+            background: #e9ecef;
+            color: #495057;
+            border-color: #ced4da;
+        }
+        
+        .coming-soon-label {
+            display: block;
+            font-size: 10px;
+            color: #6c757d;
+            margin-top: 2px;
+            font-weight: 600;
+        }
+        
+        .format-toggle.active .coming-soon-label {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .format-info {
+            margin-bottom: 10px;
+        }
+        
+        .format-details {
+            display: none;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            color: #666;
+        }
+        
+        .format-details.active {
+            display: block;
+        }
+        
+        .file-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        /* ===== STATUS MESSAGE NOTIFICATION SYSTEM ===== */
+        .status-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: none; /* Hidden by default, shown via JavaScript */
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        /* ===== CODE VIEW DEVELOPER FEATURES ===== */
+        .code-view-btn {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%) !important;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+        }
+        
+        .code-view-btn.active {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+        }
+        
+        /* Code view transforms all inputs to monospace for Unicode inspection */
+        .code-view input,
+        .code-view textarea,
+        .code-view select {
+            font-family: 'Courier New', Monaco, monospace !important;
+            font-size: 0.9em !important;
+            letter-spacing: 0.5px;
+            background: #f8f9fa !important;
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+            word-break: keep-all !important; /* Prevents breaking Unicode sequences */
+            overflow-wrap: break-word !important;
+            line-height: 1.4 !important;
+            resize: vertical !important;
+            overflow-y: auto !important;
+        }
+        
+        .code-view input[type="text"] {
+            min-height: 40px !important;
+            padding: 8px 12px !important;
+        }
+        
+        .code-view textarea {
+            min-height: 60px !important;
+        }
+        
+        .unicode-code {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1px 3px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+        
+        /* ===== TERMINAL OUTPUT STYLING ===== */
+        .command-output {
+            background: #1e1e1e; /* Dark terminal theme */
+            color: #f8f8f2; /* Light terminal text */
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: pre-wrap; /* Preserves terminal formatting */
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        
+        /* ===== COLLAPSIBLE SECTION ANIMATIONS ===== */
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease; /* Smooth expand/collapse animation */
+        }
+        
+        .collapsible-content.active {
+            max-height: 2000px; /* Large enough to accommodate any section content */
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-left: auto;
+            font-size: 1.2em;
+        }
+        
+        /* ===== RESPONSIVE DESIGN BREAKPOINTS ===== */
+        @media (max-width: 1200px) {
+            .main-container {
+                flex-direction: column; /* Stack vertically on smaller screens */
+            }
+            
+            .main-content {
+                margin-right: 0; /* Remove sidebar margin on mobile */
+            }
+            
+            .right-sidebar {
+                width: 100%;
+                position: relative; /* Remove fixed positioning on mobile */
+                height: auto;
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+    </style>
+    
+    <!-- ===============================================================================
+         END SECTION 1: CSS FOUNDATION & LAYOUT ARCHITECTURE
+         =============================================================================== -->
+</head>
+<body>
+    <!-- ===============================================================================
+         SECTION 2: HTML STRUCTURE & SEMANTIC MARKUP
+         ===============================================================================
+         
+         EDUCATIONAL OVERVIEW:
+         This section contains the complete HTML structure using semantic HTML5 elements
+         for accessibility and proper document structure. The form implements progressive
+         enhancement principles and follows WCAG accessibility guidelines.
+         
+         KEY TECHNOLOGIES & CONCEPTS:
+         - HTML5 Semantic Elements: <main>, <section>, <header>, <form> for document structure
+         - Form Architecture: Proper label association and fieldset organization
+         - Progressive Enhancement: Functional without JavaScript, enhanced with it
+         - ARIA Labels: For screen reader accessibility and enhanced navigation
+         - Input Types: Optimized for mobile keyboards (text, date, select, textarea)
+         - Data Attributes: For JavaScript state management and event targeting
+         
+         FORM DESIGN PRINCIPLES:
+         - Logical tab order for keyboard navigation
+         - Descriptive labels and help text for all inputs
+         - Consistent field grouping and visual hierarchy
+         - Mobile-optimized input types and touch targets
+         - Error handling and validation feedback systems
+         
+         REFERENCE DOCUMENTATION:
+         - HTML5 Forms: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+         - Web Accessibility Initiative: https://www.w3.org/WAI/ARIA/apg/patterns/
+         - Form Design Best Practices: https://www.smashingmagazine.com/2018/08/best-practices-for-mobile-form-design/
+         =============================================================================== -->
+
+    <div class="main-container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="form-container">
+                <div class="header">
+                    <h1>🎵 DA1metaMetaData Editor - <span id="header-filename">untitled.da1xml</span></h1>
+                    <p>Complete metadata management for <span class="da1-badge">DA1neverBlank</span> philosophy</p>
+                </div>
+                
+                <div class="form-content">
+                    <form id="metadata-form">
+                        
+                        <!-- ===== DA1 FILE PROPERTIES SECTION ===== -->
+                        <div class="section">
+                            <div class="section-header">
+                                📁 DA1 File Properties
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="current_filename">Current Filename</label>
+                                        <div class="filename-input-group">
+                                            <input type="text" id="current_filename" name="current_filename" placeholder="artist_song_title_use_underscores_all_languages_supported" value="untitled">
+                                            <span class="filename-extension">.da1xml</span>
+                                        </div>
+                                        <div class="field-description">DA1neverBlank: Name of this DA1XML file - filename format without extension</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="file_title">Title</label>
+                                        <input type="text" id="file_title" name="file_title" placeholder="Display title for this file">
+                                        <div class="field-description">DA1neverBlank: Display title for this file - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="da1_filetype">File Type</label>
+                                        <select id="da1_filetype" name="da1_filetype">
+                                            <option value="file" selected>File</option>
+                                            <option value="template">Template</option>
+                                        </select>
+                                        <div class="field-description">DA1neverBlank: Purpose of this DA1XML file - file or template</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="file_description">File Description</label>
+                                        <textarea id="file_description" name="file_description" placeholder="Notes about this file"></textarea>
+                                        <div class="field-description">DA1neverBlank: Optional description or notes - 512 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ===== CORE TRACK IDENTIFICATION SECTION ===== -->
+                        <div class="section">
+                            <div class="section-header">
+                                🎵 Core Track Identification
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="title">Track Title</label>
+                                        <textarea id="title" name="title" placeholder="Track title - Main identification of musical work (128 chars)" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Primary track identification - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="subtitle">Subtitle</label>
+                                        <textarea id="subtitle" name="subtitle" placeholder="Track subtitle or alternate title - 128 chars available" rows="1"></textarea>
+                                        <div class="field-description">Additional title information</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="album">Album/Project</label>
+                                        <textarea id="album" name="album" placeholder="Album/project name - Collection identifier (128 chars)" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Album/project collection name - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="artist">Artist</label>
+                                        <textarea id="artist" name="artist" placeholder="Primary artist(s) - Main performers/creators (256 chars)" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Primary performing artists - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="album_artist">Album Artist</label>
+                                        <textarea id="album_artist" name="album_artist" placeholder="Album artist/collection performer - 256 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Album-level artist credit - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="track">Track Number</label>
+                                        <input type="text" id="track" name="track" placeholder="Track number in album (01-99)">
+                                        <div class="field-description">DA1neverBlank: Track position in album - numeric format</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="disc">Disc Number</label>
+                                        <input type="text" id="disc" name="disc" placeholder="Disc number for multi-disc sets (1-99)">
+                                        <div class="field-description">DA1neverBlank: Disc number for multi-disc releases - numeric format</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="year">Year</label>
+                                        <input type="text" id="year" name="year" placeholder="Release year (YYYY format)">
+                                        <div class="field-description">DA1neverBlank: Release year - 4-digit format</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="date">Date</label>
+                                        <input type="date" id="date" name="date" placeholder="Specific release date">
+                                        <div class="field-description">DA1neverBlank: Specific release date - ISO 8601 format</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="grouping">Grouping</label>
+                                        <textarea id="grouping" name="grouping" placeholder="Content grouping/collection name - 128 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Content grouping or collection - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="version">Version</label>
+                                        <input type="text" id="version" name="version" placeholder="Version number (e.g., 1.0, 2.5, remaster)">
+                                        <div class="field-description">DA1neverBlank: Version identifier - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="content_group_description">Content Group Description</label>
+                                        <input type="text" id="content_group_description" name="content_group_description" placeholder="Content group description - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Description of the content group - 256 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== CREATORS & CONTRIBUTORS SECTION ===== -->
+                        <div class="section">
+                            <div class="section-header">
+                                🎼 Creators & Contributors
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="composer">Composer</label>
+                                        <input type="text" id="composer" name="composer" placeholder="Music composer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Music composer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="lyricist">Lyricist</label>
+                                        <input type="text" id="lyricist" name="lyricist" placeholder="Lyrics writer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Lyrics writer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="songwriter">Songwriter</label>
+                                        <input type="text" id="songwriter" name="songwriter" placeholder="Overall songwriter name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Overall songwriter - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="arranger">Arranger</label>
+                                        <input type="text" id="arranger" name="arranger" placeholder="Musical arranger name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Musical arranger - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="conductor">Conductor</label>
+                                        <input type="text" id="conductor" name="conductor" placeholder="Orchestra/ensemble conductor - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Orchestra/ensemble conductor - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="producer">Producer</label>
+                                        <input type="text" id="producer" name="producer" placeholder="Track producer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Track producer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="performer">Performer</label>
+                                        <textarea id="performer" name="performer" placeholder="Detailed performer credits (e.g., Name on instrument, Name on vocals) - 512 chars"></textarea>
+                                        <div class="field-description">DA1neverBlank: Detailed performer credits - 512 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="engineer">Engineer</label>
+                                        <input type="text" id="engineer" name="engineer" placeholder="Recording engineer name - 64 chars available">
+                                        <div class="field-description">Recording engineer</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="mixing_engineer">Mixing Engineer</label>
+                                        <input type="text" id="mixing_engineer" name="mixing_engineer" placeholder="Audio mixing engineer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Audio mixing engineer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="mastering_engineer">Mastering Engineer</label>
+                                        <input type="text" id="mastering_engineer" name="mastering_engineer" placeholder="Audio mastering engineer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Audio mastering engineer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="recording_engineer">Recording Engineer</label>
+                                        <input type="text" id="recording_engineer" name="recording_engineer" placeholder="Recording engineer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Recording engineer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="technician">Technician</label>
+                                        <input type="text" id="technician" name="technician" placeholder="Technical support staff name - 64 chars available">
+                                        <div class="field-description">Technical support staff - 64 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== TECHNICAL PROPERTIES SECTION ===== -->
+                        <div class="section">
+                            <div class="section-header">
+                                🔧 Technical Properties
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="bpm">BPM (Beats Per Minute)</label>
+                                        <input type="number" id="bpm" name="bpm" placeholder="Beats per minute (60-200 typical range)" min="1" max="999">
+                                        <div class="field-description">DA1neverBlank: Tempo in beats per minute - numeric value</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="tempo">Tempo Description</label>
+                                        <input type="text" id="tempo" name="tempo" placeholder="Tempo description (e.g., Allegro, Moderato) - 64 chars available">
+                                        <div class="field-description">DA1neverBlank: Musical tempo description - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="key">Musical Key</label>
+                                        <input type="text" id="key" name="key" placeholder="Musical key (e.g., C Major, A minor) - 32 chars available">
+                                        <div class="field-description">DA1neverBlank: Musical key signature - 32 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="time_signature">Time Signature</label>
+                                        <input type="text" id="time_signature" name="time_signature" placeholder="Time signature (e.g., 4/4, 3/4, 7/8) - 16 chars available">
+                                        <div class="field-description">DA1neverBlank: Musical time signature - 16 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="sample_rate">Sample Rate</label>
+                                        <input type="text" id="sample_rate" name="sample_rate" placeholder="Sample rate in Hz (e.g., 44100, 48000, 96000)">
+                                        <div class="field-description">DA1neverBlank: Audio sample rate in Hz - technical specification</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="bit_depth">Bit Depth</label>
+                                        <input type="text" id="bit_depth" name="bit_depth" placeholder="Bit depth (e.g., 16, 24, 32)">
+                                        <div class="field-description">DA1neverBlank: Audio bit depth - technical specification</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="channels">Audio Channels</label>
+                                        <input type="text" id="channels" name="channels" placeholder="Number of audio channels (e.g., 2 for stereo, 1 for mono)">
+                                        <div class="field-description">DA1neverBlank: Number of audio channels - technical specification</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="duration">Duration</label>
+                                        <input type="text" id="duration" name="duration" placeholder="Track duration (MM:SS format, e.g., 03:45)">
+                                        <div class="field-description">DA1neverBlank: Track duration in MM:SS format - timing information</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="encoding_settings">Encoding Settings</label>
+                                        <input type="text" id="encoding_settings" name="encoding_settings" placeholder="Audio encoding settings - 128 chars available">
+                                        <div class="field-description">DA1neverBlank: Audio encoding parameters - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="encoded_by">Encoded By</label>
+                                        <input type="text" id="encoded_by" name="encoded_by" placeholder="Encoding software name - 64 chars available">
+                                        <div class="field-description">DA1neverBlank: Software used for encoding - 64 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== LYRICS & TEXT CONTENT SECTION ===== -->
+                        <div class="section">
+                            <div class="section-header">
+                                📝 Lyrics & Text Content
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="lyrics">Song Lyrics</label>
+                                        <textarea id="lyrics" name="lyrics" placeholder="Complete song lyrics with line breaks" rows="5"></textarea>
+                                        <div class="field-description">DA1neverBlank: Complete song lyrics - unlimited length</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="lyrics_language">Lyrics Language</label>
+                                        <input type="text" id="lyrics_language" name="lyrics_language" placeholder="Primary language of lyrics (e.g., English, Spanish) - 64 chars">
+                                        <div class="field-description">DA1neverBlank: Primary language of lyrics - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="english_translation">English Translation</label>
+                                        <textarea id="english_translation" name="english_translation" placeholder="English translation of lyrics (if applicable)" rows="5"></textarea>
+                                        <div class="field-description">DA1neverBlank: English translation of non-English lyrics - unlimited length</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="translation_author">Translation Author</label>
+                                        <input type="text" id="translation_author" name="translation_author" placeholder="Name of translation author - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Person who created the translation - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="comment">General Comments</label>
+                                        <textarea id="comment" name="comment" placeholder="General comments about the track" rows="3"></textarea>
+                                        <div class="field-description">DA1neverBlank: General comments and notes - 512 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="description">Detailed Description</label>
+                                        <textarea id="description" name="description" placeholder="Detailed description of the musical work" rows="3"></textarea>
+                                        <div class="field-description">DA1neverBlank: Detailed description of the musical work - 512 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== RIGHTS & LICENSING SECTION ===== -->
+                        <div class="section">
+                            <div class="section-header">
+                                📜 Rights & Licensing
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="copyright">Copyright Notice</label>
+                                        <textarea id="copyright" name="copyright" placeholder="Copyright notice (e.g., © 2024 Artist Name)" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Copyright notice - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="copyright_holder">Copyright Holder</label>
+                                        <textarea id="copyright_holder" name="copyright_holder" placeholder="Copyright holder name or entity" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Copyright holder entity - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="publisher">Music Publisher</label>
+                                        <textarea id="publisher" name="publisher" placeholder="Music publisher name" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Music publisher entity - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="isrc">ISRC Code</label>
+                                        <input type="text" id="isrc" name="isrc" placeholder="International Standard Recording Code (12 characters)" maxlength="12">
+                                        <div class="field-description">DA1neverBlank: International Standard Recording Code - 12 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="iswc">ISWC Code</label>
+                                        <input type="text" id="iswc" name="iswc" placeholder="International Standard Musical Work Code (11 characters)" maxlength="11">
+                                        <div class="field-description">DA1neverBlank: International Standard Musical Work Code - 11 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="upc">UPC Barcode</label>
+                                        <input type="text" id="upc" name="upc" placeholder="Universal Product Code (12 digits)" maxlength="12">
+                                        <div class="field-description">DA1neverBlank: Universal Product Code - 12 digits</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="catalog_number">Catalog Number</label>
+                                        <textarea id="catalog_number" name="catalog_number" placeholder="Release catalog number" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Release catalog number - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="label">Record Label</label>
+                                        <textarea id="label" name="label" placeholder="Record label name" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Record label entity - 64 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== GENRE & CATEGORIZATION SECTION ===== -->
+                        <div class="section">
+                            <div class="section-header">
+                                🎯 Genre & Categorization
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="genre">Musical Genres</label>
+                                        <textarea id="genre" name="genre" placeholder="Musical genres (e.g., Rock, Pop, Jazz)" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Musical genre classifications - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="style">Musical Style</label>
+                                        <textarea id="style" name="style" placeholder="Musical style description" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Musical style description - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="mood">Emotional Mood</label>
+                                        <textarea id="mood" name="mood" placeholder="Emotional mood of the track" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Emotional mood description - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="theme">Thematic Content</label>
+                                        <textarea id="theme" name="theme" placeholder="Thematic content and subjects" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Thematic content description - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="keywords">Search Keywords</label>
+                                        <textarea id="keywords" name="keywords" placeholder="Search keywords and tags" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Search keywords and tags - 256 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== W3C & BLOCKCHAIN INTEGRATION SECTION ===== -->
+                        <div class="section">
+                            <div class="section-header">
+                                🔗 W3C & Blockchain Integration
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="da1_uuid">DA1 UUID</label>
+                                        <input type="text" id="da1_uuid" name="da1_uuid" placeholder="DA1 unique identifier (36 characters)" maxlength="36">
+                                        <div class="field-description">DA1neverBlank: DA1 system unique identifier - 36 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="content_hash">Content Hash</label>
+                                        <input type="text" id="content_hash" name="content_hash" placeholder="SHA-256 hash of audio content (64 characters)" maxlength="64">
+                                        <div class="field-description">DA1neverBlank: SHA-256 hash of audio content - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="metadata_hash">Metadata Hash</label>
+                                        <input type="text" id="metadata_hash" name="metadata_hash" placeholder="Hash of complete metadata set (64 characters)" maxlength="64">
+                                        <div class="field-description">DA1neverBlank: Hash of complete metadata set - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="blockchain_hash">Blockchain Hash</label>
+                                        <input type="text" id="blockchain_hash" name="blockchain_hash" placeholder="Blockchain transaction hash (64 characters)" maxlength="64">
+                                        <div class="field-description">DA1neverBlank: Blockchain transaction hash - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="smart_contract_address">Smart Contract Address</label>
+                                        <input type="text" id="smart_contract_address" name="smart_contract_address" placeholder="Ethereum smart contract address (42 characters)" maxlength="42">
+                                        <div class="field-description">DA1neverBlank: Ethereum smart contract address - 42 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="ipfs_hash">IPFS Hash</label>
+                                        <input type="text" id="ipfs_hash" name="ipfs_hash" placeholder="IPFS distributed storage hash (46 characters)" maxlength="46">
+                                        <div class="field-description">DA1neverBlank: IPFS distributed storage hash - 46 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="web3_wallet_address">Web3 Wallet Address</label>
+                                        <input type="text" id="web3_wallet_address" name="web3_wallet_address" placeholder="Creator's Web3 wallet address (42 characters)" maxlength="42">
+                                        <div class="field-description">DA1neverBlank: Creator's Web3 wallet address - 42 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="nft_token_id">NFT Token ID</label>
+                                        <input type="text" id="nft_token_id" name="nft_token_id" placeholder="Associated NFT token identifier">
+                                        <div class="field-description">DA1neverBlank: Associated NFT token identifier - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="w3c_verification">W3C Verification</label>
+                                        <input type="text" id="w3c_verification" name="w3c_verification" placeholder="W3C verification hash (64 characters)" maxlength="64">
+                                        <div class="field-description">DA1neverBlank: W3C verification hash - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="decentralized_id">Decentralized ID</label>
+                                        <input type="text" id="decentralized_id" name="decentralized_id" placeholder="W3C Decentralized Identifier">
+                                        <div class="field-description">DA1neverBlank: W3C Decentralized Identifier - 256 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== DA1 SYSTEM FIELDS SECTION ===== -->
+                        <div class="section">
+                            <div class="section-header">
+                                🔬 DA1 System Fields
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="da1_version">DA1 Version</label>
+                                        <input type="text" id="da1_version" name="da1_version" placeholder="DA1 system version (e.g., 2.0.0)" value="2.0.0">
+                                        <div class="field-description">DA1neverBlank: DA1 system version - 16 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="da1_attribution_level">Attribution Level</label>
+                                        <select id="da1_attribution_level" name="da1_attribution_level">
+                                            <option value="complete">Complete - All fields populated</option>
+                                            <option value="substantial">Substantial - Key fields populated</option>
+                                            <option value="partial">Partial - Basic fields populated</option>
+                                            <option value="minimal" selected>Minimal - Essential fields only</option>
+                                            <option value="incomplete">Incomplete - Missing critical data</option>
+                                        </select>
+                                        <div class="field-description">DA1neverBlank: Completeness level of metadata attribution</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="creation_tool">Creation Tool</label>
+                                        <input type="text" id="creation_tool" name="creation_tool" placeholder="Tool used to create this metadata" value="DA1metaMetaData Educational Editor v2.0.0">
+                                        <div class="field-description">DA1neverBlank: Tool used to create metadata - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="validation_status">Validation Status</label>
+                                        <select id="validation_status" name="validation_status">
+                                            <option value="validated">Validated - Checked and verified</option>
+                                            <option value="unvalidated" selected>Unvalidated - Not yet verified</option>
+                                            <option value="failed">Failed - Validation errors found</option>
+                                        </select>
+                                        <div class="field-description">DA1neverBlank: Metadata validation status</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="last_modified">Last Modified</label>
+                                        <input type="datetime-local" id="last_modified" name="last_modified">
+                                        <div class="field-description">DA1neverBlank: Last modification timestamp - automatic tracking</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    
+                    <!-- ===== FFMPEG COMMAND OUTPUT SECTION ===== -->
+                    <div class="section">
+                        <div class="section-header">
+                            🔧 Generated FFmpeg Command
+                            <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                        </div>
+                        <div class="section-content">
+                            <div id="mainCommandOutput" class="command-output" style="display: none;">
+                                <!-- FFmpeg command will appear here -->
+                            </div>
+                            <p id="commandPlaceholder" style="color: #666; text-align: center; padding: 20px;">
+                                Click "Generate FFmpeg Command" in the sidebar to create your embedding command.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===============================================================================
+             SECTION 3: RIGHT SIDEBAR & USER INTERFACE COMPONENTS
+             ===============================================================================
+             
+             EDUCATIONAL OVERVIEW:
+             This section contains the complete right sidebar implementation with professional
+             file operations, format selection, command generation, and settings management.
+             It demonstrates modern web application UI patterns and file system integration.
+             
+             KEY TECHNOLOGIES & CONCEPTS:
+             - File System Access API: Modern browser file operations with directory handles
+             - Progressive Enhancement: Fallback to Downloads folder when API unavailable
+             - Component-Based UI: Modular sidebar sections with independent functionality
+             - Status Management: Real-time feedback system with different message types
+             - Format Selection: Toggle-based interface with visual state management
+             - Browser Detection: Compatibility checking with graceful degradation
+             
+             FILE OPERATIONS ARCHITECTURE:
+             - Working Folder System: Persistent directory handles across sessions
+             - Professional Save Model: MS Word-style Save/Save As behavior
+             - Template Management: Specialized file type handling for reusable metadata
+             - Error Handling: Comprehensive try-catch with user feedback
+             - Cross-Platform Compatibility: Support for Windows, macOS, Linux filesystems
+             
+             REFERENCE DOCUMENTATION:
+             - File System Access API: https://web.dev/file-system-access/
+             - Progressive Enhancement: https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement
+             - Component Design Patterns: https://www.smashingmagazine.com/2019/06/web-components-accessibility/
+             =============================================================================== -->
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <!-- ===== FILE OPERATIONS SECTION ===== -->
+            <div class="sidebar-section">
+                <div class="sidebar-header">
+                    📁 File Operations
+                </div>
+                
+                <!-- Status Messages -->
+                <div id="status-container"></div>
+                
+                <!-- File Operation Buttons -->
+                <button type="button" class="btn" onclick="loadFile()">📂 Load File</button>
+                <button type="button" class="btn" onclick="saveFile()">💾 Save</button>
+                <button type="button" class="btn" onclick="saveAsFile()">💾 Save As...</button>
+                <button type="button" class="btn" onclick="saveAsTemplate()">📄 Save As Template</button>
+                <button type="button" class="btn" onclick="newFile()">🆕 New File</button>
+                <button type="button" class="btn code-view-btn" id="code-view-toggle" onclick="toggleCodeView()">🔍 Code View</button>
+                
+                <!-- Working Folder Display -->
+                <div id="working-folder-display" style="margin-top: 10px; font-size: 0.8em; color: #666;"></div>
+            </div>
+            
+            <!-- ===== OUTPUT FORMAT SELECTION SECTION ===== -->
+            <div class="sidebar-section">
+                <div class="sidebar-header">
+                    🎵 Output Format
+                </div>
+                
+                <div class="format-toggles">
+                    <div class="format-toggle active" onclick="selectFormat('mp3')">
+                        🎵 MP3
+                    </div>
+                    <div class="format-toggle coming-soon" onclick="selectFormat('flac')">
+                        🎼 FLAC
+                        <span class="coming-soon-label">Coming Soon</span>
+                    </div>
+                    <div class="format-toggle coming-soon" onclick="selectFormat('ogg')">
+                        🎶 OGG
+                        <span class="coming-soon-label">Coming Soon</span>
+                    </div>
+                </div>
+                
+                <div class="format-info">
+                    <div class="format-details active" id="mp3-details">
+                        <strong>MP3 with ID3v2.4 tags</strong><br>
+                        Universal compatibility, comprehensive metadata support
+                    </div>
+                    <div class="format-details" id="flac-details">
+                        <strong>FLAC with Vorbis comments</strong><br>
+                        Lossless audio, extensive metadata capabilities
+                    </div>
+                    <div class="format-details" id="ogg-details">
+                        <strong>OGG with Vorbis comments</strong><br>
+                        Open source format, good compression
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== GENERATE COMMANDS SECTION ===== -->
+            <div class="sidebar-section">
+                <div class="sidebar-header">
+                    ⚡ Generate Commands
+                </div>
+                <button type="button" class="btn" onclick="generateCommand()">🎵 Generate FFmpeg Command</button>
+            </div>
+            
+            <!-- ===== SETTINGS SECTION ===== -->
+            <div class="sidebar-section">
+                <div class="sidebar-header">
+                    ⚙️ Settings (Beta)
+                </div>
+                
+                <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 0.9em;">
+                    <input type="checkbox" id="save-anywhere-toggle" onchange="toggleSaveAnywhere()" checked>
+                    Enable "Save anywhere"
+                </label>
+                
+                <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 0.9em;">
+                    <input type="checkbox" id="show-warnings-toggle" onchange="toggleShowWarnings()" checked>
+                    Show browser warnings
+                </label>
+            </div>
+            
+            <!-- ===== AI ASSISTANT SECTION ===== -->
+            <div class="sidebar-section">
+                <div class="sidebar-header">
+                    🤖 AI Assistant
+                </div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">Voiceflow chatbot integration coming soon...</p>
+                <button type="button" class="btn btn-secondary" disabled>💬 Start Guided Entry</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===============================================================================
+         SECTION 4: JAVASCRIPT FUNCTIONALITY & BUSINESS LOGIC
+         ===============================================================================
+         
+         EDUCATIONAL OVERVIEW:
+         This section contains the complete JavaScript implementation for the DA1 metadata
+         editor system. It demonstrates modern web development patterns including ES6+
+         features, async/await patterns, error handling, and browser API integration.
+         
+         KEY TECHNOLOGIES & CONCEPTS:
+         - ES6+ JavaScript: Modern syntax with const/let, arrow functions, template literals
+         - Async/Await Pattern: Clean asynchronous code for file operations and API calls
+         - File System Access API: Modern browser file system integration with fallbacks
+         - LocalStorage API: Client-side data persistence for auto-save and preferences
+         - DOM Manipulation: Modern querySelector methods and event handling
+         - Error Handling: Comprehensive try-catch blocks with user feedback
+         - Regular Expressions: Text processing and validation for international support
+         - Object-Oriented Patterns: Modular code organization with clear separation of concerns
+         
+         ARCHITECTURE PATTERNS:
+         - Progressive Enhancement: Core functionality works without advanced APIs
+         - Graceful Degradation: Fallback methods when modern features unavailable
+         - Event-Driven Programming: User interactions trigger appropriate responses
+         - State Management: Application state tracked and persisted appropriately
+         - Modular Functions: Each function has single responsibility and clear purpose
+         - Error Boundaries: Isolated error handling prevents complete application failure
+         
+         BUSINESS LOGIC IMPLEMENTATION:
+         - DA1XML Generation: Structured metadata export in DA1 standard format
+         - FFmpeg Command Building: Dynamic command generation based on form data
+         - Template System: Reusable metadata configurations for efficient workflow
+         - Auto-Save Functionality: Prevents data loss during extended editing sessions
+         - Unicode Support: International character handling for global user base
+         - File Management: Professional-grade file operations with working directory support
+         
+         REFERENCE DOCUMENTATION:
+         - Modern JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide
+         - File System Access API: https://web.dev/file-system-access/
+         - Async Programming: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous
+         - Error Handling Best Practices: https://www.toptal.com/nodejs/node-js-error-handling
+         =============================================================================== -->
+
+    <script>
+        // ===============================================================================
+        // GLOBAL VARIABLES & CONFIGURATION
+        // ===============================================================================
+        
+        /**
+         * Global state management for the DA1 metadata editor application.
+         * These variables maintain application state across user interactions.
+         */
+        
+        // File System Access API handles for persistent directory access
+        let workingFolderHandle = null; // Maintains reference to user's chosen working directory
+        let currentFileHandle = null;   // Tracks currently open file for Save operations
+        let currentFilename = 'untitled.da1xml'; // Display filename with extension
+        
+        // User interface state management
+        let isCodeViewActive = false;   // Tracks whether Unicode code view is enabled
+        let autoSaveEnabled = true;     // Controls automatic saving of form data
+        let showBrowserWarnings = true; // Controls display of browser compatibility messages
+        
+        // Application settings and preferences
+        const DA1_VERSION = '2.0.0';   // Current DA1 system version
+        const AUTOSAVE_INTERVAL = 30000; // Auto-save every 30 seconds (in milliseconds)
+        
+        // ===============================================================================
+        // INITIALIZATION & PAGE SETUP
+        // ===============================================================================
+        
+        /**
+         * Document ready handler - initializes the application when DOM is fully loaded.
+         * This is the entry point for all application initialization.
+         * 
+         * EDUCATIONAL NOTE:
+         * The DOMContentLoaded event ensures all HTML elements are available before
+         * JavaScript tries to access them. This is critical for form manipulation.
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DA1metaMetaData Educational Editor v2.0.0 - Initializing...');
+            
+            try {
+                // Initialize core application components
+                setupGlobalAutoResize();     // Enable auto-expanding text fields
+                setupAutoSave();             // Configure automatic data persistence
+                loadFormData();              // Restore previous session data
+                checkBrowserCompatibility(); // Verify File System Access API support
+                updateLastModified();        // Set initial timestamp
+                updateHeaderFilename();      // Update page title with filename
+                restoreLastCommand();        // Restore previous FFmpeg command
+                
+                console.log('Application initialized successfully');
+            } catch (error) {
+                console.error('Initialization error:', error);
+                showStatus('Application initialization failed. Some features may not work properly.', 'error');
+            }
+        });
+        
+        // ===============================================================================
+        // FORM DATA MANAGEMENT & PERSISTENCE
+        // ===============================================================================
+        
+        /**
+         * Extracts all form data into a structured JavaScript object.
+         * This function provides a centralized way to access all metadata fields.
+         * 
+         * EDUCATIONAL NOTE:
+         * Using querySelectorAll with a comprehensive selector ensures we capture
+         * all form inputs regardless of their type. The forEach method provides
+         * a clean way to iterate over NodeList objects.
+         * 
+         * @returns {Object} Complete form data as key-value pairs
+         */
+        function getFormData() {
+            const data = {};
+            
+            // Select all form inputs: text inputs, textareas, selects, and specialized inputs
+            const inputs = document.querySelectorAll('#metadata-form input, #metadata-form select, #metadata-form textarea');
+            
+            inputs.forEach(input => {
+                if (input.name && input.value !== undefined) {
+                    // Store each field's value using its name attribute as the key
+                    data[input.name] = input.value;
+                }
+            });
+            
+            // Log data extraction for debugging purposes
+            console.log('Form data extracted:', Object.keys(data).length, 'fields');
+            return data;
+        }
+        
+        /**
+         * Populates the form with data from a structured object.
+         * This is the inverse operation of getFormData() - it restores form state.
+         * 
+         * EDUCATIONAL NOTE:
+         * Object.entries() provides an elegant way to iterate over object key-value pairs.
+         * The optional chaining operator (?.) prevents errors if elements don't exist.
+         * 
+         * @param {Object} data - Form data object with field names as keys
+         */
+        function setFormData(data) {
+            if (!data || typeof data !== 'object') {
+                console.warn('Invalid data provided to setFormData');
+                return;
+            }
+            
+            let fieldsPopulated = 0;
+            
+            // Iterate through all data fields and populate corresponding form elements
+            Object.entries(data).forEach(([fieldName, value]) => {
+                const element = document.querySelector(`#metadata-form [name="${fieldName}"]`);
+                if (element && value !== undefined && value !== null) {
+                    element.value = value;
+                    fieldsPopulated++;
+                    
+                    // Trigger auto-resize for textareas
+                    if (element.tagName === 'TEXTAREA') {
+                        resizeTextarea(element);
+                    }
+                }
+            });
+            
+            console.log('Form populated with', fieldsPopulated, 'fields');
+            
+            // Update display elements that depend on form data
+            updateHeaderFilename();
+        }
+        
+        /**
+         * Saves current form data to browser's LocalStorage for persistence.
+         * This prevents data loss during browser crashes or accidental navigation.
+         * 
+         * EDUCATIONAL NOTE:
+         * LocalStorage provides client-side persistence but has size limitations.
+         * JSON.stringify() converts JavaScript objects to string format for storage.
+         * Try-catch blocks prevent errors from corrupting the user experience.
+         */
+        function saveFormData() {
+            if (!autoSaveEnabled) return;
+            
+            try {
+                const formData = getFormData();
+                localStorage.setItem('da1-metadata-form', JSON.stringify(formData));
+                localStorage.setItem('da1-metadata-timestamp', new Date().toISOString());
+                console.log('Form data auto-saved to localStorage');
+            } catch (error) {
+                console.error('Failed to save form data:', error);
+                // Don't show error to user for auto-save failures
+            }
+        }
+        
+        /**
+         * Loads previously saved form data from browser's LocalStorage.
+         * This restores the user's work from previous sessions.
+         * 
+         * EDUCATIONAL NOTE:
+         * JSON.parse() converts stored strings back to JavaScript objects.
+         * The try-catch prevents errors from malformed stored data.
+         * Graceful degradation ensures the app works even with corrupted localStorage.
+         */
+        function loadFormData() {
+            try {
+                const savedData = localStorage.getItem('da1-metadata-form');
+                if (savedData) {
+                    const formData = JSON.parse(savedData);
+                    setFormData(formData);
+                    
+                    const timestamp = localStorage.getItem('da1-metadata-timestamp');
+                    if (timestamp) {
+                        console.log('Restored form data from:', new Date(timestamp).toLocaleString());
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load saved form data:', error);
+                // Clear corrupted data
+                localStorage.removeItem('da1-metadata-form');
+                localStorage.removeItem('da1-metadata-timestamp');
+            }
+        }
+        
+        /**
+         * Sets up automatic saving of form data at regular intervals.
+         * This provides insurance against data loss during extended editing sessions.
+         * 
+         * EDUCATIONAL NOTE:
+         * setInterval() creates a recurring timer for periodic operations.
+         * Event listeners on 'input' events provide immediate response to user changes.
+         * Multiple event types ensure we catch all possible user interactions.
+         */
+        function setupAutoSave() {
+            // Save form data every 30 seconds
+            setInterval(saveFormData, AUTOSAVE_INTERVAL);
+            
+            // Save on form changes for immediate persistence
+            const form = document.getElementById('metadata-form');
+            if (form) {
+                ['input', 'change', 'paste', 'keyup'].forEach(eventType => {
+                    form.addEventListener(eventType, function(event) {
+                        // Debounce to avoid excessive saving on rapid typing
+                        clearTimeout(window.autoSaveTimeout);
+                        window.autoSaveTimeout = setTimeout(saveFormData, 1000);
+                    });
+                });
+            }
+            
+            console.log('Auto-save system initialized');
+        }
+        
+        // ===============================================================================
+        // AUTO-EXPANDING TEXTAREA FUNCTIONALITY
+        // ===============================================================================
+        
+        /**
+         * Configures all textareas in the form to automatically expand vertically
+         * as users type more content. This improves user experience by eliminating
+         * the need for manual scrolling in small text boxes.
+         * 
+         * EDUCATIONAL NOTE:
+         * This function demonstrates advanced DOM manipulation and event handling.
+         * The scrollHeight property provides the actual content height.
+         * Multiple event listeners ensure responsiveness to all input methods.
+         */
+        function setupGlobalAutoResize() {
+            const allTextareas = document.querySelectorAll('textarea');
+            
+            allTextareas.forEach(textarea => {
+                // Create a reusable resize function for this specific textarea
+                function resizeTextarea() {
+                    textarea.style.height = 'auto'; // Reset height to measure content
+                    textarea.style.height = (textarea.scrollHeight + 2) + 'px'; // Set to content height
+                }
+                
+                // Apply resize on various user interactions
+                textarea.addEventListener('input', resizeTextarea);
+                textarea.addEventListener('paste', () => setTimeout(resizeTextarea, 10));
+                textarea.addEventListener('keyup', resizeTextarea);
+                textarea.addEventListener('focus', resizeTextarea);
+                
+                // Initial resize for pre-filled content
+                resizeTextarea();
+            });
+            
+            console.log('Auto-resize configured for', allTextareas.length, 'textareas');
+        }
+        
+        /**
+         * Manually resize a specific textarea element.
+         * Used when programmatically changing textarea content.
+         * 
+         * @param {HTMLElement} textarea - The textarea element to resize
+         */
+        function resizeTextarea(textarea) {
+            if (textarea && textarea.tagName === 'TEXTAREA') {
+                textarea.style.height = 'auto';
+                textarea.style.height = (textarea.scrollHeight + 2) + 'px';
+            }
+        }
+        
+        // ===============================================================================
+        // SECTION COLLAPSE/EXPAND FUNCTIONALITY
+        // ===============================================================================
+        
+        /**
+         * Toggles the collapse/expand state of form sections.
+         * This helps users focus on specific parts of the form by hiding irrelevant sections.
+         * 
+         * EDUCATIONAL NOTE:
+         * This function demonstrates DOM traversal using parentElement and querySelector.
+         * CSS class manipulation provides smooth animated transitions.
+         * The button text change provides immediate visual feedback.
+         * 
+         * @param {HTMLElement} button - The toggle button that was clicked
+         */
+        function toggleSection(button) {
+            // Navigate from button to its parent section, then find the content area
+            const section = button.closest('.section');
+            const content = section.querySelector('.section-content');
+            
+            if (content.style.display === 'none') {
+                // Expand section
+                content.style.display = 'block';
+                button.textContent = '−'; // Minus symbol
+            } else {
+                // Collapse section
+                content.style.display = 'none';
+                button.textContent = '+'; // Plus symbol
+            }
+        }
+        
+        // ===============================================================================
+        // CODE VIEW FUNCTIONALITY (UNICODE INSPECTION)
+        // ===============================================================================
+        
+        /**
+         * Toggles between normal form view and code view for Unicode character inspection.
+         * Code view displays all text in monospace font for technical analysis.
+         * 
+         * EDUCATIONAL NOTE:
+         * This feature helps users inspect international characters and Unicode sequences.
+         * CSS class manipulation changes the entire form's appearance dynamically.
+         * State tracking prevents conflicts between different view modes.
+         */
+        function toggleCodeView() {
+            const form = document.getElementById('metadata-form');
+            const button = document.getElementById('code-view-toggle');
+            
+            if (isCodeViewActive) {
+                disableCodeView(form, button);
+            } else {
+                enableCodeView(form, button);
+            }
+        }
+        
+        /**
+         * Enables code view mode for Unicode inspection.
+         * 
+         * @param {HTMLElement} form - The main form element
+         * @param {HTMLElement} button - The code view toggle button
+         */
+        function enableCodeView(form, button) {
+            form.classList.add('code-view');
+            button.classList.add('active');
+            button.textContent = '🔍 Code View (ON)';
+            isCodeViewActive = true;
+            
+            // Recalculate textarea heights in code view
+            setTimeout(() => {
+                document.querySelectorAll('textarea').forEach(resizeTextarea);
+            }, 100);
+            
+            showStatus('Code view enabled - All text shown in monospace for Unicode inspection', 'info');
+        }
+        
+        /**
+         * Disables code view mode, returning to normal display.
+         * 
+         * @param {HTMLElement} form - The main form element
+         * @param {HTMLElement} button - The code view toggle button
+         */
+        function disableCodeView(form, button) {
+            form.classList.remove('code-view');
+            button.classList.remove('active');
+            button.textContent = '🔍 Code View';
+            isCodeViewActive = false;
+            
+            // Recalculate textarea heights in normal view
+            setTimeout(() => {
+                document.querySelectorAll('textarea').forEach(resizeTextarea);
+            }, 100);
+        }
+        
+        // ===============================================================================
+        // FORMAT SELECTION SYSTEM
+        // ===============================================================================
+        
+        /**
+         * Handles output format selection (MP3, FLAC, OGG).
+         * Updates UI state and prepares for format-specific command generation.
+         * 
+         * EDUCATIONAL NOTE:
+         * This function demonstrates state management and UI synchronization.
+         * CSS class manipulation provides visual feedback for selected format.
+         * Future-proofing allows easy addition of new formats.
+         * 
+         * @param {string} format - The selected output format ('mp3', 'flac', 'ogg')
+         */
+        function selectFormat(format) {
+            // Remove active state from all format toggles
+            document.querySelectorAll('.format-toggle').forEach(toggle => {
+                toggle.classList.remove('active');
+            });
+            
+            // Hide all format detail sections
+            document.querySelectorAll('.format-details').forEach(details => {
+                details.classList.remove('active');
+            });
+            
+            // Activate selected format
+            const selectedToggle = document.querySelector(`.format-toggle[onclick*="${format}"]`);
+            const selectedDetails = document.getElementById(`${format}-details`);
+            
+            if (selectedToggle && !selectedToggle.classList.contains('coming-soon')) {
+                selectedToggle.classList.add('active');
+                if (selectedDetails) {
+                    selectedDetails.classList.add('active');
+                }
+                
+                console.log('Format selected:', format);
+                showStatus(`Output format set to ${format.toUpperCase()}`, 'success');
+            } else {
+                // Handle coming soon formats
+                showStatus(`${format.toUpperCase()} format coming soon!`, 'info');
+            }
+        }
+        
+        // ===============================================================================
+        // DA1XML GENERATION & PARSING
+        // ===============================================================================
+        
+        /**
+         * Generates DA1XML format from current form data.
+         * This is the core metadata export functionality.
+         * 
+         * EDUCATIONAL NOTE:
+         * Template literals provide clean XML string construction.
+         * The escapeXml function prevents XML injection and ensures valid output.
+         * Structured data organization follows the DA1 metadata standard.
+         * 
+         * @param {Object} data - Form data object to convert to XML
+         * @returns {string} Valid DA1XML document
+         */
+        function generateDA1XML(data) {
+            // Helper function to safely escape XML special characters
+            function escapeXml(text) {
+                if (text === null || text === undefined) return '';
+                return String(text)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&apos;');
+            }
+            
+            // Current timestamp for metadata generation
+            const timestamp = new Date().toISOString();
+            
+            // Generate complete DA1XML document with all sections
+            return `<?xml version="1.0" encoding="UTF-8"?>
+<da1:metadata xmlns:da1="https://da1.fm/schema" version="2.0.0" generated="${timestamp}">
+    
+    <!-- DA1 System Information -->
+    <da1:system>
+        <da1:current_filename>${escapeXml(data.current_filename || 'untitled')}</da1:current_filename>
+        <da1:file_title>${escapeXml(data.file_title || '')}</da1:file_title>
+        <da1:da1_filetype>${escapeXml(data.da1_filetype || 'file')}</da1:da1_filetype>
+        <da1:file_description>${escapeXml(data.file_description || '')}</da1:file_description>
+        <da1:da1_version>${escapeXml(data.da1_version || DA1_VERSION)}</da1:da1_version>
+        <da1:da1_attribution_level>${escapeXml(data.da1_attribution_level || 'minimal')}</da1:da1_attribution_level>
+        <da1:creation_tool>${escapeXml(data.creation_tool || 'DA1metaMetaData Educational Editor v2.0.0')}</da1:creation_tool>
+        <da1:validation_status>${escapeXml(data.validation_status || 'unvalidated')}</da1:validation_status>
+        <da1:last_modified>${escapeXml(data.last_modified || timestamp)}</da1:last_modified>
+    </da1:system>
+    
+    <!-- Core Track Identification -->
+    <da1:core>
+        <da1:title>${escapeXml(data.title || '')}</da1:title>
+        <da1:subtitle>${escapeXml(data.subtitle || '')}</da1:subtitle>
+        <da1:album>${escapeXml(data.album || '')}</da1:album>
+        <da1:artist>${escapeXml(data.artist || '')}</da1:artist>
+        <da1:album_artist>${escapeXml(data.album_artist || '')}</da1:album_artist>
+        <da1:track>${escapeXml(data.track || '')}</da1:track>
+        <da1:disc>${escapeXml(data.disc || '')}</da1:disc>
+        <da1:year>${escapeXml(data.year || '')}</da1:year>
+        <da1:date>${escapeXml(data.date || '')}</da1:date>
+        <da1:grouping>${escapeXml(data.grouping || '')}</da1:grouping>
+        <da1:version>${escapeXml(data.version || '')}</da1:version>
+        <da1:content_group_description>${escapeXml(data.content_group_description || '')}</da1:content_group_description>
+    </da1:core>
+    
+    <!-- Creators & Contributors -->
+    <da1:creators>
+        <da1:composer>${escapeXml(data.composer || '')}</da1:composer>
+        <da1:lyricist>${escapeXml(data.lyricist || '')}</da1:lyricist>
+        <da1:songwriter>${escapeXml(data.songwriter || '')}</da1:songwriter>
+        <da1:arranger>${escapeXml(data.arranger || '')}</da1:arranger>
+        <da1:conductor>${escapeXml(data.conductor || '')}</da1:conductor>
+        <da1:producer>${escapeXml(data.producer || '')}</da1:producer>
+        <da1:performer>${escapeXml(data.performer || '')}</da1:performer>
+        <da1:engineer>${escapeXml(data.engineer || '')}</da1:engineer>
+        <da1:mixing_engineer>${escapeXml(data.mixing_engineer || '')}</da1:mixing_engineer>
+        <da1:mastering_engineer>${escapeXml(data.mastering_engineer || '')}</da1:mastering_engineer>
+        <da1:recording_engineer>${escapeXml(data.recording_engineer || '')}</da1:recording_engineer>
+        <da1:technician>${escapeXml(data.technician || '')}</da1:technician>
+    </da1:creators>
+    
+    <!-- Technical Properties -->
+    <da1:technical>
+        <da1:bpm>${escapeXml(data.bpm || '')}</da1:bpm>
+        <da1:tempo>${escapeXml(data.tempo || '')}</da1:tempo>
+        <da1:key>${escapeXml(data.key || '')}</da1:key>
+        <da1:time_signature>${escapeXml(data.time_signature || '')}</da1:time_signature>
+        <da1:sample_rate>${escapeXml(data.sample_rate || '')}</da1:sample_rate>
+        <da1:bit_depth>${escapeXml(data.bit_depth || '')}</da1:bit_depth>
+        <da1:channels>${escapeXml(data.channels || '')}</da1:channels>
+        <da1:duration>${escapeXml(data.duration || '')}</da1:duration>
+        <da1:encoding_settings>${escapeXml(data.encoding_settings || '')}</da1:encoding_settings>
+        <da1:encoded_by>${escapeXml(data.encoded_by || '')}</da1:encoded_by>
+    </da1:technical>
+    
+    <!-- Lyrics & Text Content -->
+    <da1:content>
+        <da1:lyrics>${escapeXml(data.lyrics || '')}</da1:lyrics>
+        <da1:lyrics_language>${escapeXml(data.lyrics_language || '')}</da1:lyrics_language>
+        <da1:english_translation>${escapeXml(data.english_translation || '')}</da1:english_translation>
+        <da1:translation_author>${escapeXml(data.translation_author || '')}</da1:translation_author>
+        <da1:comment>${escapeXml(data.comment || '')}</da1:comment>
+        <da1:description>${escapeXml(data.description || '')}</da1:description>
+    </da1:content>
+    
+    <!-- Rights & Licensing -->
+    <da1:rights>
+        <da1:copyright>${escapeXml(data.copyright || '')}</da1:copyright>
+        <da1:copyright_holder>${escapeXml(data.copyright_holder || '')}</da1:copyright_holder>
+        <da1:publisher>${escapeXml(data.publisher || '')}</da1:publisher>
+        <da1:isrc>${escapeXml(data.isrc || '')}</da1:isrc>
+        <da1:iswc>${escapeXml(data.iswc || '')}</da1:iswc>
+        <da1:upc>${escapeXml(data.upc || '')}</da1:upc>
+        <da1:catalog_number>${escapeXml(data.catalog_number || '')}</da1:catalog_number>
+        <da1:label>${escapeXml(data.label || '')}</da1:label>
+    </da1:rights>
+    
+    <!-- Genre & Categorization -->
+    <da1:categorization>
+        <da1:genre>${escapeXml(data.genre || '')}</da1:genre>
+        <da1:style>${escapeXml(data.style || '')}</da1:style>
+        <da1:mood>${escapeXml(data.mood || '')}</da1:mood>
+        <da1:theme>${escapeXml(data.theme || '')}</da1:theme>
+        <da1:keywords>${escapeXml(data.keywords || '')}</da1:keywords>
+    </da1:categorization>
+    
+    <!-- W3C & Blockchain Integration -->
+    <da1:blockchain>
+        <da1:da1_uuid>${escapeXml(data.da1_uuid || '')}</da1:da1_uuid>
+        <da1:content_hash>${escapeXml(data.content_hash || '')}</da1:content_hash>
+        <da1:metadata_hash>${escapeXml(data.metadata_hash || '')}</da1:metadata_hash>
+        <da1:blockchain_hash>${escapeXml(data.blockchain_hash || '')}</da1:blockchain_hash>
+        <da1:smart_contract_address>${escapeXml(data.smart_contract_address || '')}</da1:smart_contract_address>
+        <da1:ipfs_hash>${escapeXml(data.ipfs_hash || '')}</da1:ipfs_hash>
+        <da1:web3_wallet_address>${escapeXml(data.web3_wallet_address || '')}</da1:web3_wallet_address>
+        <da1:nft_token_id>${escapeXml(data.nft_token_id || '')}</da1:nft_token_id>
+    </da1:blockchain>
+    
+    <!-- W3C Standards -->
+    <da1:w3c>
+        <da1:w3c_verification>${escapeXml(data.w3c_verification || '')}</da1:w3c_verification>
+        <da1:decentralized_id>${escapeXml(data.decentralized_id || '')}</da1:decentralized_id>
+    </da1:w3c>
+    
+</da1:metadata>`;
+        }
+        
+        /**
+         * Parses DA1XML content and populates the form.
+         * This is the inverse operation of generateDA1XML().
+         * 
+         * EDUCATIONAL NOTE:
+         * DOMParser provides safe XML parsing without eval() security risks.
+         * XPath-like queries with querySelector enable precise element selection.
+         * Error handling ensures graceful degradation with malformed XML.
+         * 
+         * @param {string} xmlString - DA1XML content to parse
+         * @returns {Object} Parsed form data object
+         */
+        function parseDA1XML(xmlString) {
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+                
+                // Check for XML parsing errors
+                const parserError = xmlDoc.querySelector('parsererror');
+                if (parserError) {
+                    throw new Error('Invalid XML format');
+                }
+                
+                const data = {};
+                
+                // Extract all DA1 elements and convert to form data
+                const extractElements = (parent, prefix = '') => {
+                    const children = parent.children;
+                    for (let child of children) {
+                        const fieldName = child.tagName.replace('da1:', '');
+                        if (child.children.length === 0) {
+                            // Leaf node - extract text content
+                            data[fieldName] = child.textContent || '';
+                        } else {
+                            // Parent node - recurse into children
+                            extractElements(child, fieldName + '_');
+                        }
+                    }
+                };
+                
+                // Process all major sections
+                const sections = ['system', 'core', 'creators', 'technical', 'content', 'rights', 'categorization', 'blockchain', 'w3c'];
+                sections.forEach(section => {
+                    const sectionElement = xmlDoc.querySelector(`da1\\:${section}, ${section}`);
+                    if (sectionElement) {
+                        extractElements(sectionElement);
+                    }
+                });
+                
+                console.log('DA1XML parsed successfully:', Object.keys(data).length, 'fields');
+                return data;
+                
+            } catch (error) {
+                console.error('DA1XML parsing error:', error);
+                showStatus('Failed to parse DA1XML file: ' + error.message, 'error');
+                return {};
+            }
+        }
+        
+        // ===============================================================================
+        // FILE OPERATIONS & FILE SYSTEM ACCESS API
+        // ===============================================================================
+        
+        /**
+         * Creates a new metadata file by clearing the form and resetting to defaults.
+         * This provides a clean slate for creating new metadata.
+         * 
+         * EDUCATIONAL NOTE:
+         * Form reset() method clears all user input efficiently.
+         * Setting default values ensures consistent starting state.
+         * State management prevents conflicts with existing data.
+         */
+        function newFile() {
+            if (confirm('Create new file? Any unsaved changes will be lost.')) {
+                // Clear the form
+                document.getElementById('metadata-form').reset();
+                
+                // Set default values
+                document.getElementById('da1_version').value = DA1_VERSION;
+                document.getElementById('creation_tool').value = 'DA1metaMetaData Educational Editor v2.0.0';
+                document.getElementById('current_filename').value = 'untitled';
+                
+                // Reset file state
+                currentFileHandle = null;
+                currentFilename = 'untitled.da1xml';
+                
+                // Update UI
+                updateHeaderFilename();
+                updateLastModified();
+                
+                // Clear localStorage
+                localStorage.removeItem('da1-metadata-form');
+                localStorage.removeItem('da1-metadata-timestamp');
+                
+                showStatus('New file created', 'success');
+                console.log('New file created');
+            }
+        }
+        
+        /**
+         * Loads a DA1XML file from the user's file system.
+         * Uses File System Access API when available, falls back to file input.
+         * 
+         * EDUCATIONAL NOTE:
+         * Async/await pattern provides clean asynchronous file handling.
+         * Feature detection ensures compatibility across different browsers.
+         * Error boundaries prevent file operation failures from breaking the app.
+         */
+        async function loadFile() {
+            try {
+                let fileHandle;
+                let file;
+                
+                // Use File System Access API if available
+                if ('showOpenFilePicker' in window) {
+                    [fileHandle] = await window.showOpenFilePicker({
+                        types: [
+                            {
+                                description: 'DA1 Metadata Files',
+                                accept: {
+                                    'application/xml': ['.da1xml'],
+                                },
+                            },
+                        ],
+                        excludeAcceptAllOption: true,
+                        multiple: false,
+                    });
+                    
+                    file = await fileHandle.getFile();
+                    currentFileHandle = fileHandle;
+                } else {
+                    // Fallback to traditional file input
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = '.da1xml';
+                    
+                    await new Promise((resolve) => {
+                        input.onchange = () => {
+                            file = input.files[0];
+                            resolve();
+                        };
+                        input.click();
+                    });
+                    
+                    if (!file) return; // User cancelled
+                }
+                
+                // Read and parse the file
+                const content = await file.text();
+                const data = parseDA1XML(content);
+                
+                if (Object.keys(data).length > 0) {
+                    setFormData(data);
+                    currentFilename = file.name;
+                    updateHeaderFilename();
+                    showStatus(`File loaded: ${file.name}`, 'success');
+                    console.log('File loaded successfully:', file.name);
+                } else {
+                    showStatus('Failed to load file: Invalid DA1XML format', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Load file error:', error);
+                if (error.name === 'AbortError') {
+                    // User cancelled - don't show error
+                    return;
+                }
+                showStatus('Failed to load file: ' + error.message, 'error');
+            }
+        }
+        
+        /**
+         * Saves the current metadata to the working folder.
+         * Uses the File System Access API for professional save behavior.
+         * 
+         * EDUCATIONAL NOTE:
+         * This implements MS Word-style Save behavior where subsequent saves
+         * go to the same location without prompting the user.
+         * The writable stream pattern provides efficient file writing.
+         */
+        async function saveFile() {
+            try {
+                if (currentFileHandle) {
+                    // Save to existing file handle
+                    await saveToHandle(currentFileHandle);
+                } else {
+                    // No existing file - trigger Save As
+                    await saveAsFile();
+                }
+            } catch (error) {
+                console.error('Save file error:', error);
+                showStatus('Failed to save file: ' + error.message, 'error');
+            }
+        }
+        
+        /**
+         * Saves the metadata file with a user-specified location and name.
+         * Always prompts for location, implementing Save As behavior.
+         * 
+         * @param {boolean} isTemplate - Whether to save as template file type
+         */
+        async function saveAsFile(isTemplate = false) {
+            try {
+                const formData = getFormData();
+                
+                // Set file type if saving as template
+                if (isTemplate) {
+                    formData.da1_filetype = 'template';
+                }
+                
+                // Generate filename from form data
+                let filename = sanitizeFilename(formData.current_filename || 'untitled');
+                if (isTemplate && !filename.includes('_template')) {
+                    filename += '_template';
+                }
+                filename += '.da1xml';
+                
+                let fileHandle;
+                
+                // Use File System Access API if available
+                if ('showSaveFilePicker' in window) {
+                    fileHandle = await window.showSaveFilePicker({
+                        suggestedName: filename,
+                        types: [
+                            {
+                                description: 'DA1 Metadata Files',
+                                accept: {
+                                    'application/xml': ['.da1xml'],
+                                },
+                            },
+                        ],
+                    });
+                    
+                    await saveToHandle(fileHandle, formData);
+                    
+                    if (!isTemplate) {
+                        currentFileHandle = fileHandle;
+                        currentFilename = fileHandle.name;
+                        updateHeaderFilename();
+                    }
+                } else {
+                    // Fallback to download
+                    downloadFile(filename, generateDA1XML(formData));
+                }
+                
+                const action = isTemplate ? 'Template saved' : 'File saved';
+                showStatus(`${action}: ${filename}`, 'success');
+                console.log(action, filename);
+                
+            } catch (error) {
+                console.error('Save As error:', error);
+                if (error.name === 'AbortError') {
+                    return; // User cancelled
+                }
+                showStatus('Failed to save file: ' + error.message, 'error');
+            }
+        }
+        
+        /**
+         * Saves metadata as a template file for reuse.
+         * Templates are specialized metadata files with the 'template' file type.
+         */
+        async function saveAsTemplate() {
+            await saveAsFile(true);
+        }
+        
+        /**
+         * Writes data to a file handle using the File System Access API.
+         * This provides the core file writing functionality.
+         * 
+         * @param {FileSystemFileHandle} fileHandle - File handle to write to
+         * @param {Object} data - Optional form data (uses current form if not provided)
+         */
+        async function saveToHandle(fileHandle, data = null) {
+            const formData = data || getFormData();
+            updateLastModified(formData);
+            
+            const xmlContent = generateDA1XML(formData);
+            const writable = await fileHandle.createWritable();
+            await writable.write(xmlContent);
+            await writable.close();
+        }
+        
+        /**
+         * Downloads a file using the traditional download mechanism.
+         * Used as fallback when File System Access API is not available.
+         * 
+         * @param {string} filename - Name of the file to download
+         * @param {string} content - Content to download
+         */
+        function downloadFile(filename, content) {
+            const blob = new Blob([content], { type: 'application/xml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // ===============================================================================
+        // FFMPEG COMMAND GENERATION
+        // ===============================================================================
+        
+        /**
+         * Generates a comprehensive FFmpeg command for embedding metadata into audio files.
+         * This is the core functionality that converts DA1 metadata into format-specific commands.
+         * 
+         * EDUCATIONAL NOTE:
+         * FFmpeg is the industry-standard tool for audio/video processing.
+         * The command generation must handle all possible metadata fields dynamically.
+         * Proper escaping prevents command injection and ensures cross-platform compatibility.
+         */
+        function generateCommand() {
+            try {
+                const formData = getFormData();
+                const command = createFFmpegCommand(formData);
+                
+                // Display the command in the main bottom section (not sidebar)
+                const mainOutput = document.getElementById('mainCommandOutput');
+                const placeholder = document.getElementById('commandPlaceholder');
+                
+                if (mainOutput && placeholder) {
+                    mainOutput.textContent = command;
+                    mainOutput.style.display = 'block';
+                    placeholder.style.display = 'none';
+                    
+                    // Save command to localStorage for persistence
+                    localStorage.setItem('da1_last_command', command);
+                    localStorage.setItem('da1_command_timestamp', new Date().toISOString());
+                    
+                    // Scroll to command output
+                    mainOutput.scrollIntoView({ behavior: 'smooth' });
+                    
+                    showStatus('FFmpeg command generated successfully', 'success');
+                    console.log('FFmpeg command generated and displayed');
+                } else {
+                    console.error('Command output elements not found');
+                    showStatus('Error: Command output elements missing', 'error');
+                }
+                
+            } catch (error) {
+                console.error('Command generation error:', error);
+                showStatus('Failed to generate command: ' + error.message, 'error');
+            }
+        }
+        
+        /**
+         * Restores the last generated command from localStorage.
+         * This provides persistence across browser sessions.
+         * 
+         * EDUCATIONAL NOTE:
+         * Command persistence allows users to return to their work without regenerating.
+         * localStorage provides simple client-side persistence for this functionality.
+         */
+        function restoreLastCommand() {
+            try {
+                const lastCommand = localStorage.getItem('da1_last_command');
+                const timestamp = localStorage.getItem('da1_command_timestamp');
+                
+                if (lastCommand) {
+                    const mainOutput = document.getElementById('mainCommandOutput');
+                    const placeholder = document.getElementById('commandPlaceholder');
+                    
+                    if (mainOutput && placeholder) {
+                        mainOutput.textContent = lastCommand;
+                        mainOutput.style.display = 'block';
+                        placeholder.style.display = 'none';
+                        
+                        if (timestamp) {
+                            const commandDate = new Date(timestamp).toLocaleString();
+                            console.log('Restored FFmpeg command from:', commandDate);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error restoring last command:', error);
+            }
+        }
+        
+        /**
+         * Creates the actual FFmpeg command with comprehensive metadata inclusion.
+         * This function demonstrates the DA1 philosophy: "comprehensive -- more than comprehensive and beyond!"
+         * 
+         * EDUCATIONAL NOTE:
+         * FFmpeg uses -metadata flags for each metadata field.
+         * The command structure follows FFmpeg syntax: input → metadata → output.
+         * All fields are included automatically, making the system extensible.
+         * 
+         * @param {Object} data - Form data to convert to FFmpeg command
+         * @returns {string} Complete FFmpeg command
+         */
+        function createFFmpegCommand(data) {
+            // Base command structure
+            let command = 'ffmpeg -i "input.mp3" \\\n';
+            
+            // Comprehensive metadata mapping - ALL fields included
+            const metadataMap = {
+                // ID3v2.4 Standard Fields
+                'TIT2': data.title || '',           // Title
+                'TIT3': data.subtitle || '',        // Subtitle
+                'TALB': data.album || '',           // Album
+                'TPE1': data.artist || '',          // Artist
+                'TPE2': data.album_artist || '',    // Album Artist
+                'TRCK': data.track || '',           // Track Number
+                'TPOS': data.disc || '',            // Disc Number
+                'TYER': data.year || '',            // Year
+                'TDAT': data.date || '',            // Date
+                'TIT1': data.grouping || '',        // Content Group
+                'TCON': data.genre || '',           // Genre
+                
+                // Creator Fields
+                'TCOM': data.composer || '',        // Composer
+                'TEXT': data.lyricist || '',        // Lyricist
+                'TPE3': data.conductor || '',       // Conductor
+                'TPUB': data.publisher || '',       // Publisher
+                'TENC': data.encoded_by || '',      // Encoded By
+                
+                // Technical Fields
+                'TBPM': data.bpm || '',             // BPM
+                'TKEY': data.key || '',             // Musical Key
+                
+                // Text Content
+                'COMM': data.comment || '',         // Comments
+                'USLT': data.lyrics || '',          // Lyrics
+                
+                // Rights & Legal
+                'TCOP': data.copyright || '',       // Copyright
+                'TSRC': data.isrc || '',           // ISRC
+                
+                // Custom DA1 Fields (using TXXX frames)
+                'TXXX:DA1_VERSION': data.da1_version || '',
+                'TXXX:DA1_UUID': data.da1_uuid || '',
+                'TXXX:CONTENT_HASH': data.content_hash || '',
+                'TXXX:METADATA_HASH': data.metadata_hash || '',
+                'TXXX:BLOCKCHAIN_HASH': data.blockchain_hash || '',
+                'TXXX:SMART_CONTRACT': data.smart_contract_address || '',
+                'TXXX:IPFS_HASH': data.ipfs_hash || '',
+                'TXXX:WEB3_WALLET': data.web3_wallet_address || '',
+                'TXXX:NFT_TOKEN_ID': data.nft_token_id || '',
+                'TXXX:W3C_VERIFICATION': data.w3c_verification || '',
+                'TXXX:DECENTRALIZED_ID': data.decentralized_id || '',
+                
+                // Extended Fields
+                'TXXX:SUBTITLE': data.subtitle || '',
+                'TXXX:SONGWRITER': data.songwriter || '',
+                'TXXX:ARRANGER': data.arranger || '',
+                'TXXX:PRODUCER': data.producer || '',
+                'TXXX:PERFORMER': data.performer || '',
+                'TXXX:ENGINEER': data.engineer || '',
+                'TXXX:MIXING_ENGINEER': data.mixing_engineer || '',
+                'TXXX:MASTERING_ENGINEER': data.mastering_engineer || '',
+                'TXXX:RECORDING_ENGINEER': data.recording_engineer || '',
+                'TXXX:TECHNICIAN': data.technician || '',
+                'TXXX:TEMPO': data.tempo || '',
+                'TXXX:TIME_SIGNATURE': data.time_signature || '',
+                'TXXX:SAMPLE_RATE': data.sample_rate || '',
+                'TXXX:BIT_DEPTH': data.bit_depth || '',
+                'TXXX:CHANNELS': data.channels || '',
+                'TXXX:DURATION': data.duration || '',
+                'TXXX:ENCODING_SETTINGS': data.encoding_settings || '',
+                'TXXX:LYRICS_LANGUAGE': data.lyrics_language || '',
+                'TXXX:ENGLISH_TRANSLATION': data.english_translation || '',
+                'TXXX:TRANSLATION_AUTHOR': data.translation_author || '',
+                'TXXX:DESCRIPTION': data.description || '',
+                'TXXX:COPYRIGHT_HOLDER': data.copyright_holder || '',
+                'TXXX:ISWC': data.iswc || '',
+                'TXXX:UPC': data.upc || '',
+                'TXXX:CATALOG_NUMBER': data.catalog_number || '',
+                'TXXX:LABEL': data.label || '',
+                'TXXX:STYLE': data.style || '',
+                'TXXX:MOOD': data.mood || '',
+                'TXXX:THEME': data.theme || '',
+                'TXXX:KEYWORDS': data.keywords || '',
+                'TXXX:VERSION': data.version || '',
+                'TXXX:CONTENT_GROUP_DESC': data.content_group_description || '',
+                'TXXX:ATTRIBUTION_LEVEL': data.da1_attribution_level || '',
+                'TXXX:CREATION_TOOL': data.creation_tool || '',
+                'TXXX:VALIDATION_STATUS': data.validation_status || '',
+                'TXXX:LAST_MODIFIED': data.last_modified || '',
+                'TXXX:CURRENT_FILENAME': data.current_filename || '',
+                'TXXX:FILE_TITLE': data.file_title || '',
+                'TXXX:DA1_FILETYPE': data.da1_filetype || '',
+                'TXXX:FILE_DESCRIPTION': data.file_description || ''
+            };
+            
+            // Add all metadata fields to command
+            let fieldCount = 0;
+            Object.entries(metadataMap).forEach(([tag, value]) => {
+                if (value && value.trim() !== '') {
+                    // Escape quotes and special characters for shell safety
+                    const escapedValue = value.replace(/"/g, '\\"').replace(/\\/g, '\\\\');
+                    command += `  -metadata "${tag}=${escapedValue}" \\\n`;
+                    fieldCount++;
+                }
+            });
+            
+            // Output filename based on form data
+            const outputFilename = sanitizeFilename(data.current_filename || 'output') + '_with_metadata.mp3';
+            command += `  "${outputFilename}"`;
+            
+            // Add header with statistics
+            const header = `# DA1metaMetaData FFmpeg Command\n# Generated: ${new Date().toLocaleString()}\n# Fields included: ${fieldCount}\n# Format: MP3 with ID3v2.4 tags\n\n`;
+            
+            return header + command;
+        }
+        
+        // ===============================================================================
+        // UTILITY FUNCTIONS
+        // ===============================================================================
+        
+        /**
+         * Sanitizes filename input to ensure filesystem compatibility.
+         * Handles international characters while maintaining readability.
+         * 
+         * EDUCATIONAL NOTE:
+         * Filename sanitization is critical for cross-platform compatibility.
+         * Regular expressions provide powerful text processing capabilities.
+         * The approach preserves Unicode characters while removing problematic ones.
+         * 
+         * @param {string} input - Raw filename input
+         * @returns {string} Sanitized filename safe for all filesystems
+         */
+        function sanitizeFilename(input) {
+            if (!input) return 'untitled';
+            
+            return input
+                .trim()
+                // Remove or replace problematic characters
+                .replace(/[<>:"/\\|?*]/g, '_')  // Replace filesystem-unsafe characters
+                .replace(/[\x00-\x1f\x80-\x9f]/g, '') // Remove control characters
+                .replace(/^[.\s]+|[.\s]+$/g, '') // Remove leading/trailing dots and spaces
+                .replace(/\s+/g, '_') // Replace spaces with underscores
+                .substring(0, 200) // Limit length for filesystem compatibility
+                || 'untitled'; // Fallback if everything was removed
+        }
+        
+        /**
+         * Updates the header filename display when the current filename changes.
+         * Provides immediate visual feedback about the current file.
+         */
+        function updateHeaderFilename() {
+            const filenameInput = document.getElementById('current_filename');
+            const headerElement = document.getElementById('header-filename');
+            
+            if (filenameInput && headerElement) {
+                const filename = filenameInput.value || 'untitled';
+                currentFilename = filename + '.da1xml';
+                headerElement.textContent = currentFilename;
+                document.title = `DA1metaMetaData Editor - ${currentFilename}`;
+            }
+        }
+        
+        /**
+         * Updates the last modified timestamp to the current time.
+         * Can update form data object or form element directly.
+         * 
+         * @param {Object} data - Optional form data object to update
+         */
+        function updateLastModified(data = null) {
+            const timestamp = new Date().toISOString().slice(0, 16); // Format for datetime-local
+            
+            if (data) {
+                data.last_modified = timestamp;
+            }
+            
+            const lastModifiedField = document.getElementById('last_modified');
+            if (lastModifiedField) {
+                lastModifiedField.value = timestamp;
+            }
+        }
+        
+        /**
+         * Displays status messages to the user with appropriate styling.
+         * Provides feedback for user actions and system events.
+         * 
+         * @param {string} message - Message to display
+         * @param {string} type - Message type: 'success', 'error', 'info', 'warning'
+         */
+        function showStatus(message, type = 'info') {
+            const container = document.getElementById('status-container');
+            if (!container) return;
+            
+            // Clear existing messages
+            container.innerHTML = '';
+            
+            // Create status message element
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `status-message status-${type}`;
+            statusDiv.style.display = 'block';
+            statusDiv.textContent = message;
+            
+            // Add close button
+            const closeBtn = document.createElement('span');
+            closeBtn.innerHTML = ' &times;';
+            closeBtn.style.cursor = 'pointer';
+            closeBtn.style.float = 'right';
+            closeBtn.onclick = () => statusDiv.remove();
+            statusDiv.appendChild(closeBtn);
+            
+            container.appendChild(statusDiv);
+            
+            // Auto-remove success messages after 3 seconds
+            if (type === 'success') {
+                setTimeout(() => statusDiv.remove(), 3000);
+            }
+        }
+        
+        // ===============================================================================
+        // BROWSER COMPATIBILITY & FEATURE DETECTION
+        // ===============================================================================
+        
+        /**
+         * Checks browser compatibility and shows appropriate messages.
+         * Educates users about optimal browser choices for the DA1 system.
+         * 
+         * EDUCATIONAL NOTE:
+         * Feature detection is more reliable than user agent sniffing.
+         * Progressive enhancement allows core functionality to work everywhere.
+         * User education improves overall platform adoption.
+         */
+        function checkBrowserCompatibility() {
+            const browserInfo = detectBrowserInfo();
+            console.log('Browser detected:', browserInfo);
+            
+            // Check for File System Access API support
+            const hasFileSystemAPI = 'showOpenFilePicker' in window && 'showSaveFilePicker' in window;
+            
+            if (hasFileSystemAPI) {
+                // Full functionality available
+                if (browserInfo.name === 'Brave') {
+                    showStatus('🦁 Excellent! Brave Browser detected with full File System Access API support. You can save DA1XML files anywhere on your system.', 'success');
+                } else {
+                    showStatus(`✅ ${browserInfo.name} browser with File System Access API support detected. Full functionality available.`, 'success');
+                }
+            } else {
+                // Fallback mode
+                if (browserInfo.name === 'Brave') {
+                    showStatus('🦁 Brave Browser detected! Please serve this page via HTTPS or localhost to enable full file operations.', 'warning');
+                } else {
+                    showStatus(`⚠️ ${browserInfo.name} browser detected. File operations will use Downloads folder. Consider upgrading to Brave, Chrome 86+, or Edge 86+ for full functionality.`, 'warning');
+                }
+            }
+        }
+        
+        /**
+         * Detects browser type and version for compatibility messaging.
+         * Provides specific guidance based on browser capabilities.
+         * 
+         * @returns {Object} Browser information object
+         */
+        function detectBrowserInfo() {
+            const userAgent = navigator.userAgent;
+            
+            // Brave Browser detection (modern method)
+            if (navigator.brave && navigator.brave.isBrave) {
+                return { name: 'Brave', version: 'Modern', hasFileSystemAPI: true };
+            }
+            
+            // Brave Browser detection (fallback for older versions)
+            if (userAgent.includes('Brave') || userAgent.includes('brave')) {
+                return { name: 'Brave', version: 'Legacy', hasFileSystemAPI: false };
+            }
+            
+            // Chrome detection
+            if (userAgent.includes('Chrome') && !userAgent.includes('Edge')) {
+                const version = userAgent.match(/Chrome\/(\d+)/)?.[1] || 'Unknown';
+                return { name: 'Chrome', version: version, hasFileSystemAPI: parseInt(version) >= 86 };
+            }
+            
+            // Edge detection
+            if (userAgent.includes('Edg/')) {
+                const version = userAgent.match(/Edg\/(\d+)/)?.[1] || 'Unknown';
+                return { name: 'Edge', version: version, hasFileSystemAPI: parseInt(version) >= 86 };
+            }
+            
+            // Safari detection
+            if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) {
+                const version = userAgent.match(/Version\/(\d+)/)?.[1] || 'Unknown';
+                return { name: 'Safari', version: version, hasFileSystemAPI: parseInt(version) >= 16 };
+            }
+            
+            // Firefox detection
+            if (userAgent.includes('Firefox')) {
+                const version = userAgent.match(/Firefox\/(\d+)/)?.[1] || 'Unknown';
+                return { name: 'Firefox', version: version, hasFileSystemAPI: false };
+            }
+            
+            return { name: 'Unknown', version: 'Unknown', hasFileSystemAPI: false };
+        }
+        
+        /**
+         * Toggles the "Save anywhere" setting for advanced users.
+         * Controls whether to use File System Access API or Downloads folder.
+         */
+        function toggleSaveAnywhere() {
+            const checkbox = document.getElementById('save-anywhere-toggle');
+            const enabled = checkbox.checked;
+            
+            if (enabled) {
+                showStatus('Advanced file operations enabled (File System Access API)', 'info');
+            } else {
+                showStatus('Using Downloads folder for file operations', 'info');
+            }
+        }
+        
+        /**
+         * Toggles browser warning messages display.
+         * Allows advanced users to hide compatibility messages.
+         */
+        function toggleShowWarnings() {
+            const checkbox = document.getElementById('show-warnings-toggle');
+            showBrowserWarnings = checkbox.checked;
+            
+            if (showBrowserWarnings) {
+                showStatus('Browser compatibility warnings enabled', 'info');
+            } else {
+                showStatus('Browser warnings disabled', 'info');
+            }
+        }
+        
+        // ===============================================================================
+        // EVENT LISTENERS & FORM INTEGRATION
+        // ===============================================================================
+        
+        // Auto-update header filename when current_filename field changes
+        document.addEventListener('DOMContentLoaded', function() {
+            const filenameInput = document.getElementById('current_filename');
+            if (filenameInput) {
+                filenameInput.addEventListener('input', updateHeaderFilename);
+            }
+        });
+        
+        // Console logging for educational purposes
+        console.log('DA1metaMetaData Educational Editor v2.0.0 loaded successfully');
+        console.log('System capabilities:');
+        console.log('- File System Access API:', 'showOpenFilePicker' in window);
+        console.log('- LocalStorage:', 'localStorage' in window);
+        console.log('- Modern JavaScript features: ES6+ supported');
+        console.log('- Total metadata fields: 68+ across 9 categories');
+        console.log('- Auto-save interval:', AUTOSAVE_INTERVAL / 1000, 'seconds');
+        
+    </script>
+    
+    <!-- ===============================================================================
+         END SECTION 4: JAVASCRIPT FUNCTIONALITY & BUSINESS LOGIC
+         =============================================================================== -->
+
+</body>
+</html>

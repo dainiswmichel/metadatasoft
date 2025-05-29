@@ -1,0 +1,25 @@
+OUTREACH SECTION TO-DO LIST - Updated May 9, 2025
+
+HIGH PRIORITY:
+- Fix color issues in outreach section for consistency with site design
+  • Review color scheme in outreach-sharing.js and outreach.css
+  • Ensure all elements match the site's color palette
+  • Check hover states and active states for proper contrast
+
+MEDIUM PRIORITY:
+- Revisit verification tweets for clarity and brevity
+- Add more metadata advocates to contacts-03.html from additional industries
+- Create additional outreach posts for new contacts
+
+LOW PRIORITY:
+- Consider adding filtering options for outreach posts by industry
+- Add a dashboard view to track outreach status and responses
+- Create analytics for tracking tweet performance
+
+NOTES:
+- Current upload includes the outreach directory and updated navigation files (blog and knowledge base sidebars)
+- Main navigation already had the outreach menu item
+
+
+Maybe a museum association
+The Holocaust Museum and museums like it

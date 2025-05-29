@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1 Blog Layout Test</title>
+    <meta name="description" content="A test page to verify the blog layout and component loading works correctly.">
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../resources/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="./css/blog.css">
+    
+    <!-- JS Dependencies -->
+    <script defer type="module" src="../js/alpinejs-local.js"></script>
+    <script src="../sidebar.js" defer></script>
+</head>
+<body>
+    <!-- Left Sidebar Container -->
+    <div id="left-sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="blog-header">
+            <h1>Blog Layout Test Page</h1>
+            <p class="blog-description">This page tests if the blog layout has been fixed correctly</p>
+        </header>
+
+        <div class="test-content">
+            <p>This is a test page to verify that the blog layout issue has been fixed.</p>
+            <p>The main content should be properly aligned between the left and right sidebars.</p>
+            <p>The footer should appear below the content and be correctly aligned with the main content (not shifted 20px to the right).</p>
+            <p>This layout should match the main site's layout without any transforms or special fixes.</p>
+            
+            <h2>Layout Requirements</h2>
+            <ul>
+                <li>Left sidebar should be positioned correctly at left: 0</li>
+                <li>Main content should have margin-left: 260px to match the sidebar width</li>
+                <li>Right sidebar should be positioned at right: 0</li>
+                <li>Footer should be aligned with main content, not extending into the sidebars</li>
+                <li>No transforms or special fixes should be needed</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Right Sidebar Container -->
+    <div id="right-sidebar-container"></div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="../index.js"></script>
+    <script src="./component-loader.js"></script>
+</body>
+</html>

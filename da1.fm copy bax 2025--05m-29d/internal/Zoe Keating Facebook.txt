@@ -1,0 +1,294 @@
+ 
+Search Facebook
+New notification in settings
+No photo description available.
+Zoe Keating
+ntsSorepod75
+5
+im
+c
+6
+ 
+m2m3
+,
+r
+m40313
+2
+0a1l
+0
+0thi
+a
+1ma
+ 
+u08
+M
+mg0l6
+1
+2hh6
+h
+  · 
+Here's a curious thing I just stumbled on. I was looking for the original video of Imogen Heap's song Hide & Seek (the story of the "mmm whatcha say" meme is part of an essay I'm working on) and I searched in Youtube for "Hide and Seek". The song didn't come up, just lots of anime videos of some other song (Ding Dong Hide and Seek? I don't know it).
+
+I then thought I'd be more specific so I searched for "Hide and Seek Song" on Google. The result that pops up first claims to be Imogen's song in the metadata but it isn't. When you click on the video, it goes to the anime thing again.
+
+Yes, I know that if you knew the song is by Imogen Heap, you could search for "Imogen Heap Hide and Seek" (but that you might not know that is part of the story I'm writing). But you'd think that a search for the title of a certified gold hit song would bring that song as the top choice. But even if this anime thing is actually the top choice in search results, why does it have Imogen Heaps information in the accompanying metadata?
+
+Anyone know what technically is going on here with Google search results (in particular the erroneous metadata attached to the result)? See less
+Comments
+
+كاتب المنشور
+Zoe Keating
+A lot of you missed the question: why did Google pull erroneous metadata to compile a fake yet authoritative-looking first result? And, how to we fix it (one thing, all of us can send feedback under and erroneous result you see)? That's my issue with this. That first result is actually a creation of Google's: it's a link to a youtube video with metadata algorithmically sourced (and in this case incorrect). We all know search results are complex and fickle, and for the most part don't expect them to be authoritative. However, this result is presented in such a way as to look more "true" than a search result. I'm interested in that mechanism and what it means.
+9y
+Reply
+Edited
+
+كاتب المنشور
+Zoe Keating
+Again, look not at the search result, look at the composite metadata underneath it which is not actually the search result...it's semantic information pulled from different sources...but also, I posted a screenshot 😉
+9y
+Reply
+
+كاتب المنشور
+Zoe Keating
+What I'm referring to is and what I'm trying to discuss is where it says "Artist: Imogen Heap" and then "Album: Speak for yourself". Google added that below the video link, so that it all looks like one unified thing, but it isn't.
+9y
+Reply
+Edited
+Kelli Sincock
+Oh, wow. Yes, the link redirects to a different song. A paid ad song. I wonder if this is a YouTube blunder or Google blunder.
+9y
+Reply
+Dainis W. Michel
+Zoe Keating so cool that you noticed that and spoke out. I actually listened to this song on repeat for a while to process what I was going through at the time.
+it's 9 years later and googling "Hide and Seek Song" definitely shows some interesting results.
+Maybe Google messed up back then -- or was it a case of intentional false attribution and popularity hijacking?
+I'm launching a self-healing metametadata ecosystem to address and resolve these kinds of issues.
+It's called DA1, and I have a chatbot available here https://da1.fm/chat.html that currently "publicly" answers questions. If the chatbot becomes overrun, I'll have to make it invitation only, but for now it's just available for everyone...would love to chat more about solving the world's metadata crisis!
+🙂
+1m
+Reply
+
+
+Shyam V. Yadav
+it seems to me that some of the commenters aren't understanding your question. why searching for "hide and seek song" (without imogen heap in the search field) isn't bringing up her song. and in fact is bringing up a song that lists her in the metadata but isn't her. i can only guess at this but i'm thinking the people who are posting the nightcore song are attaching imogen heap in their metadata so they get more hits. basically tricking people to watch their clip when they were searching for something else.
+9y
+Reply
+
+كاتب المنشور
+Zoe Keating
+yes, that is exactly my question. but the added obfuscation is coloring my use case very well (my use case being the "mmm whatcha say" meme and how, as it has propagated, most of the internet doesn't know who's song it is). we rely on search, yet without authoritative metadata results are often wrong or can be gamed...and the general public accepts it all without question.
+9y
+Reply
+Edited
+Andrea Wittmer
+Zoe Keating I am in library school and we have been discussing this exact problem. I might not have a complete answer at this point, but I can offer bits and pieces. Part of this seems to come from the way Google relies heavily on synonym rings (lumping together related/similar searches and offering up the results) but it also looks to be a Google-algorithm-specific thing. If you repeat the search verbatim in Bing, it links to the correct version, in part because it sources its metadata from Wikipedia. Google is more self-referencing (it even picks the lyrics from its own Google Play site.) It also reacts more to trends in searches, so, that Nightcore video has been online recently - since 2014. The actual version has been online much longer. If the most recent searches for "hide and seek song" have been for people wanting the Nightcore song (or clicking it accidentally) this will keep raising the likelihood that it will be chosen again. The more something is clicked on by people, the more Google's algorithms "think" this is the result people want.
+9y
+Reply
+Izabela Sliwinska
+I don't know what kind of metadata can be embedded in Youtube videos but there's nothing obvious in the source code returned to suggest it's the uploader of the video or an attempt to hijack search results through Youtube or Youtube media.
+It seems like it's not on the YouTube end but on Google itself.
+One possibility is that it could be due to the "error reporting" mechanism you see just below the "best bet" section. Where it says "Feedback" in italics. If enough people reported Imogene Heaps video as an error (but not the Artist, Album results below) for their search result "hide and seek" or "hide and seek song" then Google will show the next best results that fit. Maybe?
+Results being more recent and more popular across a wider global base? It's actually really fascinating because while googles search results pages are obfuscated, the "Feedback" overlay isn't entirely obfuscated, and I feel (on superficial looking) like it wouldn't be impossible to hook into it and report errors through scripts. (If someone knew what they were doing.) Which is really surprising to me. So I hope I'm interpreting that incorrectly and talking out of my ass.
+Hope the above made sense and obviously it's also entirely speculation and guesswork and I could be 110% off base.
+9y
+Reply
+Edited
+Jackson Mahaney
+Just like the public completely accepts that my predictive spell check misspells "scary" (it puts an "e" in). Nobody questions anything.
+9y
+Reply
+
+
+Rachel Pierson
+When I do that same search, underneath that first box there is a "Feedback" link in the lower right corner where you can report incorrect information. I reported almost every section of it for not matching up. We'll see if anything happens.
+9y
+Reply
+
+كاتب المنشور
+Zoe Keating
+yes, always submit feedback!
+9y
+Reply
+
+
+Anne Field
+I just googled "Imogen heap hide and seek" and it was the first thing up......xxx
+9y
+Reply
+
+كاتب المنشور
+Zoe Keating
+yes i realize that. i'm asking why this song with incorrect metadata comes up.
+9y
+Reply
+Randy Kruzan
+Zoe Keating Of the top results, this one (Nightcore) is either the most popular, most likely to be looked for, and/or the most clicked through result and as such it is bubbled up as a sort of "definitive" result for "hide and seek song."
+9y
+Reply
+
+كاتب المنشور
+Zoe Keating
+Randy Kruzan but it has imogen heaps song information in the metadata
+9y
+Reply
+Randy Kruzan
+Zoe Keating Best guess is that it's trying to make the top video result more relevant to the user by filling in missing metadata. It's wrong, clearly 🙂
+9y
+Reply
+Edited
+
+
+Cliff Latshaw
+Shame, shame, shame! You don't buy your downloads?
+9y
+Reply
+
+كاتب المنشور
+Zoe Keating
+I own all of Immi's music 😉 I'm searching for research purposes as part of a larger story
+9y
+Reply
+Cliff Latshaw
+The appearance of impropriety is sometimes something to avoid at all costs. I didn't know you were the owner, but you are able to download from youtube.
+9y
+Reply
+
+
+Buck Calabro
+Yes, Google does customise your search results based on prior searches, but browsing with a private window stops that. If I use Tor, AND a clean browser, I get a different IP address and an empty cache and no Google ID. Doing that, searching 'hide and seek song' with Google STILL returns the anime at the top; not Imogen's song. That's weird, but what's downright BAD is that Google puts Imogen's lyrics below the search result, when Imogen's song has literally nothing to do with the music in the anime. Bing and DuckDuckGo don't do that. It seems a mistake, but Google don't have a support desk where one can ask questions like this. Nothing about presenting search results is transparent 🙁
+9y
+Reply
+Laura Miller
+I reported incorrect metadata as well. There is a possibility that Google has a search algorithm to match metadata when it is missing. The Nightcore song actually is very popular (I have a 16 YO daughter) and I'm sure she has never even heard of Imogen Heap - and may have been uploaded without metadata - but no way to know for sure.
+9y
+Reply
+Matt Peterson
+Here's my guess. The video shows up first because it's the first hit in YouTube for that search string; perhaps because people that search that string most often choose that video as the correct result.
+The metadata I think is then done separately. Having identified "hide and seek" as a song, Google is searching it's music database for that song to gather the metadata to display. The top hit for "hide and seek" in Google Play Music is Imogen Heap's song.
+Regardless I don't believe the Imogen Heap metadata is actually associated with the YouTube video. If I Google "nightcore hide and seek" I get the same video but no Imogen Heap metadata.
+9y
+Reply
+Edited
+Matt Peterson
+P.S. I *really* enjoyed your performance with Imogen on the JoCo cruise. 🙂
+9y
+Reply
+Edited
+
+
+Candance Abellon
+I'm not super familiar with how much control YouTube gives video posters to set their meta-descriptions; I assume quite a bit but I inspected the elements of the video's YouTube page and the "meta" fields all read accurately, no mention of Imogen Heap. I recently learned that that module - that box at the top of some search results is something that Google's search engine puts together. I think it was referred to as a "quick answers box" when I was told about it. It's probably done programmatically/through algorithms and it simply might be a bug. It may be what Shyam Yadav said, someone intentionally inputting Imogen Heap's data into metafields and tricking the search engine into thinking the video is relevant to search queries that have to do with Heap's song, album, etc. but technical bug may be another answer, too. The search engine may have conflated the two - the point of that box is to try to isolate relevant info more concisely for the user. It would need to get feedback of the error in order to fix itself. The internet is more like a living organism that we contribute to, but yeah, more often people tend to default to treating it like this static tome.
+9y
+Reply
+Edited
+Jasper Megaman Downey
+Nightcore si one of those things that anime fans come and freak out over when it is literally just the song either sped up or raised up an octave...its kinda annoying when actually trying to find a sound
+9y
+Reply
+Margo Conover
+Maybe, like with post-processed photos, you can embed keywords into your song's metadata, or youtube adds them after the fact, which might explain something animé showing up as a top match before the actual song you're looking for does.... might be a keyword issue
+9y
+Reply
+Tabitha Cobra
+Is that a search with no history or having a search history? I've heard that googles algorithms use your search history to "predict" what you are looking for or what you may be interested in. With that in mind, I have to assume your searching on a clean IP address or a "private" browser, thusly it's using its own systems to guess instead of searching for definitions, books, song titles etc. Either that or your son has been using your computer to watch anime? I honestly can only guess because I know little about tech.
+9y
+Reply
+Robin Moore Lasky
+Someone is stealing Imogen Heap's "Google juice" on purpose. Things like this happen but mostly the content is too junky for you to notice. The metadata is probably being written by a robot.
+9y
+Reply
+Kelli Sincock
+I just did a search "hide and seek song" (no mention of Imogen Heap) and Imogen's came up first.
+I asked my computer geek husband and he said that Google doesn't divulge it's ranking system, however webpages that are linked to more websites will show up first.
+9y
+Reply
+Steph Paradis
+They probably/obviously just use Imogen's name in their tags to show up in any similae search results, tons of uploaders do that, it's indeed deceitful, but smart at the same time.
+9y
+Reply
+Laura Miller
+If you search "hide and seek song" on YouTube, Imogen Heap comes up as number 12.
+9y
+Reply
+Jim Ausley
+If you put Hide and Seek in a YouTube search box it comes up, with lyrics and with 16 million hits.
+9y
+Reply
+Travis Hartnett
+I searched on "imogen heap hide and seek" and it was the first hit.
+9y
+Reply
+Bruce Winegardner
+would that be like the hide and seek polka ?
+9y
+Reply
+Sonja Markovic
+Videos which archive high views are more likely to generate income in terms of Ad placements within the Google Ad management - so manipulating metadata to appear in a common search result will boost traffic to this particular video. But somehow it should be possible to report such false metadata to Google/YouTube.
+9y
+Reply
+Shelly Roosevelt
+My guess is people are putting in misleading metadata to get more hits.
+9y
+Reply
+Laura Miller
+I think the metadata is a mistake...
+9y
+Reply
+Thomas Allen
+Charles Webber Any ideas?
+9y
+Reply
+Charles Webber
+No clue, wasn't really anything I touched when I was working at G...
+9y
+Reply
+
+
+
+
+https://www.facebook.com/photo.php?fbid=10153941621129929&id=24918264928&set=a.128137609928&locale=ar_AR
+
+
+
+MusicRadar Tech  · Following
+tSosdrpone
+a
+1
+h37tm20
+r
+l
+2
+13
+ 
+3c03
+ 
+c
+:
+im
+1
+t
+0
+P
+0m
+p
+0
+ 
+7
+l
+ 
+t
+9
+l
+A
+g9a
+M
+9
+i
+u8
+5
+0
+  · 
+Mobygratis is a free sound library launched by electronic artist Moby all the way back in 2005 with the goal of providing creators of all kinds with high-quality, royalty-free music to use in their projects. The library has since supported over 50,000 indie films and media projects.
+This week, Moby announced a relaunch of Mobygratis that brings 500 new tracks to the platform.
+The majority of the library's songs can be downloaded in both MP3, WAV and multitrack formats, making it easier to remix, adapt and customize music to suit any project. The library also now has improved search and filter functionality, so you're able to filter tracks by genre, mood or BPM to hone in on exactly the vibe you're looking for.

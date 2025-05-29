@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Requirements & File System Access - DA1 Knowledge Base</title>
+    <link rel="stylesheet" href="../css/kb.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar" id="leftSidebar">
+            <!-- Content will be loaded by component-loader.js -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="content-wrapper">
+                <article class="kb-article">
+                    <header class="article-header">
+                        <h1>Browser Requirements & File System Access</h1>
+                        <div class="article-meta">
+                            <span class="category">Technical Requirements</span>
+                            <span class="difficulty">Beginner</span>
+                            <span class="reading-time">5 min read</span>
+                        </div>
+                    </header>
+
+                    <div class="article-content">
+                        <div class="alert alert-warning">
+                            <strong>Important:</strong> DA1 requires modern browser capabilities for secure file operations. We cannot guarantee flawless functionality with unsupported browsers.
+                        </div>
+
+                        <h2>Supported Browsers</h2>
+                        
+                        <div class="browser-requirements">
+                            <div class="browser-card supported">
+                                <h3>✅ Fully Supported</h3>
+                                <ul>
+                                    <li><strong>Chrome 86+</strong> (Stable channel recommended)</li>
+                                    <li><strong>Microsoft Edge 86+</strong></li>
+                                    <li><strong>Safari 16+</strong> (macOS)</li>
+                                    <li><strong>Brave Browser</strong> (Chromium-based)</li>
+                                </ul>
+                            </div>
+
+                            <div class="browser-card limited">
+                                <h3>⚠️ Limited Support</h3>
+                                <ul>
+                                    <li><strong>Chrome Beta/Dev channels</strong> - May have experimental features disabled</li>
+                                    <li><strong>Older browser versions</strong> - Falls back to Downloads folder workflow</li>
+                                    <li><strong>Firefox</strong> - File System Access API not yet supported</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h2>Why Browser Requirements Matter</h2>
+                        
+                        <h3>File System Access API</h3>
+                        <p>DA1 leverages the modern <strong>File System Access API</strong> for secure, professional file operations:</p>
+                        
+                        <ul>
+                            <li><strong>Direct file system integration</strong> - Save and load files from any folder</li>
+                            <li><strong>Working folder memory</strong> - Remembers your project locations</li>
+                            <li><strong>Overwrite prompts</strong> - Native system dialogs for file conflicts</li>
+                            <li><strong>No downloads folder clutter</strong> - Files stay where you put them</li>
+                            <li><strong>Enhanced security</strong> - User-granted permission system</li>
+                        </ul>
+
+                        <h3>DA1XML File Extension</h3>
+                        <p>DA1 uses the <code>.da1xml</code> file extension for metadata files. Some systems may flag this as "unknown" - this is intentional:</p>
+                        
+                        <ul>
+                            <li><strong>Ecosystem control</strong> - Ensures files are opened by certified DA1 tools</li>
+                            <li><strong>Security feature</strong> - Prevents unauthorized access to metadata</li>
+                            <li><strong>Professional positioning</strong> - Distinguishes DA1 files from generic XML</li>
+                        </ul>
+
+                        <h2>Browser Detection & Fallbacks</h2>
+                        
+                        <h3>Automatic Compatibility Check</h3>
+                        <p>DA1 automatically detects your browser capabilities on page load:</p>
+                        
+                        <div class="code-block">
+                            <strong>✅ Full Support:</strong> "File operations ready"<br>
+                            <strong>⚠️ Limited Support:</strong> "We cannot guarantee flawless functionality with your current browser..."
+                        </div>
+
+                        <h3>Fallback Behavior</h3>
+                        <p>When File System Access API is unavailable, DA1 uses Downloads folder workflow:</p>
+                        
+                        <ol>
+                            <li><strong>Files save to Downloads folder</strong></li>
+                            <li><strong>da1_system folder organization</strong> - Create <code>~/Downloads/da1_system/</code></li>
+                            <li><strong>Manual file management</strong> - Move files to organized folders</li>
+                            <li><strong>Settings toggle</strong> - "Save anywhere" option (requires API support)</li>
+                        </ol>
+
+                        <h2>Troubleshooting Browser Issues</h2>
+                        
+                        <h3>Chrome Beta/Dev Channel Issues</h3>
+                        <div class="troubleshooting-steps">
+                            <h4>Symptoms:</h4>
+                            <ul>
+                                <li>Files download instead of proper file picker</li>
+                                <li>Cannot save to specific folders</li>
+                                <li>Browser shows as "beta" in chrome://version</li>
+                            </ul>
+
+                            <h4>Solutions:</h4>
+                            <ol>
+                                <li><strong>Enable Experimental Features:</strong>
+                                    <ul>
+                                        <li>Go to <code>chrome://flags/</code></li>
+                                        <li>Search for "Experimental Web Platform features"</li>
+                                        <li>Set to "Enabled"</li>
+                                        <li>Restart Chrome</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Switch to Chrome Stable:</strong>
+                                    <ul>
+                                        <li>Download regular Chrome from google.com/chrome</li>
+                                        <li>Install will migrate your data automatically</li>
+                                        <li>More reliable File System Access API support</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <h3>HTTPS/Localhost Requirement</h3>
+                        <div class="alert alert-info">
+                            <strong>Note:</strong> File System Access API only works on secure contexts (HTTPS or localhost). Files opened directly via <code>file://</code> protocol will use fallback mode.
+                        </div>
+
+                        <h2>Settings & Configuration</h2>
+                        
+                        <h3>Save Anywhere Setting</h3>
+                        <p>In the DA1 interface, you'll find a "Save anywhere" checkbox in Settings (Beta):</p>
+                        
+                        <ul>
+                            <li><strong>Enabled:</strong> Use File System Access API (if supported)</li>
+                            <li><strong>Disabled:</strong> Default to Downloads/da1_system folder</li>
+                            <li><strong>Auto-detection:</strong> Shows warnings if browser doesn't support the feature</li>
+                        </ul>
+
+                        <h3>Working Folder Management</h3>
+                        <p>When File System Access API is available:</p>
+                        
+                        <ul>
+                            <li><strong>Save As</strong> - Choose any folder, sets as working folder</li>
+                            <li><strong>Save</strong> - Uses current working folder</li>
+                            <li><strong>Load</strong> - Updates working folder to file location</li>
+                            <li><strong>Persistence</strong> - Working folder remembered across sessions</li>
+                        </ul>
+
+                        <h2>Professional Workflow Benefits</h2>
+                        
+                        <h3>Project Organization</h3>
+                        <p>With supported browsers, DA1 enables professional project management:</p>
+                        
+                        <ul>
+                            <li><strong>Project folders</strong> - Keep metadata with audio files</li>
+                            <li><strong>Version control</strong> - Proper file history and backups</li>
+                            <li><strong>Collaboration</strong> - Share project folders seamlessly</li>
+                            <li><strong>No downloads clutter</strong> - Files remain organized</li>
+                        </ul>
+
+                        <h3>Security & Integrity</h3>
+                        <p>Modern browser requirements ensure:</p>
+                        
+                        <ul>
+                            <li><strong>User permission control</strong> - Explicit file access grants</li>
+                            <li><strong>Secure file handling</strong> - No temporary file exposure</li>
+                            <li><strong>Metadata protection</strong> - DA1XML format integrity</li>
+                            <li><strong>Future compatibility</strong> - Ready for emerging web standards</li>
+                        </ul>
+
+                        <h2>Business Strategy</h2>
+                        
+                        <div class="strategic-note">
+                            <h3>Why We Require Modern Browsers</h3>
+                            <p>DA1's browser requirements serve multiple strategic purposes:</p>
+                            
+                            <ul>
+                                <li><strong>Quality user filtering</strong> - Attracts professionals who value proper tools</li>
+                                <li><strong>Technical excellence</strong> - No compromises on user experience</li>
+                                <li><strong>Security positioning</strong> - Modern browsers = better security</li>
+                                <li><strong>Ecosystem control</strong> - Ensures optimal DA1 experience</li>
+                                <li><strong>Industry advancement</strong> - Pushes adoption of web standards</li>
+                            </ul>
+                        </div>
+
+                        <h2>Quick Reference</h2>
+                        
+                        <div class="quick-reference">
+                            <h3>Browser Check Commands</h3>
+                            <div class="code-block">
+                                <strong>Check your Chrome version:</strong><br>
+                                chrome://version/<br><br>
+                                
+                                <strong>Enable experimental features:</strong><br>
+                                chrome://flags/<br>
+                                Search: "Experimental Web Platform features"<br><br>
+                                
+                                <strong>Test File System Access API:</strong><br>
+                                console.log(!!window.showSaveFilePicker);
+                            </div>
+
+                            <h3>File Organization</h3>
+                            <div class="code-block">
+                                <strong>Fallback folder structure:</strong><br>
+                                ~/Downloads/da1_system/<br>
+                                ├── project1_metadata.da1xml<br>
+                                ├── album_data.da1xml<br>
+                                └── templates/<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;└── default_template.da1xml
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar" id="rightSidebar">
+            <!-- Content will be loaded by component-loader.js -->
+        </div>
+    </div>
+
+    <script src="../js/component-loader.js"></script>
+    <script src="../js/kb.js"></script>
+</body>
+</html>

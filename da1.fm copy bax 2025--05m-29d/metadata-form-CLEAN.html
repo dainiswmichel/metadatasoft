@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1metaMetaData Editor - Complete Metadata Management</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+        }
+        
+        /* ONLY RULE FOR ALL INPUTS - NOTHING ELSE */
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            resize: vertical;
+            overflow-y: auto;
+            line-height: 1.4;
+            min-height: 40px;
+            height: auto;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            min-height: 60px;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+        
+        /* REST OF CSS UNCHANGED */
+        .main-container { display: flex; width: 100%; min-height: 100vh; }
+        .main-content { flex: 1; padding: 20px; margin-right: 350px; overflow-y: auto; }
+        .right-sidebar { width: 350px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-left: 1px solid rgba(255, 255, 255, 0.2); padding: 20px; overflow-y: auto; position: fixed; top: 0; right: 0; height: 100vh; z-index: 1000; }
+        .form-container { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; padding: 30px; text-align: center; }
+        .header h1 { font-size: 2.2em; margin-bottom: 10px; font-weight: 300; }
+        .header p { font-size: 1.1em; opacity: 0.9; }
+        .da1-badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 5px 12px; border-radius: 15px; font-size: 0.8em; font-weight: 500; margin: 0 5px; }
+        .form-content { padding: 30px; }
+        .section { margin-bottom: 40px; border: 1px solid #e0e0e0; border-radius: 10px; background: #fafafa; overflow: hidden; }
+        .section-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 20px; font-size: 1.3em; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+        .section-content { padding: 20px; }
+        .field-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .field { display: flex; flex-direction: column; }
+        .field label { font-weight: 500; margin-bottom: 5px; color: #2c3e50; }
+        .field-description { font-size: 0.85em; color: #666; margin-top: 3px; }
+        .filename-input-group { display: flex; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; }
+        .filename-input-group input { border: none; flex: 1; }
+        .filename-extension { background: #f8f9fa; padding: 12px 15px; font-size: 14px; color: #666; border-left: 1px solid #ddd; font-weight: 500; }
+        .sidebar-section { background: white; border-radius: 10px; margin-bottom: 20px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .sidebar-header { font-size: 1.2em; font-weight: 600; color: #2c3e50; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s ease; width: 100%; margin-bottom: 10px; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
+        .toggle-btn { background: none; border: none; color: white; cursor: pointer; margin-left: auto; font-size: 1.2em; }
+        .command-output { background: #1e1e1e; color: #f8f8f2; padding: 20px; border-radius: 5px; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 12px; line-height: 1.4; white-space: pre-wrap; word-wrap: break-word; max-height: 400px; overflow-y: auto; margin-top: 10px; }
+        .status-message { padding: 10px; border-radius: 5px; margin-bottom: 10px; display: none; }
+        .status-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .status-info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .code-view-btn { background: linear-gradient(135deg, #6c757d 0%, #495057 100%) !important; font-family: 'Courier New', monospace; font-size: 0.85em; }
+        .code-view-btn.active { background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important; box-shadow: 0 0 10px rgba(40, 167, 69, 0.3); }
+        .code-view input, .code-view textarea, .code-view select { font-family: 'Courier New', Monaco, monospace !important; font-size: 0.9em !important; letter-spacing: 0.5px; background: #f8f9fa !important; }
+        .unicode-code { background: #fff3cd; color: #856404; padding: 1px 3px; border-radius: 3px; font-weight: bold; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="main-content">
+            <div class="form-container" id="header-filename">
+                <div class="header">
+                    <h1>DA1metaMetaData Editor</h1>
+                    <p>Complete metadata management with <span class="da1-badge">DA1neverBlank</span> standards</p>
+                </div>
+                
+                <div class="form-content">
+                    <form id="metadata-form">
+                        
+                        <!-- Core Track Identification -->
+                        <div class="section">
+                            <div class="section-header">
+                                🎵 Core Track Identification
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="title">Track Title</label>
+                                        <input type="text" id="title" name="title" placeholder="Track title">
+                                        <div class="field-description">Primary track identification</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="artist">Artist</label>
+                                        <input type="text" id="artist" name="artist" placeholder="Artist name">
+                                        <div class="field-description">Main artist</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-header">📁 File Operations</div>
+                <button class="btn" onclick="loadFile()">Load File</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(button) {
+            const content = button.parentElement.nextElementSibling;
+            const isCollapsed = button.textContent === '+';
+            if (isCollapsed) {
+                content.style.display = 'block';
+                button.textContent = '−';
+            } else {
+                content.style.display = 'none';
+                button.textContent = '+';
+            }
+        }
+
+        function setupGlobalAutoResize() {
+            const inputs = document.querySelectorAll('input[type="text"], textarea');
+            inputs.forEach(input => {
+                function resize() {
+                    input.style.height = 'auto';
+                    input.style.height = (input.scrollHeight + 2) + 'px';
+                }
+                input.addEventListener('input', resize);
+                input.addEventListener('paste', () => setTimeout(resize, 0));
+                if (input.value) resize();
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', setupGlobalAutoResize);
+    </script>
+</body>
+</html>

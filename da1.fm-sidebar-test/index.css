@@ -1,0 +1,1404 @@
+/*---------------------------------
+  1. FONT DECLARATIONS
+---------------------------------*/
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../resources/fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../resources/fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../resources/fonts/Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+/*---------------------------------
+  2. VARIABLES AND ROOT SETTINGS
+---------------------------------*/
+:root {
+    --primary-dark: #0f2027;
+    --primary-medium: #2c5364;
+    --accent: #e67e22;
+    --text-dark: #333333;
+    --text-light: #ffffff;
+    --bg-light: #f9f9f9;
+    --card-bg: #ffffff;
+    --shadow: 0 3px 10px rgba(0,0,0,0.1);
+    --sidebar-width: 250px;
+    --sidebar-padding: 20px;
+    --content-margin: 270px; /* sidebar-width + 20px spacing */
+}
+  
+/*---------------------------------
+  3. GENERAL STYLES
+---------------------------------*/
+body {
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+}
+  
+/*---------------------------------
+  4. SIDEBAR STYLING
+---------------------------------*/
+/* Common sidebar styles */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    padding: var(--sidebar-padding);
+    position: fixed;
+    top: 0;
+    overflow-y: auto;
+    color: var(--text-light);
+    font-size: 16px;
+    background: linear-gradient(to bottom, var(--primary-dark), var(--primary-medium));
+    box-sizing: border-box;
+    z-index: 10;
+}
+  
+.sidebar h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+  
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+  
+.sidebar ul li {
+    margin: 15px 0;
+}
+  
+.sidebar ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    transition: all 0.2s ease;
+}
+  
+.sidebar ul li a:hover {
+    transform: translateX(5px);
+    opacity: 0.9;
+}
+
+.sidebar ul li a.active {
+    color: var(--accent);
+    font-weight: bold;
+}
+  
+.sidebar i {
+    font-size: 1.2em;
+}
+  
+/* Left Sidebar (Navigation) */
+.sidebar-left {
+    left: 0;
+    will-change: width;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+  
+/* Right Sidebar (AI Assistant) */
+.sidebar-right {
+    right: 0;
+    background: linear-gradient(to bottom, var(--primary-dark), var(--primary-medium));
+}
+  
+.sidebar-right ol {
+    padding-left: 20px;
+    color: var(--text-light);
+}
+  
+.sidebar-right li {
+    margin-bottom: 10px;
+}
+  
+#ai-chat {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+
+/*---------------------------------
+  4.1 SIDEBAR COLLAPSIBLE STYLES
+---------------------------------*/
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.sidebar h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.sidebar-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.sidebar-toggle:hover {
+    background: transparent;
+    opacity: 0.8;
+}
+
+.toggle-icon {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+}
+
+/* Collapsed sidebar styles */
+.sidebar-left.collapsed {
+    width: 60px;
+    overflow: hidden;
+}
+
+.main-content {
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-content.expanded {
+    margin-left: 80px; /* sidebar width (60px) + spacing */
+}
+
+.sidebar-left.collapsed .sidebar-title,
+.sidebar-left.collapsed .nav-text {
+    display: none;
+}
+
+.sidebar-left.collapsed ul li a {
+    justify-content: center;
+    padding: 12px 0;
+    position: relative;
+}
+
+/* Clean tooltip styling */
+.sidebar-left.collapsed ul li a[title]:hover:after,
+.sidebar-left.collapsed .sidebar-toggle[title]:hover:after {
+    content: attr(title);
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: normal;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+/* Specific positioning for toggle button tooltip */
+.sidebar-left.collapsed .sidebar-toggle[title]:hover:after {
+    top: 10px;
+}
+
+.sidebar-left.collapsed h2 {
+    justify-content: center;
+    padding: 10px 0;
+    border: none;
+    margin: 0;
+}
+
+/* Modified hover effect for collapsed state */
+.sidebar-left.collapsed ul li a:hover {
+    transform: translateX(3px); /* Reduced movement (about 60% of original) */
+}
+
+/* Maintain active state in collapsed mode */
+.sidebar-left.collapsed ul li a.active i {
+    color: var(--accent);
+}
+
+/* Icon swap animation */
+.sidebar-left .toggle-icon.bi-layout-sidebar {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.sidebar-left .toggle-icon.bi-box-arrow-right {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.sidebar-left.collapsed .toggle-icon.bi-layout-sidebar {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.sidebar-left.collapsed .toggle-icon.bi-box-arrow-right {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (max-width: 992px) {
+    .sidebar-toggle {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        font-size: 12px;
+    }
+}
+
+/*---------------------------------
+  5. MAIN CONTENT AREA
+---------------------------------*/
+.main-content {
+    margin-left: var(--content-margin);
+    margin-right: var(--content-margin);
+    padding: 30px;
+    flex-grow: 1;
+    box-sizing: border-box;
+    width: calc(100% - 2 * var(--content-margin));
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-content.sidebar-collapsed {
+    margin-left: 80px !important; /* 60px sidebar width + 20px spacing */
+    width: calc(100% - 80px - var(--content-margin)) !important;
+}
+  
+.main-content h1 {
+    color: var(--primary-dark);
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+  
+/*---------------------------------
+  6. SECTION STYLING
+---------------------------------*/
+.section {
+    background: var(--card-bg);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+}
+  
+.section h2 {
+    color: var(--primary-dark);
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+}
+
+.section h3 {
+    color: var(--primary-dark);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.description-section {
+    background-color: rgba(44, 83, 100, 0.05);
+    border-left: 4px solid var(--primary-medium);
+}
+
+.description-section p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+}
+
+/*---------------------------------
+  7. FORM ELEMENTS
+---------------------------------*/
+.form-group {
+    margin-bottom: 20px;
+}
+  
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--primary-dark);
+}
+  
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    transition: border 0.3s ease;
+    box-sizing: border-box;
+}
+  
+input[type="text"]:focus,
+input[type="file"]:focus {
+    border-color: var(--primary-medium);
+    outline: none;
+}
+
+/*---------------------------------
+  8. FILE TYPE DISPLAY
+---------------------------------*/
+.file-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.file-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(44, 83, 100, 0.05);
+    padding: 15px;
+    border-radius: 5px;
+    min-width: 120px;
+    text-align: center;
+}
+
+.file-type i {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--primary-medium);
+}
+
+.file-type small {
+    color: #777;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+/*---------------------------------
+  9. CHECKBOX STYLING
+---------------------------------*/
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+/*---------------------------------
+  10. HELPER CLASSES & ICONS
+---------------------------------*/
+.help-icon {
+    color: var(--primary-medium);
+    margin-left: 10px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.help-icon:hover {
+    color: var(--accent);
+}
+
+.info-text {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.metadata-container {
+    margin-top: 25px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+  
+/*---------------------------------
+  11. BUTTONS
+---------------------------------*/
+button {
+    background: var(--accent);
+    color: var(--text-light);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s ease;
+}
+  
+button:hover {
+    background: #d35400;
+}
+
+.primary-button {
+    font-size: 16px;
+    padding: 14px 24px;
+}
+  
+/*---------------------------------
+  12. PROGRESS AND DOWNLOAD LINKS
+---------------------------------*/
+#progress {
+    margin-top: 15px;
+    font-weight: 500;
+}
+  
+#download-links {
+    margin-top: 15px;
+}
+  
+#download-links a {
+    display: inline-block;
+    color: var(--primary-medium);
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-weight: 500;
+}
+  
+#download-links a:hover {
+    color: var(--accent);
+}
+
+/*---------------------------------
+  13. COVER PREVIEW
+---------------------------------*/
+.preview-container {
+    margin-top: 15px;
+    max-width: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.preview-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/*---------------------------------
+  14. INFO BOX
+---------------------------------*/
+.info-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.info-box h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/*---------------------------------
+  15. ACCORDION FOR INFO PAGES
+---------------------------------*/
+.accordion-container {
+    margin-top: 20px;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.accordion-header:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.accordion-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.accordion-content {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    display: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordion-content.active {
+    display: block;
+}
+
+.accordion-icon {
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+/*---------------------------------
+  16. BLOG STYLES
+---------------------------------*/
+article {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+article:last-child {
+    border-bottom: none;
+}
+
+article h3 {
+    margin-bottom: 5px;
+    color: var(--primary-dark);
+}
+
+.meta {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary-medium);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: color 0.2s ease;
+}
+
+.read-more:hover {
+    color: var(--accent);
+}
+
+/*---------------------------------
+  17. TIMELINE STYLES FOR ROADMAP
+---------------------------------*/
+.timeline {
+    position: relative;
+    padding-left: 30px;
+    margin-top: 30px;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--primary-medium);
+    opacity: 0.5;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -38px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--primary-medium);
+    border: 3px solid var(--bg-light);
+}
+
+.timeline-item.completed .timeline-marker {
+    background-color: var(--accent);
+}
+
+.timeline-item.current .timeline-marker {
+    background-color: #2ecc71;
+}
+
+.timeline-content {
+    padding-bottom: 15px;
+}
+
+.timeline-content h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--primary-dark);
+}
+
+/*---------------------------------
+  18. CONTACT INFO STYLES
+---------------------------------*/
+.contact-info {
+    background-color: rgba(44, 83, 100, 0.05);
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.contact-info p {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/*---------------------------------
+  19. ANIMATIONS
+---------------------------------*/
+.spin {
+    animation: spin 1s linear infinite;
+}
+  
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/*---------------------------------
+  20. CODE DISPLAY
+---------------------------------*/
+pre {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    border-left: 4px solid var(--primary-medium);
+    font-family: monospace;
+    margin: 20px 0;
+}
+
+code {
+    font-family: monospace;
+    background-color: #f5f5f5;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+/*---------------------------------
+  21. TAG TABLE
+---------------------------------*/
+.tag-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.tag-table th, .tag-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.tag-table th {
+    background-color: var(--primary-medium);
+    color: var(--text-light);
+}
+
+.tag-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.required {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.optional {
+    color: #3498db;
+}
+
+/*---------------------------------
+  22. FOOTER STYLES
+---------------------------------*/
+
+/* Footer Styles */
+.site-footer {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(to right, #f0f2f5, #e5e8ec);
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.copyright-text {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        margin-top: 20px;
+        padding: 15px;
+    }
+}
+
+/*---------------------------------
+  25. ALPINE.JS SIDEBAR ENHANCEMENTS
+---------------------------------*/
+
+/* Prevent flashing during page load */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Tooltip styling for dynamic Alpine.js components */
+.sidebar-tooltip {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f5f5f5;
+    color: #222;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.sidebar-tooltip.visible {
+    opacity: 1;
+}
+
+
+/* Sidebar base styles */
+.sidebar {
+    transition: width 0.3s ease;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    overflow-y: auto;
+    color: white;
+    font-size: 16px;
+    background: linear-gradient(to bottom, #0f2027, #2c5364);
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.sidebar.expanded {
+    width: var(--sidebar-width);
+}
+
+.sidebar.collapsed {
+    width: 60px;
+    overflow: hidden;
+}
+
+/* Header styles */
+.sidebar-header {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar.collapsed .sidebar-header {
+    justify-content: center;
+    padding: 15px 0;
+}
+
+.sidebar-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.toggle-button {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+}
+
+.toggle-button:hover {
+    opacity: 0.8;
+}
+
+/* Navigation styles */
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.sidebar.collapsed .nav-link {
+    justify-content: center;
+    padding: 12px 0;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.sidebar.collapsed .nav-link:hover {
+    transform: translateX(3px);
+}
+
+.nav-link.active {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.nav-link.active i {
+    color: var(--accent);
+}
+
+.nav-link i {
+    font-size: 1.2rem;
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.tooltip.visible {
+    opacity: 1;
+}
+
+/* Main content adjustments */
+.main-content {
+    transition: margin-left 0.3s ease;
+}
+
+.main-content-expanded {
+    margin-left: 250px;
+}
+
+.main-content-collapsed {
+    margin-left: 60px;
+}
+
+/* Alpine cloak to prevent flash */
+[x-cloak] {
+    display: none !important;
+}
+
+
+/* ========================= */
+/*  DA1 SubFileTypes Styles   */
+/* ========================= */
+
+/* Container for all subfiletypes */
+.subfiletypes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* Card Layout */
+  .subfiletype-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .subfiletype-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+  }
+  
+  .subfiletype-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: var(--accent);
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(44, 83, 100, 0.05);
+    padding: 1rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .master-checkbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  .subfiletype-label {
+    font-size: 0.7rem;
+    background: var(--primary-medium);
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+  }
+  
+  /* Checkbox Enhancement */
+  .subfiletype-checkbox {
+    transform: scale(1.2);
+    margin-right: 10px;
+  }
+  
+
+  
+  /* ========================= */
+/*  RAW SOURCE MEDIA UPLOAD  */
+/* ========================= */
+
+.raw-source-upload {
+    background-color: var(--card-bg);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+  }
+  
+  .upload-description {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .filetype-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .filetype-box {
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(44, 83, 100, 0.05);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .filetype-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filetype-box i {
+    font-size: 2rem;
+    color: var(--primary-medium);
+    margin-bottom: 10px;
+  }
+  
+  .filetype-label {
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 5px;
+  }
+  
+  .filetype-info {
+    font-size: 0.85rem;
+    color: #777;
+  }
+  
+  .file-input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 2px dashed var(--primary-medium);
+    border-radius: 6px;
+    background-color: rgba(44, 83, 100, 0.05);
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .file-input:hover {
+    background-color: rgba(44, 83, 100, 0.1);
+    border-color: var(--accent);
+  }
+  
+/* ========================= */
+/*  Coming Soon Labels       */
+/* ========================= */
+
+/* Coming Soon label styles */
+.coming-soon-label {
+    display: inline-block;
+    background-color: #e63946; /* Rich red */
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  
+  /* Cards marked as Coming Soon */
+  .subfiletype-card.coming-soon {
+    opacity: 0.85;
+    pointer-events: none; /* Disable interactions */
+    border: 1px solid #ccc;
+    background-color: var(--card-bg);
+  }
+  
+  /* Optional Upgrade Label */
+.upgrade-label {
+    font-size: 0.7rem;
+    background: #18a251; /* Green */
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  
+
+
+/* =============================== */
+/*  COMING SOON OVERLAY STYLES     */
+/* =============================== */
+
+#coming-soon-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none; /* Initially hidden */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.coming-soon-modal {
+    position: relative;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+  .coming-soon-modal input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .coming-soon-modal button {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .coming-soon-modal button:hover {
+    background-color: #218838;
+  }
+  
+/* =============================== */
+/*  COMING SOON OVERLAY ADDITIONAL STYLES */
+/* =============================== */
+
+.beta-access-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(44, 83, 100, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-medium);
+  }
+  
+  .beta-access-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+  }
+  
+  .beta-code-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .beta-code-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .beta-code-container button {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0 15px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .beta-code-container button:hover {
+    background-color: #d35400;
+  }
+  
+  .find-out-more-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--primary-medium);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .find-out-more-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  
+  .or-divider {
+    position: relative;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .or-divider::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #ddd;
+    position: absolute;
+    top: 50%;
+    left: 0;
+  }
+  
+  .or-divider span {
+    background: #fff;
+    padding: 0 15px;
+    position: relative;
+    color: #777;
+    font-weight: 500;
+  }
+  
+  #coming-soon-form h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+  }
+  
+  .coming-soon-modal {
+    max-width: 450px;
+    width: 100%;
+  }
+
+
+/* =============================== */
+/*  COMING SOON CLOSE BUTTON STYLE */
+/* =============================== */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #e63946; /* Match Coming Soon label red */
+}
+
+/* ================================ */
+/*  EARLY ADOPTER CONTRIBUTION      */
+/* ================================ */
+
+.early-adopter-contribution {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Stacks on smaller screens */
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .early-adopter-contribution .contribution-text {
+    flex: 1 1 400px;
+  }
+  
+  .early-adopter-contribution .contribution-button {
+    flex: 0 1 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .early-adopter-contribution form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .pp-9P55YRTBNJLDJ {
+    text-align: center;
+    border: none;
+    border-radius: 0.25rem;
+    min-width: 11.625rem;
+    padding: 0 2rem;
+    height: 2.625rem;
+    font-weight: bold;
+    background-color: #FFD140;
+    color: #000000;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+  }
+  
+  /* Mobile Layout Adjustments */
+  @media (max-width: 768px) {
+    .early-adopter-contribution {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+      padding: 1.5rem;
+    }
+  
+    .early-adopter-contribution .contribution-text {
+      margin-bottom: 1rem;
+    }
+  
+    .early-adopter-contribution .contribution-button {
+      width: 100%;
+    }
+  }
+
+/*  end early adopter contribution section */

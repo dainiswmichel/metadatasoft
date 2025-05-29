@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Test</title>
+    <link rel="stylesheet" href="../resources/icons/bootstrap-icons.css">
+    <style>
+        /* Direct inline styles for testing */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .sidebar-left {
+            width: 250px; 
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: linear-gradient(to bottom, #0f2027, #2c5364);
+            color: white;
+        }
+        
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-title {
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            font-size: 1.25rem;
+            width: 100%;
+        }
+        
+        .sidebar-toggle {
+            margin-left: auto;
+        }
+    </style>
+    <script defer type="module" src="../js/alpinejs-local.js"></script>
+</head>
+<body>
+    <!-- Test Sidebar -->
+    <div class="sidebar sidebar-left">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Navigation</h2>
+            <button class="sidebar-toggle">
+                <i class="bi bi-layout-sidebar"></i>
+            </button>
+        </div>
+        <nav>
+            <ul style="list-style: none; padding: 0;">
+                <li>About</li>
+                <li>Blog</li>
+                <li>Knowledge Base</li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
