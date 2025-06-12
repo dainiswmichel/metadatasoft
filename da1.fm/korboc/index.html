@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botiņš latviešu koriem</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            text-align: center;
+            color: white;
+            max-width: 600px;
+            padding: 40px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            .container {
+                padding: 20px;
+            }
+            .instruction {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Botiņš latviešu koriem</h1>
+        <div class="description">
+            Koklēdamis, spēlēdamis, Dainis W. Michelis ir uztaisījis pirmo Latvijas korbotu, viņš saucās: Korboc! Lai balstiņis tālu skan! Prasi, čato, un pasaki Dainim, kā patīk. Ō, un var reģistrēties dziesmas "Migla, migla..." projektam botiņā...ja viss darbojas...un ir daži Dziesma dejo deja skan matriāli arī pieejami botiņā!
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+                window.voiceflow.chat.load({
+                    verify: { projectID: '6842ad8bec8e90877c24e2b9' },
+                    url: 'https://general-runtime.voiceflow.com',
+                    versionID: 'production',
+                    voice: {
+                        url: "https://runtime-api.voiceflow.com"
+                    }
+                });
+                
+                // Auto-open chat after 3 seconds
+                setTimeout(() => {
+                    if (window.voiceflow && window.voiceflow.chat) {
+                        window.voiceflow.chat.open();
+                    }
+                }, 3000);
+            }
+            v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+            v.type = "text/javascript"; 
+            s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+    </script>
+</body>
+</html>

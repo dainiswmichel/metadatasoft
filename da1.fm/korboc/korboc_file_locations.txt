@@ -1,0 +1,34 @@
+dziesmas_nosaukums: Migla, migla...
+fileurl: https://da1.fm/korboc/migla-migla.mp3
+notis: https://da1.fm/korboc/migla-migla-pirmais-uzmetums.pdf
+
+pasākuma_nosaukums: Dziesma Dejo Deja Skan (Mēģinājums Limbažos)
+informācijas_lapas: https://da1.fm/korboc/dz-d-d-sk-limbazos.pdf
+
+dziesmas_nosaukums: Janis Lūsēns – Daugava (Solo, koris)
+faila_saite: https://da1.fm/korboc/1mape/01_zodiaks_daugava_orig.mp3
+notis: https://da1.fm/korboc/1mape/01_janis_lusens_daugava_solo_koris.pdf
+
+dziesmas_nosaukums: Caur sidraba birzi gāju (Do)
+faila_saite: https://da1.fm/korboc/1mape/03_caur_sidraba_birzi_gaju_do.mp3
+notis: https://da1.fm/korboc/1mape/05_caur_sidraba_birzi_koris.pdf
+
+dziesmas_nosaukums: Alku deja
+faila_saite: https://da1.fm/korboc/1mape/06_alku_deja_orig.mp3
+notis: https://da1.fm/korboc/1mape/06_alku_deja_koris.pdf
+
+dziesmas_nosaukums: Uz Daugavas es dzīvoju
+faila_saite: https://da1.fm/korboc/1mape/26_uz_daugavas_es_dzivoju.mp3
+notis: https://da1.fm/korboc/1mape/26_uz_daugavas_es_dzivoju_koris.pdf
+
+dziesmas_nosaukums: Audēju deja
+faila_saite: https://da1.fm/korboc/1mape/27_audeju_deja_orig.mp3
+notis: https://da1.fm/korboc/1mape/27_audeju_deja_koris.pdf
+
+dziesmas_nosaukums: Es mācēju danci vest
+faila_saite: https://da1.fm/korboc/1mape/29_es_maceju_danci_vest_orig.mp3
+notis: https://da1.fm/korboc/1mape/29_es_maceju_danci_vest_koris.pdf
+
+dziesmas_nosaukums: Saule, Pērkons, Daugava (Dziesmu svētki)
+faila_saite: https://da1.fm/korboc/1mape/33_saule_perkons_daugava_dz_svetki.mp3
+notis: https://da1.fm/korboc/1mape/33_martins_brauns_saule_perkons_daugava_koris.pdf

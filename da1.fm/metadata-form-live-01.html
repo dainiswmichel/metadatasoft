@@ -1,0 +1,2822 @@
+<!-- 
+==============================================================================
+SECTION 1: HTML DOCUMENT STRUCTURE START
+==============================================================================
+HTML5 Document Type Declaration and Basic Structure
+- DOCTYPE: Tells browser this is HTML5 document
+- html lang="en": Sets document language for accessibility
+- head: Contains metadata about the document (not visible content)
+- meta charset="UTF-8": Character encoding for international text support
+- meta viewport: Makes page responsive on mobile devices
+- title: Text shown in browser tab/window title bar
+
+Educational References:
+- HTML5 Basics: https://developer.mozilla.org/en-US/docs/Web/HTML
+- Meta Tags: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+- Viewport Meta Tag: https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag
+============================================================================== 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA1metaMetaData Editor - Complete Metadata Management</title>
+    
+    <!-- 
+    ==============================================================================
+    SECTION 2: CSS STYLING START
+    ==============================================================================
+    CSS (Cascading Style Sheets) controls visual presentation
+    - Embedded in <style> tags vs external .css file
+    - Selectors target HTML elements for styling
+    - Properties define visual appearance (colors, layout, fonts, etc.)
+    - CSS Grid and Flexbox used for modern responsive layouts
+    
+    Educational References:
+    - CSS Basics: https://developer.mozilla.org/en-US/docs/Web/CSS
+    - CSS Selectors: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
+    - Flexbox Guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+    - CSS Grid Guide: https://css-tricks.com/snippets/css/complete-guide-grid/
+    ============================================================================== 
+    -->
+    <style>
+        /* 
+        ==============================================================================
+        SECTION 2A: CSS RESET AND BOX MODEL
+        ==============================================================================
+        Universal Selector (*) applies to all HTML elements
+        - margin: 0; removes default spacing around elements
+        - padding: 0; removes default inner spacing of elements  
+        - box-sizing: border-box; includes padding/border in element width/height
+        
+        This creates consistent baseline across all browsers
+        
+        Educational References:
+        - CSS Reset: https://meyerweb.com/eric/tools/css/reset/
+        - Box Model: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model
+        - Box Sizing: https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
+        ============================================================================== 
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* 
+        ==============================================================================
+        SECTION 2B: BODY AND MAIN LAYOUT STRUCTURE
+        ==============================================================================
+        Body element styling defines overall page appearance
+        - font-family: Stack of preferred fonts (fallbacks if first unavailable)
+        - background: CSS gradient creates smooth color transition
+        - min-height: 100vh ensures page fills viewport height (vh = viewport height)
+        - display: flex enables flexbox layout for responsive design
+        
+        Main container uses flexbox for sidebar + content layout
+        
+        Educational References:
+        - CSS Fonts: https://developer.mozilla.org/en-US/docs/Web/CSS/font-family
+        - CSS Gradients: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients
+        - Viewport Units: https://developer.mozilla.org/en-US/docs/Web/CSS/length#viewport-percentage_lengths
+        - Flexbox Layout: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout
+        ============================================================================== 
+        */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+        }
+        
+        .main-container {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin-right: 350px;
+            overflow-y: auto;
+        }
+        
+        .right-sidebar {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            overflow-y: auto;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            z-index: 1000;
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .da1-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin: 0 5px;
+        }
+        
+        .form-content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: #fafafa;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.3em;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-content {
+            padding: 20px;
+        }
+        
+        .field-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .field label {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* CLEAN INPUT STYLES */
+        input[type="text"], input[type="date"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+            min-height: 40px;
+        }
+        
+        textarea {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            resize: vertical;
+            overflow-y: hidden;
+            line-height: 1.4;
+            height: auto;
+            min-height: 40px;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+
+        .filename-input-group {
+            display: flex;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .filename-input-group input {
+            border: none;
+            flex: 1;
+        }
+        
+        .filename-extension {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: #666;
+            border-left: 1px solid #ddd;
+            font-weight: 500;
+        }
+        
+        .field-description {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .sidebar-section {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-header {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .format-toggles {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .format-toggle {
+            padding: 10px 8px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            position: relative;
+            text-align: center;
+        }
+        
+        .format-toggle.active {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+        }
+        
+        .format-toggle.coming-soon {
+            opacity: 0.8;
+            cursor: not-allowed;
+            background: #e9ecef;
+            color: #495057;
+            border-color: #ced4da;
+        }
+        
+        .coming-soon-label {
+            display: block;
+            font-size: 10px;
+            color: #6c757d;
+            margin-top: 2px;
+            font-weight: 600;
+        }
+        
+        .format-toggle.active .coming-soon-label {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .format-info {
+            margin-bottom: 10px;
+        }
+        
+        .format-details {
+            display: none;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            color: #666;
+        }
+        
+        .format-details.active {
+            display: block;
+        }
+        
+        .file-select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .status-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: none;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        /* Code View Styles */
+        .code-view-btn {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%) !important;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+        }
+        
+        .code-view-btn.active {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+        }
+        
+        .code-view input,
+        .code-view textarea,
+        .code-view select {
+            font-family: 'Courier New', Monaco, monospace !important;
+            font-size: 0.9em !important;
+            letter-spacing: 0.5px;
+            background: #f8f9fa !important;
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+            word-break: keep-all !important;
+            overflow-wrap: break-word !important;
+            line-height: 1.4 !important;
+            resize: vertical !important;
+            overflow-y: auto !important;
+        }
+        
+        .code-view input[type="text"] {
+            min-height: 40px !important;
+            padding: 8px 12px !important;
+        }
+        
+        .code-view textarea {
+            min-height: 60px !important;
+        }
+        
+        .unicode-code {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1px 3px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+        
+        .command-output {
+            background: #1e1e1e;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .collapsible-content.active {
+            max-height: 2000px;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-left: auto;
+            font-size: 1.2em;
+        }
+        
+        /* 
+        ==============================================================================
+        SECTION 2Z: RESPONSIVE DESIGN - MOBILE/TABLET BREAKPOINTS
+        ==============================================================================
+        Media Queries adapt layout for different screen sizes
+        - @media (max-width: 1200px): CSS rules for screens smaller than 1200px
+        - flex-direction: column changes from horizontal to vertical layout
+        - Responsive design ensures usability on mobile devices
+        
+        Educational References:
+        - Media Queries: https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries
+        - Responsive Web Design: https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design
+        - Mobile First Design: https://responsivedesign.is/strategy/page-layout/mobile-first/
+        ============================================================================== 
+        */
+        @media (max-width: 1200px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .right-sidebar {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+        }
+        /* 
+        ==============================================================================
+        SECTION 2: CSS STYLING END
+        ============================================================================== 
+        */
+    </style>
+</head>
+
+<!-- 
+==============================================================================
+SECTION 3: HTML BODY STRUCTURE START
+==============================================================================
+Body contains all visible page content
+- Semantic HTML structures content meaningfully
+- div elements group related content
+- Classes connect HTML elements to CSS styling
+- IDs provide unique identifiers for JavaScript interaction
+- Forms collect user input data
+
+Educational References:
+- HTML Body Element: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body
+- HTML Forms: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+- Semantic HTML: https://developer.mozilla.org/en-US/docs/Glossary/Semantics#semantic_elements
+- HTML Attributes: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
+============================================================================== 
+-->
+<body>
+    <div class="main-container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="form-container">
+                <div class="header">
+                    <h1>🎵 DA1metaMetaData Editor - <span id="header-filename">untitled.da1xml</span></h1>
+                    <p>Complete metadata management for <span class="da1-badge">DA1neverBlank</span> philosophy</p>
+                </div>
+                
+                <div class="form-content">
+                    <form id="metadata-form">
+                        
+                        <!-- DA1 File & System Properties -->
+                        <div class="section">
+                            <div class="section-header">
+                                📁 DA1 File & System Properties
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="current_filename">Current Filename</label>
+                                        <div class="filename-input-group">
+                                            <input type="text" id="current_filename" name="current_filename" placeholder="artist_song_title_use_underscores_all_languages_supported" value="untitled">
+                                            <span class="filename-extension">.da1xml</span>
+                                        </div>
+                                        <div class="field-description">DA1neverBlank: Name of this DA1XML file - filename format without extension</div>
+                                        <div id="file_path_display" onclick="copyFilePath()" style="
+                                            margin-top: 8px; padding: 6px 8px; background: #f8f9fa; 
+                                            border: 1px solid #e0e0e0; border-radius: 4px; 
+                                            font-family: 'Courier New', monospace; font-size: 0.85em; 
+                                            color: #666; cursor: pointer; user-select: all;
+                                            word-wrap: break-word; word-break: break-all; 
+                                            white-space: pre-wrap; min-height: 20px; max-width: 100%;
+                                        " title="Click to copy file path">
+                                            /Users/dainismichel/dainisne/da1.fm/untitled.da1xml
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="da1_filetype">File Type</label>
+                                        <select id="da1_filetype" name="da1_filetype" onchange="toggleCustomFileType()">
+                                            <option value="file" selected>File</option>
+                                            <option value="template">Template</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <input type="text" id="da1_filetype_custom" name="da1_filetype_custom" 
+                                               placeholder="Enter custom file type (max 64 chars)" maxlength="64"
+                                               style="display: none; margin-top: 8px;">
+                                        <div class="field-description">DA1neverBlank: Purpose of this DA1XML file - file or template</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="file_description">File Description</label>
+                                        <textarea id="file_description" name="file_description" placeholder="Notes about this file"></textarea>
+                                        <div class="field-description">DA1neverBlank: Optional description or notes - 512 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="da1_version">DA1 Version</label>
+                                        <input type="text" id="da1_version" name="da1_version" value="1.a.1" readonly style="background-color: #f8f9fa; color: #6c757d;">
+                                        <div class="field-description">DA1neverBlank: Current DA1 system version - automatically set</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="da1_attribution_level">Attribution Level</label>
+                                        <select id="da1_attribution_level" name="da1_attribution_level">
+                                            <option value="Level 1 - Basic">Level 1 - Basic</option>
+                                            <option value="Level 2 - Standard">Level 2 - Standard</option>
+                                            <option value="Level 3 - Enhanced">Level 3 - Enhanced</option>
+                                            <option value="Level 4 - Comprehensive">Level 4 - Comprehensive</option>
+                                            <option value="Level 5 - Complete Attribution" selected>Level 5 - Complete Attribution</option>
+                                        </select>
+                                        <div class="field-description">DA1neverBlank: Level of attribution completeness - predefined levels</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="creation_tool">Creation Tool</label>
+                                        <input type="text" id="creation_tool" name="creation_tool" placeholder="Tool used to create metadata - 128 chars available">
+                                        <div class="field-description">DA1neverBlank: Tool used to create this metadata - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="validation_status">Validation Status</label>
+                                        <select id="validation_status" name="validation_status">
+                                            <option value="Draft">Draft</option>
+                                            <option value="Validated" selected>Validated</option>
+                                            <option value="Certified">Certified</option>
+                                        </select>
+                                        <div class="field-description">DA1neverBlank: Metadata validation status - predefined statuses</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="last_modified">Last Modified</label>
+                                        <input type="datetime-local" id="last_modified" name="last_modified">
+                                        <div class="field-description">DA1neverBlank: Last modification timestamp - ISO 8601 format</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Core Track Identification -->
+                        <div class="section">
+                            <div class="section-header">
+                                🎵 Core Track Identification
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="title">Track Title</label>
+                                        <textarea id="title" name="title" placeholder="Track title - Main identification of musical work (128 chars)" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Primary track identification - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="subtitle">Subtitle</label>
+                                        <textarea id="subtitle" name="subtitle" placeholder="Track subtitle or alternate title - 128 chars available" rows="1"></textarea>
+                                        <div class="field-description">Additional title information</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="album">Album/Project</label>
+                                        <textarea id="album" name="album" placeholder="Album/project name - Collection identifier (128 chars)" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Album/project collection name - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="artist">Artist</label>
+                                        <textarea id="artist" name="artist" placeholder="Primary artist(s) - Main performers/creators (256 chars)" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Primary performing artists - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="album_artist">Album Artist</label>
+                                        <textarea id="album_artist" name="album_artist" placeholder="Album artist/collection performer - 256 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Album-level artist credit - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="track">Track Number</label>
+                                        <input type="text" id="track" name="track" placeholder="Track number in album (01-99)">
+                                        <div class="field-description">DA1neverBlank: Track position in album - numeric format</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="disc">Disc Number</label>
+                                        <input type="text" id="disc" name="disc" placeholder="Disc number for multi-disc sets (1-99)">
+                                        <div class="field-description">DA1neverBlank: Disc number for multi-disc releases - numeric format</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="year">Year</label>
+                                        <input type="text" id="year" name="year" placeholder="Release year (YYYY format)">
+                                        <div class="field-description">DA1neverBlank: Release year - 4-digit format</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="date">Date</label>
+                                        <input type="date" id="date" name="date" placeholder="Specific release date">
+                                        <div class="field-description">DA1neverBlank: Specific release date - ISO 8601 format</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="grouping">Grouping</label>
+                                        <textarea id="grouping" name="grouping" placeholder="Content grouping/collection name - 128 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Content grouping or collection - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="version">Version</label>
+                                        <input type="text" id="version" name="version" placeholder="Version number (e.g., 1.0, 2.5, remaster)">
+                                        <div class="field-description">DA1neverBlank: Version identifier - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="content_group_description">Content Group Description</label>
+                                        <input type="text" id="content_group_description" name="content_group_description" placeholder="Content group description - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Description of the content group - 256 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Creators & Contributors -->
+                        <div class="section">
+                            <div class="section-header">
+                                🎼 Creators & Contributors
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="composer">Composer</label>
+                                        <input type="text" id="composer" name="composer" placeholder="Music composer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Music composer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="lyricist">Lyricist</label>
+                                        <input type="text" id="lyricist" name="lyricist" placeholder="Lyrics writer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Lyrics writer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="songwriter">Songwriter</label>
+                                        <input type="text" id="songwriter" name="songwriter" placeholder="Overall songwriter name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Overall songwriter - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="arranger">Arranger</label>
+                                        <input type="text" id="arranger" name="arranger" placeholder="Musical arranger name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Musical arranger - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="conductor">Conductor</label>
+                                        <input type="text" id="conductor" name="conductor" placeholder="Orchestra/ensemble conductor - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Orchestra/ensemble conductor - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="producer">Producer</label>
+                                        <input type="text" id="producer" name="producer" placeholder="Track producer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Track producer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="performer">Performer</label>
+                                        <textarea id="performer" name="performer" placeholder="Detailed performer credits (e.g., Name on instrument, Name on vocals) - 512 chars"></textarea>
+                                        <div class="field-description">DA1neverBlank: Detailed performer credits - 512 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="engineer">Engineer</label>
+                                        <input type="text" id="engineer" name="engineer" placeholder="Recording engineer name - 64 chars available">
+                                        <div class="field-description">Recording engineer</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="mixing_engineer">Mixing Engineer</label>
+                                        <input type="text" id="mixing_engineer" name="mixing_engineer" placeholder="Audio mixing engineer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Audio mixing engineer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="mastering_engineer">Mastering Engineer</label>
+                                        <input type="text" id="mastering_engineer" name="mastering_engineer" placeholder="Audio mastering engineer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Audio mastering engineer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="recording_engineer">Recording Engineer</label>
+                                        <input type="text" id="recording_engineer" name="recording_engineer" placeholder="Recording engineer name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Recording engineer - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="technician">Technician</label>
+                                        <input type="text" id="technician" name="technician" placeholder="Technical support staff - 64 chars available">
+                                        <div class="field-description">DA1neverBlank: Technical support staff - 64 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Properties -->
+                        <div class="section">
+                            <div class="section-header">
+                                🔧 Technical Properties
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="bpm">BPM</label>
+                                        <input type="number" id="bpm" name="bpm" placeholder="Beats per minute (60-200 typical)">
+                                        <div class="field-description">DA1neverBlank: Beats per minute - numeric value</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="tempo">Tempo</label>
+                                        <input type="text" id="tempo" name="tempo" placeholder="Tempo description (e.g., Slow, Moderate, Fast) - 64 chars">
+                                        <div class="field-description">DA1neverBlank: Tempo description - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="key">Key</label>
+                                        <input type="text" id="key" name="key" placeholder="Musical key (e.g., C Major, A minor) - 32 chars">
+                                        <div class="field-description">DA1neverBlank: Musical key - 32 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="time_signature">Time Signature</label>
+                                        <input type="text" id="time_signature" name="time_signature" placeholder="Time signature (e.g., 4/4, 3/4, 6/8) - 16 chars">
+                                        <div class="field-description">DA1neverBlank: Time signature - 16 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="sample_rate">Sample Rate</label>
+                                        <input type="text" id="sample_rate" name="sample_rate" placeholder="Sample rate in Hz (44100, 48000, 96000)">
+                                        <div class="field-description">DA1neverBlank: Sample rate in Hz - numeric value</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="bit_depth">Bit Depth</label>
+                                        <input type="text" id="bit_depth" name="bit_depth" placeholder="Bit depth (16, 24, 32) - numeric">
+                                        <div class="field-description">DA1neverBlank: Bit depth - numeric value</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="channels">Channels</label>
+                                        <input type="text" id="channels" name="channels" placeholder="Audio channels (1=mono, 2=stereo) - numeric">
+                                        <div class="field-description">DA1neverBlank: Number of audio channels - numeric value</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="duration">Duration</label>
+                                        <input type="text" id="duration" name="duration" placeholder="Track duration (MM:SS or HH:MM:SS format)">
+                                        <div class="field-description">DA1neverBlank: Track duration - time format</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="encoding_settings">Encoding Settings</label>
+                                        <input type="text" id="encoding_settings" name="encoding_settings" placeholder="Encoding settings (e.g., 24-bit/48kHz WAV) - 128 chars">
+                                        <div class="field-description">DA1neverBlank: Audio encoding settings - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="encoded_by">Encoded By</label>
+                                        <input type="text" id="encoded_by" name="encoded_by" placeholder="Encoding software/tool name - 64 chars available">
+                                        <div class="field-description">DA1neverBlank: Encoding software - 64 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Lyrics & Text Content -->
+                        <div class="section">
+                            <div class="section-header">
+                                📝 Lyrics & Text Content
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="lyrics">Lyrics</label>
+                                        <textarea id="lyrics" name="lyrics" rows="8" placeholder="Complete song lyrics - unlimited length for DA1neverBlank compliance"></textarea>
+                                        <div class="field-description">DA1neverBlank: Full lyrics text - unlimited characters for complete attribution</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="lyrics_language">Lyrics Language</label>
+                                        <input type="text" id="lyrics_language" name="lyrics_language" placeholder="Primary language of lyrics (e.g., English, Spanish) - 64 chars">
+                                        <div class="field-description">DA1neverBlank: Primary language of lyrics - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="english_translation">English Translation</label>
+                                        <textarea id="english_translation" name="english_translation" rows="8" placeholder="English translation of lyrics - unlimited length for DA1neverBlank"></textarea>
+                                        <div class="field-description">DA1neverBlank: English translation of lyrics - unlimited characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="translation_author">Translation Author</label>
+                                        <input type="text" id="translation_author" name="translation_author" placeholder="Translator name - 256 chars available">
+                                        <div class="field-description">DA1neverBlank: Who translated the lyrics - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="comment">Comment</label>
+                                        <textarea id="comment" name="comment" placeholder="General comments about the track - 512 chars available"></textarea>
+                                        <div class="field-description">DA1neverBlank: General comments about the track - 512 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="description">Description</label>
+                                        <textarea id="description" name="description" placeholder="Detailed description of the recording - 512 chars available"></textarea>
+                                        <div class="field-description">DA1neverBlank: Detailed description of the recording - 512 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rights & Licensing -->
+                        <div class="section">
+                            <div class="section-header">
+                                📜 Rights & Licensing
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="copyright">Copyright</label>
+                                        <textarea id="copyright" name="copyright" placeholder="Copyright notice (© YYYY Name. All Rights Reserved.) - 256 chars" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Copyright notice - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="copyright_holder">Copyright Holder</label>
+                                        <textarea id="copyright_holder" name="copyright_holder" placeholder="Copyright holder name - 256 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Entity holding copyright - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="publisher">Publisher</label>
+                                        <textarea id="publisher" name="publisher" placeholder="Music publisher name - 256 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Music publisher - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="isrc">ISRC</label>
+                                        <input type="text" id="isrc" name="isrc" placeholder="ISRC code (CC-XXX-YY-NNNNN format) - 12 chars">
+                                        <div class="field-description">DA1neverBlank: International Standard Recording Code - 12 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="iswc">ISWC</label>
+                                        <input type="text" id="iswc" name="iswc" placeholder="ISWC code (T-NNNNNNNNN-C format) - 11 chars">
+                                        <div class="field-description">DA1neverBlank: International Standard Musical Work Code - 11 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="upc">UPC</label>
+                                        <input type="text" id="upc" name="upc" placeholder="UPC barcode (12-digit numeric) - 12 chars">
+                                        <div class="field-description">DA1neverBlank: Universal Product Code - 12 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="catalog_number">Catalog Number</label>
+                                        <textarea id="catalog_number" name="catalog_number" placeholder="Release catalog number - 64 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Release catalog number - 64 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="label">Record Label</label>
+                                        <textarea id="label" name="label" placeholder="Record label name - 64 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Record label - 64 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Genre & Categorization -->
+                        <div class="section">
+                            <div class="section-header">
+                                🎯 Genre & Categorization
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="genre">Genre</label>
+                                        <textarea id="genre" name="genre" placeholder="Musical genres (comma-separated) - 256 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Musical genres - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="style">Style</label>
+                                        <textarea id="style" name="style" placeholder="Musical style description - 128 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Musical style - 128 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="mood">Mood</label>
+                                        <textarea id="mood" name="mood" placeholder="Emotional mood descriptors - 256 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Emotional mood - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="theme">Theme</label>
+                                        <textarea id="theme" name="theme" placeholder="Thematic content descriptors - 256 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Thematic content - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="keywords">Keywords</label>
+                                        <textarea id="keywords" name="keywords" placeholder="Search keywords (comma-separated) - 256 chars available" rows="1"></textarea>
+                                        <div class="field-description">DA1neverBlank: Search keywords - 256 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- W3C & Blockchain Integration -->
+                        <div class="section">
+                            <div class="section-header">
+                                🔗 W3C & Blockchain Integration
+                                <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                            </div>
+                            <div class="section-content">
+                                <div class="field-group">
+                                    <div class="field">
+                                        <label for="da1_uuid">DA1 UUID</label>
+                                        <input type="text" id="da1_uuid" name="da1_uuid" placeholder="DA1 unique identifier - 36 chars">
+                                        <div class="field-description">DA1neverBlank: Unique DA1 identifier - 36 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="content_hash">Content Hash (SHA-256)</label>
+                                        <input type="text" id="content_hash" name="content_hash" placeholder="SHA-256 hash of audio content">
+                                        <div class="field-description">DA1neverBlank: Cryptographic hash of audio content - 64 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="metadata_hash">Metadata Hash</label>
+                                        <input type="text" id="metadata_hash" name="metadata_hash" placeholder="SHA-256 hash of metadata">
+                                        <div class="field-description">DA1neverBlank: Hash of this metadata set - 64 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="blockchain_hash">Blockchain Transaction Hash</label>
+                                        <input type="text" id="blockchain_hash" name="blockchain_hash" placeholder="Blockchain transaction hash - 64 chars">
+                                        <div class="field-description">DA1neverBlank: Blockchain verification transaction - 64 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="smart_contract_address">Smart Contract Address</label>
+                                        <input type="text" id="smart_contract_address" name="smart_contract_address" placeholder="0x... smart contract address - 42 chars">
+                                        <div class="field-description">DA1neverBlank: Ethereum smart contract address - 42 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="ipfs_hash">IPFS Hash</label>
+                                        <input type="text" id="ipfs_hash" name="ipfs_hash" placeholder="QmXxxx... IPFS content hash">
+                                        <div class="field-description">DA1neverBlank: IPFS distributed storage hash - 46 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="web3_wallet_address">Web3 Wallet Address</label>
+                                        <input type="text" id="web3_wallet_address" name="web3_wallet_address" placeholder="0x... creator wallet address">
+                                        <div class="field-description">DA1neverBlank: Creator's Web3 wallet address - 42 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="nft_token_id">NFT Token ID</label>
+                                        <input type="text" id="nft_token_id" name="nft_token_id" placeholder="NFT token identifier">
+                                        <div class="field-description">DA1neverBlank: Associated NFT token ID - 256 characters maximum</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="w3c_verification">W3C Verification Hash</label>
+                                        <input type="text" id="w3c_verification" name="w3c_verification" placeholder="W3C verification status hash">
+                                        <div class="field-description">DA1neverBlank: W3C standards verification hash - 64 characters</div>
+                                    </div>
+                                    <div class="field">
+                                        <label for="decentralized_id">Decentralized ID (DID)</label>
+                                        <input type="text" id="decentralized_id" name="decentralized_id" placeholder="did:example:123456789abcdefghi">
+                                        <div class="field-description">DA1neverBlank: W3C Decentralized Identifier - 256 characters maximum</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
+                    
+                    <!-- FFmpeg Command Output Section -->
+                    <div class="section">
+                        <div class="section-header">
+                            🔧 Generated FFmpeg Command
+                            <button type="button" class="toggle-btn" onclick="toggleSection(this)">−</button>
+                        </div>
+                        <div class="section-content">
+                            <div id="mainCommandOutput" class="command-output" style="display: none;">
+                                <!-- FFmpeg command will appear here -->
+                            </div>
+                            <p id="commandPlaceholder" style="color: #666; text-align: center; padding: 20px;">
+                                Click "Generate FFmpeg Command" in the sidebar to create your embedding command.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <!-- File Operations -->
+            <div class="sidebar-section">
+                <div class="sidebar-header">
+                    📁 File Operations
+                </div>
+                <div id="workingFolder" style="font-size: 0.8em; color: #666; margin-bottom: 10px; word-break: break-all;">
+                    Working folder: Not set - use Save As to choose
+                </div>
+                <button class="btn" onclick="loadFile()">Load File</button>
+                <button class="btn" onclick="saveFile()">Save</button>
+                <button class="btn" onclick="saveAsFile()">Save As...</button>
+                <button class="btn" onclick="newFile()">New File</button>
+                <button class="btn code-view-btn" onclick="toggleCodeView()" id="codeViewBtn">
+                    &lt;/&gt; Code View
+                </button>
+                <div id="fileStatus" class="status-message"></div>
+            </div>
+
+            <!-- Output Format Selection -->
+            <div class="sidebar-section">
+                <div class="sidebar-header">
+                    🎯 Output Format
+                </div>
+                <div class="format-toggles">
+                    <button class="format-toggle active" onclick="selectFormat('mp3')" id="mp3-toggle">
+                        🎵 MP3
+                    </button>
+                    <button class="format-toggle coming-soon" disabled>
+                        🎼 FLAC
+                        <span class="coming-soon-label">Coming Soon</span>
+                    </button>
+                    <button class="format-toggle coming-soon" disabled>
+                        🎶 OGG
+                        <span class="coming-soon-label">Coming Soon</span>
+                    </button>
+                </div>
+                <div class="format-info">
+                    <div id="mp3-info" class="format-details active">
+                        <small>ID3v2.4 tags • Character limits apply</small>
+                    </div>
+                    <div id="flac-info" class="format-details">
+                        <small>Vorbis Comments • Extended length support</small>
+                    </div>
+                    <div id="ogg-info" class="format-details">
+                        <small>Vorbis Comments • Open standard</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generate Commands -->
+            <div class="sidebar-section">
+                <div class="sidebar-header">
+                    ⚡ Generate Commands
+                </div>
+                <button class="btn" onclick="generateCommand()">Generate FFmpeg Command</button>
+            </div>
+
+            <!-- Downloads Folder Setup Guide -->
+            <div class="sidebar-section" id="downloadsGuide" style="display: none;">
+                <div class="sidebar-header">
+                    📁 Downloads Setup
+                </div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+                    Create a dedicated folder for your DA1 metadata files:
+                </p>
+                <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 0.85em; margin-bottom: 10px;">
+                    <strong>1.</strong> Open your Downloads folder<br>
+                    <strong>2.</strong> Create new folder: "da1_system"<br>
+                    <strong>3.</strong> Save all .da1xml files there
+                </div>
+                <button class="btn btn-secondary" onclick="hideDownloadsGuide()">Got it!</button>
+            </div>
+
+            <!-- Future Chatbot Integration -->
+            <div class="sidebar-section">
+                <div class="sidebar-header">
+                    🤖 AI Assistant (Coming Soon)
+                </div>
+                <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+                    Voiceflow chatbot integration will guide users through DA1metaMetaData creation process.
+                </p>
+                <button class="btn" disabled style="opacity: 0.5;">Start AI Guided Setup</button>
+            </div>
+
+            <!-- Settings (Beta) -->
+            <div class="sidebar-section">
+                <div class="sidebar-header">
+                    ⚙️ Settings (Beta)
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9em;">
+                        <input type="checkbox" id="saveAnywhereEnabled" onchange="toggleSaveAnywhere()" style="margin: 0;">
+                        <span>Enable "Save anywhere"</span>
+                    </label>
+                    <div style="font-size: 0.8em; color: #666; margin-top: 5px; margin-left: 20px;">
+                        Requires browser File System Access API support. Default: Downloads/da1_system folder.
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9em;">
+                        <input type="checkbox" id="showBrowserWarnings" onchange="toggleBrowserWarnings()" style="margin: 0;">
+                        <span>Show browser warnings</span>
+                    </label>
+                    <div style="font-size: 0.8em; color: #666; margin-top: 5px; margin-left: 20px;">
+                        Re-enable compatibility warnings for unsupported browsers.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    ==============================================================================
+    SECTION 3: HTML BODY STRUCTURE END
+    ============================================================================== 
+    -->
+
+    <!-- 
+    ==============================================================================
+    SECTION 4: JAVASCRIPT FUNCTIONALITY START
+    ==============================================================================
+    JavaScript provides interactive behavior and dynamic functionality
+    - Variables store and manipulate data
+    - Functions perform specific tasks when called
+    - Event handlers respond to user interactions
+    - DOM manipulation changes page content dynamically
+    - Form processing collects and validates user input
+    - FFmpeg command generation builds metadata embedding commands
+    
+    Educational References:
+    - JavaScript Basics: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+    - DOM Manipulation: https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
+    - JavaScript Functions: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
+    - Event Handling: https://developer.mozilla.org/en-US/docs/Web/Events
+    - Form Validation: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
+    ============================================================================== 
+    -->
+    <script>
+        // Global variable to track current output format
+        let currentOutputFormat = 'mp3';
+        
+        // Format selection function
+        function selectFormat(format) {
+            // Only allow MP3 for now
+            if (format !== 'mp3') {
+                return;
+            }
+            
+            // Update current format
+            currentOutputFormat = format;
+            
+            // Update UI
+            document.querySelectorAll('.format-toggle').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.format-details').forEach(info => {
+                info.classList.remove('active');
+            });
+            
+            // Activate selected format
+            document.getElementById(format + '-toggle').classList.add('active');
+            document.getElementById(format + '-info').classList.add('active');
+            
+            console.log('Output format selected:', format);
+        }
+        
+        // Set current timestamp for last_modified
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const timestamp = now.toISOString().slice(0, 16);
+            document.getElementById('last_modified').value = timestamp;
+            
+            // Always ensure DA1 version is set
+            document.getElementById('da1_version').value = '1.a.1';
+            
+            // Initialize filename in header
+            const currentFilename = document.getElementById('current_filename').value || 'untitled';
+            updateHeaderFilename(currentFilename);
+            
+            // Initialize working folder display
+            initializeWorkingFolder();
+            
+            // Restore file state from localStorage
+            restoreFileState();
+            
+            loadFormData();
+            setupAutoSave();
+            
+            // Setup global auto-resize for ALL input fields
+            setupGlobalAutoResize();
+            
+            // Initialize default output format
+            selectFormat('mp3');
+            
+            // Check browser compatibility for proper file operations
+            checkBrowserCompatibility();
+            
+            // Load saved settings
+            loadSettings();
+        });
+        
+        function loadSettings() {
+            // Load "Save anywhere" setting
+            const saveAnywhereEnabled = localStorage.getItem('da1_save_anywhere_enabled') === 'true';
+            const checkbox = document.getElementById('saveAnywhereEnabled');
+            if (checkbox) {
+                checkbox.checked = saveAnywhereEnabled;
+            }
+            
+            // Load "Show browser warnings" setting
+            const browserWarningDismissed = localStorage.getItem('da1_browser_warning_dismissed');
+            const warningCheckbox = document.getElementById('showBrowserWarnings');
+            if (warningCheckbox) {
+                warningCheckbox.checked = !browserWarningDismissed; // Inverted logic
+            }
+        }
+        
+        function toggleBrowserWarnings() {
+            const checkbox = document.getElementById('showBrowserWarnings');
+            const enabled = checkbox.checked;
+            
+            if (enabled) {
+                // Re-enable warnings
+                localStorage.removeItem('da1_browser_warning_dismissed');
+                showStatus('✅ Browser warnings re-enabled', 'success');
+            } else {
+                // Disable warnings
+                localStorage.setItem('da1_browser_warning_dismissed', 'true');
+                showStatus('⚠️ Browser warnings disabled', 'info');
+            }
+        }
+        
+        function hideDownloadsGuide() {
+            const guide = document.getElementById('downloadsGuide');
+            if (guide) {
+                guide.style.display = 'none';
+                localStorage.setItem('da1_downloads_guide_hidden', 'true');
+            }
+        }
+        
+        function showDismissibleStatus(message, type, dismissFunction) {
+            const statusEl = document.getElementById('fileStatus');
+            if (statusEl) {
+                statusEl.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>${message}</span>
+                        <button onclick="${dismissFunction}()" style="background: none; border: none; font-size: 16px; cursor: pointer; margin-left: 10px;">×</button>
+                    </div>
+                `;
+                statusEl.className = `status-message status-${type}`;
+                statusEl.style.display = 'block';
+            }
+        }
+        
+        function dismissBrowserWarning() {
+            localStorage.setItem('da1_browser_warning_dismissed', 'true');
+            const statusEl = document.getElementById('fileStatus');
+            if (statusEl) {
+                statusEl.style.display = 'none';
+            }
+        }
+        
+        function toggleSaveAnywhere() {
+            const checkbox = document.getElementById('saveAnywhereEnabled');
+            const enabled = checkbox.checked;
+            
+            // Save setting
+            localStorage.setItem('da1_save_anywhere_enabled', enabled.toString());
+            
+            if (enabled) {
+                // Check if browser actually supports it
+                if (!window.showSaveFilePicker) {
+                    showStatus('⚠️ "Save anywhere" enabled but browser doesn\'t support File System Access API', 'warning');
+                } else {
+                    showStatus('✅ "Save anywhere" enabled - you can now save to any folder', 'success');
+                }
+            } else {
+                showStatus('📁 "Save anywhere" disabled - using Downloads/da1_system folder', 'info');
+            }
+        }
+        
+        function detectBrowserInfo() {
+            const userAgent = navigator.userAgent;
+            const browserInfo = {
+                name: 'Unknown',
+                version: 'Unknown',
+                isBrave: false,
+                isChrome: false,
+                isEdge: false,
+                isSafari: false,
+                isFirefox: false
+            };
+            
+            // Brave Browser Detection
+            // Brave identifies as Chrome but has additional properties
+            if (navigator.brave && navigator.brave.isBrave) {
+                // Modern Brave detection method
+                browserInfo.isBrave = true;
+                browserInfo.name = 'Brave';
+                
+                // Extract version from user agent
+                const braveMatch = userAgent.match(/Chrome\/(\d+\.\d+)/);
+                if (braveMatch) {
+                    browserInfo.version = braveMatch[1];
+                }
+            } else if (userAgent.includes('Chrome') && userAgent.includes('Brave')) {
+                // Fallback Brave detection
+                browserInfo.isBrave = true;
+                browserInfo.name = 'Brave';
+                const versionMatch = userAgent.match(/Brave\/(\d+\.\d+)/);
+                if (versionMatch) {
+                    browserInfo.version = versionMatch[1];
+                }
+            } else if (userAgent.includes('Edg/')) {
+                // Microsoft Edge (Chromium-based)
+                browserInfo.isEdge = true;
+                browserInfo.name = 'Microsoft Edge';
+                const edgeMatch = userAgent.match(/Edg\/(\d+\.\d+)/);
+                if (edgeMatch) {
+                    browserInfo.version = edgeMatch[1];
+                }
+            } else if (userAgent.includes('Chrome') && !userAgent.includes('Edge')) {
+                // Google Chrome
+                browserInfo.isChrome = true;
+                browserInfo.name = 'Google Chrome';
+                const chromeMatch = userAgent.match(/Chrome\/(\d+\.\d+)/);
+                if (chromeMatch) {
+                    browserInfo.version = chromeMatch[1];
+                }
+            } else if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) {
+                // Safari
+                browserInfo.isSafari = true;
+                browserInfo.name = 'Safari';
+                const safariMatch = userAgent.match(/Version\/(\d+\.\d+)/);
+                if (safariMatch) {
+                    browserInfo.version = safariMatch[1];
+                }
+            } else if (userAgent.includes('Firefox')) {
+                // Firefox
+                browserInfo.isFirefox = true;
+                browserInfo.name = 'Firefox';
+                const firefoxMatch = userAgent.match(/Firefox\/(\d+\.\d+)/);
+                if (firefoxMatch) {
+                    browserInfo.version = firefoxMatch[1];
+                }
+            }
+            
+            return browserInfo;
+        }
+
+        function checkBrowserCompatibility() {
+            const hasFileSystemAccess = !!(window.showOpenFilePicker && window.showSaveFilePicker);
+            const userAgent = navigator.userAgent;
+            const isSecureContext = window.isSecureContext;
+            const browserInfo = detectBrowserInfo();
+            
+            console.log('=== DA1 BROWSER COMPATIBILITY CHECK ===');
+            console.log('- User Agent:', userAgent);
+            console.log('- Detected Browser:', browserInfo.name, browserInfo.version);
+            console.log('- Is Brave Browser:', browserInfo.isBrave);
+            console.log('- Secure Context (HTTPS/localhost):', isSecureContext);
+            console.log('- showOpenFilePicker available:', !!window.showOpenFilePicker);
+            console.log('- showSaveFilePicker available:', !!window.showSaveFilePicker);
+            console.log('- File System Access API supported:', hasFileSystemAccess);
+            console.log('=== WILL USE DOWNLOADS FOLDER:', !hasFileSystemAccess, '===');
+            
+            // Special handling for Brave Browser
+            if (browserInfo.isBrave) {
+                if (hasFileSystemAccess) {
+                    showDismissibleStatus('🦁 Excellent! Brave Browser detected with full File System Access API support. You can save DA1XML files anywhere on your system.', 'success', 'dismissBraveSuccess');
+                    console.log('✅ Brave Browser - Full file operations available');
+                } else {
+                    // Brave without File System API - provide configuration instructions
+                    if (!isSecureContext) {
+                        showDismissibleStatus('🦁 Brave Browser detected! Please serve this page via HTTPS or localhost to enable full file operations. Currently using Downloads folder fallback.', 'warning', 'dismissBraveHttps');
+                    } else {
+                        // Show Brave-specific configuration instructions
+                        showBraveConfigurationInstructions();
+                    }
+                }
+                return; // Exit early for Brave-specific handling
+            }
+            
+            // Standard handling for other browsers
+            if (!hasFileSystemAccess) {
+                let reason = '';
+                if (!isSecureContext) {
+                    reason = ' (requires HTTPS or localhost)';
+                }
+                
+                // Check if user has dismissed browser warning
+                const browserWarningDismissed = localStorage.getItem('da1_browser_warning_dismissed');
+                if (!browserWarningDismissed) {
+                    showDismissibleStatus('⚠️ Browser compatibility notice: For best file operations, we recommend using Brave Browser (our primary supported browser), Chrome 86+, Edge 86+, or Safari 16+.', 'warning', 'dismissBrowserWarning');
+                }
+                console.log('File System Access API not supported. Using Downloads folder fallback.');
+                
+                // Show Downloads setup guide (unless user dismissed it)
+                const guide = document.getElementById('downloadsGuide');
+                const guideHidden = localStorage.getItem('da1_downloads_guide_hidden');
+                if (guide && !guideHidden) {
+                    guide.style.display = 'block';
+                }
+                
+                // Show setup tip for Downloads folder organization
+                setTimeout(() => {
+                    showStatus('💡 Using Downloads fallback: Create ~/Downloads/da1_system/ folder to keep your metadata files organized', 'info');
+                }, 5000);
+            } else {
+                console.log('File System Access API supported - full file operations available');
+                showStatus(`✅ ${browserInfo.name} - File operations ready`, 'success');
+            }
+        }
+
+        function showBraveConfigurationInstructions() {
+            const configMessage = `
+🦁 <strong>Brave Browser Configuration Required</strong><br><br>
+To enable full DA1 file operations in Brave, please follow these steps:<br><br>
+<strong>1. Enable Experimental Web Platform Features:</strong><br>
+• Type <code>brave://flags/</code> in your address bar<br>
+• Search for "Experimental Web Platform features"<br>
+• Set it to "Enabled"<br>
+• Restart Brave Browser<br><br>
+<strong>2. Ensure HTTPS or Localhost:</strong><br>
+• File System Access API requires secure context<br>
+• Use HTTPS or serve from localhost<br><br>
+<strong>3. Check Privacy Settings:</strong><br>
+• Go to Settings → Privacy and security<br>
+• Ensure "File downloads" is not blocked<br><br>
+<em>After completing these steps, refresh this page to activate full file operations.</em>
+            `;
+            
+            showDismissibleStatus(configMessage, 'info', 'dismissBraveConfig');
+            
+            // Also log detailed instructions to console
+            console.log('=== BRAVE BROWSER CONFIGURATION INSTRUCTIONS ===');
+            console.log('1. Enable Experimental Web Platform Features:');
+            console.log('   - Navigate to brave://flags/');
+            console.log('   - Search for "Experimental Web Platform features"');
+            console.log('   - Set to "Enabled"');
+            console.log('   - Restart Brave Browser');
+            console.log('2. Ensure secure context (HTTPS or localhost)');
+            console.log('3. Check Privacy settings for file download permissions');
+            console.log('4. Refresh page after configuration');
+            console.log('=== END CONFIGURATION INSTRUCTIONS ===');
+        }
+
+        // Toggle section collapse/expand
+        function toggleSection(button) {
+            const content = button.parentElement.nextElementSibling;
+            const isCollapsed = button.textContent === '+';
+            
+            if (isCollapsed) {
+                content.style.display = 'block';
+                button.textContent = '−';
+            } else {
+                content.style.display = 'none';
+                button.textContent = '+';
+            }
+        }
+
+        // Auto-save form data to localStorage
+        function setupAutoSave() {
+            const form = document.getElementById('metadata-form');
+            const inputs = form.querySelectorAll('input, textarea, select');
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', saveFormData);
+                input.addEventListener('change', saveFormData);
+                
+                // Special handling for filename changes to update header
+                if (input.id === 'current_filename') {
+                    input.addEventListener('input', function(e) {
+                        updateHeaderFilename(e.target.value || 'untitled');
+                    });
+                }
+            });
+        }
+        
+        function saveFormData() {
+            const data = getFormData();
+            localStorage.setItem('da1_form_data', JSON.stringify(data));
+            showAutoSaveIndicator();
+        }
+        
+        function loadFormData() {
+            console.log('loadFormData() called - loading from localStorage');
+            const savedData = localStorage.getItem('da1_form_data');
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    console.log('Loading localStorage filename:', data.current_filename);
+                    setFormData(data);
+                } catch (e) {
+                    console.error('Error loading form data:', e);
+                }
+            }
+        }
+        
+        function showAutoSaveIndicator() {
+            // Create or update auto-save indicator
+            let indicator = document.getElementById('autoSaveIndicator');
+            if (!indicator) {
+                indicator = document.createElement('div');
+                indicator.id = 'autoSaveIndicator';
+                indicator.style.cssText = `
+                    position: fixed; top: 20px; right: 380px; 
+                    background: #28a745; color: white; 
+                    padding: 8px 16px; border-radius: 20px; 
+                    font-size: 12px; z-index: 1001;
+                    opacity: 0; transition: opacity 0.3s ease;
+                `;
+                indicator.textContent = '✓ Auto-saved';
+                document.body.appendChild(indicator);
+            }
+            
+            // Show indicator briefly
+            indicator.style.opacity = '1';
+            setTimeout(() => {
+                indicator.style.opacity = '0';
+            }, 2000);
+        }
+
+        // Get form data as object
+        function getFormData() {
+            // Use code-view-aware version if code view functionality is available
+            if (typeof getFormDataCodeViewAware === 'function') {
+                return getFormDataCodeViewAware();
+            }
+            
+            const data = {};
+            
+            // Get all form inputs directly by querying the DOM
+            const inputs = document.querySelectorAll('#metadata-form input, #metadata-form select, #metadata-form textarea');
+            
+            inputs.forEach(input => {
+                if (input.name && input.value !== undefined) {
+                    data[input.name] = input.value;
+                }
+            });
+            
+            return data;
+        }
+
+        // Set form data from object
+        function setFormData(data) {
+            // Store current filename before overwriting
+            const currentDisplayedFilename = document.getElementById('current_filename').value;
+            
+            for (const [key, value] of Object.entries(data)) {
+                const element = document.getElementById(key);
+                if (element && value !== undefined) {
+                    // Always enforce DA1 version regardless of loaded data
+                    if (key === 'da1_version') {
+                        element.value = '1.a.1';
+                        continue;
+                    }
+                    
+                    // Skip overwriting filename if we just loaded a file
+                    if (key === 'current_filename' && window.justLoadedFile) {
+                        continue;
+                    }
+                    
+                    // Store original value first
+                    if (codeViewEnabled) {
+                        originalValues.set(element.id, value);
+                        element.value = convertToCodeView(value);
+                    } else {
+                        element.value = value;
+                    }
+                }
+            }
+            
+            // Update header whenever form data is set
+            const currentFilename = document.getElementById('current_filename').value || 'untitled';
+            updateHeaderFilename(currentFilename);
+            
+            // Extra safety: always ensure DA1 version is set
+            const versionElement = document.getElementById('da1_version');
+            if (versionElement) {
+                versionElement.value = '1.a.1';
+            }
+        }
+
+        // Generate DA1XML from form data
+        function generateDA1XML(data) {
+            const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<da1:metadata xmlns:da1="https://da1.fm/schema" version="${data.da1_version || '1.a.1'}">
+    <da1:core>
+        <da1:title>${escapeXml(data.title || '')}</da1:title>
+        <da1:subtitle>${escapeXml(data.subtitle || '')}</da1:subtitle>
+        <da1:album>${escapeXml(data.album || '')}</da1:album>
+        <da1:artist>${escapeXml(data.artist || '')}</da1:artist>
+        <da1:album_artist>${escapeXml(data.album_artist || '')}</da1:album_artist>
+        <da1:track>${escapeXml(data.track || '')}</da1:track>
+        <da1:disc>${escapeXml(data.disc || '')}</da1:disc>
+        <da1:year>${escapeXml(data.year || '')}</da1:year>
+        <da1:date>${escapeXml(data.date || '')}</da1:date>
+        <da1:grouping>${escapeXml(data.grouping || '')}</da1:grouping>
+        <da1:version>${escapeXml(data.version || '')}</da1:version>
+        <da1:content_group_description>${escapeXml(data.content_group_description || '')}</da1:content_group_description>
+    </da1:core>
+    
+    <da1:creators>
+        <da1:composer>${escapeXml(data.composer || '')}</da1:composer>
+        <da1:lyricist>${escapeXml(data.lyricist || '')}</da1:lyricist>
+        <da1:songwriter>${escapeXml(data.songwriter || '')}</da1:songwriter>
+        <da1:arranger>${escapeXml(data.arranger || '')}</da1:arranger>
+        <da1:conductor>${escapeXml(data.conductor || '')}</da1:conductor>
+        <da1:producer>${escapeXml(data.producer || '')}</da1:producer>
+        <da1:performer>${escapeXml(data.performer || '')}</da1:performer>
+        <da1:engineer>${escapeXml(data.engineer || '')}</da1:engineer>
+        <da1:mixing_engineer>${escapeXml(data.mixing_engineer || '')}</da1:mixing_engineer>
+        <da1:mastering_engineer>${escapeXml(data.mastering_engineer || '')}</da1:mastering_engineer>
+        <da1:recording_engineer>${escapeXml(data.recording_engineer || '')}</da1:recording_engineer>
+        <da1:technician>${escapeXml(data.technician || '')}</da1:technician>
+    </da1:creators>
+    
+    <da1:technical>
+        <da1:bpm>${escapeXml(data.bpm || '')}</da1:bpm>
+        <da1:tempo>${escapeXml(data.tempo || '')}</da1:tempo>
+        <da1:key>${escapeXml(data.key || '')}</da1:key>
+        <da1:time_signature>${escapeXml(data.time_signature || '')}</da1:time_signature>
+        <da1:sample_rate>${escapeXml(data.sample_rate || '')}</da1:sample_rate>
+        <da1:bit_depth>${escapeXml(data.bit_depth || '')}</da1:bit_depth>
+        <da1:channels>${escapeXml(data.channels || '')}</da1:channels>
+        <da1:duration>${escapeXml(data.duration || '')}</da1:duration>
+        <da1:encoding_settings>${escapeXml(data.encoding_settings || '')}</da1:encoding_settings>
+        <da1:encoded_by>${escapeXml(data.encoded_by || '')}</da1:encoded_by>
+    </da1:technical>
+    
+    <da1:content>
+        <da1:lyrics>${escapeXml(data.lyrics || '')}</da1:lyrics>
+        <da1:lyrics_language>${escapeXml(data.lyrics_language || '')}</da1:lyrics_language>
+        <da1:english_translation>${escapeXml(data.english_translation || '')}</da1:english_translation>
+        <da1:translation_author>${escapeXml(data.translation_author || '')}</da1:translation_author>
+        <da1:comment>${escapeXml(data.comment || '')}</da1:comment>
+        <da1:description>${escapeXml(data.description || '')}</da1:description>
+    </da1:content>
+    
+    <da1:rights>
+        <da1:copyright>${escapeXml(data.copyright || '')}</da1:copyright>
+        <da1:copyright_holder>${escapeXml(data.copyright_holder || '')}</da1:copyright_holder>
+        <da1:publisher>${escapeXml(data.publisher || '')}</da1:publisher>
+        <da1:isrc>${escapeXml(data.isrc || '')}</da1:isrc>
+        <da1:iswc>${escapeXml(data.iswc || '')}</da1:iswc>
+        <da1:upc>${escapeXml(data.upc || '')}</da1:upc>
+        <da1:catalog_number>${escapeXml(data.catalog_number || '')}</da1:catalog_number>
+        <da1:label>${escapeXml(data.label || '')}</da1:label>
+    </da1:rights>
+    
+    <da1:categorization>
+        <da1:genre>${escapeXml(data.genre || '')}</da1:genre>
+        <da1:style>${escapeXml(data.style || '')}</da1:style>
+        <da1:mood>${escapeXml(data.mood || '')}</da1:mood>
+        <da1:theme>${escapeXml(data.theme || '')}</da1:theme>
+        <da1:keywords>${escapeXml(data.keywords || '')}</da1:keywords>
+    </da1:categorization>
+    
+    <da1:blockchain>
+        <da1:uuid>${escapeXml(data.da1_uuid || '')}</da1:uuid>
+        <da1:content_hash>${escapeXml(data.content_hash || '')}</da1:content_hash>
+        <da1:metadata_hash>${escapeXml(data.metadata_hash || '')}</da1:metadata_hash>
+        <da1:blockchain_hash>${escapeXml(data.blockchain_hash || '')}</da1:blockchain_hash>
+        <da1:smart_contract_address>${escapeXml(data.smart_contract_address || '')}</da1:smart_contract_address>
+        <da1:ipfs_hash>${escapeXml(data.ipfs_hash || '')}</da1:ipfs_hash>
+        <da1:web3_wallet_address>${escapeXml(data.web3_wallet_address || '')}</da1:web3_wallet_address>
+        <da1:nft_token_id>${escapeXml(data.nft_token_id || '')}</da1:nft_token_id>
+    </da1:blockchain>
+    
+    <da1:w3c>
+        <da1:verification_hash>${escapeXml(data.w3c_verification || '')}</da1:verification_hash>
+        <da1:decentralized_id>${escapeXml(data.decentralized_id || '')}</da1:decentralized_id>
+        <da1:standards_compliance>HTML5, RDFa, Schema.org, Dublin Core</da1:standards_compliance>
+    </da1:w3c>
+    
+    <da1:system>
+        <da1:current_filename>${escapeXml(data.current_filename || '')}</da1:current_filename>
+        <da1:filetype>${escapeXml(data.da1_filetype || 'file')}</da1:filetype>
+        <da1:file_description>${escapeXml(data.file_description || '')}</da1:file_description>
+        <da1:version>${escapeXml(data.da1_version || '1.a.1')}</da1:version>
+        <da1:attribution_level>${escapeXml(data.da1_attribution_level || '')}</da1:attribution_level>
+        <da1:creation_tool>${escapeXml(data.creation_tool || '')}</da1:creation_tool>
+        <da1:validation_status>${escapeXml(data.validation_status || '')}</da1:validation_status>
+        <da1:last_modified>${escapeXml(data.last_modified || '')}</da1:last_modified>
+    </da1:system>
+</da1:metadata>`;
+            
+            return xml;
+        }
+
+        // Parse DA1XML to form data
+        function parseDA1XML(xmlString) {
+            console.log('Parsing DA1XML, length:', xmlString.length);
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+            
+            // Check for parsing errors
+            const parserError = xmlDoc.querySelector('parsererror');
+            if (parserError) {
+                console.error('XML parsing error:', parserError.textContent);
+                throw new Error('Invalid XML format: ' + parserError.textContent);
+            }
+            
+            const data = {};
+            
+            // Helper function to get text content safely
+            function getTextContent(path) {
+                const element = xmlDoc.querySelector(path);
+                const result = element ? element.textContent : '';
+                if (element) {
+                    console.log(`Found element for path "${path}":`, result);
+                }
+                return result;
+            }
+            
+            // Core fields
+            data.title = getTextContent('da1\\:title, title');
+            data.subtitle = getTextContent('da1\\:subtitle, subtitle');
+            data.album = getTextContent('da1\\:album, album');
+            data.artist = getTextContent('da1\\:artist, artist');
+            data.album_artist = getTextContent('da1\\:album_artist, album_artist');
+            data.track = getTextContent('da1\\:track, track');
+            data.disc = getTextContent('da1\\:disc, disc');
+            data.year = getTextContent('da1\\:year, year');
+            data.date = getTextContent('da1\\:date, date');
+            data.grouping = getTextContent('da1\\:grouping, grouping');
+            data.version = getTextContent('da1\\:version, version');
+            data.content_group_description = getTextContent('da1\\:content_group_description, content_group_description');
+            
+            // Creators
+            data.composer = getTextContent('da1\\:composer, composer');
+            data.lyricist = getTextContent('da1\\:lyricist, lyricist');
+            data.songwriter = getTextContent('da1\\:songwriter, songwriter');
+            data.arranger = getTextContent('da1\\:arranger, arranger');
+            data.conductor = getTextContent('da1\\:conductor, conductor');
+            data.producer = getTextContent('da1\\:producer, producer');
+            data.performer = getTextContent('da1\\:performer, performer');
+            data.engineer = getTextContent('da1\\:engineer, engineer');
+            data.mixing_engineer = getTextContent('da1\\:mixing_engineer, mixing_engineer');
+            data.mastering_engineer = getTextContent('da1\\:mastering_engineer, mastering_engineer');
+            data.recording_engineer = getTextContent('da1\\:recording_engineer, recording_engineer');
+            data.technician = getTextContent('da1\\:technician, technician');
+            
+            // Technical
+            data.bpm = getTextContent('da1\\:bpm, bpm');
+            data.tempo = getTextContent('da1\\:tempo, tempo');
+            data.key = getTextContent('da1\\:key, key');
+            data.time_signature = getTextContent('da1\\:time_signature, time_signature');
+            data.sample_rate = getTextContent('da1\\:sample_rate, sample_rate');
+            data.bit_depth = getTextContent('da1\\:bit_depth, bit_depth');
+            data.channels = getTextContent('da1\\:channels, channels');
+            data.duration = getTextContent('da1\\:duration, duration');
+            data.encoding_settings = getTextContent('da1\\:encoding_settings, encoding_settings');
+            data.encoded_by = getTextContent('da1\\:encoded_by, encoded_by');
+            
+            // Content
+            data.lyrics = getTextContent('da1\\:lyrics, lyrics');
+            data.lyrics_language = getTextContent('da1\\:lyrics_language, lyrics_language');
+            data.english_translation = getTextContent('da1\\:english_translation, english_translation');
+            data.translation_author = getTextContent('da1\\:translation_author, translation_author');
+            data.comment = getTextContent('da1\\:comment, comment');
+            data.description = getTextContent('da1\\:description, description');
+            
+            // Rights
+            data.copyright = getTextContent('da1\\:copyright, copyright');
+            data.copyright_holder = getTextContent('da1\\:copyright_holder, copyright_holder');
+            data.publisher = getTextContent('da1\\:publisher, publisher');
+            data.isrc = getTextContent('da1\\:isrc, isrc');
+            data.iswc = getTextContent('da1\\:iswc, iswc');
+            data.upc = getTextContent('da1\\:upc, upc');
+            data.catalog_number = getTextContent('da1\\:catalog_number, catalog_number');
+            data.label = getTextContent('da1\\:label, label');
+            
+            // Categorization
+            data.genre = getTextContent('da1\\:genre, genre');
+            data.style = getTextContent('da1\\:style, style');
+            data.mood = getTextContent('da1\\:mood, mood');
+            data.theme = getTextContent('da1\\:theme, theme');
+            data.keywords = getTextContent('da1\\:keywords, keywords');
+            
+            // Blockchain
+            data.da1_uuid = getTextContent('da1\\:uuid, uuid');
+            data.content_hash = getTextContent('da1\\:content_hash, content_hash');
+            data.metadata_hash = getTextContent('da1\\:metadata_hash, metadata_hash');
+            data.blockchain_hash = getTextContent('da1\\:blockchain_hash, blockchain_hash');
+            data.smart_contract_address = getTextContent('da1\\:smart_contract_address, smart_contract_address');
+            data.ipfs_hash = getTextContent('da1\\:ipfs_hash, ipfs_hash');
+            data.web3_wallet_address = getTextContent('da1\\:web3_wallet_address, web3_wallet_address');
+            data.nft_token_id = getTextContent('da1\\:nft_token_id, nft_token_id');
+            
+            // W3C
+            data.w3c_verification = getTextContent('da1\\:verification_hash, verification_hash');
+            data.decentralized_id = getTextContent('da1\\:decentralized_id, decentralized_id');
+            
+            // System
+            data.current_filename = getTextContent('da1\\:current_filename, current_filename');
+            data.da1_filetype = getTextContent('da1\\:filetype, filetype') || 'file';
+            data.file_description = getTextContent('da1\\:file_description, file_description');
+            data.da1_version = getTextContent('da1\\:version, version');
+            data.da1_attribution_level = getTextContent('da1\\:attribution_level, attribution_level');
+            data.creation_tool = getTextContent('da1\\:creation_tool, creation_tool');
+            data.validation_status = getTextContent('da1\\:validation_status, validation_status');
+            data.last_modified = getTextContent('da1\\:last_modified, last_modified');
+            
+            return data;
+        }
+
+        // Escape XML special characters
+        function escapeXml(text) {
+            if (!text) return '';
+            if (typeof text !== 'string') text = String(text);
+            
+            // First, unescape any existing entities to avoid double-escaping
+            let unescaped = text
+                .replace(/&amp;/g, '&')
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&apos;/g, "'")
+                .replace(/&quot;/g, '"');
+            
+            // Then escape all special characters
+            let escaped = unescaped.replace(/[<>&'"]/g, function (c) {
+                switch (c) {
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '&': return '&amp;';
+                    case "'": return '&apos;';
+                    case '"': return '&quot;';
+                    default: return c;
+                }
+            });
+            
+            // Debug logging for troublesome content
+            if (unescaped !== escaped) {
+                console.log('XML escaping applied:', unescaped, '->', escaped);
+            }
+            
+            return escaped;
+        }
+
+        // Export DA1XML
+        function exportDA1XML() {
+            const data = getFormData();
+            const xml = generateDA1XML(data);
+            
+            const filename = `${data.title || 'untitled'}_metadata.da1xml`.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            
+            const blob = new Blob([xml], { type: 'application/xml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showStatus('DA1XML exported successfully!', 'success');
+        }
+
+        // Import DA1XML
+        function importDA1XML(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = parseDA1XML(e.target.result);
+                    setFormData(data);
+                    showStatus('DA1XML imported successfully!', 'success');
+                } catch (error) {
+                    showStatus('Error importing DA1XML: ' + error.message, 'error');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Old template and command management functions removed
+
+        // Command management
+        function generateCommand() {
+            // Force save current form state first
+            saveFormData();
+            
+            // Get fresh form data directly from DOM
+            const data = getFormData();
+            
+            // Debug: Log creation_tool to console
+            console.log('Creation Tool value:', data.creation_tool);
+            
+            const command = createFFmpegCommand(data);
+            
+            // Update main command output only (bottom section)
+            const mainOutput = document.getElementById('mainCommandOutput');
+            const placeholder = document.getElementById('commandPlaceholder');
+            
+            mainOutput.textContent = command;
+            mainOutput.style.display = 'block';
+            placeholder.style.display = 'none';
+            
+            // Auto-save the generated command
+            localStorage.setItem('da1_last_generated_command', command);
+            
+            showStatus('FFmpeg command generated! Check browser console for debug info.', 'success');
+        }
+
+        /* 
+        ==============================================================================
+        SECTION 4A: FFMPEG COMMAND GENERATION - CORE FUNCTIONALITY
+        ==============================================================================
+        This function builds a complete FFmpeg command to embed metadata into MP3 files
+        
+        KEY CONCEPTS:
+        - Function Declaration: Named function that can be called with parameters
+        - Parameter (data): Object containing all form field values
+        - String Templates: Building complex command strings dynamically
+        - Object Iteration: Loop through data to include all metadata fields
+        - Escape Characters: Handle special characters in file names and metadata
+        
+        FFMPEG CONCEPTS:
+        - FFmpeg: Command-line tool for audio/video processing
+        - Metadata: Information about the media file (title, artist, etc.)
+        - ID3 Tags: Standard for metadata in MP3 files
+        - -metadata flag: FFmpeg parameter to embed metadata
+        
+        DA1 SYSTEM:
+        - Extensible Design: Automatically includes new fields without code changes
+        - Field Categories: Organized groupings for better command structure
+        - Complete Attribution: Embeds 200+ metadata fields for comprehensive info
+        
+        Educational References:
+        - JavaScript Functions: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions
+        - FFmpeg Documentation: https://ffmpeg.org/ffmpeg.html
+        - ID3 Tag Standard: https://id3.org/
+        - Object Iteration: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
+        - String Methods: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+        ============================================================================== 
+        */
+        
+        // Create comprehensive FFmpeg command from ALL form data - extensible for future fields
+        function createFFmpegCommand(data) {
+            const inputFile = `"${data.title || 'input'}.mp3"`.replace(/[^a-zA-Z0-9\-_\.\"]/g, '_');
+            const outputFile = `"${data.title || 'output'}_complete_metadata.mp3"`.replace(/[^a-zA-Z0-9\-_\.\"]/g, '_');
+            
+            let command = `ffmpeg -i ${inputFile} \\\n`;
+            
+            // COMPREHENSIVE METADATA - ALL FIELDS + EXTENSIBLE
+            // This function automatically includes ANY field from the form data
+            // Future fields will be automatically included without code changes
+            
+            const fieldCategories = {
+                // Core Track Identification (12 fields)
+                core: ['title', 'subtitle', 'album', 'artist', 'album_artist', 'track', 'disc', 'year', 'date', 'grouping', 'version', 'content_group_description'],
+                
+                // Creators & Contributors (12 fields) 
+                creators: ['composer', 'lyricist', 'songwriter', 'arranger', 'conductor', 'producer', 'performer', 'engineer', 'mixing_engineer', 'mastering_engineer', 'recording_engineer', 'technician'],
+                
+                // Technical Properties (10 fields)
+                technical: ['bpm', 'tempo', 'key', 'time_signature', 'sample_rate', 'bit_depth', 'channels', 'duration', 'encoding_settings', 'encoded_by'],
+                
+                // Lyrics & Text Content (6 fields)
+                content: ['lyrics', 'lyrics_language', 'english_translation', 'translation_author', 'comment', 'description'],
+                
+                // Rights & Licensing (8 fields)
+                rights: ['copyright', 'copyright_holder', 'publisher', 'isrc', 'iswc', 'upc', 'catalog_number', 'label'],
+                
+                // Genre & Categorization (5 fields)
+                categorization: ['genre', 'style', 'mood', 'theme', 'keywords'],
+                
+                // W3C & Blockchain Integration (10 fields)
+                blockchain: ['da1_uuid', 'content_hash', 'metadata_hash', 'blockchain_hash', 'smart_contract_address', 'ipfs_hash', 'web3_wallet_address', 'nft_token_id', 'w3c_verification', 'decentralized_id'],
+                
+                // DA1 File & System Properties (8 fields total: 3 file + 5 system)
+                system: ['da1_version', 'da1_attribution_level', 'creation_tool', 'validation_status', 'last_modified']
+            };
+            
+            // Add comment header for each category
+            command += `# DA1metaMetaData Complete Field Export\n`;
+            command += `# Generated: ${new Date().toISOString()}\n`;
+            command += `# Total Fields: ${Object.values(fieldCategories).flat().length}+\n\\\n`;
+            
+            // Process each category
+            Object.entries(fieldCategories).forEach(([category, fields]) => {
+                command += `# ${category.toUpperCase()} METADATA\n\\\n`;
+                fields.forEach(field => {
+                    if (data[field] && data[field].toString().trim()) {
+                        // Escape quotes and handle multiline content
+                        const value = data[field].toString().replace(/"/g, '\\"').replace(/\\n/g, '\\\\n');
+                        command += `-metadata ${field}="${value}" \\\\\n`;
+                    }
+                });
+                command += `\\\n`;
+            });
+            
+            // EXTENSIBLE: Add any additional fields not in predefined categories
+            command += `# ADDITIONAL/FUTURE FIELDS\n\\\n`;
+            const knownFields = Object.values(fieldCategories).flat();
+            Object.entries(data).forEach(([field, value]) => {
+                if (!knownFields.includes(field) && value && value.toString().trim()) {
+                    // Future-proof: automatically include any new fields
+                    const cleanValue = value.toString().replace(/"/g, '\\"').replace(/\\n/g, '\\\\n');
+                    command += `-metadata ${field}="${cleanValue}" \\\\\n`;
+                }
+            });
+            
+            // DA1 Custom Extended Metadata (beyond standard)
+            command += `# DA1 EXTENDED METADATA\n\\\n`;
+            command += `-metadata da1_comprehensive="true" \\\\\n`;
+            command += `-metadata da1_field_count="${Object.values(fieldCategories).flat().length}" \\\\\n`;
+            command += `-metadata da1_export_timestamp="${new Date().toISOString()}" \\\\\n`;
+            command += `-metadata da1_source="DA1metaMetaData_Editor_v2.0.0" \\\\\n`;
+            
+            // Final encoding options
+            command += `\\\n# ENCODING OPTIONS\n\\\n`;
+            command += `-id3v2_version 3 \\\\\n`;
+            command += `-write_id3v1 1 \\\\\n`;
+            command += `-c copy \\\\\n`;  // Copy streams without re-encoding
+            command += outputFile;
+            
+            return command;
+        }
+
+        // Initialize auto-save and form loading after everything is loaded
+        window.addEventListener('load', () => {
+            loadFormData();
+            setupAutoSave();
+            restoreLastCommand();
+        });
+
+        function restoreLastCommand() {
+            const lastCommand = localStorage.getItem('da1_last_generated_command');
+            if (lastCommand) {
+                // ONLY update main command output (bottom section)
+                const mainOutput = document.getElementById('mainCommandOutput');
+                const placeholder = document.getElementById('commandPlaceholder');
+                
+                mainOutput.textContent = lastCommand;
+                mainOutput.style.display = 'block';
+                placeholder.style.display = 'none';
+                
+                // Make sure sidebar command is hidden
+                const sidebarOutput = document.getElementById('commandOutput');
+                sidebarOutput.style.display = 'none';
+            }
+        }
+
+        // Show status message
+        function showStatus(message, type) {
+            const status = document.getElementById('fileStatus');
+            status.textContent = message;
+            status.className = `status-message status-${type}`;
+            status.style.display = 'block';
+            
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 3000);
+        }
+
+        // Filename sanitization function
+        function sanitizeFilename(input) {
+            if (!input) return 'untitled';
+            
+            // Replace spaces with underscores
+            let sanitized = input.replace(/\s+/g, '_');
+            
+            // Remove filesystem-breaking characters but keep international characters
+            // Remove: \ / : * ? " < > |
+            sanitized = sanitized.replace(/[\\/:*?"<>|]/g, '');
+            
+            // Remove any remaining problematic characters but preserve international chars
+            sanitized = sanitized.replace(/[^\w\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\u0400-\u04FF\u0500-\u052F\u2DE0-\u2DFF\uA640-\uA69F\u4E00-\u9FFF\u3400-\u4DBF\u20000-\u2A6DF\u2A700-\u2B73F\u2B740-\u2B81F\u2B820-\u2CEAF._-]/g, '');
+            
+            return sanitized || 'untitled';
+        }
+
+        // Update header filename display
+        function updateHeaderFilename(filename) {
+            console.log('updateHeaderFilename called with:', filename);
+            const headerElement = document.getElementById('header-filename');
+            if (headerElement) {
+                const displayName = filename.endsWith('.da1xml') ? filename : filename + '.da1xml';
+                console.log('Setting header to:', displayName);
+                headerElement.textContent = displayName;
+            }
+        }
+
+        // Working folder management
+        let workingFolderHandle = null;
+
+        function updateWorkingFolderDisplay(folderName = null) {
+            const display = document.getElementById('workingFolder');
+            if (folderName) {
+                display.textContent = `Working folder: ${folderName}`;
+                display.style.color = '#4a7c59';
+            } else {
+                display.textContent = 'Working folder: Not set - use Save As to choose';
+                display.style.color = '#666';
+            }
+        }
+
+        function initializeWorkingFolder() {
+            // Try to restore working folder from localStorage
+            const savedFolderName = localStorage.getItem('da1_working_folder_name');
+            if (savedFolderName) {
+                updateWorkingFolderDisplay(savedFolderName);
+            }
+        }
+
+        // File Operations Functions
+        function newFile() {
+                // Save current file first
+                saveFormData();
+                saveFileState();
+                showStatus('Current File Saved. Loading Blank Document...', 'info');
+                
+                // Clear all form fields
+                document.getElementById('metadata-form').reset();
+                
+                // Set DA1neverBlank defaults for new file (never blank!)
+                document.getElementById('current_filename').value = 'untitled';
+                document.getElementById('da1_filetype').value = 'file';
+                document.getElementById('da1_version').value = '1.a.1';
+                document.getElementById('last_modified').value = new Date().toISOString().slice(0, 16);
+                
+                // Load DA1neverBlank educational data
+                loadDA1neverBlankDefaults();
+                
+                // Update file state
+                updateHeaderFilename('untitled');
+                updateFilePath('untitled');
+                
+                // Save the new state
+                saveFormData();
+                saveFileState();
+                
+                setTimeout(() => {
+                    showStatus('New DA1neverBlank document ready', 'success');
+                }, 1000);
+        }
+
+        // ===== FILETYPE MANAGEMENT =====
+        
+        // Toggle custom file type input when "Other" is selected
+        function toggleCustomFileType() {
+            const select = document.getElementById('da1_filetype');
+            const customInput = document.getElementById('da1_filetype_custom');
+            
+            if (select.value === 'other') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+                customInput.value = '';
+            }
+        }
+        
+        // ===== FILE STATE MANAGEMENT FUNCTIONS =====
+        
+        // Copy file path to clipboard
+        function copyFilePath() {
+            const pathElement = document.getElementById('file_path_display');
+            const path = pathElement.textContent.trim();
+            
+            // Use modern clipboard API if available
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(path).then(() => {
+                    showStatus('File path copied to clipboard', 'success');
+                });
+            } else {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = path;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showStatus('File path copied to clipboard', 'success');
+            }
+        }
+        
+        // Update file path display
+        function updateFilePath(filename, directory = null) {
+            // Use stored working directory if no directory specified
+            if (!directory) {
+                directory = localStorage.getItem('da1_current_directory') || 
+                          localStorage.getItem('da1_working_folder_name') || 
+                          'Downloads';
+            }
+            
+            // If it's just a folder name (not a full path), show it appropriately
+            let displayPath;
+            if (directory.includes('/') || directory.includes('\\')) {
+                // Full path
+                displayPath = `${directory}/${filename}.da1xml`;
+            } else {
+                // Just folder name - show as selected folder
+                displayPath = `${directory}/${filename}.da1xml (selected folder)`;
+            }
+            
+            document.getElementById('file_path_display').textContent = displayPath;
+            
+            // Store in localStorage for persistence
+            localStorage.setItem('da1_current_file_path', displayPath);
+            localStorage.setItem('da1_current_directory', directory);
+        }
+        
+        // Restore file state from localStorage
+        function restoreFileState() {
+            const savedFilename = localStorage.getItem('da1_current_filename');
+            const savedPath = localStorage.getItem('da1_current_file_path');
+            
+            if (savedFilename) {
+                document.getElementById('current_filename').value = savedFilename;
+                updateHeaderFilename(savedFilename);
+            }
+            
+            if (savedPath) {
+                document.getElementById('file_path_display').textContent = savedPath;
+            }
+        }
+        
+        // Save current file state to localStorage
+        function saveFileState() {
+            const filename = document.getElementById('current_filename').value || 'untitled';
+            localStorage.setItem('da1_current_filename', filename);
+            localStorage.setItem('da1_last_save_timestamp', new Date().toISOString());
+        }
+        
+        // Check if there are unsaved changes and update save status
+        function checkSaveStatus() {
+            const lastSave = localStorage.getItem('da1_last_save_timestamp');
+            const lastFormChange = localStorage.getItem('da1_last_form_change');
+            
+            if (!lastSave || (lastFormChange && new Date(lastFormChange) > new Date(lastSave))) {
+                return false; // Has unsaved changes
+            }
+            return true; // All changes saved
+        }
+        
+        // Load DA1neverBlank educational defaults (never blank fields!)
+        function loadDA1neverBlankDefaults() {
+            // Basic metadata with educational examples
+            if (document.getElementById('title')) {
+                document.getElementById('title').value = 'DA1neverBlank Educational Example';
+            }
+            if (document.getElementById('artist')) {
+                document.getElementById('artist').value = 'DA1 System';
+            }
+            if (document.getElementById('album')) {
+                document.getElementById('album').value = 'DA1neverBlank Educational Collection';
+            }
+            if (document.getElementById('year')) {
+                document.getElementById('year').value = new Date().getFullYear().toString();
+            }
+            if (document.getElementById('genre')) {
+                document.getElementById('genre').value = 'Educational/Metadata';
+            }
+            if (document.getElementById('description')) {
+                document.getElementById('description').value = 'This file demonstrates DA1neverBlank metadata principles - every field contains meaningful educational data that teaches the digital ecosystem about proper metadata handling.';
+            }
+            if (document.getElementById('copyright')) {
+                document.getElementById('copyright').value = '© DA1 MetaMetaData System - Educational Use';
+            }
+            
+            // Always set core DA1 fields
+            if (document.getElementById('da1_creation_method')) {
+                document.getElementById('da1_creation_method').value = 'DA1 MetaMetaData Editor';
+            }
+            if (document.getElementById('da1_purpose')) {
+                document.getElementById('da1_purpose').value = 'Ecosystem education through persistent metadata tagging';
+            }
+        }
+
+        async function loadFile() {
+            try {
+                console.log('Load file button clicked');
+                showStatus('Selecting file...', 'info');
+                
+                // Try File System Access API first
+                if (window.showOpenFilePicker) {
+                    try {
+                        console.log('Using File System Access API');
+                        const [fileHandle] = await window.showOpenFilePicker({
+                            types: [{
+                                description: 'DA1XML Files',
+                                accept: { 'application/xml': ['.da1xml'] }
+                            }]
+                        });
+                        
+                        console.log('File selected:', fileHandle.name);
+                        
+                        // Save working folder handle
+                        workingFolderHandle = await fileHandle.getParent();
+                        const folderName = workingFolderHandle.name || 'Selected folder';
+                        localStorage.setItem('da1_working_folder_name', folderName);
+                        updateWorkingFolderDisplay(folderName);
+                        
+                        // Read and process file
+                        const file = await fileHandle.getFile();
+                        const content = await file.text();
+                        console.log('File content length:', content.length);
+                        
+                        const data = parseDA1XML(content);
+                        console.log('Parsed data keys:', Object.keys(data));
+                        console.log('XML data current_filename:', data.current_filename);
+                        
+                        // Use actual filename from file, not from XML data
+                        const filename = file.name.replace('.da1xml', '');
+                        console.log('Actual file name:', file.name, 'stripped:', filename);
+                        data.current_filename = filename;
+                        console.log('Set data.current_filename to:', data.current_filename);
+                        
+                        // Set flag to prevent filename overwriting
+                        window.justLoadedFile = true;
+                        
+                        // Force the filename first
+                        document.getElementById('current_filename').value = filename;
+                        updateHeaderFilename(filename);
+                        
+                        setFormData(data);
+                        
+                        // Clear flag after a delay
+                        setTimeout(() => {
+                            window.justLoadedFile = false;
+                        }, 1000);
+                        
+                        showStatus(`File "${file.name}" loaded successfully!`, 'success');
+                        saveFormData();
+                        
+                        // Final override - force header to show actual loaded filename and update file state
+                        setTimeout(() => {
+                            document.getElementById('current_filename').value = filename;
+                            updateHeaderFilename(filename);
+                            updateFilePath(filename);
+                            saveFileState();
+                        }, 100);
+                        
+                        return;
+                    } catch (fsError) {
+                        if (fsError.name === 'AbortError') {
+                            console.log('User cancelled file selection');
+                            return;
+                        }
+                        console.log('File System Access failed, falling back to input:', fsError);
+                    }
+                }
+                
+                console.log('Using fallback file input dialog');
+                // Fallback to standard file input dialog
+                const fileInput = document.createElement('input');
+                fileInput.type = 'file';
+                fileInput.accept = '.da1xml';
+                fileInput.onchange = function(e) {
+                    const file = e.target.files[0];
+                    if (!file) {
+                        console.log('No file selected');
+                        return;
+                    }
+                    
+                    console.log('File selected via input:', file.name);
+                    
+                    if (!file.name.endsWith('.da1xml')) {
+                        showStatus('Error: Only .da1xml files are supported', 'error');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        try {
+                            console.log('File read complete, length:', event.target.result.length);
+                            
+                            const data = parseDA1XML(event.target.result);
+                            console.log('Parsed data keys:', Object.keys(data));
+                            setFormData(data);
+                            
+                            // Update header with loaded filename
+                            const filename = data.current_filename || file.name.replace('.da1xml', '');
+                            document.getElementById('current_filename').value = filename;
+                            updateHeaderFilename(filename);
+                            updateFilePath(filename);
+                            
+                            showStatus(`File "${file.name}" loaded successfully!`, 'success');
+                            saveFormData();
+                            saveFileState();
+                        } catch (error) {
+                            console.error('Error parsing file:', error);
+                            showStatus('Error loading file: ' + error.message, 'error');
+                        }
+                    };
+                    reader.readAsText(file);
+                };
+                fileInput.click();
+            } catch (error) {
+                console.error('Error in loadFile:', error);
+                showStatus('Error loading file: ' + error.message, 'error');
+            }
+        }
+
+        function saveFile() {
+            // Get current form data
+            const data = getFormData();
+            const currentFilename = sanitizeFilename(data.current_filename || 'untitled');
+            
+            // Update file state and localStorage only (no file download)
+            saveFormData();
+            saveFileState();
+            updateHeaderFilename(currentFilename);
+            updateFilePath(currentFilename);
+            
+            // Show confirmation without any popups or downloads
+            showStatus('All changes saved', 'success');
+        }
+
+        async function saveAsFile() {
+            const data = getFormData();
+            const currentFilename = sanitizeFilename(data.current_filename || 'untitled');
+            const suggestedFilename = currentFilename + '.da1xml';
+            
+            try {
+                const xml = generateDA1XML(data);
+                
+                // Check if "Save anywhere" is enabled and supported
+                const saveAnywhereEnabled = localStorage.getItem('da1_save_anywhere_enabled') === 'true';
+                
+                if (saveAnywhereEnabled && window.showSaveFilePicker) {
+                    try {
+                        console.log('Using File System Access API for Save As');
+                        const fileHandle = await window.showSaveFilePicker({
+                            suggestedName: suggestedFilename,
+                            types: [{
+                                description: 'DA1XML Files',
+                                accept: { 'application/xml': ['.da1xml'] }
+                            }]
+                        });
+                        
+                        // Save working folder handle
+                        workingFolderHandle = await fileHandle.getParent();
+                        const folderName = workingFolderHandle.name || 'Selected folder';
+                        localStorage.setItem('da1_working_folder_name', folderName);
+                        updateWorkingFolderDisplay(folderName);
+                        
+                        // Update filename in form (remove extension)
+                        const savedFilename = fileHandle.name.replace('.da1xml', '');
+                        document.getElementById('current_filename').value = savedFilename;
+                        updateHeaderFilename(savedFilename);
+                        updateFilePath(savedFilename, folderName);
+                        
+                        // Write file
+                        const writable = await fileHandle.createWritable();
+                        await writable.write(xml);
+                        await writable.close();
+                        
+                        showStatus('File saved successfully!', 'success');
+                        saveFormData();
+                        saveFileState();
+                        return;
+                    } catch (fsError) {
+                        if (fsError.name === 'AbortError') return; // User cancelled
+                        console.log('File System Access failed, falling back to download:', fsError);
+                    }
+                }
+                
+                // Fallback: use download method as last resort
+                console.log('Using download fallback for Save As');
+                const newFilename = suggestedFilename.replace('.da1xml', '');
+                
+                const sanitizedFilename = sanitizeFilename(newFilename);
+                
+                // Update current filename in form
+                document.getElementById('current_filename').value = sanitizedFilename;
+                updateHeaderFilename(sanitizedFilename);
+                updateFilePath(sanitizedFilename, 'Downloads');
+                
+                // Download file
+                const filename = sanitizedFilename + '.da1xml';
+                const blob = new Blob([xml], { type: 'application/xml' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+                
+                showStatus(`File saved to Downloads: ${filename} (move to da1_system folder if needed)`, 'success');
+                saveFormData();
+                saveFileState();
+            } catch (error) {
+                showStatus('Error saving file: ' + error.message, 'error');
+            }
+        }
+
+        async function saveAsTemplate() {
+            const data = getFormData();
+            const currentFilename = sanitizeFilename(data.current_filename || 'untitled');
+            const suggestedFilename = currentFilename + '.da1xml';
+            
+            try {
+                // Set filetype to template
+                document.getElementById('da1_filetype').value = 'template';
+                const updatedData = getFormData();
+                const xml = generateDA1XML(updatedData);
+                
+                // Try File System Access API first
+                if (window.showSaveFilePicker && workingFolderHandle) {
+                    try {
+                        const fileHandle = await workingFolderHandle.getFileHandle(suggestedFilename, { create: true });
+                        const writable = await fileHandle.createWritable();
+                        await writable.write(xml);
+                        await writable.close();
+                        
+                        showStatus('Template saved successfully!', 'success');
+                        saveFormData();
+                        return;
+                    } catch (fsError) {
+                        console.log('File System Access failed, using Save As dialog:', fsError);
+                    }
+                }
+                
+                // Use Save As dialog for templates
+                if (window.showSaveFilePicker) {
+                    try {
+                        const fileHandle = await window.showSaveFilePicker({
+                            suggestedName: suggestedFilename,
+                            types: [{
+                                description: 'DA1XML Template Files',
+                                accept: { 'application/xml': ['.da1xml'] }
+                            }]
+                        });
+                        
+                        // Save working folder handle
+                        workingFolderHandle = await fileHandle.getParent();
+                        const folderName = workingFolderHandle.name || 'Selected folder';
+                        localStorage.setItem('da1_working_folder_name', folderName);
+                        updateWorkingFolderDisplay(folderName);
+                        
+                        // Update filename in form (remove extension)
+                        const savedFilename = fileHandle.name.replace('.da1xml', '');
+                        document.getElementById('current_filename').value = savedFilename;
+                        updateHeaderFilename(savedFilename);
+                        
+                        // Write file
+                        const writable = await fileHandle.createWritable();
+                        await writable.write(xml);
+                        await writable.close();
+                        
+                        showStatus('Template saved successfully!', 'success');
+                        saveFormData();
+                        return;
+                    } catch (fsError) {
+                        if (fsError.name === 'AbortError') return; // User cancelled
+                        console.log('File System Access failed, falling back to download:', fsError);
+                    }
+                }
+                
+                // Fallback: use download method as last resort
+                console.log('Using download fallback for Save As');
+                const newFilename = suggestedFilename.replace('.da1xml', '');
+                
+                const sanitizedFilename = sanitizeFilename(newFilename);
+                
+                // Update current filename in form
+                document.getElementById('current_filename').value = sanitizedFilename;
+                updateHeaderFilename(sanitizedFilename);
+                updateFilePath(sanitizedFilename, 'Downloads');
+                
+                // Download file
+                const filename = sanitizedFilename + '.da1xml';
+                const blob = new Blob([xml], { type: 'application/xml' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+                
+                showStatus(`File saved to Downloads: ${filename} (move to da1_system folder if needed)`, 'success');
+                saveFormData();
+            } catch (error) {
+                showStatus('Error saving template: ' + error.message, 'error');
+            }
+        }
+
+        // Code View Functionality
+        let codeViewEnabled = false;
+        const originalValues = new Map();
+
+        function toggleCodeView() {
+            codeViewEnabled = !codeViewEnabled;
+            const btn = document.getElementById('codeViewBtn');
+            const formContainer = document.querySelector('.form-container');
+            
+            if (codeViewEnabled) {
+                btn.classList.add('active');
+                btn.innerHTML = '&lt;/&gt; Code View (ON)';
+                formContainer.classList.add('code-view');
+                enableCodeView();
+                showStatus('Code view enabled - showing Unicode codes', 'info');
+            } else {
+                btn.classList.remove('active');
+                btn.innerHTML = '&lt;/&gt; Code View';
+                formContainer.classList.remove('code-view');
+                disableCodeView();
+                showStatus('Code view disabled - showing normal text', 'info');
+            }
+        }
+
+        function enableCodeView() {
+            const inputs = document.querySelectorAll('#metadata-form input, #metadata-form textarea');
+            
+            inputs.forEach(input => {
+                // Skip non-text fields
+                if (input.type === 'file' || input.type === 'datetime-local' || input.type === 'button' || input.type === 'submit') return;
+                
+                // Store original value
+                originalValues.set(input.id, input.value);
+                
+                // Convert to code view for text fields
+                if (input.type === 'text' || input.tagName === 'TEXTAREA') {
+                    if (input.value) {
+                        input.value = convertToCodeView(input.value);
+                    }
+                    
+                    // Auto-resize after conversion
+                    autoResizeAllFields();
+                }
+            });
+        }
+
+        function disableCodeView() {
+            const inputs = document.querySelectorAll('#metadata-form input, #metadata-form textarea');
+            
+            inputs.forEach(input => {
+                if (input.type === 'file' || input.type === 'datetime-local') return;
+                
+                // Restore original value
+                if (originalValues.has(input.id)) {
+                    input.value = originalValues.get(input.id);
+                }
+                
+                // Reset height and recalculate for normal view
+                input.style.height = '';
+                
+                // Re-trigger auto-resize for textareas to get proper height in normal view
+                if (input.tagName === 'TEXTAREA') {
+                    setTimeout(() => {
+                        input.style.height = 'auto';
+                        input.style.height = (input.scrollHeight + 2) + 'px';
+                    }, 10);
+                }
+            });
+            
+            originalValues.clear();
+        }
+
+        function convertToCodeView(text) {
+            if (!text) return text;
+            
+            const converted = text.split('').map(char => {
+                const codePoint = char.codePointAt(0);
+                
+                // Keep ASCII printable characters as-is (32-126)
+                if (codePoint >= 32 && codePoint <= 126) {
+                    return char;
+                }
+                
+                // Convert everything else to Unicode notation
+                const hex = codePoint.toString(16).toUpperCase().padStart(4, '0');
+                return `[U+${hex}]`;
+            }).join('');
+            
+            // Add intelligent wrapping hints
+            return addIntelligentWrapping(converted);
+        }
+
+        function convertFromCodeView(text) {
+            if (!text) return text;
+            
+            // Remove zero-width spaces first
+            let cleaned = text.replace(/\u200B/g, '');
+            
+            // Replace [U+XXXX] patterns with actual Unicode characters
+            return cleaned.replace(/\[U\+([0-9A-F]{4,6})\]/g, (match, hex) => {
+                const codePoint = parseInt(hex, 16);
+                return String.fromCodePoint(codePoint);
+            });
+        }
+
+        // Auto-resize all text fields to fit content
+        function autoResizeAllFields() {
+            const inputs = document.querySelectorAll('#metadata-form input[type="text"], #metadata-form textarea');
+            inputs.forEach(input => {
+                if (input.value) {
+                    input.style.height = 'auto';
+                    input.style.height = (input.scrollHeight + 4) + 'px';
+                }
+            });
+        }
+        
+        // Global function to be called whenever content changes
+        function autoResizeField(input) {
+            if (input && input.tagName === 'TEXTAREA') {
+                input.style.height = 'auto';
+                input.style.height = (input.scrollHeight + 2) + 'px';
+            }
+        }
+        
+        // Clean auto-resize setup for all fields
+        function setupGlobalAutoResize() {
+            const allTextareas = document.querySelectorAll('textarea');
+            
+            allTextareas.forEach(textarea => {
+                function resizeTextarea() {
+                    textarea.style.height = 'auto';
+                    textarea.style.height = (textarea.scrollHeight + 2) + 'px';
+                }
+                
+                // Listen to all input events
+                textarea.addEventListener('input', resizeTextarea);
+                textarea.addEventListener('paste', () => setTimeout(resizeTextarea, 0));
+                textarea.addEventListener('keyup', resizeTextarea);
+                textarea.addEventListener('focus', resizeTextarea);
+                
+                // Initial resize if field has content
+                if (textarea.value) {
+                    setTimeout(resizeTextarea, 0);
+                }
+            });
+        }
+        
+        function addIntelligentWrapping(text) {
+            if (!text) return text;
+            
+            // Add zero-width spaces before Unicode code elements to allow wrapping
+            // but not break the code elements themselves
+            return text.replace(/(\[U\+[0-9A-F]{4,6}\])/g, '\u200B$1');
+        }
+        
+        // Update form data handling to work with code view
+        function getFormDataCodeViewAware() {
+            const data = {};
+            const inputs = document.querySelectorAll('#metadata-form input, #metadata-form select, #metadata-form textarea');
+            
+            inputs.forEach(input => {
+                if (input.name && input.value !== undefined) {
+                    let value = input.value;
+                    
+                    // If code view is enabled, convert back to normal text
+                    if (codeViewEnabled && (input.type === 'text' || input.tagName === 'TEXTAREA')) {
+                        value = convertFromCodeView(value);
+                    }
+                    
+                    data[input.name] = value;
+                }
+            });
+            
+            return data;
+        }
+        
+        /* 
+        ==============================================================================
+        SECTION 4: JAVASCRIPT FUNCTIONALITY END
+        ============================================================================== 
+        */
+    </script>
+</body>
+</html>

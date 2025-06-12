@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botiņš latviešu koriem</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        #voiceflow-chat {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 600px;
+            overflow: hidden;
+        }
+        
+        /* Hide any floating widgets that might appear */
+        .vfrc-launcher,
+        .vfrc-widget:not(#voiceflow-chat .vfrc-widget),
+        [class*="voiceflow"]:not(#voiceflow-chat [class*="voiceflow"]) {
+            display: none !important;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            body {
+                padding: 10px;
+            }
+            #voiceflow-chat {
+                min-height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Botiņš latviešu koriem</h1>
+    <div id="voiceflow-chat"></div>
+
+    <script type="text/javascript">
+        // Aggressive approach to prevent any overlay widgets
+        let widgetLoaded = false;
+        
+        // Function to destroy any floating/overlay widgets
+        const destroyFloatingWidgets = () => {
+            // Remove any elements that might be floating widgets
+            const selectors = [
+                '.vfrc-launcher',
+                '.vfrc-widget', 
+                '.vfrc-chat',
+                '[class*="voiceflow"]:not(#voiceflow-chat [class*="voiceflow"])',
+                '[id*="voiceflow"]:not(#voiceflow-chat)',
+                'iframe[src*="voiceflow"]',
+                'div[style*="position: fixed"]',
+                'div[style*="z-index: 99"]'
+            ];
+            
+            const targetElement = document.getElementById('voiceflow-chat');
+            
+            selectors.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    // Only remove if it's NOT inside our target container
+                    if (targetElement && !targetElement.contains(el)) {
+                        el.remove();
+                        console.log('Removed floating widget:', el);
+                    }
+                });
+            });
+        };
+        
+        // Watch for new floating widgets being added
+        const observer = new MutationObserver((mutations) => {
+            if (widgetLoaded) {
+                mutations.forEach((mutation) => {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === 1) { // Element node
+                            const targetElement = document.getElementById('voiceflow-chat');
+                            // Check if this new element looks like a floating widget
+                            if (node.classList && (
+                                node.classList.contains('vfrc-launcher') ||
+                                node.classList.contains('vfrc-widget') ||
+                                node.style.position === 'fixed'
+                            ) && targetElement && !targetElement.contains(node)) {
+                                node.remove();
+                                console.log('Prevented floating widget from appearing:', node);
+                            }
+                        }
+                    });
+                });
+            }
+        });
+        
+        observer.observe(document.body, { 
+            childList: true, 
+            subtree: true 
+        });
+        
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+                const targetElement = document.getElementById('voiceflow-chat');
+                if (!targetElement) {
+                    console.error('Target element #voiceflow-chat not found');
+                    return;
+                }
+                
+                // Load widget with minimal configuration to ensure embedded mode
+                window.voiceflow.chat.load({
+                    verify: { projectID: '6842ad8bec8e90877c24e2b9' },
+                    url: 'https://general-runtime.voiceflow.com',
+                    versionID: 'production',
+                    render: {
+                        mode: 'embedded',
+                        target: targetElement
+                    },
+                    autostart: true
+                }).then(() => {
+                    console.log('Voiceflow widget loaded in embedded mode');
+                    widgetLoaded = true;
+                    
+                    // Immediate cleanup
+                    destroyFloatingWidgets();
+                    
+                    // Periodic cleanup for extra safety
+                    setTimeout(destroyFloatingWidgets, 200);
+                    setTimeout(destroyFloatingWidgets, 500);
+                    setTimeout(destroyFloatingWidgets, 1000);
+                    setTimeout(destroyFloatingWidgets, 2000);
+                    
+                }).catch(error => {
+                    console.error('Failed to load Voiceflow widget:', error);
+                });
+            }
+            v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+            v.type = "text/javascript"; 
+            s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+    </script>
+</body>
+</html>
